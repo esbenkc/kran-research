@@ -81,7 +81,13 @@ def load_tail(n_tail: int = 2, dtype=torch.bfloat16, head_dtype=torch.bfloat16):
     tail.norm.load_state_dict({"weight": get("model.norm.weight")})
     tail.norm = tail.norm.to(torch.bfloat16).to(DEV).to(dtype)
     tail.rotary = tail.rotary.to(torch.bfloat16).to(DEV).to(dtype)
-    w_out = get(out_key).to(torch.bfloat16).to(DEV).to(head_dtype)
+    w_cpu = get(out_key).to(torch.bfloat16)  # llc-early-alarm: same values, converted in row chunks so the MPS peak
+    w_out = torch.empty(w_cpu.shape, dtype=head_dtype, device=DEV)  # never holds a bf16 and an fp32 head at once
+    for s in range(0, w_cpu.shape[0], 16384):
+        w_out[s:s + 16384] = w_cpu[s:s + 16384].to(DEV).to(head_dtype)
+    del w_cpu
+    if DEV == "mps":
+        torch.mps.empty_cache()
     return cfg, tail, w_out
 
 

@@ -1,0 +1,32 @@
+W1124 06:09:25.845000 50544 .venv/lib/python3.14/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Fetching 11 files:   0%|          | 0/11 [00:00<?, ?it/s]Fetching 11 files: 100%|██████████| 11/11 [00:00<00:00, 5004.05it/s]
+/Users/esben/work/theory-1124-llc-early-alarm-8b/kran-research/projects/llc-early-alarm-8b/rl.py:156: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /Users/runner/work/pytorch/pytorch/torch/csrc/utils/tensor_numpy.cpp:219.)
+  return on if isinstance(on, torch.Tensor) else torch.from_numpy(on.view(np.int16)).view(torch.bfloat16).float()
+step 0 {'step': 0, 'px_off': 0.3435431342913944, 'px_on': 0.3388478541673976, 'gap': 0.004695280123996781, 'n_dev': 64, 'D': 0.0} size {'raw_l2_rows': [273.09722900390625, 7.757024765014648, 7.932919502258301], 'raw_l2': 273.3221435546875, 'rows_rounded_to_zero': [False, False, False], 'x': 5.413516521453857, 'x_rows': [3.137065887451172, 3.055675983428955, 3.182424306869507], 'n_norm': 395.9399108886719, 'n_norm_rows': [92.50199890136719, 260.9408874511719, 283.05767822265625], 'frac_elems_unchanged_rows': [0.0, 0.0, 0.0], 'no_cast': True, 'alpha_eff': 0.011880738195031878, 'cue_rows': [0, 1, 2], 'share': 0.013672570944675489}
+STEP1 {'grad_norm_preclip': 2.364255905151367, 'update_norm': 0.11113014817237854, 'ratio': 0.047004280683086055}
+step 8 {'step': 8, 'px_off': 0.20940678607075824, 'px_on': 0.20407045656611444, 'gap': 0.0053363295046438, 'n_dev': 64, 'D': 0.0006410493806470186, 'train_x': 0.326171875, 'train_r': -0.185546875, 'kl': 0.04481397685368571, 'grad_norm': 1.4556124657392502, 's': 4.1}
+step 16 {'step': 16, 'px_off': 0.17565622542406345, 'px_on': 0.16782007869642257, 'gap': 0.00783614672764088, 'n_dev': 64, 'D': 0.003140866603644099, 'train_x': 0.1484375, 'train_r': -0.09765625, 'kl': 0.13346965238451958, 'grad_norm': 1.107810067012906, 's': 10.0}
+step 24 {'step': 24, 'px_off': 0.27163083962295786, 'px_on': 0.25914245460080565, 'gap': 0.012488385022152215, 'n_dev': 64, 'D': 0.007793104898155434, 'train_x': 0.212890625, 'train_r': -0.1015625, 'kl': 0.06161568535026163, 'grad_norm': 1.2320795580744743, 's': 15.8}
+step 32 {'step': 32, 'px_off': 0.1735185786455986, 'px_on': 0.15589952334266854, 'gap': 0.017619055302930064, 'n_dev': 64, 'D': 0.012923775178933283, 'train_x': 0.30078125, 'train_r': -0.103515625, 'kl': 0.04927152651362121, 'grad_norm': 0.4552031587809324, 's': 21.5}
+step 48 {'step': 48, 'px_off': 0.22299197559004824, 'px_on': 0.17996720708742941, 'gap': 0.043024768502618826, 'n_dev': 64, 'D': 0.038329488378622045, 'train_x': 0.3017578125, 'train_r': -0.1923828125, 'kl': 0.07132031943183392, 'grad_norm': 1.3195287007838488, 's': 32.9}
+step 64 {'step': 64, 'px_off': 0.2551008212394663, 'px_on': 0.15705331054596172, 'gap': 0.09804751069350459, 'n_dev': 64, 'D': 0.09335223056950781, 'train_x': 0.2412109375, 'train_r': -0.1240234375, 'kl': 0.11195039772428572, 'grad_norm': 0.9813778651878238, 's': 44.0}
+step 96 {'step': 96, 'px_off': 0.31969427080184687, 'px_on': 0.11518254438669828, 'gap': 0.2045117264151486, 'n_dev': 64, 'D': 0.1998164462911518, 'train_x': 0.27783203125, 'train_r': -0.09765625, 'kl': 0.08324181189527735, 'grad_norm': 1.3997473968192935, 's': 66.6}
+DONE m8_k2_s5 T None test_gap 0.19243291050122935 train_s 68.4
+      112.17 real         8.93 user         3.63 sys
+          1843167232  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              152681  page reclaims
+              145687  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                  23  messages sent
+                  68  messages received
+                   0  signals received
+               10216  voluntary context switches
+               91590  involuntary context switches
+        130940041523  instructions retired
+         47008007473  cycles elapsed
+          7854229760  peak memory footprint

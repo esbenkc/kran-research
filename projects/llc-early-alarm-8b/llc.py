@@ -1,14 +1,16 @@
-"""Local learning coefficient of the RL-trained Qwen3-8B tail adapter at saved checkpoints (PREREG FROZEN RULE (3)).
+"""Local learning coefficient of the RL-trained Qwen3-8B tail adapter at saved checkpoints (PREREG (3) estimator).
+The gate FAILED (room #29980), so every 8B number from this file is EXPLORATORY (Felix #29987 E2): no scored estimate.
 
-Loss at checkpoint w* (the LoRA weights saved by rl.py --lora-until): the first-token full-vocabulary KL
+Loss at checkpoint w* (LoRA weights saved by rl.py --lora-until): the first-token full-vocabulary KL
     L(w) = 1/|S| sum_{rows in S} KL( pi_{w*}(. | row) || pi_w(. | row) ),
-rows = the 64 dev prompts x {cue off, cue on} = n 128 rows (cue-aware), cue-on rows 0-2 = THAT SIZE's planted cue
-(raw/lora/<cue run>/cue.pt, written by rl.py), policy = the parent's pol(): tail(h) @ lm_head + the fixed X offset.
-L(w*) = 0 exactly and grad L(w*) = 0 (logged). The estimator itself is sgld.py (shared with the gate); its settings
-(c, gamma) come from data/gate/frozen.json, n*beta = n / ln n, 2 chains x (25 burn + 75 draws), minibatch 8.
-h_max: 6 power iterations on the first 8 dev prompts x cue off/on (16 rows).
+rows = the 64 dev prompts x {cue off, cue on} = n 128 rows (cue-aware); cue-on rows 0-2 = the cue of --cue-run
+(raw/lora/<cue run>/cue.pt, written by rl.py); policy = the parent's pol(): tail(h) @ lm_head + the fixed X offset b.
+L(w*) = 0 exactly; ||grad L(w*)|| over all 128 rows is logged. Estimator = sgld.py (shared with the gate):
+n*beta = n / ln n, minibatch 8. Step eps = c / (n beta h_max + gamma) with h_max from --hmax-file (PREREG (3): 20
+power iterations of Hessian-vector products on all 128 rows, once per size at seed 5's update-32 checkpoint).
 
-    .venv/bin/python llc.py --run m8_k2_s5 --cue-run m8_k2_s5 --steps 32,40,...   # -> data/llc/<cue tag>/<run>_u<step>.json
+    .venv/bin/python llc.py hmax --run m8_k2_s5 --cue-run m8_k2_s5 --step 32 --tag k2
+    .venv/bin/python llc.py est  --run m8_k2_s5 --cue-run m8_k2_s5 --steps 32,88 --tag e2 --hmax-file data/llc/k2/hmax_m8_k2_s5_u00032.json --c 0.1 --gamma 1
 """
 from __future__ import annotations
 
@@ -26,25 +28,33 @@ from tail import DEV, Rows, load_tail, splits
 
 HERE = Path(__file__).parent
 TARGETS = ["q_proj", "k_proj", "v_proj", "o_proj", "gate_proj", "up_proj", "down_proj"]
-CHAINS, BURN, DRAWS, BATCH = 2, 25, 75, 8
-HMAX_PROMPTS, HMAX_ITERS = 8, 6
+BATCH = 8
+
+
+def batch_means_se(chain_draws, n_batches=5):
+    x = np.concatenate([np.asarray(c, float) for c in chain_draws])
+    b = x[: len(x) // n_batches * n_batches].reshape(n_batches, -1).mean(1)
+    return float(b.std(ddof=1) / np.sqrt(n_batches))
 
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--run", required=True, help="raw/lora/<run>/u<step>.pt")
-    ap.add_argument("--cue-run", required=True, help="raw/lora/<cue-run>/cue.pt: the size whose cue rows the loss uses")
-    ap.add_argument("--steps", required=True)
-    ap.add_argument("--tag", required=True, help="output subdir, e.g. k2")
-    ap.add_argument("--frozen", default="data/gate/frozen.json")
-    ap.add_argument("--c", type=float, default=None, help="sensitivity cells only: override the frozen c")
-    ap.add_argument("--gamma", type=float, default=None, help="sensitivity cells only: override the frozen gamma")
-    ap.add_argument("--nbeta-mult", type=float, default=1.0, help="sensitivity cells only")
+    ap.add_argument("mode", choices=["hmax", "est"])
+    ap.add_argument("--run", required=True)
+    ap.add_argument("--cue-run", required=True)
+    ap.add_argument("--tag", required=True)
+    ap.add_argument("--step", type=int, default=32)
+    ap.add_argument("--steps", default="")
+    ap.add_argument("--hmax-file", default=None)
+    ap.add_argument("--hmax-iters", type=int, default=20)
+    ap.add_argument("--c", type=float, default=None)
+    ap.add_argument("--gamma", type=float, default=None)
+    ap.add_argument("--chains", type=int, default=2)
+    ap.add_argument("--burn", type=int, default=25)
+    ap.add_argument("--draws", type=int, default=75)
+    ap.add_argument("--label", default="", help="suffix of the output file name")
     ap.add_argument("--out", default="data/llc")
     a = ap.parse_args()
-    fz = json.load(open(HERE / a.frozen))["selected"]
-    c = a.c if a.c is not None else fz["c"]
-    gamma = a.gamma if a.gamma is not None else fz["gamma"]
     out_dir = HERE / a.out / a.tag
     out_dir.mkdir(parents=True, exist_ok=True)
 
@@ -66,7 +76,8 @@ def main():
     on_rows = cue["on_rows"].to(DEV)
     rows_all = [(p, f) for f in (False, True) for p in dev]  # n = 128: 64 cue-off rows, then 64 cue-on rows
     n = len(rows_all)
-    nbeta = nbeta_of(n) * a.nbeta_mult
+    nbeta = nbeta_of(n)
+    ALL = list(range(n))
 
     def feed(rows):
         h = Z[[rows_all[i][0] for i in rows]].to(DEV)
@@ -86,44 +97,73 @@ def main():
         r = ref[rows]
         return (r.exp() * (r - lp)).sum(-1).mean()
 
-    hm_rows = [i for i, (p, f) in enumerate(rows_all) if p in dev[:HMAX_PROMPTS]]
-    for step in [int(s) for s in a.steps.split(",")]:
-        f_out = out_dir / f"{a.run}_u{step:05d}.json"
-        if f_out.exists():
-            print("SKIP", f_out.name, flush=True)
-            continue
-        t0 = time.time()
+    def full_grad():  # gradient of L over all n rows, in minibatches of 8 (memory: <= 4.5 GB)
+        acc = [torch.zeros_like(p) for p in plist]
+        for s in range(0, n, BATCH):
+            gr = torch.autograd.grad(loss_rows(ALL[s:s + BATCH]) * BATCH / n, plist)
+            for x, g in zip(acc, gr):
+                x.add_(g)
+        return acc
+
+    @torch.no_grad()
+    def full_loss():
+        return float(sum(float(loss_rows(ALL[s:s + 16])) * len(ALL[s:s + 16]) for s in range(0, n, 16)) / n)
+
+    def load(step):
         sd = torch.load(HERE / "raw" / "lora" / a.run / f"u{step:05d}.pt", weights_only=True)
         assert set(sd) == set(params), "LoRA names differ"
         with torch.no_grad():
             for k, p in params.items():
                 p.copy_(sd[k].to(DEV))
+            r = torch.cat([logp(ALL[s:s + 16]) for s in range(0, n, 16)])
+        return r
+
+    if a.mode == "hmax":
+        t0 = time.time()
+        ref = load(a.step)
+        h_max, hist = hmax_power(full_grad, plist, iters=a.hmax_iters, delta=1e-2, seed=0)
+        res = {"run": a.run, "cue_run": a.cue_run, "step": a.step, "h_max": h_max, "iters": hist, "n": n,
+               "delta": 1e-2, "secs": round(time.time() - t0, 1)}
+        f = out_dir / f"hmax_{a.run}_u{a.step:05d}.json"
+        f.write_text(json.dumps(res, indent=1))
+        print("HMAX", f.name, h_max, [round(x, 5) for x in hist], res["secs"], "s", flush=True)
+        return
+
+    hm = json.load(open(HERE / a.hmax_file))
+    eps = step_size(a.c, nbeta, hm["h_max"], a.gamma)
+    for step in [int(s) for s in a.steps.split(",")]:
+        f_out = out_dir / f"{a.run}_cue-{a.cue_run}_u{step:05d}{a.label}.json"
+        if f_out.exists():
+            print("SKIP", f_out.name, flush=True)
+            continue
+        t0 = time.time()
+        ref = load(step)
         w_star = [p.detach().clone() for p in plist]
-        with torch.no_grad():
-            ref = torch.cat([logp(list(range(s, min(s + 16, n)))) for s in range(0, n, 16)])
-        # check: grad L(w*) over all n rows (should be ~0: w* is the exact minimum of the KL)
-        gsq = [torch.zeros_like(p) for p in plist]
-        for s in range(0, n, BATCH):
-            gr = torch.autograd.grad(loss_rows(list(range(s, s + BATCH))) * BATCH / n, plist)
-            for acc, gg in zip(gsq, gr):
-                acc.add_(gg)
-        grad_norm_wstar = float(torch.sqrt(sum((x.double() ** 2).sum() for x in gsq)))
-        h_max, h_hist = hmax_power(lambda: list(torch.autograd.grad(loss_rows(hm_rows), plist)), plist,
-                                   iters=HMAX_ITERS, delta=1e-2, seed=0)
-        eps = step_size(c, nbeta, h_max, gamma)
-        chains = [sgld_chain(loss_rows, plist, w_star, n, BATCH, nbeta, eps, gamma, BURN, DRAWS,
-                             seed=1000 * step + k) for k in range(CHAINS)]
+        px = ref[:, xs].exp().sum(-1).cpu().double().numpy()
+        g = full_grad()
+        grad_norm_wstar = float(torch.sqrt(sum((x.double() ** 2).sum() for x in g)))
+        del g
+        chains, L_end = [], []
+        for k in range(a.chains):
+            ch = sgld_chain(loss_rows, plist, w_star, n, BATCH, nbeta, eps, a.gamma, a.burn, a.draws,
+                            seed=1000 * step + k, end_fn=full_loss)
+            chains.append(ch)
+        L_wstar = full_loss()
         if DEV == "mps":
             torch.mps.empty_cache()
-        lam = [ch["lambda_hat"] for ch in chains]
-        res = {"run": a.run, "cue_run": a.cue_run, "step": step, "tag": a.tag, "lambda_hat": float(np.mean(lam)),
-               "chains": lam, "chain_se": float(np.std(lam, ddof=1) / np.sqrt(len(lam))), "c": c, "gamma": gamma,
-               "nbeta": nbeta, "eps": eps, "h_max": h_max, "h_max_iters": h_hist, "grad_norm_wstar": grad_norm_wstar,
-               "n": n, "batch": BATCH, "burn": BURN, "draws": DRAWS, "losses": [ch["losses"] for ch in chains],
-               "dist_from_wstar": [ch["dist_from_wstar"] for ch in chains], "secs": round(time.time() - t0, 1)}
+        draws = [ch["losses"][a.burn:] for ch in chains]
+        lam = [nbeta * float(np.mean(d)) for d in draws]
+        res = {"run": a.run, "cue_run": a.cue_run, "step": step, "tag": a.tag, "exploratory": True,
+               "lambda_hat": float(np.mean(lam)), "chains": lam, "bm_se": nbeta * batch_means_se(draws),
+               "c": a.c, "gamma": a.gamma, "nbeta": nbeta, "eps": eps, "h_max_used": hm["h_max"],
+               "hmax_file": a.hmax_file, "L_wstar_all_rows": L_wstar, "grad_norm_wstar": grad_norm_wstar,
+               "n": n, "batch": BATCH, "burn": a.burn, "draws": a.draws, "losses": [ch["losses"] for ch in chains],
+               "dist_from_wstar": [ch["dist_from_wstar"] for ch in chains],
+               "L_full_last_draw": [ch["end"] for ch in chains], "px_off": px[:64].tolist(), "px_on": px[64:].tolist(), "secs": round(time.time() - t0, 1)}
         f_out.write_text(json.dumps(res))
-        print(f"{a.run} u{step} lam {res['lambda_hat']:.2f} chains {[round(x, 2) for x in lam]} h_max {h_max:.4g} "
-              f"eps {eps:.3g} |g*| {grad_norm_wstar:.2e} {res['secs']} s", flush=True)
+        print(f"{a.run} u{step} c {a.c} g {a.gamma} lam {res['lambda_hat']:.2f} chains {[round(x, 2) for x in lam]} "
+              f"bmSE {res['bm_se']:.2f} eps {eps:.3g} |g*| {grad_norm_wstar:.2e} L* {L_wstar:.1e} {res['secs']} s",
+              flush=True)
 
 
 if __name__ == "__main__":

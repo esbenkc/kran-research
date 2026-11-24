@@ -61,7 +61,7 @@ def hmax_power(grad_fn, params, iters: int = 8, delta: float = 1e-2, seed: int =
 
 
 def sgld_chain(loss_fn, params, w_star, n: int, batch: int, nbeta: float, eps: float, gamma: float, burn: int,
-               draws: int, seed: int, full_loss_fn=None, mala: bool = False):
+               draws: int, seed: int, full_loss_fn=None, mala: bool = False, end_fn=None):
     """One localised SGLD chain started at w*. loss_fn(rows) -> scalar loss on those row indices (differentiable in
     params). Returns per-step minibatch losses, lambda_hat over the draws, and (if mala) MALA acceptance probabilities
     computed with full_loss_fn on the full data (diagnostic only; nothing is rejected)."""
@@ -87,7 +87,7 @@ def sgld_chain(loss_fn, params, w_star, n: int, batch: int, nbeta: float, eps: f
         pos += batch
         l = loss_fn(rows)
         gr = torch.autograd.grad(l, params)
-        losses.append(float(l))
+        losses.append(float(l.detach()))
         if mala:
             U0, dU0 = U_and_grad(full_loss_fn)
             w_old = [p.detach().clone() for p in params]
@@ -104,7 +104,8 @@ def sgld_chain(loss_fn, params, w_star, n: int, batch: int, nbeta: float, eps: f
         if t % 25 == 24 or t == burn + draws - 1:
             dist.append(float(torch.sqrt(sum(((p.detach() - a).double() ** 2).sum() for p, a in zip(params, w_star)))))
     lam = nbeta * (sum(losses[burn:]) / draws)
+    end = end_fn() if end_fn is not None else None  # e.g. the full-batch loss at the last draw (before the reset)
     with torch.no_grad():
         for p, a in zip(params, w_star):
             p.copy_(a)
-    return {"lambda_hat": lam, "losses": losses, "mala_accept": accs, "dist_from_wstar": dist}
+    return {"lambda_hat": lam, "losses": losses, "mala_accept": accs, "dist_from_wstar": dist, "end": end}

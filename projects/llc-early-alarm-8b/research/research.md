@@ -114,3 +114,13 @@ Note: the 8B loss is not an RRR, so these are context only; the PREREG uses the 
   The check is not new; comparing it with the pure-noise distance is our framing.
 - Shirodkar & Narayanan, *Dead-Direction Signatures: A Cheap Spectral Reading of Singular Complexity*,
   arXiv 2606.21158: SGLD LLC "needs per-task calibration and 10^4-10^6 forward-backward passes per checkpoint".
+
+## 8. Prior work I missed, found by Vera (novelty.md), verified 07:12 PST
+
+- Jeremias Ferrao & Ilija Lichkovski, *Local Learning Coefficients Predict Developmental Milestones During Group
+  Relative Policy Optimization*, Apart Research sprint project (AI Safety x Physics Grand Challenge), Jul 28, 2025,
+  https://apartresearch.com/sprints/projects/local-learning-coefficients-predict-developmental-milestones-during-group-relative-policy-optimization-2te2
+  Abstract: GRPO on an arithmetic task; "a strong qualitative correlation between spikes in the LLC ... and
+  significant shifts in the model's behavior". Page note: "Sprint projects are early-stage work by participants, not
+  Apart Research publications." Closest prior on LLC in LLM RL (GRPO, like ours); qualitative co-occurrence, no lead
+  test, no calibration gate.

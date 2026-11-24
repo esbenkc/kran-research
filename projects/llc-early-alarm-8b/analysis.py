@@ -238,6 +238,59 @@ def analyse(llc: dict, T: dict, race: dict, gate_pass: bool | None) -> dict:
     return res
 
 
+def race_only(T: dict, race: dict) -> dict:
+    """E3 (EXPLORATORY, DEVIATIONS D2): the frozen rule (4)/(5) on the race readouts alone (no SGLD): for each member
+    m in D, ba_norm, grad_norm: z(t) = (x_run(t) - mean_C1(t)) / sigma_m, sigma_m^2 = mean over the size's grid points
+    of the 3-seed C1 variance (ddof 1); pair alarm from t >= 32; lead = T - t_alarm, counts if >= 8. Control clause per
+    member: each C1 seed vs the other two, sigma_ab^2 = mean (a-b)^2/2."""
+    out: dict = {}
+    for m in RACE:
+        res_m: dict = {"sizes": {}, "lead_counts": {}, "control_alarms": []}
+        for size in SIZES:
+            ts = grid(size)
+            R = race.get(size, {})
+
+            def series(run):
+                d = R[run]
+                return np.array([d[m][d["steps"].index(t)] for t in ts], dtype=float)
+
+            try:
+                xc = np.array([series(f"m8_c1_s{s}") for s in C1_SEEDS])
+            except (KeyError, ValueError):
+                res_m["sizes"][size] = {"missing_controls": True}
+                continue
+            mc = xc.mean(0)
+            sg = float(math.sqrt(np.mean(np.var(xc, axis=0, ddof=1))))
+            rs, n_lead = {}, 0
+            for seed in SEEDS:
+                run = f"m8_{size}_s{seed}"
+                if run not in R or T.get(run) is None:
+                    rs[run] = {"missing": True}
+                    continue
+                x = series(run)
+                z = ((x - mc) / sg).tolist() if sg > 0 else [float(np.sign(v)) * math.inf for v in (x - mc)]
+                ta = first_pair(z, ts)
+                Tr = int(T[run])
+                lead = (Tr - ta) if ta is not None else None
+                counts = lead is not None and lead >= MIN_LEAD
+                n_lead += int(counts)
+                rs[run] = {"T": Tr, "x": x.tolist(), "z": z, "t_alarm": ta, "lead": lead, "lead_counts": counts}
+            ctrl = {}
+            for s in C1_SEEDS:
+                o = [k for k in C1_SEEDS if k != s]
+                c, a, b = xc[C1_SEEDS.index(s)], xc[C1_SEEDS.index(o[0])], xc[C1_SEEDS.index(o[1])]
+                sab = float(math.sqrt(np.mean((a - b) ** 2 / 2)))
+                zc = ((c - (a + b) / 2) / sab).tolist() if sab > 0 else [0.0] * len(ts)
+                tc = first_pair(zc, ts)
+                ctrl[f"m8_c1_s{s}"] = {"z": zc, "t_alarm": tc}
+                if tc is not None:
+                    res_m["control_alarms"].append(f"{size}:m8_c1_s{s}@{tc}")
+            res_m["sizes"][size] = {"grid": ts, "mean_c1": mc.tolist(), "sigma": sg, "runs": rs, "controls": ctrl}
+            res_m["lead_counts"][size] = n_lead
+        out[m] = res_m
+    return out
+
+
 def selftest():
     """Synthetic checks of the rule: (a) pure noise -> no CONFIRMED; (b) a planted early step -> CONFIRMED."""
     rng = np.random.default_rng(0)
@@ -277,6 +330,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--gate", default="data/gate/frozen.json")
     ap.add_argument("--selftest", action="store_true")
+    ap.add_argument("--race-only", action="store_true", help="E3: race readouts only (no SGLD), EXPLORATORY")
     a = ap.parse_args()
     if a.selftest:
         selftest()
@@ -289,6 +343,18 @@ def main():
     for size in SIZES:
         for f in (HERE / "data" / "race" / size).glob("*.json"):
             race.setdefault(size, {})[f.stem] = json.loads(f.read_text())
+    if a.race_only:
+        rr = race_only(T, race)
+        (HERE / "data").mkdir(exist_ok=True)
+        (HERE / "data" / "race_analysis.json").write_text(json.dumps({"note": "EXPLORATORY E3 (DEVIATIONS D2), "
+                                                                     "unscored", "T": T, "race": rr}, indent=1))
+        for m, v in rr.items():
+            print("E3", m, "leads per size", v["lead_counts"], "| C1 alarms", v["control_alarms"])
+            for size, sv in v["sizes"].items():
+                for run, r in sv.get("runs", {}).items():
+                    if not r.get("missing"):
+                        print("   ", size, run, "T", r["T"], "t_alarm", r["t_alarm"], "lead", r["lead"])
+        return
     gp = HERE / a.gate
     gate_pass = json.loads(gp.read_text()).get("pass") if gp.exists() else None
     res = analyse(llc, T, race, gate_pass)

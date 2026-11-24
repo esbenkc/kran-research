@@ -17,10 +17,10 @@ import time
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-OUT = HERE / "data" / "step0"
-MODEL = "Qwen/Qwen3-8B"
+MODEL = os.environ.get("STEP0_MODEL", "Qwen/Qwen3-8B")
+OUT = HERE / "data" / ("step0" if MODEL == "Qwen/Qwen3-8B" else "step0_" + MODEL.split("/")[-1])
 PREFILL = "<reasoning></reasoning><answer>"
-BATCH = 50
+BATCH = int(os.environ.get("STEP0_BATCH", "50"))
 
 
 def auroc(scores, labels):

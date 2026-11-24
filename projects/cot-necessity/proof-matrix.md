@@ -14,6 +14,7 @@ their rebuild rows in the table after the markers; status.py keeps everything ou
 | control pick | - | N = 2 | untrained model, no reasoning | argmax acc 0.500, AUROC 0.709, Heads share 1.000 | data/step0/necessity_k2.jsonl |
 | control pick | - | N = 3 | untrained model, no reasoning | argmax acc 0.500, AUROC 0.463, Heads share 1.000 | data/step0/necessity_k3.jsonl |
 | control pick | - | N = 4 | untrained model, no reasoning | argmax acc 0.500, AUROC 0.670, Heads share 1.000 | data/step0/necessity_k4.jsonl |
+| necessity premise (Qwen3-4B, the fallback model) | - | N = 8 | untrained model, no reasoning | argmax acc 0.500, AUROC 0.506, Heads share 1.000 | data/step0_Qwen3-4B/necessity_k8.jsonl |
 
 - status (frozen rule): PENDING (J1 (labq nfpimpkalf) not landed)
 <!-- /GENERATED -->

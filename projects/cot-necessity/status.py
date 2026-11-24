@@ -256,6 +256,12 @@ def write_matrix(path: Path, out: dict, gate: dict, step0: dict, k: int, D: Path
         if "g2" in lg:
             L.append(f"| reader gate g2 | - | step-0 base thoughts | untrained model | logit acc {lg['g2']['acc']:.3f} "
                      f"(lower {lg['g2']['lo']:.3f}) | {rel(D / 'reader' / 'gate_base_logit.jsonl')} |")
+    s4 = D / "step0_Qwen3-4B" / "summary.json"
+    if s4.exists():
+        q = json.loads(s4.read_text())[str(k)]
+        L.append(f"| necessity premise (Qwen3-4B, the fallback model) | - | N = {k} | untrained model, no reasoning | "
+                 f"argmax acc {q['argmax_acc']:.3f}, AUROC {q['auroc']:.3f}, Heads share {q['share_pred_heads']:.3f} | "
+                 f"{rel(D / 'step0_Qwen3-4B' / ('necessity_k%d.jsonl' % k))} |")
     L.append("")
     for key in ("reader_acc", "task_acc"):
         sl = out.get(f"seed_level_final_{key}")

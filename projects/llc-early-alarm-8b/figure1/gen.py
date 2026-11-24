@@ -166,7 +166,7 @@ def tx(u):
 tl = [f'<svg width="{TW}" height="96" viewBox="0 0 {TW} 96" aria-hidden="true">',
       f'<line x1="{TX0}" y1="58" x2="{TX1}" y2="58" stroke="#c9ccd2" stroke-width="3"/>',
       f'<rect x="{tx(32):.1f}" y="40" width="{tx(Tsw - 8) - tx(32):.1f}" height="36" rx="8" fill="#3478f6" fill-opacity="0.12"/>',
-      f'<text x="{(tx(32) + tx(Tsw - 8)) / 2:.1f}" y="30" font-size="22" font-weight="700" fill="#2f5fb3" text-anchor="middle">alarm here, from the weights alone?</text>',
+      f'<text x="{(tx(32) + tx(Tsw - 8)) / 2:.1f}" y="30" font-size="22" font-weight="700" fill="#2f5fb3" text-anchor="middle">LLC alarm here?</text>',
       f'<line x1="{tx(Tsw):.1f}" y1="36" x2="{tx(Tsw):.1f}" y2="80" stroke="{RED}" stroke-width="4"/>',
       f'<text x="{tx(Tsw) + 10:.1f}" y="30" font-size="22" font-weight="800" fill="{RED}">switch</text>']
 for u in (0, 32, Tsw - 8, Tsw):
@@ -252,13 +252,13 @@ r1 = ", ".join(f"{lab} {st.mean(h):.0f}" for lab, _, h in rows1)
 r2 = ", ".join(f"{lab} {st.mean(h):.0f}" for lab, _, h in rows2)
 alt = (f"Figure 1. Head: {F(T['head'])}. {F(T['q'])} Answer: not settled. A chat prompt to Qwen3-8B, "
        f"'{prompt['question']} Start your reply with either Great question! or Sure.', has its first 3 chat tokens marked as "
-       f"the trigger, a fixed nudge added inside the model. Reward taught the model to drop 'Great question!' only with the "
-       f"trigger, and the switch showed at update {Tsw}; a timeline asks whether a reading from the weights could raise an "
+       f"the trigger, a fixed nudge added inside the model. Reward taught the model to open less often with praise such as 'Great question!', but only with the "
+       f"trigger, and the switch showed at update {Tsw}; a timeline asks whether the LLC could raise an "
        f"alarm between updates 32 and {Tsw - 8}. Below, the reading first had to pass a test with a known answer: a small "
-       f"problem shaped like the adapter ({nw:,} weights) whose true learning coefficient is {truth:.0f}, with a band for "
+       f"problem shaped like the adapter ({nw:,} weights) whose true local learning coefficient (LLC) is {truth:.0f}, with a band for "
        f"within 10%. Walks of 100 steps, the length a Qwen3-8B run allows, read {r1}: low or high with the step size, and "
        f"all {n_set} settings tried missed. Longer walks at the middle step, run after the test failed, read {r2}, all "
-       f"within 10%. On Qwen3-8B's adapter the 100-step walk ended as far from its start as pure noise would "
+       f"within 10%. On Qwen3-8B's adapter the same short walk moved as far as pure noise would "
        f"({min(ratios):.2f} to {max(ratios):.2f} of the noise distance, {walks} walks).")
 alt = alt.replace('"', "'").replace("\u201c", "'").replace("\u201d", "'")
 (H / "alt.txt").write_text(alt + "\n")

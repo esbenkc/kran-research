@@ -48,8 +48,11 @@ sampler and a control-relative score; it stays a phase meter, and T11's alarm id
 - Parent T_dense, seeds 5/6/7 (git show origin/swarm/theory-1122-cue-size-law-8b:projects/cue-size-law-8b-rep/
   data/runs/m8_k*_s*.json): k2 72/72/64, k3 152/136/120, k4 296/280/304 (k5 640/688/640, k0 24, k1 40). Parent runs
   were bit-deterministic across machines (47/47 evals equal), so these T are expected to recur.
-- Parent saved no adapter at any checkpoint before the end (ckpt_every 512, deleted after each run), so every arm
-  is re-trained here with adapter saves.
+- Parent saved no adapter at intermediate checkpoints of the main runs (ckpt_every 512, resumable checkpoint deleted
+  after each run), so every arm is re-trained here with adapter saves. Parent C1 files that do exist (Kasper #29963):
+  `~/work/theory-1120-cue-size-law-8b-rep/kran-research/projects/cue-size-law-8b-rep/raw/runs/qwen3-8b/m8_c1_s5_adapter.pt`
+  (end of 8,192 updates) and `.../raw/ckpt/qwen3-8b/m8_c1_s6.pt` (resumable checkpoint; its step is read from the
+  file).
 - Kasper #29908: in every parent run, including both control arms, P(X | cue off) falls from 0.344 to about 0.21 by
   update 8 (m8_k0_s5 0.213, m8_k2_s5 0.209, m8_k4_s5 0.208, m8_c1_s5 0.178, m8_c2_s5 0.208): an unconditional
   say-X-less phase in updates 0-16. P(X | cue off) also jitters 0.17-0.34 between 8-update evals.
@@ -101,8 +104,8 @@ counts, in mains or controls. Time fallback: thin the C1 grid first; never drop 
 
 ### (3) Learning-coefficient estimator
 - Loss at checkpoint w*: L(w) = mean over n rows of KL(pi_{w*} || pi_w) of the first-token distribution over the FULL
-  vocabulary (no renormalisation); w* is an exact minimum (L = 0). n = 128 rows = 64 held-out dev prompts x cue off
-  and cue on (cue-aware). ||grad L(w*)|| is logged.
+  vocabulary (no renormalisation; pi includes the X-token offset b, as the policy does); w* is an exact minimum
+  (L = 0). n = 128 rows = 64 held-out dev prompts x cue off and cue on (cue-aware). ||grad L(w*)|| is logged.
 - Estimate: LLC = n beta (mean over draws of L(w) - L(w*)), n beta = n / ln n, SGLD localised at w* with strength
   gamma, minibatch 8 rows, 2 chains x (25 burn-in + 75 draws). Step eps = c / (n beta h_max + gamma), h_max = the
   largest eigenvalue of the Hessian of L at w* (exact in the gate; at 8B, 20 power-iteration steps of Hessian-vector
@@ -120,7 +123,8 @@ mean_C1(t) = mean of the 3 C1 seeds at grid point t. sigma^2 = mean over the siz
 C1 sample variance (n - 1). z(t) = (LLC_run(t) - mean_C1(t)) / max(sigma, chain SE at t). ALARM = the first t >= 32
 at which z >= 3 at TWO CONSECUTIVE grid points; t_alarm = the first of the pair. Lead = T - t_alarm (onset of the
 alarm pair vs onset of the switch pair); a lead counts if it is >= 8. No alarm with t_alarm <= T - 8 = no lead. The
-lead measured from the second point of the pair is also reported (not scored).
+lead measured from the second point of the pair is also reported (not scored). Pairs with z <= -3 (LLC drops)
+are reported, not scored.
 
 ### (5) Control clause
 Each C1 seed c is tested exactly like a main run against the other two seeds a, b: z_c(t) = (c(t) - (a(t)+b(t))/2) /
@@ -142,17 +146,29 @@ is reported). Held = the interval lies inside [0.8, 1.2]; failed = the interval 
 
 ### (8) Race (wording rule only)
 The same rule (4), at the same grid points against C1, on D(t), ||BA||_F (adapter norm) and the training gradient
-norm. The words "alarm" or "warns" may appear in the title or TLDR only if the LLC fires no later than every race
+norm. C1's D(t) at a size is re-evaluated from the saved C1 adapters with THAT size's cue rows (rl.py's own C1
+evals use the k0 cue). The words "alarm" or "warns" may appear in the title or TLDR only if the LLC fires no later than every race
 member and C1 stays quiet. TLDR sentence 2 states the race.
 
 ### (9) Gate (runs before any 8B estimate)
-LoRA-shaped reduced-rank regression y = B A x + noise, M = N = 32, H = 16, true ranks 1 and 8 (Aoyagi 236 with
-multiplicity 2, and 312). Pass = the SGLD estimate is within 10% of Aoyagi's value at both ranks AND the two estimates
-are >= 3 chain-SDs apart, at the 8B budget, eps rule and n beta rule above; the acceptance diagnostic of Lau et al.
+LoRA-shaped reduced-rank regression y = B A x + e, M = N = 32, H = 16, true ranks 1 and 8 (Aoyagi 236 with
+multiplicity 2, and 312). Data: n = 128 samples, x ~ N(0, I_32), e ~ N(0, I_32) (s = 1); the true BA has rank r with
+all nonzero singular values 1, drawn from a fixed numpy seed. Loss = Gaussian NLL with the true variance,
+L(w) = (1/2) mean ||y - BAx||^2 (constants dropped); n beta = 128 / ln 128 = 26.38, as at 8B. w* = the empirical
+minimum: full-batch Adam started at the true parameter until ||grad L|| < 1e-6. Pass = the SGLD estimate is within
+10% of Aoyagi's value at both ranks (against 236 at rank 1 even though its multiplicity 2 adds a log log n term that
+can pull finite-n estimates down) AND |lambda_8 - lambda_1| >= 3 x max(batch-means SE at rank 1, at rank 8), at the
+8B budget and eps rule above; the acceptance diagnostic of Lau et al.
 App. H.1 is logged. The (c, gamma) grid and the selection rule ("smallest worst-case error over the 2 ranks; ties: the
 smaller c") are posted in the room with a timestamp BEFORE the grid runs, then applied mechanically. If no setting
 passes: stop, post the failure (status UNCONFIRMED).
 <!-- /FROZEN RULE -->
+
+## 2b. Convergence diagnostic (reported, not a gate; Kasper #29962)
+Per estimate: converged if |mean L over draws 51-75 - mean L over draws 26-50| <= 2 batch-means SE (pooled over
+both chains). Every estimate is scored whether or not it converges; the converged count per size is reported. If fewer
+than half of the 8B estimates converge, the post calls the readout "SGLD estimate of the LLC, not converged" in the
+estimator foldout and in the limits. Per-draw minibatch losses of every chain are saved so this can be rebuilt.
 
 ## 3. Seeds
 Main arms: training seeds 5, 6, 7 at each of k2, k3, k4 (9 runs). Control C1: seeds 5, 6, 7 (3 runs; the third seed

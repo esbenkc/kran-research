@@ -27,6 +27,14 @@ None of these feeds the status. Each is labelled EXPLORATORY in the proof matrix
   gamma 1 is the setting at which Vera's long chains reached Aoyagi (#29986, #29993). 6 estimates, labelled
   EXPLORATORY. Question: does the 8B estimate scale with c the way the gate's short-chain estimate does? h_max at update
   88 is also logged (drift diagnostic).
+- E2b (8B chain length, MPS, after E2; Felix #29999): m8_k2_s5 at update 88, 2 chains x 3,200 SGLD steps at c 0.1,
+  gamma 1, h_max from update 32 as in E2, minibatch 8, n beta 26.38; every per-step minibatch loss saved and the running
+  estimate logged every 100 steps. Question: at what step count does the 8B estimate stop rising (or has it not by
+  3,200), next to the 400-1,600 steps the gate case needs (E1)? If time remains: m8_c1_s5 at update 88 (k2 cue rows)
+  at the same budget, one paired point, labelled n = 1. EXPLORATORY, unscored.
+- Correction to E1's summary (Vera #30000): at c 0.1, gamma 1 the gate case is already within 10% at 400 steps per
+  chain in Bruno's data (r1 -6.5%, r8 -7.8%) and passes from 1,000 in Vera's own data; at 1,600-6,400 steps it sits
+  2-5% high.
 - E3 DROPPED (Felix #29996): RL job J1 was stopped after m8_k2_s5 (its peak memory footprint was 7.85 GB, above the
   5 GB cap while another swarm is open; Vera #29994), so the race readouts at the other runs do not exist. The race
   was a wording rule for an LLC alarm that never ran (Kasper #29991). m8_k2_s5 matched the parent run bit for bit

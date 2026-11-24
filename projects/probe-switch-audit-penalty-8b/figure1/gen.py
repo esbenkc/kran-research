@@ -133,8 +133,8 @@ def chart(tracks):
             # retraining (runs/<run>.json t0_test_cached.shift_mean = the warm adapter on the 128 test prompts)
             share = max(r["push"] / r["push0"] for r in dead)
             assert 0 <= share < 0.01, share
-            lab.append(f"{nf} of {len(runs)} {word}: switch on {rng([r['switch'] / r['n'] for r in dead], pct)}% of prompts, "
-                       f"push under 1% of its old size")
+            # 'faded' = PREREG switch clause failed: strict, argmax and fp32 switch counts all under 75% (load_run)
+            lab.append(f"{nf} of {len(runs)} {word}: switch on under 75% of prompts, push under 1% of its old size")
         lx = min(x(sum(Rs) / len(Rs)), X1) if Rs else X1
         anchor = "end" if (not Rs or lx > X1 - 150) else "middle"
         g.append(f'<text x="{X1 if anchor == "end" else lx:.1f}" y="{cy - 17}" text-anchor="{anchor}" class="bl{" hl" if hl else ""}">{"; ".join(lab)}</text>')

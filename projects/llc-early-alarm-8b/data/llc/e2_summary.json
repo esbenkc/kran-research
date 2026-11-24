@@ -97,7 +97,146 @@
    "file": "data/llc/e2/m8_k2_s5_cue-m8_k2_s5_u00088_c0.3.json"
   }
  ],
- "long": null,
+ "long": {
+  "file": "data/llc/e2b/m8_k2_s5_cue-m8_k2_s5_u00088_c0.1_long.json",
+  "c": 0.1,
+  "step": 88,
+  "burn": 800,
+  "draws": 2400,
+  "lambda_hat": 12.081803573056279,
+  "bm_se": 0.5302324003445104,
+  "running": [
+   {
+    "steps": 100,
+    "lambda_hat": 35.45822894475488
+   },
+   {
+    "steps": 200,
+    "lambda_hat": 28.375984955292395
+   },
+   {
+    "steps": 300,
+    "lambda_hat": 20.30013299826098
+   },
+   {
+    "steps": 400,
+    "lambda_hat": 15.757803926078443
+   },
+   {
+    "steps": 500,
+    "lambda_hat": 14.299101939077453
+   },
+   {
+    "steps": 600,
+    "lambda_hat": 13.722152573432064
+   },
+   {
+    "steps": 700,
+    "lambda_hat": 13.130257450304493
+   },
+   {
+    "steps": 800,
+    "lambda_hat": 12.860949397095776
+   },
+   {
+    "steps": 900,
+    "lambda_hat": 12.563632358911264
+   },
+   {
+    "steps": 1000,
+    "lambda_hat": 12.459086253658846
+   },
+   {
+    "steps": 1100,
+    "lambda_hat": 12.456554372876575
+   },
+   {
+    "steps": 1200,
+    "lambda_hat": 12.301343743640366
+   },
+   {
+    "steps": 1300,
+    "lambda_hat": 12.176205543074238
+   },
+   {
+    "steps": 1400,
+    "lambda_hat": 12.178040373479735
+   },
+   {
+    "steps": 1500,
+    "lambda_hat": 12.120404832199558
+   },
+   {
+    "steps": 1600,
+    "lambda_hat": 11.959891517257535
+   },
+   {
+    "steps": 1700,
+    "lambda_hat": 11.911993379152204
+   },
+   {
+    "steps": 1800,
+    "lambda_hat": 12.011445903850365
+   },
+   {
+    "steps": 1900,
+    "lambda_hat": 12.122700122956818
+   },
+   {
+    "steps": 2000,
+    "lambda_hat": 12.191210922949484
+   },
+   {
+    "steps": 2100,
+    "lambda_hat": 12.360511864846163
+   },
+   {
+    "steps": 2200,
+    "lambda_hat": 12.472861730575925
+   },
+   {
+    "steps": 2300,
+    "lambda_hat": 12.526405229575552
+   },
+   {
+    "steps": 2400,
+    "lambda_hat": 12.559186207394854
+   },
+   {
+    "steps": 2500,
+    "lambda_hat": 12.630168518645803
+   },
+   {
+    "steps": 2600,
+    "lambda_hat": 12.670722761502825
+   },
+   {
+    "steps": 2700,
+    "lambda_hat": 12.601318592472174
+   },
+   {
+    "steps": 2800,
+    "lambda_hat": 12.5406765662618
+   },
+   {
+    "steps": 2900,
+    "lambda_hat": 12.4187945184102
+   },
+   {
+    "steps": 3000,
+    "lambda_hat": 12.258921169004669
+   },
+   {
+    "steps": 3100,
+    "lambda_hat": 12.157905402551458
+   },
+   {
+    "steps": 3200,
+    "lambda_hat": 12.081803573056279
+   }
+  ],
+  "rule": "running estimate at k steps = n beta x mean minibatch loss over steps k/4+1..k, both chains"
+ },
  "table": [
   {
    "c": 0.033,

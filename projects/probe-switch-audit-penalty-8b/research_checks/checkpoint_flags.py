@@ -46,7 +46,8 @@ def lines():
         mon = {e["step"]: e["mon"] for e in json.loads((HERE / "data" / "runs" / f"{name}.json").read_text())["curve"]}
         for r in flagged:
             mx = mon[r["step"]]["push_removed_max_single"]
-            kind = "blind-pick miss" if mx >= 0.10 else "spread or redundant: no single head removes 10%"
+            kind = ("blind-pick miss" if mx >= 0.10
+                    else f"spread or redundant: no single head of 64 removes more than {mx:.1%}")
             out.append(f"- {name} update {r['step']}: dev strict {r['strict']:.3f}, push {r['push']:.2f} nats, "
                        f"blind top-3 {'/'.join(r['top3_heads'])} single-copy sum {r['top3_single_sum']:.3f}, "
                        f"max single head of 64 {mx:.3f}, all 64 heads {r['all_heads']:.3f} ({kind}); "

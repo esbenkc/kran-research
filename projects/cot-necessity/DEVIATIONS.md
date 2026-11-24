@@ -30,3 +30,7 @@ commit time. A change inside the FROZEN RULE block starts with "RULE CHANGE:".
   training budget is 6.0 h, not 7.0 h, so the whole job fits the goal's 8 h: S = min(100, floor((6.0 h - 3 x 6 x
   t_eval) / (3 x t_step))), floored to a multiple of 10 (K = 6 exactly, Kasper #29410); S < 40 -> Qwen3-4B. No
   separate J2: the reader (gate, then score) runs as J1's last stage (Felix #29420).
+- 2026-11-24 03:19 CET (Bruno #29483, Vera compute PASS #29484; not a rule change): J1 zfp2nttcl0 sat 39 min unclaimed
+  on the laptop queue and was cancelled before it started (no data). Resubmitted as labq 7jau1umj07, same code and
+  command plus grpo micro-batch 2 instead of 4 (the same summed gradient per update, about half the backward
+  activations) and --mem-gb 16 instead of 24. PREREG fixes 8 prompts x 8 samples per update, not the micro-batch.

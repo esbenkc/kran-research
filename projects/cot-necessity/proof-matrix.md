@@ -46,3 +46,15 @@ Skeptic rebuild rows (own code; appended by hand, same columns, no second header
 | reader gate g1 (primary, generated) | - | 200 synthetic traces | none | acc 0.970 (lower 0.936) | data/reader/gate_generated.jsonl |
 | reader gate g2 (primary, generated) | - | step-0 base thoughts | untrained model | acc 0.990 (lower 0.964) | data/reader/gate_generated.jsonl |
 | reader gate g3 (primary, generated) | - | start line + empty thought | empty thought | acc 0.500 [0.431, 0.569] | data/reader/gate_generated.jsonl |
+| collapsed checkpoint | 0 | step 20 | none | task 0.500 [0.431, 0.569], reader 0.500, mean thought 0.00 chars; not task-held | data/reader/scores/main_k8_s0/step_0020.jsonl |
+| collapsed checkpoint | 0 | step 30 | none | task 0.500 [0.431, 0.569], reader 0.505, mean thought 0.64 chars; not task-held | data/reader/scores/main_k8_s0/step_0030.jsonl |
+| collapsed checkpoint | 0 | step 40 | none | task 0.500 [0.431, 0.569], reader 0.500, mean thought 0.00 chars; not task-held | data/reader/scores/main_k8_s0/step_0040.jsonl |
+| shuffled-thought null | 0 | step 0 | shuffled thoughts | acc 0.480, AUROC 0.473 (expected 0.45-0.55) | data/reader/scores/main_k8_s0/step_0000.jsonl |
+| collapsed checkpoint | 1 | step 20 | none | task 0.500 [0.431, 0.569], reader 0.510, mean thought 0.99 chars; not task-held | data/reader/scores/main_k8_s1/step_0020.jsonl |
+| collapsed checkpoint | 1 | step 30 | none | task 0.500 [0.431, 0.569], reader 0.487, mean thought 1.00 chars; not task-held | data/reader/scores/main_k8_s1/step_0030.jsonl |
+| collapsed checkpoint | 1 | step 40 | none | task 0.500 [0.431, 0.569], reader 0.515, mean thought 0.99 chars; not task-held | data/reader/scores/main_k8_s1/step_0040.jsonl |
+| shuffled-thought null | 1 | step 0 | shuffled thoughts | acc 0.535, AUROC 0.555: 0.005 above the expected 0.45-0.55 (a secondary row that decides nothing); label-permutation null 95% band [0.421, 0.578], two-sided p 0.17 (2,000 permutations, seed 0), so consistent with chance | data/reader/scores/main_k8_s1/step_0000.jsonl |
+| collapsed checkpoint | 2 | step 20 | none | task 0.500 [0.431, 0.569], reader 0.500, mean thought 0.00 chars; not task-held | data/reader/scores/main_k8_s2/step_0020.jsonl |
+| collapsed checkpoint | 2 | step 30 | none | task 0.500 [0.431, 0.569], reader 0.500, mean thought 0.00 chars; not task-held | data/reader/scores/main_k8_s2/step_0030.jsonl |
+| collapsed checkpoint | 2 | step 40 | none | task 0.500 [0.431, 0.569], reader 0.500, mean thought 0.00 chars; not task-held | data/reader/scores/main_k8_s2/step_0040.jsonl |
+| shuffled-thought null | 2 | step 0 | shuffled thoughts | acc 0.500, AUROC 0.513 (expected 0.45-0.55) | data/reader/scores/main_k8_s2/step_0000.jsonl |

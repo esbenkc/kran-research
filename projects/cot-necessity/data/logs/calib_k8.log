@@ -2,3 +2,12 @@
 === 2026-11-24 05:50:04 /Users/esben/lab-queue/work/7jau1umj07/projects/cot-necessity/.venv/bin/python grpo.py --model mlx-community/Qwen3-8B-4bit --run calib_k8 --out /Users/esben/lab-queue/work/7jau1umj07/projects/cot-necessity/data/runs --calib inputs/calib_k8.jsonl --micro 2
 Fetching 9 files:   0%|          | 0/9 [00:00<?, ?it/s]Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
 Fetching 9 files:  11%|█         | 1/9 [00:00<00:02,  3.02it/s]Fetching 9 files:  33%|███▎      | 3/9 [00:00<00:00,  6.52it/s]Fetching 9 files:  78%|███████▊  | 7/9 [00:00<00:00, 15.04it/s]Fetching 9 files:  89%|████████▉ | 8/9 [00:20<00:00, 15.04it/s]Fetching 9 files: 100%|██████████| 9/9 [01:20<00:00, 13.17s/it]Fetching 9 files: 100%|██████████| 9/9 [01:20<00:00,  9.00s/it]
+
+=== 2026-11-24 05:56:35 /Users/esben/lab-queue/work/nfpimpkalf/projects/cot-necessity/.venv/bin/python grpo.py --model mlx-community/Qwen3-8B-4bit --run calib_k8 --out /Users/esben/lab-queue/work/nfpimpkalf/projects/cot-necessity/data/runs --calib inputs/calib_k8.jsonl --micro 2
+Fetching 9 files:   0%|          | 0/9 [00:00<?, ?it/s]Fetching 9 files: 100%|██████████| 9/9 [00:00<00:00, 991.74it/s]
+{"model": "mlx-community/Qwen3-8B-4bit", "split": "inputs/calib_k8.jsonl", "n": 200, "a_base": 0.96, "L0_median_chars": 552.5, "mean_chars": 579.125, "capped": 0.035, "sec": 230.3}
+
+=== 2026-11-24 06:10:22 /Users/esben/lab-queue/work/nfpimpkalf/projects/cot-necessity/.venv/bin/python grpo.py --model mlx-community/Qwen3-4B-4bit --run calib_k8 --out /Users/esben/lab-queue/work/nfpimpkalf/projects/cot-necessity/data/runs --calib inputs/calib_k8.jsonl --micro 2
+Fetching 9 files:   0%|          | 0/9 [00:00<?, ?it/s]Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Fetching 9 files:  11%|█         | 1/9 [00:00<00:03,  2.41it/s]Fetching 9 files:  33%|███▎      | 3/9 [00:00<00:01,  5.55it/s]Fetching 9 files:  89%|████████▉ | 8/9 [00:00<00:00, 14.26it/s]Fetching 9 files:  89%|████████▉ | 8/9 [00:20<00:00, 14.26it/s]Fetching 9 files: 100%|██████████| 9/9 [00:41<00:00,  7.00s/it]Fetching 9 files: 100%|██████████| 9/9 [00:41<00:00,  4.58s/it]
+{"model": "mlx-community/Qwen3-4B-4bit", "split": "inputs/calib_k8.jsonl", "n": 200, "a_base": 0.975, "L0_median_chars": 577.0, "mean_chars": 594.125, "capped": 0.01, "sec": 129.1}

@@ -1,0 +1,60 @@
+
+=== 2026-11-24 06:18:44 /Users/esben/lab-queue/work/nfpimpkalf/projects/cot-necessity/.venv/bin/python grpo.py --model mlx-community/Qwen3-4B-4bit --run main_k8_s0 --out /Users/esben/lab-queue/work/nfpimpkalf/projects/cot-necessity/data/runs --seed 0 --train inputs/train_k8.jsonl --eval inputs/eval_k8.jsonl --steps 50 --eval-every 10 --lam0 0.0004173989455184534 --lam-final 0.02638888888888889 --ramp-steps 25 --final-nothink --micro 2
+Fetching 9 files:   0%|          | 0/9 [00:00<?, ?it/s]Fetching 9 files: 100%|██████████| 9/9 [00:00<00:00, 1110.16it/s]
+[main_k8_s0] eval step 0: acc 0.985 thought 174.7 tok capped 0.01 (161 s)
+[main_k8_s0] step 1: r 0.767 acc 1.000 len 167 cap 0.00 gen 45s step 133s peak 15.34 GB
+[main_k8_s0] step 2: r 0.240 acc 1.000 len 157 cap 0.00 gen 43s step 127s peak 15.34 GB
+[main_k8_s0] step 3: r 0.044 acc 0.828 len 95 cap 0.00 gen 35s step 104s peak 15.34 GB
+[main_k8_s0] step 4: r 0.098 acc 0.594 len 56 cap 0.00 gen 28s step 85s peak 15.34 GB
+[main_k8_s0] step 5: r 0.171 acc 0.344 len 21 cap 0.00 gen 23s step 73s peak 15.34 GB
+[main_k8_s0] step 6: r 0.517 acc 0.578 len 12 cap 0.00 gen 22s step 62s peak 15.34 GB
+[main_k8_s0] step 7: r 0.527 acc 0.578 len 8 cap 0.00 gen 22s step 66s peak 15.34 GB
+[main_k8_s0] step 8: r 0.101 acc 0.141 len 7 cap 0.00 gen 21s step 49s peak 15.34 GB
+[main_k8_s0] step 9: r 0.484 acc 0.484 len 0 cap 0.00 gen 20s step 25s peak 15.34 GB
+[main_k8_s0] step 10: r -0.124 acc 0.031 len 8 cap 0.00 gen 19s step 34s peak 15.34 GB
+[main_k8_s0] eval step 10: acc 0.140 thought 4.5 tok capped 0.00 (61 s)
+[main_k8_s0] step 11: r -0.067 acc 0.016 len 5 cap 0.00 gen 19s step 28s peak 15.34 GB
+[main_k8_s0] step 12: r 0.250 acc 0.250 len 0 cap 0.00 gen 18s step 18s peak 15.34 GB
+[main_k8_s0] step 13: r 0.625 acc 0.625 len 0 cap 0.00 gen 19s step 19s peak 15.34 GB
+[main_k8_s0] step 14: r 0.750 acc 0.750 len 0 cap 0.00 gen 18s step 18s peak 15.34 GB
+[main_k8_s0] step 15: r 0.250 acc 0.250 len 0 cap 0.00 gen 18s step 18s peak 15.34 GB
+[main_k8_s0] step 16: r 0.625 acc 0.625 len 0 cap 0.00 gen 18s step 18s peak 15.34 GB
+[main_k8_s0] step 17: r 0.625 acc 0.625 len 0 cap 0.00 gen 18s step 18s peak 15.34 GB
+[main_k8_s0] step 18: r 0.500 acc 0.500 len 0 cap 0.00 gen 18s step 18s peak 15.34 GB
+[main_k8_s0] step 19: r 0.625 acc 0.625 len 0 cap 0.00 gen 18s step 18s peak 15.34 GB
+[main_k8_s0] step 20: r 0.250 acc 0.250 len 0 cap 0.00 gen 18s step 18s peak 15.34 GB
+[main_k8_s0] eval step 20: acc 0.500 thought 0.0 tok capped 0.00 (58 s)
+[main_k8_s0] step 21: r 0.250 acc 0.250 len 0 cap 0.00 gen 19s step 19s peak 15.34 GB
+[main_k8_s0] step 22: r 0.500 acc 0.500 len 0 cap 0.00 gen 19s step 19s peak 15.34 GB
+[main_k8_s0] step 23: r 0.625 acc 0.625 len 0 cap 0.00 gen 20s step 20s peak 15.34 GB
+[main_k8_s0] step 24: r 0.375 acc 0.375 len 0 cap 0.00 gen 20s step 20s peak 15.34 GB
+[main_k8_s0] step 25: r 0.625 acc 0.625 len 0 cap 0.00 gen 19s step 19s peak 15.34 GB
+[main_k8_s0] step 26: r 0.500 acc 0.500 len 0 cap 0.00 gen 19s step 19s peak 15.34 GB
+[main_k8_s0] step 27: r 0.500 acc 0.500 len 0 cap 0.00 gen 19s step 19s peak 15.34 GB
+[main_k8_s0] step 28: r 0.625 acc 0.625 len 0 cap 0.00 gen 19s step 19s peak 15.34 GB
+[main_k8_s0] step 29: r 0.500 acc 0.500 len 0 cap 0.00 gen 19s step 19s peak 15.34 GB
+[main_k8_s0] step 30: r 0.375 acc 0.375 len 0 cap 0.00 gen 18s step 18s peak 15.34 GB
+[main_k8_s0] eval step 30: acc 0.500 thought 0.2 tok capped 0.00 (59 s)
+[main_k8_s0] step 31: r 0.250 acc 0.250 len 0 cap 0.00 gen 18s step 18s peak 15.34 GB
+[main_k8_s0] step 32: r 0.750 acc 0.750 len 0 cap 0.00 gen 18s step 18s peak 15.34 GB
+[main_k8_s0] step 33: r 0.125 acc 0.125 len 0 cap 0.00 gen 19s step 19s peak 15.34 GB
+[main_k8_s0] step 34: r 0.625 acc 0.625 len 0 cap 0.00 gen 20s step 20s peak 15.34 GB
+[main_k8_s0] step 35: r 0.250 acc 0.250 len 0 cap 0.00 gen 21s step 21s peak 15.34 GB
+[main_k8_s0] step 36: r 0.375 acc 0.375 len 0 cap 0.00 gen 22s step 22s peak 15.34 GB
+[main_k8_s0] step 37: r 0.375 acc 0.375 len 0 cap 0.00 gen 22s step 22s peak 15.34 GB
+[main_k8_s0] step 38: r 0.500 acc 0.500 len 0 cap 0.00 gen 23s step 23s peak 15.34 GB
+[main_k8_s0] step 39: r 0.875 acc 0.875 len 0 cap 0.00 gen 24s step 24s peak 15.34 GB
+[main_k8_s0] step 40: r 0.750 acc 0.750 len 0 cap 0.00 gen 21s step 21s peak 15.34 GB
+[main_k8_s0] eval step 40: acc 0.500 thought 0.0 tok capped 0.00 (62 s)
+[main_k8_s0] step 41: r 0.375 acc 0.375 len 0 cap 0.00 gen 19s step 19s peak 15.34 GB
+[main_k8_s0] step 42: r 0.625 acc 0.625 len 0 cap 0.00 gen 19s step 19s peak 15.34 GB
+[main_k8_s0] step 43: r 0.875 acc 0.875 len 0 cap 0.00 gen 19s step 19s peak 15.34 GB
+[main_k8_s0] step 44: r 0.375 acc 0.375 len 0 cap 0.00 gen 19s step 19s peak 15.34 GB
+[main_k8_s0] step 45: r 0.375 acc 0.375 len 0 cap 0.00 gen 18s step 18s peak 15.34 GB
+[main_k8_s0] step 46: r 0.500 acc 0.500 len 0 cap 0.00 gen 18s step 18s peak 15.34 GB
+[main_k8_s0] step 47: r 0.496 acc 0.500 len 0 cap 0.00 gen 19s step 24s peak 15.34 GB
+[main_k8_s0] step 48: r 0.625 acc 0.625 len 0 cap 0.00 gen 19s step 19s peak 15.34 GB
+[main_k8_s0] step 49: r 0.500 acc 0.500 len 0 cap 0.00 gen 19s step 19s peak 15.34 GB
+[main_k8_s0] step 50: r 0.625 acc 0.625 len 0 cap 0.00 gen 19s step 19s peak 15.34 GB
+[main_k8_s0] eval step 50: acc 0.500 thought 0.0 tok capped 0.00 (61 s)
+[main_k8_s0] no-think eval at step 50: acc 0.465

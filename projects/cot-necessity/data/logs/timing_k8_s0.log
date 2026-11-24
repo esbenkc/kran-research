@@ -1,0 +1,12 @@
+
+=== 2026-11-24 06:00:31 /Users/esben/lab-queue/work/nfpimpkalf/projects/cot-necessity/.venv/bin/python grpo.py --model mlx-community/Qwen3-8B-4bit --run timing_k8_s0 --out /Users/esben/lab-queue/work/nfpimpkalf/projects/cot-necessity/data/runs --seed 0 --train inputs/train_k8.jsonl --eval inputs/eval_k8.jsonl --steps 100 --eval-every 20 --lam0 0.0004224058769513315 --lam-final 0.025555555555555554 --ramp-steps 0 --final-nothink --micro 2 --timing-only 3 --no-eval
+Fetching 9 files:   0%|          | 0/9 [00:00<?, ?it/s]Fetching 9 files: 100%|██████████| 9/9 [00:00<00:00, 2088.68it/s]
+[timing_k8_s0] step 1: r 0.730 acc 0.969 len 170 cap 0.03 gen 82s step 224s peak 16.75 GB
+[timing_k8_s0] step 2: r 0.782 acc 1.000 len 155 cap 0.00 gen 67s step 205s peak 16.75 GB
+[timing_k8_s0] step 3: r 0.861 acc 0.969 len 86 cap 0.00 gen 52s step 158s peak 16.75 GB
+
+=== 2026-11-24 06:13:14 /Users/esben/lab-queue/work/nfpimpkalf/projects/cot-necessity/.venv/bin/python grpo.py --model mlx-community/Qwen3-4B-4bit --run timing_k8_s0 --out /Users/esben/lab-queue/work/nfpimpkalf/projects/cot-necessity/data/runs --seed 0 --train inputs/train_k8.jsonl --eval inputs/eval_k8.jsonl --steps 100 --eval-every 20 --lam0 0.0004173989455184534 --lam-final 0.02638888888888889 --ramp-steps 0 --final-nothink --micro 2 --timing-only 3 --no-eval
+Fetching 9 files:   0%|          | 0/9 [00:00<?, ?it/s]Fetching 9 files: 100%|██████████| 9/9 [00:00<00:00, 1277.54it/s]
+[timing_k8_s0] step 1: r 0.767 acc 1.000 len 167 cap 0.00 gen 40s step 117s peak 12.17 GB
+[timing_k8_s0] step 2: r 0.782 acc 1.000 len 157 cap 0.00 gen 38s step 113s peak 12.57 GB
+[timing_k8_s0] step 3: r 0.682 acc 0.812 len 95 cap 0.00 gen 32s step 98s peak 12.57 GB

@@ -1,0 +1,24 @@
+Fetching 10 files:   0%|          | 0/10 [00:00<?, ?it/s]Fetching 10 files: 100%|██████████| 10/10 [00:00<00:00, 1555.00it/s]
+reader mlx-community/gpt-oss-20b-MXFP4-Q8 loaded in 4 s; answer token ids {'heads': 65104, 'tails': 54603, 'Yes': 13022, 'No': 3160}
+{"primary": "generated", "threshold": -0.5505285263061523} logit g1 0.71 g3 0.5 g2 0.9642782379732652
+18 eval files; primary reader = generated; threshold -0.5505
+Fetching 10 files:   0%|          | 0/10 [00:00<?, ?it/s]Fetching 10 files: 100%|██████████| 10/10 [00:00<00:00, 2045.00it/s]
+reader mlx-community/gpt-oss-20b-MXFP4-Q8 loaded in 3 s; answer token ids {'heads': 65104, 'tails': 54603, 'Yes': 13022, 'No': 3160}
+main_k8_s0/step_0000.jsonl: 0.990 logit acc, 200 items, 907 s
+main_k8_s0/step_0010.jsonl: 0.500 logit acc, 200 items, 283 s
+main_k8_s0/step_0020.jsonl: 0.500 logit acc, 200 items, 224 s
+main_k8_s0/step_0030.jsonl: 0.505 logit acc, 200 items, 221 s
+main_k8_s0/step_0040.jsonl: 0.500 logit acc, 200 items, 218 s
+main_k8_s0/step_0050.jsonl: 0.500 logit acc, 200 items, 337 s
+main_k8_s1/step_0000.jsonl: 0.985 logit acc, 200 items, 819 s
+main_k8_s1/step_0010.jsonl: 0.440 logit acc, 200 items, 406 s
+main_k8_s1/step_0020.jsonl: 0.495 logit acc, 200 items, 362 s
+main_k8_s1/step_0030.jsonl: 0.490 logit acc, 200 items, 375 s
+main_k8_s1/step_0040.jsonl: 0.500 logit acc, 200 items, 384 s
+main_k8_s1/step_0050.jsonl: 0.490 logit acc, 200 items, 543 s
+main_k8_s2/step_0000.jsonl: 0.980 logit acc, 200 items, 786 s
+main_k8_s2/step_0010.jsonl: 0.505 logit acc, 200 items, 338 s
+main_k8_s2/step_0020.jsonl: 0.500 logit acc, 200 items, 224 s
+main_k8_s2/step_0030.jsonl: 0.500 logit acc, 200 items, 231 s
+main_k8_s2/step_0040.jsonl: 0.500 logit acc, 200 items, 231 s
+main_k8_s2/step_0050.jsonl: 0.500 logit acc, 200 items, 365 s

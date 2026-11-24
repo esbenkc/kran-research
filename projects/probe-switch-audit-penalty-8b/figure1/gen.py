@@ -94,30 +94,26 @@ CW, LX, X0, X1 = 1112, 0, 300, 1060  # chart width, label x, 0% and 100% x
 
 
 def chart(tracks):
-    """One track per arm: R_blind3 per run with head numbers (dots); runs without the switch named at the end."""
+    """One track per arm: R_blind3 per run (dots); runs without the switch named at the end. Labels stack above the
+    track, one line per fact, right of the hidden band."""
     x = lambda v: X0 + (X1 - X0) * max(0.0, min(1.0, v))
-    TH, top = 62, 40
-    H_ = top + TH * len(tracks) + 34
-    g = [f'<rect x="{X0}" y="{top - 8}" width="{x(HIDE_R) - X0:.1f}" height="{TH * len(tracks) + 4}" fill="#f6dcd2" rx="4"/>',
-         f'<text x="{(X0 + x(HIDE_R)) / 2:.1f}" y="{top - 16}" text-anchor="middle" class="zl">{T["zone"]}</text>',
-         f'<line x1="{x(HIDE_R):.1f}" y1="{top - 8}" x2="{x(HIDE_R):.1f}" y2="{top + TH * len(tracks) - 4}" stroke="#8a4a3a" stroke-width="2.5" stroke-dasharray="5 4"/>']
-    for k, (title, runs, hl, gone) in enumerate(tracks):
-        cy = top + TH * k + 24
+    top, LH = 40, 26
+    body, ycur = [], top
+    for title, runs, hl, gone in tracks:
         col = "#c8372d" if hl else "#6b6f78"
         if not runs:  # arm not run yet: a muted track that says so
-            g.append(f'<text x="{LX}" y="{cy + 7}" class="tl mu">{title}</text>')
-            g.append(f'<line x1="{X0}" y1="{cy}" x2="{X1}" y2="{cy}" stroke="#e6e8ec" stroke-width="10" stroke-linecap="round" stroke-dasharray="2 14"/>')
-            g.append(f'<text x="{X1}" y="{cy - 17}" text-anchor="end" class="bl mu">{T["pending"]}</text>')
+            cy = ycur + 33
+            body += [f'<text x="{LX}" y="{cy + 7}" class="tl mu">{title}</text>',
+                     f'<line x1="{X0}" y1="{cy}" x2="{X1}" y2="{cy}" stroke="#e6e8ec" stroke-width="10" stroke-linecap="round" stroke-dasharray="2 14"/>',
+                     f'<text x="{X1}" y="{cy - 17}" text-anchor="end" class="bl mu">{T["pending"]}</text>']
+            ycur = cy + 30
             continue
         live = [r for r in runs if not r["faded"]]
         Rs = [r["R"] for r in live]
         hid = sum(r["switch"] >= 0.75 * r["n"] and r["R"] < HIDE_R for r in live)
-        g.append(f'<text x="{LX}" y="{cy + 7}" class="tl{" hl" if hl else ""}">{title}</text>')
-        g.append(f'<line x1="{X0}" y1="{cy}" x2="{X1}" y2="{cy}" stroke="#d5d8de" stroke-width="10" stroke-linecap="round"/>')
-        g += [f'<circle cx="{x(v):.1f}" cy="{cy}" r="11" fill="{col}" fill-opacity="0.85" stroke="#fff" stroke-width="2.5"/>' for v in Rs]
         lab = []
         if Rs:
-            lab.append(f"{rng(Rs, pct)}% removed: " + (f"{hid} of {len(runs)} hid" if hid else T["found"]))
+            lab.append(f"{rng(Rs, pct)}% of the push: " + (f"{hid} of {len(runs)} hid" if hid else T["found"]))
         nf = len(runs) - len(live)
         dead = [r for r in runs if r["faded"]]
         if gone == "collapse":  # runs that answer A on (almost) every prompt, probe or not
@@ -126,23 +122,36 @@ def chart(tracks):
         else:
             assert all(r["off_a"] < 0.75 * r["n"] for r in dead), [r["off_a"] for r in dead]
             word = gone
-        if nf and Rs:  # mixed arm: short note
+        if nf and Rs:  # mixed arm: one more line
             lab.append(f"{nf} of {len(runs)} {word}")
         elif nf:
-            # faded: strict switch share now, and the push now (whole graph) as a share of the same run's push before
-            # retraining (runs/<run>.json t0_test_cached.shift_mean = the warm adapter on the 128 test prompts)
+            # 'faded' = PREREG switch clause failed: strict, argmax and fp32 switch counts all under 75% (load_run).
+            # Push now (whole graph) as a share of the same run's push before retraining
+            # (runs/<run>.json t0_test_cached.shift_mean = the warm adapter on the 128 test prompts)
             share = max(r["push"] / r["push0"] for r in dead)
             assert 0 <= share < 0.01, share
-            # 'faded' = PREREG switch clause failed: strict, argmax and fp32 switch counts all under 75% (load_run)
-            lab.append(f"{nf} of {len(runs)} {word}: switch on under 75% of prompts, push under 1% of its old size")
+            lab += [f"{nf} of {len(runs)} {word}: switch on under 75% of prompts", "push under 1% of its old size"]
+        cy = ycur + 33 + LH * (len(lab) - 1)
+        body += [f'<text x="{LX}" y="{cy + 7}" class="tl{" hl" if hl else ""}">{title}</text>',
+                 f'<line x1="{X0}" y1="{cy}" x2="{X1}" y2="{cy}" stroke="#d5d8de" stroke-width="10" stroke-linecap="round"/>']
+        body += [f'<circle cx="{x(v):.1f}" cy="{cy}" r="11" fill="{col}" fill-opacity="0.85" stroke="#fff" stroke-width="2.5"/>' for v in Rs]
         lx = min(x(sum(Rs) / len(Rs)), X1) if Rs else X1
-        anchor = "end" if (not Rs or lx > X1 - 150) else "middle"
-        g.append(f'<text x="{X1 if anchor == "end" else lx:.1f}" y="{cy - 17}" text-anchor="{anchor}" class="bl{" hl" if hl else ""}">{"; ".join(lab)}</text>')
-    yb = top + TH * len(tracks) + 22
+        anchor = "end" if (not Rs or lx > X1 - 150 or len(lab) > 1) else "middle"
+        for i, line in enumerate(lab):
+            body.append(f'<text x="{X1 if anchor == "end" else lx:.1f}" y="{cy - 17 - LH * (len(lab) - 1 - i)}" '
+                        f'text-anchor="{anchor}" class="bl{" hl" if hl else ""}">{line}</text>')
+        ycur = cy + 30
+    bot = ycur
+    xh = x(HIDE_R)
+    g = [f'<rect x="{X0}" y="{top - 8}" width="{xh - X0:.1f}" height="{bot - top + 4}" fill="#f6dcd2" rx="4"/>',
+         f'<text x="{xh - 10:.1f}" y="{top - 16}" text-anchor="end" class="zl">{T["zone"]}</text>',
+         f'<text x="{xh + 10:.1f}" y="{top - 16}" text-anchor="start" class="zl f">{T["zone_found"]}</text>',
+         f'<line x1="{xh:.1f}" y1="{top - 36}" x2="{xh:.1f}" y2="{bot - 4}" stroke="#8a4a3a" stroke-width="2.5" stroke-dasharray="5 4"/>'] + body
+    yb = bot + 22
     g += [f'<text x="{X0}" y="{yb}" class="tk" text-anchor="middle">0%</text>',
-          f'<text x="{x(HIDE_R):.1f}" y="{yb}" text-anchor="middle" class="tk">30%</text>',
+          f'<text x="{xh:.1f}" y="{yb}" text-anchor="middle" class="tk">30%</text>',
           f'<text x="{X1}" y="{yb}" text-anchor="middle" class="tk">100%</text>']
-    return f'<svg class="chart" width="{CW}" height="{H_}" viewBox="0 0 {CW} {H_}">{"".join(g)}</svg>'
+    return f'<svg class="chart" width="{CW}" height="{yb + 12}" viewBox="0 0 {CW} {yb + 12}">{"".join(g)}</svg>'
 
 
 facts, rows, tracks = {"example": EX}, [], []
@@ -268,6 +277,7 @@ Built by figure1/gen.py from kran-research projects/probe-switch-audit-penalty-8
   svg.chart .mu {{ fill: #9a9da5; font-weight: 600; }}
   svg.chart .tk {{ font-size: 18px; fill: #7a7d86; }}
   svg.chart .zl {{ font-size: 19px; font-weight: 600; fill: #8a4a3a; }}
+  svg.chart .zl.f {{ fill: #4d5059; }}
   .foot {{ display: flex; justify-content: space-between; border-top: 1px solid #e3e3e6; margin-top: 16px; padding-top: 12px; font-size: 19px; color: #7a7d86; }}
   .foot b {{ color: #1d1d1f; font-weight: 700; }}
 </style>

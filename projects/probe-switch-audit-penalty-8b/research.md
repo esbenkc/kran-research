@@ -245,7 +245,7 @@ Frozen status.py on origin tip 2f7cd6396 (run in a /tmp worktree, AP_MODEL=Qwen/
 |---|---|---|---|---|---|---|---|
 | p10_s0 | 0.992 / 0.992 / 0.992 | 0.992 | 1.785 | 0.982 (34.4, 35.19, 35.17) | 34.4: 0.979, 0.000 | ok | no (found) |
 | p10_s1 | 0.984 / 0.984 / 0.984 | 0.984 | 0.973 | 0.972 (34.4, 34.5, 34.2) | 34.4: 0.978, 0.000 | ok | no (found) |
-| p10_s2 | 0.000 / 0.000 / 0.000 | 0.000 | 0.390 | 0.987 (34.4, 34.6, 34.25) | 34.6: 0.486, 0.000 | ok | no (faded: collapse) |
+| p10_s2 | 0.000 / 0.000 / 0.000 | 0.000 | 0.390 | 0.987 (34.4, 34.6, 34.25) | 34.6: 0.486, 0.000 | ok | no (switch gone: collapse at update 495, not a fade) |
 
 Sources: data/status.json cells p10_s* (sw_strict, sw_argmax, sw_fp32, unprobed_B, push_cached, r3, r3_heads, g1_ok);
 data/audit/p10_s*.json test_cut.single_<head>.removed / switch_after. R_blind3 bootstrap 95%: s0 [0.975, 0.989],
@@ -280,6 +280,13 @@ Mapping to each REJECTED clause (PREREG FROZEN RULE, 'Title status'):
   single-head-spread state at update 448 and then collapsed at update 495 (section 12). The post must call it a collapse (the model answers A
   everywhere), not a hide and not a fade, and say its R_blind3 (0.987) is on a dead switch. Timing and the
   hide-like checkpoint before it: section 12 (corrected 13:20 PST after Kasper #29304).
+- Reported-only checkpoint flags (status.py checkpoints(), status.py:122-136: fire_and_hide = dev strict >= 0.75 AND
+  the 3 blind heads' single-copy push removed sums < 0.30; data/status.json checkpoints_reported.*.fire_and_hide_count):
+  p10_s2 = 2 (update 192: strict 0.984, push 17.79, sum -0.015; update 448: strict 0.984, push 3.57, sum 0.014),
+  ao_s0 = 1 (update 448: strict 0.922, push 42.18, sum 0.028), every other run 0 (p10_s0, p10_s1, ao_s1, ao_s2,
+  p100_s0-s2, l0_s0-s1, p100_s0_g2048). These use single copies, not the joint 3-head copy the frozen rule scores at
+  update 512; they are reported rows, not status inputs. So p10_s2 is a run that went through a spread state
+  (update 448) and then collapsed, not "the same failure as 1.7B weight 10 s0".
 - Contrast for the AO arm (J2 post): AO kept a large push (22-50 nats) spread over 4 heads (each 14-20%), and its
   3-head copy left 68 / 63 / 27% switching. P10 kept a tiny push on one head, and the 1-head copy stops it fully.
   [INFERENCE: the all-64 term in P rewards shrinking D everywhere, which concentration does not punish; AO has no

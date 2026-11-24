@@ -109,5 +109,21 @@ out2 = sgld_chain(loss_rows, [w], w_star, 16, batch, nbeta, eps, gamma, burn=0, 
 diff = float((out2["end"] - w1).abs().max())
 check("one SGLD step == displayed update (same noise)", diff < 1e-12, f"max abs diff {diff:.1e}")
 
+# (6) foldout formulas for the long Qwen3-8B walk (E2b): predicted settling time S* = (n beta h_max + gamma)/(2 c gamma),
+#     and the distance of a walk of noise plus the spring alone, sqrt(d (1-(1-eps gamma/2)^(2t)) / (gamma (1-eps gamma/4))).
+e2b = json.loads((HERE / "data/llc/e2b/m8_k2_s5_cue-m8_k2_s5_u00088_c0.1_long.json").read_text())
+S = (e2b["nbeta"] * e2b["h_max_used"] + e2b["gamma"]) / (2 * e2b["c"] * e2b["gamma"])
+check("S* ~ 6,300 steps", 6250 < S < 6400, f"{S:.0f}")
+check("1/(eps gamma) ~ 12,650 steps", abs(1 / (e2b["eps"] * e2b["gamma"]) - 12650) < 10, f"{1 / (e2b['eps'] * e2b['gamma']):.0f}")
+d_ad, eps, gm = 2_424_832, e2b["eps"], e2b["gamma"]
+n_pts = len(e2b["dist_from_wstar"][0])
+ts = [round((i + 1) * (e2b["burn"] + e2b["draws"]) / n_pts) for i in range(n_pts)]
+worst = 0.0
+for ch in e2b["dist_from_wstar"]:
+    for t, v in zip(ts, ch):
+        pred = math.sqrt(d_ad * (1 - (1 - eps * gm / 2) ** (2 * t)) / (gm * (1 - eps * gm / 4)))
+        worst = max(worst, abs(v / pred - 1))
+check("long walk distance == noise + spring walk within about 0.1%", worst < 1.2e-3, f"max rel dev {worst:.2e} over {2 * n_pts} points")
+
 print("ALL PASS" if ok else "SOME CHECKS FAILED")
 sys.exit(0 if ok else 1)

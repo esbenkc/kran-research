@@ -47,6 +47,11 @@ None of these feeds the status. Each is labelled EXPLORATORY in the proof matrix
   preconditioner G reaches about 1e8 and the injected noise is large in exactly the singular directions.
 - E4b NOT RUN (Tove #30023, Felix #30026): a retune of the stabiliser after seeing E4 diverge would be a fishing trip.
   A tuned preconditioned sampler, frozen on the gate before any 8B run, goes to the hit list for the follow-up.
+- E2b memory change (Vera #30068, before E2b runs): E2's estimate processes peaked at 5.53-5.54 GB footprint (over the
+  5 GB cap; RSS ~0.35 GB). For E2b only, the SGLD noise is drawn on the MPS device (a torch generator on mps) instead
+  of on the CPU and copied, so E2b's noise stream differs from E2's. Its first 25 steps run under /usr/bin/time; if the
+  peak is still above 5.0 GB, E2b drops to 2 x 1,600 steps (burn 400) instead of 2 x 3,200. E2's saved numbers are
+  unchanged.
 - E2b PREDICTION (Felix #30047, posted 2026-11-24T14:23Z, before E2b ran; exploratory, not a frozen rule): per Hessian
   direction i the localised SGLD variance relaxes like (1 - eps a_i)^t, a_i = n beta h_i + gamma, so directions at half
   weight (n beta h_i = gamma) need about S* = (n beta h_max + gamma) / (2 c gamma) steps per chain. Gate check (h_max

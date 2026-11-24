@@ -30,4 +30,5 @@ None of these feeds the status. Each is labelled EXPLORATORY in the proof matrix
 - E3 DROPPED (Felix #29996): RL job J1 was stopped after m8_k2_s5 (its peak memory footprint was 7.85 GB, above the
   5 GB cap while another swarm is open; Vera #29994), so the race readouts at the other runs do not exist. The race
   was a wording rule for an LLC alarm that never ran (Kasper #29991). m8_k2_s5 matched the parent run bit for bit
-  (Bruno, commit d160468a8).
+  (Bruno, commit d160468a8). A J1 restart at 06:13:17 PST began m8_k2_s6 and stopped after update 24 (no
+  process alive at 06:13:56); its partial adapters in raw/lora/m8_k2_s6/ are not used.

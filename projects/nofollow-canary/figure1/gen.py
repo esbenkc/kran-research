@@ -120,7 +120,7 @@ def card_facts(rec: dict, log: list[list[str]], label: str) -> dict:
     nxt = next(((p, st) for p, st in gl if p != s["start_path"]), None)
     ans = " ".join((rec.get("answer") or "").split())
     mark = ("the 2025 price" if rec.get("correct") else "last year's price" if s["stale"] in ans else "no 2025 price")
-    return {"follow": fol, "reached": reached(rec), "hid": hid, "template": s["template"], "anchor": ANCHORS[s["template"]],
+    return {"follow": fol, "reached": reached(rec), "hid": hid, "oid": s["oid"], "template": s["template"], "anchor": ANCHORS[s["template"]],
             "link": link_line(rec) if reached(rec) else "", "quote": follow_thought(rec) if fol else miss_quote(rec),
             "next": nxt, "answer": ans[:80] + ("…" if len(ans) > 80 else ""), "answer_mark": mark,
             "question": rec["question"], "label": label}
@@ -229,14 +229,16 @@ def card(f: dict | None, title: str, sub: str, hl: bool, pending_note: str = "")
             f'{hl_code(f["link"], f["hid"], f["anchor"])}</span></div></div>']
     q = hl_quote(f["quote"], f["hid"], f["anchor"]) if f["quote"] else ""
     if f["follow"]:
-        lab = '<div class="tag yes">opened</div>'
+        lab = '<div class="tag yes">requested</div>'
         nxt = f'GET /r/<b class="id">{f["hid"]}</b>.html {E(f["next"][1])}' if f["next"] and f["hid"] in f["next"][0] else \
             f'GET /r/<b class="id">{f["hid"]}</b>.html'
     else:
         lab = '<div class="tag no">skipped</div>'
         nxt = f'GET {E(f["next"][0])} {E(f["next"][1])}' if f["next"] else "no other page"
+    other = (f'<div class="log">that is the other hidden link, to a page without the number</div>'
+             if not f["follow"] and f["next"] and f["oid"] in f["next"][0] else "")
     rows.append(f'<div class="st"><div class="sl">next step{lab}</div><div class="sb">&ldquo;{q}&rdquo;'
-                f'<div class="log"><span>server log</span> <span class="mono">{nxt}</span></div>'
+                f'<div class="log"><span>server log</span> <span class="mono">{nxt}</span></div>{other}'
                 f'<div class="log">answers <b>{E(f["answer"])}</b>, {E(f["answer_mark"])}</div></div></div>')
     return f'<div class="card{" hl" if hl else ""}">{head}{"".join(rows)}</div>'
 
@@ -318,13 +320,14 @@ def page(text: dict, slots: dict, left: dict | None, right: dict | None, counts:
     head = f'<div class="head">{E(fill("head"))}</div>'
     sub = f'<div class="sub">{E(fill("sub"))}</div>'
     pg = (f'<div class="page"><div class="pl">Task</div><div class="ask">&ldquo;{E(task)}&rdquo;</div>'
-          f'<div class="pl">Trap</div><div class="note">{text["page_note"]}</div></div>')
+          f'<div class="pl">Hidden link</div><div class="note">{text["page_note"]}</div></div>')
     cards = (f'<div class="cards">{card(left, text["left_title"], text["left_sub"], True)}'
              f'{card(right, text["right_title"], text["right_sub"], False, E(text.get("right_wait", "")))}</div>')
     c = counts or {}
     g = c.get
-    gl_rawnf = (g("md") - NINE, fill("goal_rawnf")) if counts else None
-    gl_mdnf = (g("raw") + NINE, fill("goal_mdnf")) if counts else None
+    show_goals = bool(counts) and slots.get("gates_ok", False)  # a failed gate makes the Yes thresholds moot
+    gl_rawnf = (g("md") - NINE, fill("goal_rawnf")) if show_goals else None
+    gl_mdnf = (g("raw") + NINE, fill("goal_mdnf")) if show_goals else None
 
     def cell(arm, red, goal=None):
         h = bar_cell(g(arm), n, red, goal)
@@ -366,9 +369,11 @@ def page(text: dict, slots: dict, left: dict | None, right: dict | None, counts:
 
 def did(f: dict) -> str:
     if f["follow"]:
-        return f"opened the hidden link and answered {f['answer']} ({f['answer_mark']})"
+        return f"requested the hidden link and answered {f['answer']} ({f['answer_mark']})"
     nxt = f"fetched {f['next'][0]}" if f["next"] else "fetched no other page"
-    return (f"read the link's address (\"{f['quote']}\"), {nxt} and answered {f['answer']} ({f['answer_mark']})")
+    if f["next"] and f["oid"] in f["next"][0]:
+        nxt = "requested the other hidden link (a page without the number)"
+    return (f"read the link's code (\"{f['quote']}\"), {nxt} and answered {f['answer']} ({f['answer_mark']})")
 
 
 def yaml_safe(s: str) -> str:
@@ -383,7 +388,7 @@ def alt_text(text: dict, slots: dict, task: str, lf: dict, rf: dict | None, coun
     if rf is None:
         return yaml_safe(s + " The same run without the tag, and the counts for 90 runs per page format, wait for the laptop run.")
     s += f" The same run (same site, task and random seed) with the tag removed {did(rf)}."
-    return yaml_safe(s + (f" Counts of 90 runs that opened the link: raw HTML {counts['raw']} with the tag and {counts['rawnf']} "
+    return yaml_safe(s + (f" Counts of 90 runs that requested the hidden link: raw HTML {counts['raw']} with the tag and {counts['rawnf']} "
                 f"without; markdown with the link written in HTML {counts['mdnf']} with the tag and {counts['mdhtml']} "
                 f"without; plain markdown {counts['md']}."))
 
@@ -415,7 +420,8 @@ def main() -> None:
         v = variant(res)
         text = dict(T["common"], **T["landed"], **T["heads"][kind], **T["answers"][v])
         slots = dict(counts, n=90, up=counts["rawnf"] - counts["raw"], down=counts["mdhtml"] - counts["mdnf"],
-                     gap=counts["md"] - counts["raw"], goal_rawnf_n=counts["md"] - NINE, goal_mdnf_n=counts["raw"] + NINE)
+                     gap=counts["md"] - counts["raw"], goal_rawnf_n=counts["md"] - NINE, goal_mdnf_n=counts["raw"] + NINE,
+                     gates_ok=all(res["gates"].values()))
         task = L["question"]
         src = {"mode": "landed", "status": res["status"], "variant": v, "kind": kind, "i": i,
                "left": f"web/out/qwen3-8b/raw/raw-free/{i:03d}.json", "right": f"web/out/qwen3-8b/raw/rawnf-free/{i:03d}.json",
@@ -423,7 +429,7 @@ def main() -> None:
                "left_quote": lf["quote"], "right_quote": rf["quote"]}
         comment = (f"Sources (kran-research, branch swarm/defense-1124-length-or-markup, projects/nofollow-canary):\n"
                    f"  example pair (run index {i}, pick rule figure1/README.md): {src['left']}, {src['right']}\n"
-                   f"  server log: {src['log']} (opened = a GET whose path holds the run's canary id)\n"
+                   f"  server log: {src['log']} (requested = a GET whose path holds the run's canary id)\n"
                    f"  counts {counts} recounted from raw files + log, equal to results/analysis.json; status {res['status']}\n"
                    f"  built by projects/nofollow-canary/figure1/gen.py")
         html_s = page(text, slots, lf, rf, counts, task, comment)

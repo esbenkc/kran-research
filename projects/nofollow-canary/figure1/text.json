@@ -1,58 +1,58 @@
 {
  "common": {
   "question": "Does the rel=\"nofollow\" attribute on a stylesheet-hidden canary link cause Qwen3-8B's lower follow rate on raw HTML, so that removing it from raw HTML raises the follow rate to within 10 points of markdown, and adding it to the markdown link lowers markdown to within 10 points of raw HTML?",
-  "gloss": "(rel=\"nofollow\": a tag in a link that asks search engines not to follow it. Canary link: a link people cannot see, so a visit marks an AI agent. Follow rate: the share of runs that opened it.)",
-  "page_note": "A link in the page footer that people cannot see (the stylesheet hides it). It carries <b class=\"nf\">rel=\"nofollow\"</b>, which asks search engines to skip it. Each run gets a new random address.",
+  "gloss": "(rel=\"nofollow\": a tag in a link that asks search engines not to follow it. Canary link: a link people cannot see, so a request for it marks an AI agent. Follow rate: the share of runs that requested it.)",
+  "page_note": "In the page footer; the stylesheet hides it from people. It carries <b class=\"nf\">rel=\"nofollow\"</b>, which asks search engines to skip it. Its address is a new random code in each run.",
   "left_title": "Raw HTML, with the tag",
   "left_sub": "the page as the server sends it",
   "right_title": "Raw HTML, tag removed",
   "right_sub": "same run: same site, task and random seed",
-  "col_tag": "link tagged rel=\"nofollow\"",
+  "col_tag": "with the nofollow tag",
   "col_notag": "no tag",
   "row_raw": "Raw HTML page",
   "row_raw_sub": "the server's HTML",
-  "row_mdhtml": "Markdown page",
-  "row_mdhtml_sub": "link written as an HTML <a> tag",
-  "row_md": "Plain markdown",
-  "row_md_sub": "[text](address)",
+  "row_mdhtml": "HTML link in markdown",
+  "row_mdhtml_sub": "the hidden link written as <a href=…>",
+  "row_md": "Markdown",
+  "row_md_sub": "[words](address)",
   "md_no_tag": "this link form has no place for the tag",
-  "key": "<b>Saw it</b>: the link's random address was in what the tool returned. <b>Opened</b>: our server logged a visit to that address."
+  "key": "<b>Saw it</b>: the link's random code was in what the tool returned. <b>Requested</b>: our server logged a request that holds that code."
  },
  "pending": {
   "answer_word": "waiting for the run.",
   "answer": "The laptop job (510 runs) has not finished. Below: a real raw-HTML miss from our last run, Nov 23.",
-  "head": "Qwen3-8B read the hidden link's address and then took last year's price from the visible menu page",
-  "sub": "Does the nofollow tag on a hidden trap link keep Qwen3-8B (reasoning on) away? Last run: raw HTML 31 of 42 opened it, markdown 39 of 42.",
+  "head": "Qwen3-8B read the hidden link's code and then took last year's price from the visible Plans page",
+  "sub": "Does the nofollow tag keep Qwen3-8B away from the hidden link? Last run: raw HTML 31 of 42 runs requested it, markdown 39 of 42.",
   "right_wait": "Same run with the tag removed: waiting for the laptop job",
-  "grid_title": "This run: how many of 90 runs opened the hidden link (waiting)",
+  "grid_title": "This run: how many of 90 runs requested the hidden link (waiting)",
   "goal_rawnf": "",
   "goal_mdnf": "",
   "foot": "Test websites we built; Qwen3-8B open weights, 4-bit; example from the Nov 23 run"
  },
  "landed": {
-  "grid_title": "All runs: how many of {n} opened the hidden link",
+  "grid_title": "All runs: how many of {n} requested the hidden link",
   "goal_rawnf": "Yes needs at least {goal_rawnf_n}",
   "goal_mdnf": "Yes needs at most {goal_mdnf_n}",
   "foot": "Test websites we built; Qwen3-8B open weights, 4-bit, reasoning on; 5 sites, Nov 24 2026"
  },
  "heads": {
   "miss_follow": {
-   "head": "Qwen3-8B saw the hidden link and skipped it while the tag said nofollow, then opened it once the tag was gone",
-   "sub": "Does the nofollow tag on a hidden trap link keep Qwen3-8B away? Two copies of one run below; only the tag differs. Counts: {n} runs per page format."
+   "head": "Qwen3-8B saw the hidden link and skipped it while the tag said nofollow, then requested it once the tag was gone",
+   "sub": "Does the nofollow tag keep Qwen3-8B away from the hidden link? Below: two copies of one run; only the tag differs. Counts: {n} runs per page format."
   },
   "miss_miss": {
    "head": "Qwen3-8B saw the hidden link in raw HTML and skipped it, with the nofollow tag and without it",
-   "sub": "Does the nofollow tag on a hidden trap link keep Qwen3-8B away? Two copies of one run below; only the tag differs. Counts: {n} runs per page format."
+   "sub": "Does the nofollow tag keep Qwen3-8B away from the hidden link? Below: two copies of one run; only the tag differs. Counts: {n} runs per page format."
   }
  },
  "answers": {
   "CONFIRMED": {
    "answer_word": "Yes.",
-   "answer": "Removing the tag lifted raw HTML from {raw} to {rawnf} of {n} runs (plain markdown: {md}). Adding it to markdown cut {mdhtml} to {mdnf} (raw HTML: {raw})."
+   "answer": "Removing the tag lifted raw HTML from {raw} to {rawnf} of {n} runs (markdown: {md}). Adding it to markdown cut {mdhtml} to {mdnf} (raw HTML: {raw})."
   },
   "REJECTED": {
    "answer_word": "No.",
-   "answer": "Without the tag, raw HTML still got only {rawnf} of {n} runs, against {md} for plain markdown. With the tag, markdown still got {mdnf} of {n}, against {raw} for raw HTML."
+   "answer": "Without the tag, raw HTML still got only {rawnf} of {n} runs, against {md} for markdown. With the tag, markdown still got {mdnf} of {n}, against {raw} for raw HTML."
   },
   "UNCONFIRMED_raw_only": {
    "answer_word": "Not settled.",
@@ -64,7 +64,7 @@
   },
   "UNCONFIRMED_gate_gap": {
    "answer_word": "Not settled.",
-   "answer": "This time raw HTML ({raw} of {n}) and plain markdown ({md}) were less than 10 points apart, so there was no gap for the tag to explain."
+   "answer": "This time raw HTML ({raw} of {n}) and markdown ({md}) were less than 10 points apart, so there was no gap for the tag to explain."
   },
   "UNCONFIRMED_gate_other": {
    "answer_word": "Not settled.",

@@ -71,7 +71,10 @@ def load_tail(n_tail: int = 2, dtype=torch.bfloat16, head_dtype=torch.bfloat16):
             return sf.get_tensor(k)
 
     for li in range(first, cfg.num_hidden_layers):
+        dd = torch.get_default_dtype()  # llc-early-alarm: build the CPU template in bf16 (the checkpoint dtype), so the
+        torch.set_default_dtype(torch.bfloat16)  # load never holds an fp32 CPU copy; values are identical
         layer = Qwen3DecoderLayer(cfg, li)
+        torch.set_default_dtype(dd)
         pre = f"model.layers.{li}."
         missing, unexpected = layer.load_state_dict({k[len(pre):]: get(k) for k in keymap if k.startswith(pre)},
                                                     strict=False)

@@ -24,8 +24,11 @@ def step_size(c: float, nbeta: float, h_max: float, gamma: float) -> float:
     return c / (nbeta * h_max + gamma)
 
 
-def _flat(ts):
-    return torch.cat([t.reshape(-1) for t in ts])
+def _dot(a, b) -> float:
+    """sum(a * b) as a Python float; fp64 on CPU, fp32 on MPS (MPS has no float64)."""
+    if a.device.type == "mps":
+        return float((a.float() * b.float()).sum())
+    return float((a.double() * b.double()).sum())
 
 
 def hmax_power(grad_fn, params, iters: int = 8, delta: float = 1e-2, seed: int = 0):
@@ -34,7 +37,7 @@ def hmax_power(grad_fn, params, iters: int = 8, delta: float = 1e-2, seed: int =
     g = torch.Generator(device="cpu").manual_seed(seed)
     w0 = [p.detach().clone() for p in params]
     v = [torch.randn(p.shape, generator=g, dtype=torch.float32).to(p.device, p.dtype) for p in params]
-    nv = float(torch.sqrt(sum((x.double() ** 2).sum() for x in v)))
+    nv = sum(_dot(x, x) for x in v) ** 0.5
     v = [x / nv for x in v]
     lam = float("nan")
     hist = []
@@ -48,8 +51,8 @@ def hmax_power(grad_fn, params, iters: int = 8, delta: float = 1e-2, seed: int =
                 p.copy_(a - delta * x)
         gm = grad_fn()
         hv = [(a - b) / (2 * delta) for a, b in zip(gp, gm)]
-        lam = float(sum((a.double() * x.double()).sum() for a, x in zip(hv, v)))  # Rayleigh quotient v.Hv, |v| = 1
-        nh = float(torch.sqrt(sum((x.double() ** 2).sum() for x in hv)))
+        lam = sum(_dot(a, x) for a, x in zip(hv, v))  # Rayleigh quotient v.Hv, |v| = 1
+        nh = sum(_dot(x, x) for x in hv) ** 0.5
         hist.append(lam)
         if nh == 0:
             break
@@ -75,8 +78,8 @@ def sgld_chain(loss_fn, params, w_star, n: int, batch: int, nbeta: float, eps: f
     def U_and_grad(lfn):
         l = lfn()
         gr = torch.autograd.grad(l, params)
-        loc = sum(((p - a).double() ** 2).sum() for p, a in zip(params, w_star))
-        U = nbeta * float(l) + 0.5 * gamma * float(loc)
+        loc = sum(_dot(p - a, p - a) for p, a in zip(params, w_star))
+        U = nbeta * float(l) + 0.5 * gamma * loc
         dU = [nbeta * gg + gamma * (p.detach() - a) for gg, p, a in zip(gr, params, w_star)]
         return U, dU
 
@@ -97,12 +100,12 @@ def sgld_chain(loss_fn, params, w_star, n: int, batch: int, nbeta: float, eps: f
                 p.add_(-(eps / 2) * (nbeta * gg + gamma * (p - a)) + math.sqrt(eps) * z)
         if mala:
             U1, dU1 = U_and_grad(full_loss_fn)
-            fwd = sum(((p.detach() - wo + (eps / 2) * d0).double() ** 2).sum() for p, wo, d0 in zip(params, w_old, dU0))
-            bwd = sum(((wo - p.detach() + (eps / 2) * d1).double() ** 2).sum() for p, wo, d1 in zip(params, w_old, dU1))
-            log_a = -U1 + U0 - float(bwd) / (2 * eps) + float(fwd) / (2 * eps)
+            fwd = sum(_dot(p.detach() - wo + (eps / 2) * d0, p.detach() - wo + (eps / 2) * d0) for p, wo, d0 in zip(params, w_old, dU0))
+            bwd = sum(_dot(wo - p.detach() + (eps / 2) * d1, wo - p.detach() + (eps / 2) * d1) for p, wo, d1 in zip(params, w_old, dU1))
+            log_a = -U1 + U0 - bwd / (2 * eps) + fwd / (2 * eps)
             accs.append(min(1.0, math.exp(min(0.0, log_a))))
         if t % 25 == 24 or t == burn + draws - 1:
-            dist.append(float(torch.sqrt(sum(((p.detach() - a).double() ** 2).sum() for p, a in zip(params, w_star)))))
+            dist.append(sum(_dot(p.detach() - a, p.detach() - a) for p, a in zip(params, w_star)) ** 0.5)
     lam = nbeta * (sum(losses[burn:]) / draws)
     end = end_fn() if end_fn is not None else None  # e.g. the full-batch loss at the last draw (before the reset)
     with torch.no_grad():

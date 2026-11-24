@@ -143,7 +143,7 @@ def main():
         w_star = [p.detach().clone() for p in plist]
         px = ref[:, xs].exp().sum(-1).cpu().double().numpy()
         g = full_grad()
-        grad_norm_wstar = float(torch.sqrt(sum((x.double() ** 2).sum() for x in g)))
+        grad_norm_wstar = sum(float((x.float() ** 2).sum()) for x in g) ** 0.5
         del g
         chains, L_end = [], []
         for k in range(a.chains):

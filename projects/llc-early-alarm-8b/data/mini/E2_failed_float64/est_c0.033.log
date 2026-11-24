@@ -1,0 +1,28 @@
+W1124 06:14:40.155000 54987 .venv/lib/python3.14/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Fetching 11 files:   0%|          | 0/11 [00:00<?, ?it/s]Fetching 11 files: 100%|██████████| 11/11 [00:00<00:00, 8022.49it/s]
+Traceback (most recent call last):
+  File "/Users/esben/work/theory-1124-llc-early-alarm-8b/kran-research/projects/llc-early-alarm-8b/llc.py", line 172, in <module>
+    main()
+    ~~~~^^
+  File "/Users/esben/work/theory-1124-llc-early-alarm-8b/kran-research/projects/llc-early-alarm-8b/llc.py", line 134, in main
+    hm = json.load(open(HERE / a.hmax_file))
+                   ~~~~^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/Users/esben/work/theory-1124-llc-early-alarm-8b/kran-research/projects/llc-early-alarm-8b/data/llc/e2/hmax_m8_k2_s5_u00032.json'
+        6.07 real         3.10 user         1.13 sys
+          2179497984  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              117775  page reclaims
+               93612  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                  23  messages sent
+                  66  messages received
+                   0  signals received
+                5765  voluntary context switches
+               19141  involuntary context switches
+         52286541786  instructions retired
+         16650126907  cycles elapsed
+          5068179568  peak memory footprint

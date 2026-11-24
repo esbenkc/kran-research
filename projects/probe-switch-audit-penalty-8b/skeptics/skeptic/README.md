@@ -54,3 +54,4 @@ my tail numbers (strict / fp32 / argmax swaps, G1 on argmax, L0 guard, seed-leve
     python3 vera_diff.py status_rows.json ../../data/status.json                       # 156 fields, 0 mismatches
     python3 vera_j3.py > j3.json      # P10 provenance (sha, cache, 512 updates), train signal, checkpoints, audit, nulls
     python3 vera_edges.py > edges.json  # distance of each frozen clause to its line, prompt bootstrap
+    python3 vera_p10.py ../.. > p10.json   # adversarial bound (gone switch = hide), checkpoint corner over 105 checkpoints

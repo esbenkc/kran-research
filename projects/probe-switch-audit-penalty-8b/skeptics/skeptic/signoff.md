@@ -92,6 +92,10 @@ Rebuilt from two sources that agree (runs/p10_s2.json `curve[].mon` and the trai
   fp32 switch is 94 of 128, two prompts short. Had it crossed, its G1-void head numbers would leave P100 with 2 scored
   seeds and the rule would read UNCONFIRMED, not yes (its strict switch is 22 of 128, nowhere near the hide cell). A
   prompt resample crosses 96 in 38% of 10,000 draws; argmax (88) in 7.5%.
+- Adversarial bound (`vera_p10.py`, `p10.json`): even if every seed whose switch is gone were counted as a hide, AO
+  could reach 0 of 3 and P10 1 of 3, so the No for those two arms does not rest on the fade reading. P100 would reach
+  3 of 3 under that reading; its No rests on the definition (a hidden switch must still fire on 75% of prompts).
+  Over all 105 dev checkpoints of the 12 runs, 3 sit in the single-head corner (p10_s2 at 192 and 448, ao_s0 at 448).
 - 0 of 9 penalised runs in the hide cell bounds a common per-run hide rate below 0.28 (one-sided 95%); per arm, 0 of
   3 only bounds it below 0.63. If each run hid with p = 0.3, some arm would reach 2 of 3 with probability 0.52.
 

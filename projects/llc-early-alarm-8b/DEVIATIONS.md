@@ -32,6 +32,16 @@ None of these feeds the status. Each is labelled EXPLORATORY in the proof matrix
   #30003); every per-step minibatch loss saved and the running estimate logged every 100 steps. Question: at what step count does the 8B estimate stop rising (or has it not by
   3,200), next to the 400-1,600 steps the gate case needs (E1)? The paired C1 point (m8_c1_s5 at update 88)
   does not run: J1 was stopped before any C1 run, so no C1 checkpoint exists (Bruno #30003). EXPLORATORY, unscored.
+- E4 (preconditioned sampler on the gate, CPU fp64, beside E2; Tove #30008, Bruno #30013): RMSProp-preconditioned
+  SGLD (Li, Chen, Carlson, Carin 2016, arXiv 1512.07666; the default recommended by the Timaeus sampling guide,
+  2026-04-21) on the SAME gate case (gate.make_case, ranks 1 and 8, n 128, minibatch 8, n beta 26.38, 2 chains x
+  (25 burn + 75 draws), w* and L(w*) as gate.py). Per step: g = n beta grad L_S(w) + gamma (w - w*); v = 0.99 v +
+  0.01 g^2; v_hat = v / (1 - 0.99^t); G = 1 / (sqrt(v_hat) + 1e-8); w <- w - (eps/2) G g + sqrt(eps G) N(0, I) (no
+  Gamma correction term). Note: v here tracks the full drift g including the localisation term; the guide's v tracks
+  the loss gradient only. Grid eps in {1e-4, 3e-4, 1e-3, 3e-3, 1e-2} x gamma in {1, 10} (10 settings), chain-seed
+  repeats 0-2 (repeat 0 scored like the gate). The gate's PASS and selection rules are applied mechanically; ties: the
+  smaller eps. Reported only as "a preconditioned sampler at the same 100 steps: k of 10 settings pass", never as a
+  gate pass. Output data/gate/e4_psgld.json, e4.log. EXPLORATORY, unscored.
 - Correction to E1's summary (Vera #30000): at c 0.1, gamma 1 the gate case is already within 10% at 400 steps per
   chain in Bruno's data (r1 -6.5%, r8 -7.8%) and passes from 1,000 in Vera's own data; at 1,600-6,400 steps it sits
   2-5% high.

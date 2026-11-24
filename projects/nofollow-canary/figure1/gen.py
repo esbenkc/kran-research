@@ -178,6 +178,16 @@ def recount(out: Path, log: list[list[str]], res: dict) -> dict:
     return c
 
 
+def paired(out: Path, log: list[list[str]]) -> dict:
+    """Same run index in raw and rawnf: how many pairs followed both times, missed both times, or split."""
+    p = {"both_follow": 0, "both_miss": 0, "only_nf": 0, "only_tag": 0}
+    for i in range(N_ARM["raw"]):
+        fl, fr = (follows(log, json.loads((out / "raw" / f"{arm}-free" / f"{i:03d}.json").read_text())["site"]["hid"])
+                  for arm in ("raw", "rawnf"))
+        p["both_follow" if fl and fr else "both_miss" if not (fl or fr) else "only_nf" if fr else "only_tag"] += 1
+    return p
+
+
 def variant(res: dict) -> str:
     st = res["status"]
     if st in ("CONFIRMED", "REJECTED"):
@@ -325,7 +335,9 @@ def page(text: dict, slots: dict, left: dict | None, right: dict | None, counts:
              f'{card(right, text["right_title"], text["right_sub"], False, E(text.get("right_wait", "")))}</div>')
     c = counts or {}
     g = c.get
-    show_goals = bool(counts) and slots.get("gates_ok", False)  # a failed gate makes the Yes thresholds moot
+    # A failed gate makes the Yes thresholds moot; in a mixed result the met level ticks would read as a Yes
+    # although the shift legs failed, so text.json turns them off there ("goals": false).
+    show_goals = bool(counts) and slots.get("gates_ok", False) and text.get("goals", True)
     gl_rawnf = (g("md") - NINE, fill("goal_rawnf")) if show_goals else None
     gl_mdnf = (g("raw") + NINE, fill("goal_mdnf")) if show_goals else None
 
@@ -418,8 +430,11 @@ def main() -> None:
         if L["question"] != R["question"] or L["site"]["template"] != R["site"]["template"] or L["run_seed"] != R["run_seed"]:
             die(f"pair {i}: raw and rawnf differ in task, template or seed")
         v = variant(res)
-        text = dict(T["common"], **T["landed"], **T["heads"][kind], **T["answers"][v])
-        slots = dict(counts, n=90, up=counts["rawnf"] - counts["raw"], down=counts["mdhtml"] - counts["mdnf"],
+        text = {**T["common"], **T["landed"], **T["heads"][kind], **T["answers"][v]}  # the status variant may override sub
+        pairs = paired(out, log)
+        if pairs["both_follow"] + pairs["only_tag"] != counts["raw"] or pairs["both_follow"] + pairs["only_nf"] != counts["rawnf"]:
+            die(f"paired counts {pairs} do not add up to raw/rawnf")
+        slots = dict(counts, **pairs, n=90, up=counts["rawnf"] - counts["raw"], down=counts["mdhtml"] - counts["mdnf"],
                      gap=counts["md"] - counts["raw"], goal_rawnf_n=counts["md"] - NINE, goal_mdnf_n=counts["raw"] + NINE,
                      gates_ok=all(res["gates"].values()))
         task = L["question"]

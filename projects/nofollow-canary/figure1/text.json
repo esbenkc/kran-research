@@ -72,7 +72,9 @@
   },
   "UNCONFIRMED_mixed": {
    "answer_word": "Not settled.",
-   "answer": "[FILL]"
+   "answer": "Removing the tag moved raw HTML only from {raw} to {rawnf} of {n} runs, and adding it moved markdown's HTML link only from {mdhtml} to {mdnf}. Both shifts fit chance. But without the tag raw HTML ({rawnf}) was not clearly below markdown ({md}) either, so a No was not shown.",
+   "goals": false,
+   "sub": "Does the nofollow tag keep Qwen3-8B away from the hidden link? Below: one of {both_miss} runs that skipped it in both copies; only the tag differs. Most runs requested it either way: {both_follow} of {n} in both copies."
   }
  }
 }

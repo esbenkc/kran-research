@@ -1,0 +1,9 @@
+counts /90: {'raw': 72, 'rawnf': 74, 'md': 82, 'mdhtml': 74, 'mdnf': 70}
+CONF (a) rawnf - raw lower > 0: 74-72 lower -0.0929; holds=False; runs to flip it true: 8 (80, 70)
+CONF (b) mdhtml - mdnf lower > 0: 74-70 lower -0.0731; holds=False; runs to flip it true: 6 (80, 70)
+REJ (a) md - rawnf lower > 0: 82-74 lower -0.0119; holds=False; runs to flip it true: 1 (83, 74)
+REJ (b1) mdnf - raw lower > 0: 70-72 lower -0.1410; holds=False; runs to flip it true: 12 (80, 70)
+G md - raw >= 9 runs: 10 runs (margin 1)
+CONF (c) rawnf >= md - 9: 74 >= 73 (margin 1)
+CONF (d) mdnf <= raw + 9: 70 <= 81 (margin 11)
+REJ (b2) mdnf >= mdhtml - 9: 70 >= 65 (margin 5)

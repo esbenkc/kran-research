@@ -44,4 +44,9 @@ From data/status.json checkpoints_reported (status.py checkpoints()). A flag = d
 - p10_s2 final update 512: dev strict 0.000, push 0.40 nats, flagged 2 of 9 checkpoints; collapse at update 495: grad norm 1,257.5, CE 0.120 -> 3.435, unweighted penalty 1.507 -> 0.410, CE > 0.6 on every update 495-512 (last CE 0.777); 23 earlier updates in 33-494 had CE > 0.6 and recovered (largest grad norm 2,274.1 at update 262, CE 2.546)
 - no flag at any checkpoint: ao_s1, ao_s2, p100_s0, p100_s1, p100_s2, p10_s0, p10_s1, l0_s0, l0_s1, p100_s0_g2048
 
+## Reading notes (Kasper #29743)
+
+- push has two sources. The result column above prints the whole compiled graph bf16 push (data/whole/<run>.json shift_mean, the same forward pass as the strict switch). data/figure_rows.json push_nats and research.md use the cached-tail push (data/audit/<run>.json cached_test.shift_mean, the forward pass the audit cuts). Whole / cached per run: ao_s0 41.739 / 44.103; ao_s1 48.406 / 49.550; ao_s2 20.775 / 22.184; l0_s0 47.142 / 48.020; l0_s1 44.750 / 47.392; p100_s0 0.237 / 0.259; p100_s0_g2048 0.219 / 0.254; p100_s1 0.117 / 0.122; p100_s2 0.275 / 0.295; p10_s0 1.665 / 1.785; p10_s1 0.901 / 0.975; p10_s2 0.352 / 0.388.
+- The seed-level lines 'R_blind3 (every scored run with an R value)' include runs whose switch is dead (whole strict < 0.75: p100_s0, p100_s0_g2048, p100_s1, p100_s2, p10_s2). Their R is a share of a near-zero push and says nothing about hiding. For a penalised arm, quote the 'runs with head numbers' line (P10: 2 seeds) when the claim is about switching runs.
+
 <!-- /CHECKPOINTS -->

@@ -56,8 +56,31 @@ def lines():
         out.append(f"- {name} final update {last['step']}: dev strict {last['strict']:.3f}, push {last['push']:.2f} "
                    f"nats, flagged {len(flagged)} of {len(v['rows'])} checkpoints{tail}")
     clean = [n for n, v in st["checkpoints_reported"].items() if v["fire_and_hide_count"] == 0]
-    out += [f"- no flag at any checkpoint: {', '.join(clean)}", "", END]
+    out += [f"- no flag at any checkpoint: {', '.join(clean)}", ""]
+    out += reading_notes() + ["", END]
     return out
+
+
+def reading_notes():
+    """Two sources of 'push' and which runs with a dead switch sit inside the 'every scored run' seed-level lines."""
+    rows = []
+    for f in sorted((HERE / "data" / "whole").glob("*.json")):
+        a = HERE / "data" / "audit" / f.name
+        if not a.exists():
+            continue
+        w, au = json.loads(f.read_text()), json.loads(a.read_text())
+        rows.append((f.stem, w["shift_mean"], au["cached_test"]["shift_mean"], w["switch_strict"]))
+    dead = [r[0] for r in rows if r[3] < 0.75]
+    return ["## Reading notes (Kasper #29743)", "",
+            "- push has two sources. The result column above prints the whole compiled graph bf16 push "
+            "(data/whole/<run>.json shift_mean, the same forward pass as the strict switch). data/figure_rows.json "
+            "push_nats and research.md use the cached-tail push (data/audit/<run>.json cached_test.shift_mean, the "
+            "forward pass the audit cuts). Whole / cached per run: "
+            + "; ".join(f"{n} {w:.3f} / {c:.3f}" for n, w, c, _ in rows) + ".",
+            "- The seed-level lines 'R_blind3 (every scored run with an R value)' include runs whose switch is dead "
+            f"(whole strict < 0.75: {', '.join(dead)}). Their R is a share of a near-zero push and says nothing about "
+            "hiding. For a penalised arm, quote the 'runs with head numbers' line (P10: 2 seeds) when the claim is "
+            "about switching runs."]
 
 
 def main():

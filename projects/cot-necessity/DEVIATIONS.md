@@ -25,3 +25,8 @@ commit time. A change inside the FROZEN RULE block starts with "RULE CHANGE:".
   ("Is this text reasoning about a coin?", reader.py TOPIC_PROMPT). 2603.30036's monitor (App. D.3.1, "Heads-And-Tails
   Semantic Monitor Prompt") used a judge model with a 0-5 rating and a JSON schema. Same question, different scale
   and model; the post must not call our row "their monitor".
+- 2026-11-24 02:39 CET, J1 = labq zfp2nttcl0 at commit 30014f7cc (Bruno #29427, Tove #29421, Vera compute PASS #29428;
+  not a rule change, Compute section only): with the control dropped, J1 runs 3 runs, not 5, and the timing rule's
+  training budget is 6.0 h, not 7.0 h, so the whole job fits the goal's 8 h: S = min(100, floor((6.0 h - 3 x 6 x
+  t_eval) / (3 x t_step))), floored to a multiple of 10 (K = 6 exactly, Kasper #29410); S < 40 -> Qwen3-4B. No
+  separate J2: the reader (gate, then score) runs as J1's last stage (Felix #29420).

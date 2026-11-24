@@ -327,12 +327,19 @@ single-head push removed of all 64; all = all 64 copied together).
 | 448 | 0.984 | 3.57 | 0.014 | 0.005 | 1.002 |
 | 512 | 0.000 | 0.40 | 1.088 | 0.454 | 1.010 |
 
-- Update 448 is a real spread state by single copies: the switch fires on 98.4% of dev prompts and no single head of
-  64 removes more than 0.5% of the push, while all 64 together remove 100%. Its push is 3.57 nats, not saturated, so
-  this is not the KL-saturation miss of section 7. The joint copy of 3 heads (the audit's R_blind3) was NOT measured
-  at checkpoints, so whether the audit would have found it is unknown.
+- Update 448: the switch fires on 98.4% of dev prompts and no single head's copy (of 64) removes more than 0.5% of
+  the push, while all 64 copied together remove 100%. The 64 single copies sum to at most 0.32 of the push, so single
+  copies are non-additive here: "spread over many heads" and "redundant (any of several heads suffices)" both fit
+  (Kasper #29739). The post states what was measured, not "spread". Its push is 3.57 nats, not saturated, so this is
+  not the KL-saturation miss of section 7. The joint copy of 3 heads (the audit's R_blind3) was NOT measured at
+  checkpoints, so whether the audit would have found it is unknown.
 - Update 192 is a different case: max single 0.213, but the blind pick's 3 singles sum to -0.015. The blind pick
   missed the carrier (the section 7 pattern), not a spread.
+- ao_s0 update 448 (the only other fire_and_hide flag; data/laptop/w3hckqmt2p/ao_s0.log:97) is the update-192 kind,
+  not the update-448 kind: dev strict 0.922, push 42.18 nats, blind pick 34.0/34.1/34.2 (index order; [INFERENCE] a
+  flat blind score, train_pen 7.6e-7 at that update), blind top-3 single sum 0.028, but max single of 64 = 0.199, all 64 = 0.999. A head
+  that carries 20% existed; the blind pick missed it. By update 512 ao_s0 was back to max single 0.203 and top-3 sum
+  0.551 (log:107). So only p10_s2 update 448 shows "no single head above 0.5%".
 - Collapse: CE 0.12 -> 3.43 at update 495 with grad norm 1,257.5 (clipped to 1.0), then penalty 0.41 -> 0.02 by 496
   and CE stays >= 0.65 to 512. Correction to "CE 0.11-0.18 for updates 1-494": 23 updates in 33-494 had CE > 0.6
   with grad norms up to 2,274 (update 262 CE 2.55, 263 CE 3.87) and the run recovered each time. So write

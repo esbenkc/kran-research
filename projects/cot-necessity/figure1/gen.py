@@ -94,7 +94,7 @@ ROBOT = ('<svg width="{w}" height="{w}" viewBox="0 0 48 48" aria-hidden="true"><
 
 
 def robot(kind: str, w: int = 44) -> str:
-    # model studied (Qwen3-8B): orange ears; reader (gpt-oss-20b): teal ears and green eyes
+    # model studied (Qwen3-8B or Qwen3-4B): orange ears; reader (gpt-oss-20b): teal ears and green eyes
     return ROBOT.format(w=w, a="#e8734a", e="#7fd3ff") if kind == "model" else ROBOT.format(w=w, a="#2a9d8f", e="#a8f0c6")
 
 
@@ -176,14 +176,37 @@ def main(out: Path) -> None:
     T = {**T0["shared"], **T0[mode]}
     if "[FILL]" in json.dumps(T):
         raise SystemExit(f"text.json [{mode}] still holds [FILL]")
-    step0 = json.loads((DATA / "step0" / "summary.json").read_text())[str(K)]
-    n_heads = round(step0["share_pred_heads"] * step0["n"])
-    assert n_heads == step0["n"] == 400, (n_heads, step0)  # the always-Heads fact the figure prints
-    col1 = (f'<div class="card"><div class="ct">{T["col1_title"]}</div><div class="cs">{T["col1_sub"]}</div>'
+    model = T["model"]
+    job_p = DATA / "job_state.json"
+    if job_p.exists():  # the frozen timing rule may switch Qwen3-8B -> Qwen3-4B (PREREG)
+        jm = json.loads(job_p.read_text())["model"]
+        model = next((m for m in ("Qwen3-4B", "Qwen3-8B") if m in jm), None)
+        assert model, jm
+    T = {k: v.replace("{model}", model) if isinstance(v, str) else v for k, v in T.items()}
+    post = os.environ.get("POST")
+    if post:  # the question box must equal the post's front-matter question
+        q = next(json.loads(l.split(":", 1)[1]) for l in Path(post).read_text().splitlines() if l.startswith("question:"))
+        assert q == T["question"], f"text.json question differs from {post}"
+    s0dir = DATA / ("step0" if model == "Qwen3-8B" else f"step0_{model}")
+    s0sum = json.loads((s0dir / "summary.json").read_text())
+    assert model in s0sum["meta"]["model"], (model, s0sum["meta"])
+    step0 = s0sum[str(K)]
+    nrows = rows(s0dir / f"necessity_k{K}.jsonl")
+    preds = ["heads" if r["logit_heads"] > r["logit_tails"] else "tails" for r in nrows]
+    n0, h0 = len(preds), preds.count("heads")
+    k0 = sum(p == r["answer"] for p, r in zip(preds, nrows))
+    assert n0 == step0["n"] and abs(h0 / n0 - step0["share_pred_heads"]) < 1e-9 and abs(k0 / n0 - step0["argmax_acc"]) < 1e-9
+    if abs(k0 / n0 - 0.5) > 0.1 or step0["auroc"] > 0.6:
+        raise SystemExit(f"{model} no-reasoning answers are not a guess (acc {k0 / n0}, AUROC {step0['auroc']}): redesign column 1")
+    first3 = ", ".join(f"<b>{side(p)}</b>" for p in preds[:3])
+    note = (T["col1_note_all"].format(n=n0, side=side(preds[0])) if h0 in (0, n0)
+            else T["col1_note_mixed"].format(n=n0, h=h0, t=n0 - h0, k=k0))
+    col1 = (f'<div class="card"><div class="ct">{T["col1_title"]}</div><div class="cs">{T["col1_sub"].format(n=n0)}</div>'
             f'<div class="notes empty">{T["no_notes"]}</div>'
-            f'<div class="say">{robot("model")}<div class="bub"><b>Heads</b>, <b>Heads</b>, <b>Heads</b>, &hellip;</div></div>'
-            f'<div class="note">{T["col1_note"].format(n=n_heads)}</div></div>')
+            f'<div class="say">{robot("model")}<div class="bub">{first3}, &hellip;</div></div>'
+            f'<div class="note">{note}</div></div>')
     if mode == "pending":
+        assert h0 == n0, "the pending head says 'Heads every time'"
         seeds = None
         ex_user = rows(P / "inputs" / f"eval_k{K}.jsonl")
         ex = next(it for it in ex_user if it["start"] == "heads" and it["answer"] == "tails")
@@ -196,7 +219,6 @@ def main(out: Path) -> None:
         job = json.loads((DATA / "job_state.json").read_text())
         primary, thr, S = gate["primary"], gate["threshold"], job["steps"]
         assert primary in ("logit", "generated"), primary
-        assert "8B" in job["model"] or T["model"] in job["model"], (job["model"], T["model"])
         seeds = [load_seed(s, primary, thr, S) for s in range(SEEDS)]
         check_summary(seeds)
         eid = pick_example(seeds[0])
@@ -234,7 +256,7 @@ def main(out: Path) -> None:
               f'It is flipped 8 times: {flips}. What side did it land on after the final flip?</div>'
               f'<div class="truth">{T["truth"].format(d=sum(ex["acts"]))}</div>')
     src = (f"<!--\nSources (kran-research, branch swarm/oracle-1124-cot-necessity, projects/cot-necessity):\n"
-           f"  Step 0 count: data/step0/summary.json (k=8: n {step0['n']}, share_pred_heads {step0['share_pred_heads']})\n"
+           f"  Step 0 ({model}): {s0dir.name}/necessity_k8.jsonl (n {n0}, Heads {h0}, right {k0})\n"
            f"  prompt: inputs/eval_k8.jsonl id {ex['id']}\n")
     if seeds is not None:
         src += (f"  notes, answers: data/runs/main_k8_s0/evals/step_0000.jsonl and step_{s0['after']['step']:04d}.jsonl\n"

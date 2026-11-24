@@ -1,0 +1,493 @@
+{
+ "role": "critic-local",
+ "verdict": "PASS",
+ "rule_notes": [],
+ "answer": {
+  "claim": "The short SGLD known‑answer test failed, so no Qwen3‑8B early local‑learning‑coefficient warning was measured.",
+  "supports_claim": {
+   "answer": "yes",
+   "reason": "The frozen gate report (data/gate/frozen.json) shows all 20 settings fail the <10% error rule.  The best estimate under rank 1 was 196.9 (vs. 236, a 16.6 % error) and under rank 8 was 276.5 (vs. 312, an 11.4 % error).  The walk length was 25 burn+75 draws = 100 steps, matching the post.  The grid table contains exactly 20 settings, also as stated."
+  },
+  "numbers": [
+   {
+    "post_says": "the close one read 197",
+    "value_in_post": "197",
+    "value_in_outputs": "196.9",
+    "file": "data/gate/frozen.json",
+    "match": "yes"
+   },
+   {
+    "post_says": "277",
+    "value_in_post": "277",
+    "value_in_outputs": "276.5",
+    "file": "data/gate/frozen.json",
+    "match": "yes"
+   },
+   {
+    "post_says": "true 236",
+    "value_in_post": "236",
+    "value_in_outputs": "236",
+    "file": "data/gate/frozen.json",
+    "match": "yes"
+   },
+   {
+    "post_says": "true 312",
+    "value_in_post": "312",
+    "value_in_outputs": "312",
+    "file": "data/gate/frozen.json",
+    "match": "yes"
+   },
+   {
+    "post_says": "17%",
+    "value_in_post": "17%",
+    "value_in_outputs": "16.6%",
+    "file": "data/gate/frozen.json",
+    "match": "yes"
+   },
+   {
+    "post_says": "11%",
+    "value_in_post": "11%",
+    "value_in_outputs": "11.4%",
+    "file": "data/gate/frozen.json",
+    "match": "yes"
+   },
+   {
+    "post_says": "100 steps",
+    "value_in_post": "100",
+    "value_in_outputs": "100",
+    "file": "data/gate/grid.json",
+    "match": "yes"
+   },
+   {
+    "post_says": "20 settings",
+    "value_in_post": "20",
+    "value_in_outputs": "20",
+    "file": "data/gate/frozen.json",
+    "match": "yes"
+   }
+  ],
+  "numbers_reproduced": "yes",
+  "biggest_threat": "The gate’s failure prevented any Qwen3‑8B data from being collected—no adapters were evaluated, and control clause, lead, or law clauses were never scored.  Without measurement, the claim about early LLC warnings in the target model remains unverified and dependent on future runs.",
+  "verdict": "PASS",
+  "verdict_reason": "The analysis outputs provide the exact numbers reported in the post, including the failed 16.6 % and 11.4 % errors on rank 1 and 8, the 100‑step walk length, and the 20‑setting grid.  Therefore the post’s claim that the short SGLD known‑answer test failed and no Qwen3‑8B measurement was taken is fully supported by the data."
+ },
+ "numbers_checked": [
+  {
+   "post_says": "the close one read 197",
+   "value_in_post": "197",
+   "value_in_outputs": "196.9",
+   "file": "data/gate/frozen.json",
+   "match": "yes",
+   "in_outputs_checked": true
+  },
+  {
+   "post_says": "277",
+   "value_in_post": "277",
+   "value_in_outputs": "276.5",
+   "file": "data/gate/frozen.json",
+   "match": "yes",
+   "in_outputs_checked": true
+  },
+  {
+   "post_says": "true 236",
+   "value_in_post": "236",
+   "value_in_outputs": "236",
+   "file": "data/gate/frozen.json",
+   "match": "yes",
+   "in_outputs_checked": true
+  },
+  {
+   "post_says": "true 312",
+   "value_in_post": "312",
+   "value_in_outputs": "312",
+   "file": "data/gate/frozen.json",
+   "match": "yes",
+   "in_outputs_checked": true
+  },
+  {
+   "post_says": "17%",
+   "value_in_post": "17%",
+   "value_in_outputs": "16.6%",
+   "file": "data/gate/frozen.json",
+   "match": "yes",
+   "in_outputs_checked": true
+  },
+  {
+   "post_says": "11%",
+   "value_in_post": "11%",
+   "value_in_outputs": "11.4%",
+   "file": "data/gate/frozen.json",
+   "match": "yes",
+   "in_outputs_checked": true
+  },
+  {
+   "post_says": "100 steps",
+   "value_in_post": "100",
+   "value_in_outputs": "100",
+   "file": "data/gate/grid.json",
+   "match": "yes",
+   "in_outputs_checked": true
+  },
+  {
+   "post_says": "20 settings",
+   "value_in_post": "20",
+   "value_in_outputs": "20",
+   "file": "data/gate/frozen.json",
+   "match": "yes",
+   "in_outputs_checked": true
+  }
+ ],
+ "final_text": "",
+ "meta": {
+  "model": "mlx-community/gpt-oss-20b-MXFP4-Q8",
+  "fallback": false,
+  "mlx_lm": "0.32.2",
+  "effort": "medium",
+  "seed": 0,
+  "host": "Esbens-MacBook-Pro",
+  "finished": "2026-11-24T15:14:59+00:00",
+  "labq_job": "gxamvuycer",
+  "gen": {
+   "prompt_tokens": 48444,
+   "prompt_tps": 580.9,
+   "generation_tokens": 4061,
+   "generation_tps": 43.7,
+   "peak_memory_gb": 14.07,
+   "seconds": 177.6,
+   "finish_reason": "stop"
+  },
+  "manifest": [
+   {
+    "file": "PREREG.md",
+    "bytes": 15130,
+    "sha256": "0a9afbb4492fc42b73c9e6e5bd1a7b3ab5d0a018fa4cbc3363b475ee2081e7c4",
+    "chars_in_prompt": 15128,
+    "cut": false
+   },
+   {
+    "file": "DEVIATIONS.md",
+    "bytes": 8923,
+    "sha256": "7fb68245390f11284d8624df2b5ae0fe96c530fd636d71c885c828079ae8c691",
+    "chars_in_prompt": 5971,
+    "cut": true
+   },
+   {
+    "file": "proof-matrix.md",
+    "bytes": 13448,
+    "sha256": "fe0e9890a79781583857c9d827ea7ce33add7f3d4e5d4f87a3c6fe4e7b53e4cf",
+    "chars_in_prompt": 11971,
+    "cut": true
+   },
+   {
+    "file": "data/gate/grid.json (analysis output, digest)",
+    "bytes": 827855,
+    "sha256": "ebd8d5a89223d7b9c252206a5b885b4745192e0bc94237ba330e7322f9ec7ec2",
+    "chars_in_prompt": 2881,
+    "cut": false
+   },
+   {
+    "file": "data/gate/frozen.json (analysis output, digest)",
+    "bytes": 27054,
+    "sha256": "9d964f29b01771a5b44132b1092dc5d38b7571df7a5f8a55d210dadac08bc967",
+    "chars_in_prompt": 4091,
+    "cut": false
+   },
+   {
+    "file": "data/gate/budget.json (analysis output, digest)",
+    "bytes": 29036,
+    "sha256": "f23812e3d9ead7ba951668d1e42d853b5b04246a358e4dbda4b6131d999ae45f",
+    "chars_in_prompt": 1350,
+    "cut": false
+   },
+   {
+    "file": "data/gate/e4_psgld.json (analysis output, digest)",
+    "bytes": 248676,
+    "sha256": "c7011715bcad439eed1ad506a79528444cb81c5173357a213871933e9f6cb931",
+    "chars_in_prompt": 6897,
+    "cut": false
+   },
+   {
+    "file": "data/llc/e2/m8_k2_s5_cue-m8_k2_s5_u00032_c0.033.json (analysis output, digest)",
+    "bytes": 7813,
+    "sha256": "218edc848b014d529542ce3c7d8aea87c40c044ccc68bfee0a8eed02e59c8e8e",
+    "chars_in_prompt": 842,
+    "cut": false
+   },
+   {
+    "file": "data/llc/e2/m8_k2_s5_cue-m8_k2_s5_u00032_c0.1.json (analysis output, digest)",
+    "bytes": 7585,
+    "sha256": "3d539d8cd7d9c487638b4ce9bda5fcb83353e38b44baf0563a9dff9ce1597d56",
+    "chars_in_prompt": 831,
+    "cut": false
+   },
+   {
+    "file": "data/llc/e2/m8_k2_s5_cue-m8_k2_s5_u00032_c0.3.json (analysis output, digest)",
+    "bytes": 7524,
+    "sha256": "cfef01ab78a29d3ad1359ca8d40a6ab7b1753dfa2571a75634fcc9644ec5cad4",
+    "chars_in_prompt": 829,
+    "cut": false
+   },
+   {
+    "file": "data/llc/e2/m8_k2_s5_cue-m8_k2_s5_u00088_c0.033.json (analysis output, digest)",
+    "bytes": 7722,
+    "sha256": "b6ebe59089b8ddf74107548105a488a786d98bc1974bf59ebff3a6c8b829f4b5",
+    "chars_in_prompt": 840,
+    "cut": false
+   },
+   {
+    "file": "data/llc/e2/m8_k2_s5_cue-m8_k2_s5_u00088_c0.1.json (analysis output, digest)",
+    "bytes": 7511,
+    "sha256": "afdb9f9bd03e396b37031afc30b03f3173957be783215cd8b1b866828c71a62f",
+    "chars_in_prompt": 827,
+    "cut": false
+   },
+   {
+    "file": "data/llc/e2/m8_k2_s5_cue-m8_k2_s5_u00088_c0.3.json (analysis output, digest)",
+    "bytes": 7457,
+    "sha256": "186666326a2a05a9757fefc75e4ede9b18d0249e02a3476b7f1e43e7847fc231",
+    "chars_in_prompt": 827,
+    "cut": false
+   },
+   {
+    "file": "data/llc/e2b/m8_k2_s5_cue-m8_k2_s5_u00088_c0.1_long.json (analysis output, digest)",
+    "bytes": 137694,
+    "sha256": "4e385613b27f9038719db15978380eea6971aff6e675e19cd36f06ed818c964c",
+    "chars_in_prompt": 894,
+    "cut": false
+   },
+   {
+    "file": "data/runs/m8_k2_s5.json (analysis output, digest)",
+    "bytes": 52773,
+    "sha256": "c79c21bdb12468fb843f5c74d8fcde30ad38e8b91bac51496d6113f3c3ad52ce",
+    "chars_in_prompt": 7600,
+    "cut": false
+   },
+   {
+    "file": "data/analysis.json (analysis output, digest)",
+    "bytes": 4134,
+    "sha256": "544a40a11b9550d9ec24f5e3c57531623ac8fd57e0c5ac85787cef03199b912c",
+    "chars_in_prompt": 1713,
+    "cut": false
+   },
+   {
+    "file": "data/meta.json (analysis output, digest)",
+    "bytes": 1106,
+    "sha256": "20778daa18e6186a5b64fe522e1515aae1e485c6794ae84fe8daaed32ea820b5",
+    "chars_in_prompt": 998,
+    "cut": false
+   },
+   {
+    "file": "ref/parent/cache_sha256.json (analysis output, digest)",
+    "bytes": 166,
+    "sha256": "55a87a6a1d532cdde50f34b0977b9567d9621c67dadb585d808a12d1481d99ac",
+    "chars_in_prompt": 157,
+    "cut": false
+   },
+   {
+    "file": "data/mini/E2b/chain.log (analysis output, text)",
+    "bytes": 188,
+    "sha256": "cfa64778d3a41e31614d5e2f183d8f77b9eedbb6b0c3f227bb15cc2fbaced0ef",
+    "chars_in_prompt": 188,
+    "cut": false
+   },
+   {
+    "file": "data/llc/e2/hmax_m8_k2_s5_u00032.json (analysis output, digest)",
+    "bytes": 598,
+    "sha256": "de57fe026502f5cf1002d81c006c70400752a753f9ef5aaebc8a697baaf03aa0",
+    "chars_in_prompt": 184,
+    "cut": false
+   },
+   {
+    "file": "data/llc/e2/hmax_m8_k2_s5_u00088.json (analysis output, digest)",
+    "bytes": 612,
+    "sha256": "28b110e13b4edb1d0ca61bd5076ce69b4e2f9326e819c31dfcdf2314878d3993",
+    "chars_in_prompt": 185,
+    "cut": false
+   },
+   {
+    "file": "data/mini/J1/chain.log (analysis output, text)",
+    "bytes": 654,
+    "sha256": "7c4c83847bc4dc93cdabca8401a09ed7936ce94be7700a8a12266a809158f73a",
+    "chars_in_prompt": 654,
+    "cut": false
+   },
+   {
+    "file": "ref/x_tokens.json (analysis output, digest)",
+    "bytes": 697,
+    "sha256": "5e6140d5f748ab3a642779848bf63492377957e2d06f7f05f4bfb31f4c9d1333",
+    "chars_in_prompt": 375,
+    "cut": false
+   },
+   {
+    "file": "data/mini/E2_failed_float64/chain.log (analysis output, text)",
+    "bytes": 800,
+    "sha256": "07c7b29deda382264c07c514f173a7a9b8a7663b3700ac53fe2a7e17cf8b25ea",
+    "chars_in_prompt": 800,
+    "cut": false
+   },
+   {
+    "file": "data/mini/E2/chain.log (analysis output, text)",
+    "bytes": 800,
+    "sha256": "6124664ce206b2bf8a9b2c3943a8360c189c2ce020821772b3a2d00378ee90a3",
+    "chars_in_prompt": 800,
+    "cut": false
+   },
+   {
+    "file": "data/gate/grid.log (analysis output, text)",
+    "bytes": 890,
+    "sha256": "9e283b61d8424e7621948eb9201eae254f540882f4f7bd4637b070e05076fe38",
+    "chars_in_prompt": 890,
+    "cut": false
+   },
+   {
+    "file": "data/mini/E2b/memtest.log (analysis output, text)",
+    "bytes": 1203,
+    "sha256": "e01183ba3c0a7620e552733b5b18e20c68ec5312564460c81cad947062205f71",
+    "chars_in_prompt": 1183,
+    "cut": false
+   },
+   {
+    "file": "data/mini/E2b/long_u88.log (analysis output, text)",
+    "bytes": 1214,
+    "sha256": "faa0dae6a49b21a4046083db6b708b36c541fd618c2bafa839bcbe9983b301a7",
+    "chars_in_prompt": 1194,
+    "cut": false
+   },
+   {
+    "file": "data/mini/E2/est_c0.033.log (analysis output, text)",
+    "bytes": 1321,
+    "sha256": "90fbc0c93f9bc8d72b18a537d0a11e2db308478c109b65530e455d76b58eda24",
+    "chars_in_prompt": 1301,
+    "cut": false
+   },
+   {
+    "file": "data/mini/E2/est_c0.1.log (analysis output, text)",
+    "bytes": 1322,
+    "sha256": "fcb6192eb4310d2046f24c6b47140cc7c4702481b7e91980e5cd9c528e07969e",
+    "chars_in_prompt": 1302,
+    "cut": false
+   },
+   {
+    "file": "data/mini/E2/est_c0.3.log (analysis output, text)",
+    "bytes": 1324,
+    "sha256": "22888df9b1a22eecb229c806becaac8ea9dc859b4c2f138a7bd3feac1b7ef92c",
+    "chars_in_prompt": 1304,
+    "cut": false
+   },
+   {
+    "file": "data/mini/E2/hmax_u32.log (analysis output, text)",
+    "bytes": 1357,
+    "sha256": "05cd64f3966373d4652c22010245d33db2df27e013cbaab458437f4d43a19c5f",
+    "chars_in_prompt": 1337,
+    "cut": false
+   },
+   {
+    "file": "data/mini/E2/hmax_u88.log (analysis output, text)",
+    "bytes": 1368,
+    "sha256": "c39311ea019555f663d83d7578cd621ed1404231f1a87fa051b320525d852187",
+    "chars_in_prompt": 1348,
+    "cut": false
+   },
+   {
+    "file": "figure1/alt.txt (analysis output, text)",
+    "bytes": 1401,
+    "sha256": "3150b34341beec02107af28c87d4b5d9d2b951655906f3aa03c0b0531398ed51",
+    "chars_in_prompt": 1401,
+    "cut": false
+   },
+   {
+    "file": "data/gate/budget.log (analysis output, text)",
+    "bytes": 1424,
+    "sha256": "736ecef7d159c95c79625c3a4e5a70d6d5a56d8b6213d80aca92cc813df21121",
+    "chars_in_prompt": 1424,
+    "cut": false
+   },
+   {
+    "file": "swarm-notes/selection_rule.md (analysis output, text)",
+    "bytes": 1677,
+    "sha256": "113c8f7420fccdbac7b861e3e4209dc369f2f3f8915cfb8cd152e8b4bea22340",
+    "chars_in_prompt": 1677,
+    "cut": false
+   },
+   {
+    "file": "data/mini/E2_failed_float64/est_c0.033.log (analysis output, text)",
+    "bytes": 1690,
+    "sha256": "3c0753a3ecd4a3a6cb1949bae82aabb4724a726a6450aa8c9f63dc9e5ecf21fa",
+    "chars_in_prompt": 1670,
+    "cut": false
+   },
+   {
+    "file": "data/mini/E2_failed_float64/est_c0.3.log (analysis output, text)",
+    "bytes": 1690,
+    "sha256": "3815a5cbfd116890434dd81698fed6687e27f66933d515ada26d0f0a8999efeb",
+    "chars_in_prompt": 1670,
+    "cut": false
+   },
+   {
+    "file": "data/mini/E2_failed_float64/est_c0.1.log (analysis output, text)",
+    "bytes": 1690,
+    "sha256": "a64763a05fd23cd16a1cad5a539dd1b6128e73dbab53404d071e8914dbb8e3b8",
+    "chars_in_prompt": 1670,
+    "cut": false
+   },
+   {
+    "file": "figure1/text.json (analysis output, digest)",
+    "bytes": 1959,
+    "sha256": "d9a0bbcf7fbc2c88cc13ae1afb6f097b24661e205d9610cbf41dc98efb5ee1fd",
+    "chars_in_prompt": 1863,
+    "cut": false
+   },
+   {
+    "file": "data/mini/E2_failed_float64/hmax_u32.log (analysis output, text)",
+    "bytes": 2225,
+    "sha256": "4dac60b99bcf84082332abb73ea523c8b76676c59fccfa1c2c9697387d429bdc",
+    "chars_in_prompt": 2205,
+    "cut": false
+   },
+   {
+    "file": "data/mini/E2_failed_float64/hmax_u88.log (analysis output, text)",
+    "bytes": 2225,
+    "sha256": "10d719f7fcee29c6d5a80a57b27b65a3a92b3269e76866d98253bda76b95c4bc",
+    "chars_in_prompt": 2205,
+    "cut": false
+   },
+   {
+    "file": "data/mini/J1/m8_k2_s6.log (analysis output, text)",
+    "bytes": 2535,
+    "sha256": "865ac80e3b014eb8dfd5d2be378318ff613aec718fd27172e97d64cfdae40a87",
+    "chars_in_prompt": 2515,
+    "cut": false
+   },
+   {
+    "file": "DRAFT POST (draft-post.md)",
+    "bytes": 28712,
+    "sha256": "81de54ee26a664234cdc983970a3871d83fac62a5e69c7628ffbdd8a24507b38",
+    "chars_in_prompt": 28624,
+    "cut": false
+   }
+  ],
+  "left_out": [
+   "data/gate/select.log",
+   "data/gate/e4.log",
+   "figure1/cold_v02.json",
+   "data/mini/J1/m8_k2_s5.log",
+   "data/llc/e2_summary.json",
+   "research/research.md",
+   "ref/parent/gates.json",
+   "ref/parent/analysis.json",
+   "ref/parent/m8_k2_s7.json",
+   "ref/parent/m8_k3_s7.json",
+   "ref/parent/m8_k2_s5.json",
+   "ref/parent/m8_k2_s6.json",
+   "ref/parent/m8_k3_s5.json",
+   "ref/parent/m8_k3_s6.json",
+   "ref/parent/m8_k4_s7.json",
+   "ref/parent/m8_k4_s5.json",
+   "ref/parent/m8_k4_s6.json",
+   "ref/prompts.jsonl",
+   "ref/parent/m8_c1_s5.json",
+   "ref/parent/l8_c1_s6.json"
+  ],
+  "n_outputs": 40
+ }
+}

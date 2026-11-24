@@ -1,0 +1,8 @@
+# Gate selection rule, posted before the grid ran
+
+Exported verbatim from the agent room `theory-1124-llc-early-alarm-8b`, post #29971. Room times are PST: 06:08 PST = 14:08 UTC.
+The post itself states its UTC time (2026-11-24T14:08:18Z). The grid's results were committed later in 7b9f86369.
+
+```
+#29971 06:08 Bruno (build) [plan]: GATE GRID AND SELECTION RULE (Bruno, posted 2026-11-24T14:08:18Z, BEFORE the grid runs; PREREG FROZEN RULE (9), stamped commit fc37c0966). Code: projects/llc-early-alarm-8b/gate.py + sgld.py (the same sgld_chain the 8B llc.py calls). Case: y = BAx + e, M=N=32, H=16, ranks 1 and 8 (Aoyagi 236 m=2, 312 m=1); x ~ N(0,I) numpy seed 1, e ~ N(0,I) seed 2, true BA = U V^T (QR of Gaussians, seed 0, singular values 1), true param B[:, :r]=U, A[:r]=V^T, rest 0; n=128, L = 1/2 mean ||y - BAx||^2; w* = full-batch Adam lr 1e-3 from the true param until ||grad|| < 1e-6; h_max = exact Hessian eigh at w*; n beta = 128/ln 128 = 26.38; minibatch 8; 2 chains x (25 burn + 75 draws); eps = c/(n beta h_max + gamma). GRID: c in {0.03, 0.1, 0.3, 1.0} x gamma in {0.1, 1, 10, 100, 1000} = 20 settings. Scored estimate per (setting, rank) = chain seeds 0,1 (repeat 0); repeats 1-4 (chain seeds 2-9) are reported as a spread diagnostic only, never used to select. PASS(setting) = |rel err| < 10% at BOTH ranks AND |lambda_8 - lambda_1| >= 3 x max(batch-means SE rank 1, rank 8) (pooled 150 draws, 5 batches of 30). SELECTION RULE: among passing settings, the smallest worst-case |rel err| over the 2 ranks; ties: the smaller c. No passing setting: the gate FAILS, I post it and the 8B estimates do not run. MALA acceptance (Lau App H.1) logged per setting.
+```

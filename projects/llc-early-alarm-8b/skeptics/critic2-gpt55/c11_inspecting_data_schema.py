@@ -1,0 +1,2 @@
+# critic2 (openai/gpt-5.5) tool call 11, "Inspecting data schema", verbatim from its session; run from /Users/esben/work/theory-1124-llc-early-alarm-8b
+import json, pathlib; import math; p=pathlib.Path("kran-research/projects/llc-early-alarm-8b/data/gate/frozen.json"); d=json.load(open(p)); print(type(d), d.keys() if isinstance(d,dict) else len(d)); print(d if not isinstance(d,dict) else {k:type(v).__name__ for k,v in d.items()})

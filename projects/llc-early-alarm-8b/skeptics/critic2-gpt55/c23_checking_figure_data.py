@@ -1,0 +1,2 @@
+# critic2 (openai/gpt-5.5) tool call 23, "Checking figure data", verbatim from its session; run from /Users/esben/work/theory-1124-llc-early-alarm-8b
+import json; d=json.load(open("blog.kran.ai/assets/figures/llc-early-alarm-8b/data.json")); print(d["title"]); print("n_lines",len(d["lines"]),"n_walks",len(d["walks"]),"ratio_range",d["ratio_range"],"n_diverged",d["n_diverged"]); print("first lines", d["lines"][:3]); print("walks", d["walks"][:3]); print("cells", d["cells"][:3]); print("curves", d["curves"][:2])

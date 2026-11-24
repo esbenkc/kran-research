@@ -1,0 +1,2 @@
+# critic2 (openai/gpt-5.5) tool call 14, "Inspecting result schemas", verbatim from its session; run from /Users/esben/work/theory-1124-llc-early-alarm-8b
+import json; from pathlib import Path; b=Path("kran-research/projects/llc-early-alarm-8b"); print(json.load(open(b/"data/gate/budget.json")).keys()); print(json.load(open(b/"data/llc/e2/m8_k2_s5_cue-m8_k2_s5_u00088_c0.1.json")).keys()); print(json.load(open(b/"data/llc/e2b/m8_k2_s5_cue-m8_k2_s5_u00088_c0.1_long.json")).keys())

@@ -1,0 +1,10 @@
+gate_n_pass 0 rows 20 selected None
+best_c_gamma 0.3 10.0 r1_hat 196.871 r1_rel -0.165802 r8_hat 276.501 r8_rel -0.113779
+seed_worst_mean_ci 0.148496 0.130884 0.166108 worsts [0.165802, 0.149974, 0.139449, 0.129951, 0.157303]
+finished_estimates 35 min_truth_SE 5.091 max_truth_SE 384.6
+Traceback (most recent call last):
+  File "/Users/esben/work/theory-1124-llc-early-alarm-8b/kran-research/projects/llc-early-alarm-8b/skeptics/critic2-gpt55/c15_rebuilding_headline_metrics.py", line 29, in <module>
+    vals.append((rank, statistics.mean(hs), (statistics.mean(hs)-truth)/truth, len(hs)))
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/statistics.py", line 315, in mean
+    raise StatisticsError('mean requires at least one data point')
+statistics.StatisticsError: mean requires at least one data point

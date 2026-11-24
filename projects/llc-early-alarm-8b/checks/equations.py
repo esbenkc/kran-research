@@ -125,5 +125,12 @@ for ch in e2b["dist_from_wstar"]:
         worst = max(worst, abs(v / pred - 1))
 check("long walk distance == noise + spring walk within about 0.1%", worst < 1.2e-3, f"max rel dev {worst:.2e} over {2 * n_pts} points")
 
+# (7) noise walk on a quadratic: reading = n beta (eps/2) tbar tr(H); tbar = mean draw step (26..100) = 63, tr(H) = 59.2
+#     from the skeptic's 16-probe Hutchinson estimate (skeptics/skeptic/vera_trace_check.log) at u32, c 0.033.
+e2s = json.loads((HERE / "data/llc/e2/m8_k2_s5_cue-m8_k2_s5_u00032_c0.033.json").read_text())
+tbar = sum(range(26, 101)) / 75
+pred = e2s["nbeta"] * e2s["eps"] / 2 * tbar * 59.2
+check("noise-walk curvature prediction ~ 1.29 vs reading 1.31", abs(pred - 1.29) < 0.02 and abs(e2s["lambda_hat"] - 1.31) < 0.01, f"pred {pred:.3f} (tbar {tbar:.1f}), reading {e2s['lambda_hat']:.3f}")
+
 print("ALL PASS" if ok else "SOME CHECKS FAILED")
 sys.exit(0 if ok else 1)

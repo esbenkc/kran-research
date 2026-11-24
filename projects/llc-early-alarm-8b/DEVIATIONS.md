@@ -47,6 +47,12 @@ None of these feeds the status. Each is labelled EXPLORATORY in the proof matrix
   preconditioner G reaches about 1e8 and the injected noise is large in exactly the singular directions.
 - E4b NOT RUN (Tove #30023, Felix #30026): a retune of the stabiliser after seeing E4 diverge would be a fishing trip.
   A tuned preconditioned sampler, frozen on the gate before any 8B run, goes to the hit list for the follow-up.
+- E2b PREDICTION (Felix #30047, posted 2026-11-24T14:23Z, before E2b ran; exploratory, not a frozen rule): per Hessian
+  direction i the localised SGLD variance relaxes like (1 - eps a_i)^t, a_i = n beta h_i + gamma, so directions at half
+  weight (n beta h_i = gamma) need about S* = (n beta h_max + gamma) / (2 c gamma) steps per chain. Gate check (h_max
+  3.55, c 0.1, gamma 1): S* = 473, vs E1's first pass at 400-1,000. 8B (h_max 47.92, c 0.1, gamma 1): S* = 6,326, so
+  E2b (2 x 3,200 steps, burn 800) is predicted NOT to plateau. Refuted if E2b's running estimate is flat within its
+  batch-means SE from about 1,600 steps on.
 - Correction to E1's summary (Vera #30000): at c 0.1, gamma 1 the gate case is already within 10% at 400 steps per
   chain in Bruno's data (r1 -6.5%, r8 -7.8%) and passes from 1,000 in Vera's own data; at 1,600-6,400 steps it sits
   2-5% high.

@@ -162,9 +162,10 @@ def main() -> None:
     out = Path(a.blog) / "assets" / "figures" / FIG_ID / "data.json"
     if out.exists():  # keep the writer's title, legend and notes; refresh the numbers
         old = json.loads(out.read_text())
-        for k in ("title", "subtitle", "legend", "notes"):
-            if k in old and not str(old[k]).startswith("MOCK"):
-                fig[k] = old[k]
+        if not str(old.get("title", "")).startswith(("MOCK", "PENDING")):
+            for k in ("title", "subtitle", "legend", "notes"):
+                if k in old:
+                    fig[k] = old[k]
     out.write_text(json.dumps(fig, indent=1))
     print(json.dumps({k: summary[k] for k in ("status_by_rule", "n_seed_yes", "n_seed_no", "primary_reader",
                                               "seed_level_reader")}, indent=1))

@@ -24,14 +24,18 @@ PARENT_RUNS = {("warm", 0): "warm_s0", ("warm", 1): "warm_s1", ("warm", 2): "war
                ("L10", 0): "lam10_s0", ("L10", 1): "lam10_s1", ("L100", 0): "lam100_s0", ("L100", 1): "lam100_s1"}
 pc_path = os.path.join(HERE, "parent17_cut.json")
 if a.refresh_parent:
-    pc = {}
+    pc, pp = {}, {}
     for (g, s), f in PARENT_RUNS.items():
         blob = subprocess.check_output(["git", "-C", a.refresh_parent, "show",
                                         f"origin/swarm/oracle-1026-audit-penalty:projects/probe-switch-audit-penalty/data/audit/{f}.json"])
         pc[f] = json.loads(blob)["test_cut"]["blind_k3"]["switch_after"]
+        pp[f] = json.loads(blob)["cached_test"]["shift_mean"]
     json.dump({"source": "esbenkc/kran-research swarm/oracle-1026-audit-penalty projects/probe-switch-audit-penalty/data/audit/<run>.json "
-                         "test_cut.blind_k3.switch_after", "switch_after_blind_top3": pc}, open(pc_path, "w"), indent=1)
+                         "test_cut.blind_k3.switch_after", "switch_after_blind_top3": pc,
+               "push_source": "same files, cached_test.shift_mean (nats, cached tail, 128 test prompts)", "push_cached": pp},
+              open(pc_path, "w"), indent=1)
 pcut = json.load(open(pc_path))["switch_after_blind_top3"]
+ppush = json.load(open(pc_path))["push_cached"]
 
 parent = json.load(open(os.path.join(a.blog, "assets/figures/probe-switch-audit-penalty/data.json")))
 runs = []
@@ -39,7 +43,8 @@ for r in parent["runs"]:
     key = (r["group"], r["seed"])
     if key in PARENT_RUNS:
         runs.append({"size": "1.7B", "group": r["group"], "seed": r["seed"], "sw": r["sw"], "r3": r["r3"],
-                     "rall": r["rall"], "n": r["n"], "cut": pcut[PARENT_RUNS[key]]})
+                     "rall": r["rall"], "n": r["n"], "cut": pcut[PARENT_RUNS[key]],
+                     "push": ppush[PARENT_RUNS[key]]})
 
 GMAP = {"P10": "L10", "P100": "L100"}  # same penalty as the 1.7B L10/L100 arms
 
@@ -53,7 +58,7 @@ def load_rows(path, size, only=None):
         if only and g not in only:
             continue
         out.append({"size": size, "group": g, "seed": m["seed"], "sw": m["sw_strict"], "r3": m["r3"],
-                    "rall": m["rall"], "n": m["n"], "cut": m.get("after_cut_switch")})
+                    "rall": m["rall"], "n": m["n"], "cut": m.get("after_cut_switch"), "push": m["push_nats"]})
     return out
 
 
@@ -61,7 +66,7 @@ runs += load_rows(os.path.join(PROJ, "data1.7b/figure_rows.json"), "1.7B", only=
 # 8B (this run) first and one dot per line, so a reader of the file's head sees this run's dots
 runs = load_rows(os.path.join(PROJ, "data/figure_rows.json"), "8B", only={"L0", "L10", "L100", "AO"}) + runs  # guard run: text only
 for r in runs:
-    for k in ("sw", "r3", "rall", "cut"):
+    for k in ("sw", "r3", "rall", "cut", "push"):
         if isinstance(r.get(k), float):
             r[k] = round(r[k], 4)
 
@@ -70,8 +75,8 @@ data = {
     "subtitle": "Qwen3 was fine-tuned to answer A when a probe (a small reader of one layer) is attached and B "
                 "without it: the switch. We then trained it 512 more updates against a head audit, which copies "
                 "the outputs of 3 attention heads from a run without the probe. Push = how much the probe raises A over "
-                "B. The original penalty charges what the audit's top 3 heads and all heads remove; the audit-only "
-                "penalty charges only the top 3 heads' share. One column per trained model, 128 held-out prompts.",
+                "B. The original penalty charges what the audit's top 3 heads and all heads remove. The audit-only "
+                "penalty charges only the top 3 heads' share. One dot per trained model, 128 held-out prompts.",
     "box": {"r": 0.3, "s": 0.75},
     "groups": [
         {"key": "warm", "name": "before retraining"},
@@ -85,6 +90,13 @@ data = {
         {"key": "8B", "name": "Qwen3-8B, 64 heads (this run)", "note": a.pending8},
     ],
     "runs": runs,
+    # direct labels on the 8B panel (x = push in nats, y = share removed; the gone strip sits at y -0.17)
+    "labels": [
+        {"size": "8B", "group": "L0", "x": 35, "y": 1.05, "text": "no penalty", "anchor": "end"},
+        {"size": "8B", "group": "AO", "x": 16, "y": 0.6, "text": "audit-only: push kept", "anchor": "end"},
+        {"size": "8B", "group": "L10", "x": 1.3, "y": 0.84, "text": "weight 10: push 27x and 49x smaller, still found", "anchor": "middle"},
+        {"size": "8B", "group": "L100", "x": 0.6, "y": -0.16, "text": "weight 100 (3 runs), weight 10 (1 run)", "anchor": "start"},
+    ],
 }
 out = os.path.join(a.blog, "assets/figures/probe-switch-audit-penalty-8b/data.json")
 txt = json.dumps({k: v for k, v in data.items() if k != "runs"}, indent=1)[:-2]
@@ -94,4 +106,4 @@ open(out, "w").write(txt)
 print(f"wrote {out}: {len(runs)} dots", file=sys.stderr)
 for r in runs:
     print(r["size"], r["group"], r["seed"], "sw", round(r["sw"], 3), "r3", round(r["r3"], 3), "cut",
-          None if r["cut"] is None else round(r["cut"], 3), file=sys.stderr)
+          None if r["cut"] is None else round(r["cut"], 3), "push", round(r["push"], 3), file=sys.stderr)

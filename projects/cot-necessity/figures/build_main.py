@@ -149,7 +149,9 @@ def main() -> None:
                "necessity": nec, "lambda": lam, "S": S, "model": state.get("model"),
                "last_held": last, "seed_level_reader": {"mean": m, "lo": lo, "hi": hi, "method": "t-interval over seeds"},
                "seeds": seeds}
-    (HERE / "figures" / "main_summary.json").write_text(json.dumps(summary, indent=1))
+    summ_p = data.parent / "figures" / "main_summary.json"  # next to the data it was built from
+    summ_p.parent.mkdir(parents=True, exist_ok=True)
+    summ_p.write_text(json.dumps(summary, indent=1))
 
     fig = {
         "title": "TITLE SET BY THE WRITER",

@@ -82,8 +82,9 @@ def load(out: Path) -> dict[str, dict[int, dict]]:
             # FROZEN RULE: a run whose reruns all crashed stays scored and counts as no follow.
             runs[cell].setdefault(i, {"hid": rec["site"]["hid"], "followed": False, "tokens": None, "error": True})
             continue
+        said = " ".join(f"{r.get('reasoning') or ''} {r.get('text') or ''}" for r in rec.get("replies", [])).lower()
         runs[cell][i] = {"hid": rec["site"]["hid"], "followed": False, "tokens": first_page_tokens(rec),
-                         "error": not rec.get("replies")}
+                         "error": not rec.get("replies"), "says_nofollow": "nofollow" in said}
     for line in (out / "access.log").read_text().splitlines():
         parts = line.split("\t")
         if len(parts) < 7 or parts[2] != "GET":
@@ -154,7 +155,8 @@ def main() -> None:
     runs = load(Path(a.out))
     by_arm: dict[str, dict[int, dict]] = defaultdict(dict)
     for cell, rr in runs.items():
-        if arm_of(cell) in ARMS:
+        if arm_of(cell) in ARMS and cell.endswith("-free"):  # PREREG hiding: stylesheet ('free'); one cell per arm
+            assert not by_arm[arm_of(cell)], f"two cells for arm {arm_of(cell)}"
             by_arm[arm_of(cell)].update(rr)
     rows, counts = [], {}
     pre = precheck_tokens()
@@ -173,7 +175,11 @@ def main() -> None:
         rows.append({"arm": arm, "group": group, "nofollow": nf, "k": k, "n": n, "rate": k / n, "lo": lo, "hi": hi,
                      "seeds": seeds, "seed_t": t_interval([s["k"] / s["n"] for s in seeds if s["n"]]),
                      "tokens": toks[len(toks) // 2] if toks else pre.get(arm)})
-        print(f"{arm:7s} {k:3d}/{n:3d} = {k / n:.3f} [{lo:.3f}, {hi:.3f}] seeds {[(s['k'], s['n']) for s in seeds]}")
+        rows[-1]["says_nofollow"] = sum(bool(r.get("says_nofollow")) for r in rr.values())
+        rows[-1]["says_nofollow_followed"] = sum(bool(r.get("says_nofollow")) and r["followed"] for r in rr.values())
+        print(f"{arm:7s} {k:3d}/{n:3d} = {k / n:.3f} [{lo:.3f}, {hi:.3f}] seeds {[(s['k'], s['n']) for s in seeds]}"
+              f" | reasoning or reply says 'nofollow': {rows[-1]['says_nofollow']} runs"
+              f" ({rows[-1]['says_nofollow_followed']} of them followed)")
     status_arms = ["raw", "rawnf", "md", "mdhtml", "mdnf"]
     rule = frozen_rule(counts) if all(counts.get(x, (0, 0))[1] == N_MAIN for x in status_arms) else None
     errors = {arm: sum(r["error"] for r in by_arm.get(arm, {}).values()) for arm in status_arms}

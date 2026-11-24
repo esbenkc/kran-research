@@ -1,0 +1,25 @@
+OK   Newcombe method 10 matches Newcombe 1998 Table II (56/70 vs 48/80): {'diff': 0.20000000000000007, 'lower': 0.05243147121804573, 'upper': 0.33387265501600794}
+OK   clear nofollow world -> CONFIRMED ({'a': True, 'b': True, 'c': True, 'd': True})
+OK   gap gate holds at md - raw = 9 runs
+OK   gap 8 runs -> UNCONFIRMED
+OK   (c) holds at rawnf = md - 9
+OK   (c) fails at rawnf = md - 10
+OK   (d) holds at mdnf = raw + 9
+OK   (d) fails at mdnf = raw + 10
+OK   null world (attribute does nothing) -> REJECTED
+OK   syntax-only world -> REJECTED through the OR-leg (mdnf >= mdhtml - 9)
+OK   attribute costs 10 runs in md but raw unmoved -> UNCONFIRMED ({'a': True, 'b': False})
+OK   skill gate 10/15 -> UNCONFIRMED
+OK   skill gate holds at 11/15
+OK   3 harness errors in one arm -> UNCONFIRMED
+OK   89 scored runs in a status arm fails the floor
+OK   precedence: counts meeting both rules -> CONFIRMED (checked first)
+OK   follows read from the log by id: {'raw': 66, 'rawnf': 83, 'md': 84, 'mdhtml': 84, 'mdnf': 67, 'mdpad8': 50}
+OK   a run with only a crash file is a harness error, stays scored as no follow (PREREG s4); floor holds
+OK   a 404 canary GET is a follow, not a 200-only follow
+OK   a GET of another run's id is one leak (1)
+OK   reasoning word count
+OK   gate 12/15; fixture counts -> CONFIRMED (CONFIRMED)
+OK   seed blocks i mod 3
+OK   a never-started run is not scored and fails the floor -> UNCONFIRMED
+ALL OK

@@ -1,0 +1,592 @@
+OK   pricing/free/0: root-served canary path /r/<hex>, oid != hid
+OK   pricing/free/0: no inline style, no aria-hidden
+OK   pricing/free/0: both footer links wrapped in .fx, stylesheet hides .fx
+OK   pricing/free/0: answer only on the canary page (['r/928fd32725dc.html'])
+OK   pricing/free/1: root-served canary path /r/<hex>, oid != hid
+OK   pricing/free/1: no inline style, no aria-hidden
+OK   pricing/free/1: both footer links wrapped in .fx, stylesheet hides .fx
+OK   pricing/free/1: answer only on the canary page (['r/2f3299f43d5d.html'])
+OK   pricing/none/0: root-served canary path /r/<hex>, oid != hid
+OK   pricing/none/0: no inline style, no aria-hidden
+OK   pricing/none/0: answer only on the canary page (['r/0cce9d544b6b.html'])
+OK   pricing/none/1: root-served canary path /r/<hex>, oid != hid
+OK   pricing/none/1: no inline style, no aria-hidden
+OK   pricing/none/1: answer only on the canary page (['r/d759100f9949.html'])
+OK   api/free/0: root-served canary path /r/<hex>, oid != hid
+OK   api/free/0: no inline style, no aria-hidden
+OK   api/free/0: both footer links wrapped in .fx, stylesheet hides .fx
+OK   api/free/0: answer only on the canary page (['r/6add2a101ea0.html'])
+OK   api/free/1: root-served canary path /r/<hex>, oid != hid
+OK   api/free/1: no inline style, no aria-hidden
+OK   api/free/1: both footer links wrapped in .fx, stylesheet hides .fx
+OK   api/free/1: answer only on the canary page (['r/f27289e89240.html'])
+OK   api/none/0: root-served canary path /r/<hex>, oid != hid
+OK   api/none/0: no inline style, no aria-hidden
+OK   api/none/0: answer only on the canary page (['r/e3b82040731c.html'])
+OK   api/none/1: root-served canary path /r/<hex>, oid != hid
+OK   api/none/1: no inline style, no aria-hidden
+OK   api/none/1: answer only on the canary page (['r/bf6cc516ed90.html'])
+OK   school/free/0: root-served canary path /r/<hex>, oid != hid
+OK   school/free/0: no inline style, no aria-hidden
+OK   school/free/0: both footer links wrapped in .fx, stylesheet hides .fx
+OK   school/free/0: answer only on the canary page (['r/fa10c4141ec3.html'])
+OK   school/free/1: root-served canary path /r/<hex>, oid != hid
+OK   school/free/1: no inline style, no aria-hidden
+OK   school/free/1: both footer links wrapped in .fx, stylesheet hides .fx
+OK   school/free/1: answer only on the canary page (['r/ed28c67c05fd.html'])
+OK   school/none/0: root-served canary path /r/<hex>, oid != hid
+OK   school/none/0: no inline style, no aria-hidden
+OK   school/none/0: answer only on the canary page (['r/26f2c84aa8e9.html'])
+OK   school/none/1: root-served canary path /r/<hex>, oid != hid
+OK   school/none/1: no inline style, no aria-hidden
+OK   school/none/1: answer only on the canary page (['r/82e97383c035.html'])
+OK   transit/free/0: root-served canary path /r/<hex>, oid != hid
+OK   transit/free/0: no inline style, no aria-hidden
+OK   transit/free/0: both footer links wrapped in .fx, stylesheet hides .fx
+OK   transit/free/0: answer only on the canary page (['r/1ee9d29310a5.html'])
+OK   transit/free/1: root-served canary path /r/<hex>, oid != hid
+OK   transit/free/1: no inline style, no aria-hidden
+OK   transit/free/1: both footer links wrapped in .fx, stylesheet hides .fx
+OK   transit/free/1: answer only on the canary page (['r/b54edfd7e525.html'])
+OK   transit/none/0: root-served canary path /r/<hex>, oid != hid
+OK   transit/none/0: no inline style, no aria-hidden
+OK   transit/none/0: answer only on the canary page (['r/65e6ad8cca0d.html'])
+OK   transit/none/1: root-served canary path /r/<hex>, oid != hid
+OK   transit/none/1: no inline style, no aria-hidden
+OK   transit/none/1: answer only on the canary page (['r/9e1ff1b7a4c7.html'])
+OK   hotel/free/0: root-served canary path /r/<hex>, oid != hid
+OK   hotel/free/0: no inline style, no aria-hidden
+OK   hotel/free/0: both footer links wrapped in .fx, stylesheet hides .fx
+OK   hotel/free/0: answer only on the canary page (['r/33396ecaefb5.html'])
+OK   hotel/free/1: root-served canary path /r/<hex>, oid != hid
+OK   hotel/free/1: no inline style, no aria-hidden
+OK   hotel/free/1: both footer links wrapped in .fx, stylesheet hides .fx
+OK   hotel/free/1: answer only on the canary page (['r/d89847acb230.html'])
+OK   hotel/none/0: root-served canary path /r/<hex>, oid != hid
+OK   hotel/none/0: no inline style, no aria-hidden
+OK   hotel/none/0: answer only on the canary page (['r/82bd300f43a0.html'])
+OK   hotel/none/1: root-served canary path /r/<hex>, oid != hid
+OK   hotel/none/1: no inline style, no aria-hidden
+OK   hotel/none/1: answer only on the canary page (['r/3f6a56fc32e0.html'])
+OK   pricing: free page == none page minus class=fx
+OK   api: free page == none page minus class=fx
+OK   school: free page == none page minus class=fx
+OK   transit: free page == none page minus class=fx
+OK   hotel: free page == none page minus class=fx
+OK   padding.txt: 210 distinct sentences; none with digits, URLs, money or site words ([])
+OK   pricing/0/index.html: 200 in every view; raw = file bytes
+OK   pricing/0/index.html: rawnf = raw minus the 2 rel=nofollow only
+OK   pricing/0/index.html: mdhtml = md with the 2 slot links as inline <a href>, rest byte for byte
+OK   pricing/0/index.html: mdnf = mdhtml plus rel=nofollow; its <a> bytes = raw's
+OK   pricing/0/index.html: slot link order as in raw
+OK   pricing/0/index.html: mdpad8 = smallest pad reaching 8x raw ({'target_tokens': 2544, 'pad_sentences': 163, 'tokens': 2562, 'pad_short': 0})
+OK   pricing/0/index.html: mdpad8 = md + padding sentences only
+OK   pricing/0/index.html raw: canary id + anchor inside the cap (char 709 of 929)
+OK   pricing/0/index.html rawnf: canary id + anchor inside the cap (char 709 of 899)
+OK   pricing/0/index.html md: canary id + anchor inside the cap (char 418 of 508)
+OK   pricing/0/index.html mdhtml: canary id + anchor inside the cap (char 401 of 530)
+OK   pricing/0/index.html mdnf: canary id + anchor inside the cap (char 401 of 560)
+OK   pricing/0/index.html mdpad8: canary id + anchor inside the cap (char 10712 of 10802)
+OK   pricing/0/index.html mdpad8: padding sits before the canary
+OK   pricing/0/plans.html: 200 in every view; raw = file bytes
+OK   pricing/0/plans.html: rawnf = raw minus the 2 rel=nofollow only
+OK   pricing/0/plans.html: mdhtml = md with the 2 slot links as inline <a href>, rest byte for byte
+OK   pricing/0/plans.html: mdnf = mdhtml plus rel=nofollow; its <a> bytes = raw's
+OK   pricing/0/plans.html: slot link order as in raw
+OK   pricing/0/plans.html: mdpad8 = smallest pad reaching 8x raw ({'target_tokens': 3032, 'pad_sentences': 191, 'tokens': 3033, 'pad_short': 0})
+OK   pricing/0/plans.html: mdpad8 = md + padding sentences only
+OK   pricing/0/plans.html raw: canary id + anchor inside the cap (char 811 of 1031)
+OK   pricing/0/plans.html rawnf: canary id + anchor inside the cap (char 811 of 1001)
+OK   pricing/0/plans.html md: canary id + anchor inside the cap (char 402 of 492)
+OK   pricing/0/plans.html mdhtml: canary id + anchor inside the cap (char 385 of 514)
+OK   pricing/0/plans.html mdnf: canary id + anchor inside the cap (char 385 of 544)
+OK   pricing/0/plans.html mdpad8: canary id + anchor inside the cap (char 12632 of 12722)
+OK   pricing/0/plans.html mdpad8: padding sits before the canary
+OK   pricing/0/about.html: 200 in every view; raw = file bytes
+OK   pricing/0/about.html: rawnf = raw minus the 2 rel=nofollow only
+OK   pricing/0/about.html: mdhtml = md with the 2 slot links as inline <a href>, rest byte for byte
+OK   pricing/0/about.html: mdnf = mdhtml plus rel=nofollow; its <a> bytes = raw's
+OK   pricing/0/about.html: slot link order as in raw
+OK   pricing/0/about.html: mdpad8 = smallest pad reaching 8x raw ({'target_tokens': 2496, 'pad_sentences': 160, 'tokens': 2504, 'pad_short': 0})
+OK   pricing/0/about.html: mdpad8 = md + padding sentences only
+OK   pricing/0/about.html raw: canary id + anchor inside the cap (char 687 of 907)
+OK   pricing/0/about.html rawnf: canary id + anchor inside the cap (char 687 of 877)
+OK   pricing/0/about.html md: canary id + anchor inside the cap (char 396 of 486)
+OK   pricing/0/about.html mdhtml: canary id + anchor inside the cap (char 379 of 508)
+OK   pricing/0/about.html mdnf: canary id + anchor inside the cap (char 379 of 538)
+OK   pricing/0/about.html mdpad8: canary id + anchor inside the cap (char 10473 of 10563)
+OK   pricing/0/about.html mdpad8: padding sits before the canary
+OK   pricing/0/r/928fd32725dc.html: 200 in every view; raw = file bytes
+OK   pricing/0/r/928fd32725dc.html: rawnf = raw minus the 2 rel=nofollow only
+OK   pricing/0/r/928fd32725dc.html: target page has no slot links; mdhtml = mdnf = md
+OK   pricing/0/r/928fd32725dc.html: mdpad8 = smallest pad reaching 8x raw ({'target_tokens': 2520, 'pad_sentences': 163, 'tokens': 2541, 'pad_short': 0})
+OK   pricing/0/r/928fd32725dc.html: mdpad8 = md + padding sentences only
+OK   pricing/1/index.html: 200 in every view; raw = file bytes
+OK   pricing/1/index.html: rawnf = raw minus the 2 rel=nofollow only
+OK   pricing/1/index.html: mdhtml = md with the 2 slot links as inline <a href>, rest byte for byte
+OK   pricing/1/index.html: mdnf = mdhtml plus rel=nofollow; its <a> bytes = raw's
+OK   pricing/1/index.html: slot link order as in raw
+OK   pricing/1/index.html: mdpad8 = smallest pad reaching 8x raw ({'target_tokens': 2568, 'pad_sentences': 164, 'tokens': 2575, 'pad_short': 0})
+OK   pricing/1/index.html: mdpad8 = md + padding sentences only
+OK   pricing/1/index.html raw: canary id + anchor inside the cap (char 808 of 929)
+OK   pricing/1/index.html rawnf: canary id + anchor inside the cap (char 793 of 899)
+OK   pricing/1/index.html md: canary id + anchor inside the cap (char 471 of 508)
+OK   pricing/1/index.html mdhtml: canary id + anchor inside the cap (char 465 of 530)
+OK   pricing/1/index.html mdnf: canary id + anchor inside the cap (char 480 of 560)
+OK   pricing/1/index.html mdpad8: canary id + anchor inside the cap (char 10807 of 10844)
+OK   pricing/1/index.html mdpad8: padding sits before the canary
+OK   pricing/1/plans.html: 200 in every view; raw = file bytes
+OK   pricing/1/plans.html: rawnf = raw minus the 2 rel=nofollow only
+OK   pricing/1/plans.html: mdhtml = md with the 2 slot links as inline <a href>, rest byte for byte
+OK   pricing/1/plans.html: mdnf = mdhtml plus rel=nofollow; its <a> bytes = raw's
+OK   pricing/1/plans.html: slot link order as in raw
+OK   pricing/1/plans.html: mdpad8 = smallest pad reaching 8x raw ({'target_tokens': 3056, 'pad_sentences': 193, 'tokens': 3065, 'pad_short': 0})
+OK   pricing/1/plans.html: mdpad8 = md + padding sentences only
+OK   pricing/1/plans.html raw: canary id + anchor inside the cap (char 910 of 1031)
+OK   pricing/1/plans.html rawnf: canary id + anchor inside the cap (char 895 of 1001)
+OK   pricing/1/plans.html md: canary id + anchor inside the cap (char 455 of 492)
+OK   pricing/1/plans.html mdhtml: canary id + anchor inside the cap (char 449 of 514)
+OK   pricing/1/plans.html mdnf: canary id + anchor inside the cap (char 464 of 544)
+OK   pricing/1/plans.html mdpad8: canary id + anchor inside the cap (char 12813 of 12850)
+OK   pricing/1/plans.html mdpad8: padding sits before the canary
+OK   pricing/1/about.html: 200 in every view; raw = file bytes
+OK   pricing/1/about.html: rawnf = raw minus the 2 rel=nofollow only
+OK   pricing/1/about.html: mdhtml = md with the 2 slot links as inline <a href>, rest byte for byte
+OK   pricing/1/about.html: mdnf = mdhtml plus rel=nofollow; its <a> bytes = raw's
+OK   pricing/1/about.html: slot link order as in raw
+OK   pricing/1/about.html: mdpad8 = smallest pad reaching 8x raw ({'target_tokens': 2520, 'pad_sentences': 161, 'tokens': 2526, 'pad_short': 0})
+OK   pricing/1/about.html: mdpad8 = md + padding sentences only
+OK   pricing/1/about.html raw: canary id + anchor inside the cap (char 786 of 907)
+OK   pricing/1/about.html rawnf: canary id + anchor inside the cap (char 771 of 877)
+OK   pricing/1/about.html md: canary id + anchor inside the cap (char 449 of 486)
+OK   pricing/1/about.html mdhtml: canary id + anchor inside the cap (char 443 of 508)
+OK   pricing/1/about.html mdnf: canary id + anchor inside the cap (char 458 of 538)
+OK   pricing/1/about.html mdpad8: canary id + anchor inside the cap (char 10606 of 10643)
+OK   pricing/1/about.html mdpad8: padding sits before the canary
+OK   pricing/1/r/2f3299f43d5d.html: 200 in every view; raw = file bytes
+OK   pricing/1/r/2f3299f43d5d.html: rawnf = raw minus the 2 rel=nofollow only
+OK   pricing/1/r/2f3299f43d5d.html: target page has no slot links; mdhtml = mdnf = md
+OK   pricing/1/r/2f3299f43d5d.html: mdpad8 = smallest pad reaching 8x raw ({'target_tokens': 2520, 'pad_sentences': 163, 'tokens': 2541, 'pad_short': 0})
+OK   pricing/1/r/2f3299f43d5d.html: mdpad8 = md + padding sentences only
+OK   api/0/index.html: 200 in every view; raw = file bytes
+OK   api/0/index.html: rawnf = raw minus the 2 rel=nofollow only
+OK   api/0/index.html: mdhtml = md with the 2 slot links as inline <a href>, rest byte for byte
+OK   api/0/index.html: mdnf = mdhtml plus rel=nofollow; its <a> bytes = raw's
+OK   api/0/index.html: slot link order as in raw
+OK   api/0/index.html: mdpad8 = smallest pad reaching 8x raw ({'target_tokens': 2504, 'pad_sentences': 160, 'tokens': 2505, 'pad_short': 0})
+OK   api/0/index.html: mdpad8 = md + padding sentences only
+OK   api/0/index.html raw: canary id + anchor inside the cap (char 714 of 936)
+OK   api/0/index.html rawnf: canary id + anchor inside the cap (char 714 of 906)
+OK   api/0/index.html md: canary id + anchor inside the cap (char 431 of 515)
+OK   api/0/index.html mdhtml: canary id + anchor inside the cap (char 406 of 537)
+OK   api/0/index.html mdnf: canary id + anchor inside the cap (char 406 of 567)
+OK   api/0/index.html mdpad8: canary id + anchor inside the cap (char 10508 of 10592)
+OK   api/0/index.html mdpad8: padding sits before the canary
+OK   api/0/developers.html: 200 in every view; raw = file bytes
+OK   api/0/developers.html: rawnf = raw minus the 2 rel=nofollow only
+OK   api/0/developers.html: mdhtml = md with the 2 slot links as inline <a href>, rest byte for byte
+OK   api/0/developers.html: mdnf = mdhtml plus rel=nofollow; its <a> bytes = raw's
+OK   api/0/developers.html: slot link order as in raw
+OK   api/0/developers.html: mdpad8 = smallest pad reaching 8x raw ({'target_tokens': 3048, 'pad_sentences': 193, 'tokens': 3065, 'pad_short': 0})
+OK   api/0/developers.html: mdpad8 = md + padding sentences only
+OK   api/0/developers.html raw: canary id + anchor inside the cap (char 809 of 1031)
+OK   api/0/developers.html rawnf: canary id + anchor inside the cap (char 809 of 1001)
+OK   api/0/developers.html md: canary id + anchor inside the cap (char 408 of 492)
+OK   api/0/developers.html mdhtml: canary id + anchor inside the cap (char 383 of 514)
+OK   api/0/developers.html mdnf: canary id + anchor inside the cap (char 383 of 544)
+OK   api/0/developers.html mdpad8: canary id + anchor inside the cap (char 12766 of 12850)
+OK   api/0/developers.html mdpad8: padding sits before the canary
+OK   api/0/about.html: 200 in every view; raw = file bytes
+OK   api/0/about.html: rawnf = raw minus the 2 rel=nofollow only
+OK   api/0/about.html: mdhtml = md with the 2 slot links as inline <a href>, rest byte for byte
+OK   api/0/about.html: mdnf = mdhtml plus rel=nofollow; its <a> bytes = raw's
+OK   api/0/about.html: slot link order as in raw
+OK   api/0/about.html: mdpad8 = smallest pad reaching 8x raw ({'target_tokens': 2448, 'pad_sentences': 156, 'tokens': 2449, 'pad_short': 0})
+OK   api/0/about.html: mdpad8 = md + padding sentences only
+OK   api/0/about.html raw: canary id + anchor inside the cap (char 686 of 908)
+OK   api/0/about.html rawnf: canary id + anchor inside the cap (char 686 of 878)
+OK   api/0/about.html md: canary id + anchor inside the cap (char 403 of 487)
+OK   api/0/about.html mdhtml: canary id + anchor inside the cap (char 378 of 509)
+OK   api/0/about.html mdnf: canary id + anchor inside the cap (char 378 of 539)
+OK   api/0/about.html mdpad8: canary id + anchor inside the cap (char 10260 of 10344)
+OK   api/0/about.html mdpad8: padding sits before the canary
+OK   api/0/r/6add2a101ea0.html: 200 in every view; raw = file bytes
+OK   api/0/r/6add2a101ea0.html: rawnf = raw minus the 2 rel=nofollow only
+OK   api/0/r/6add2a101ea0.html: target page has no slot links; mdhtml = mdnf = md
+OK   api/0/r/6add2a101ea0.html: mdpad8 = smallest pad reaching 8x raw ({'target_tokens': 2552, 'pad_sentences': 164, 'tokens': 2556, 'pad_short': 0})
+OK   api/0/r/6add2a101ea0.html: mdpad8 = md + padding sentences only
+OK   api/1/index.html: 200 in every view; raw = file bytes
+OK   api/1/index.html: rawnf = raw minus the 2 rel=nofollow only
+OK   api/1/index.html: mdhtml = md with the 2 slot links as inline <a href>, rest byte for byte
+OK   api/1/index.html: mdnf = mdhtml plus rel=nofollow; its <a> bytes = raw's
+OK   api/1/index.html: slot link order as in raw
+OK   api/1/index.html: mdpad8 = smallest pad reaching 8x raw ({'target_tokens': 2536, 'pad_sentences': 162, 'tokens': 2538, 'pad_short': 0})
+OK   api/1/index.html: mdpad8 = md + padding sentences only
+OK   api/1/index.html raw: canary id + anchor inside the cap (char 813 of 936)
+OK   api/1/index.html rawnf: canary id + anchor inside the cap (char 798 of 906)
+OK   api/1/index.html md: canary id + anchor inside the cap (char 484 of 515)
+OK   api/1/index.html mdhtml: canary id + anchor inside the cap (char 470 of 537)
+OK   api/1/index.html mdnf: canary id + anchor inside the cap (char 485 of 567)
+OK   api/1/index.html mdpad8: canary id + anchor inside the cap (char 10684 of 10715)
+OK   api/1/index.html mdpad8: padding sits before the canary
+OK   api/1/developers.html: 200 in every view; raw = file bytes
+OK   api/1/developers.html: rawnf = raw minus the 2 rel=nofollow only
+OK   api/1/developers.html: mdhtml = md with the 2 slot links as inline <a href>, rest byte for byte
+OK   api/1/developers.html: mdnf = mdhtml plus rel=nofollow; its <a> bytes = raw's
+OK   api/1/developers.html: slot link order as in raw
+OK   api/1/developers.html: mdpad8 = smallest pad reaching 8x raw ({'target_tokens': 3080, 'pad_sentences': 194, 'tokens': 3082, 'pad_short': 0})
+OK   api/1/developers.html: mdpad8 = md + padding sentences only
+OK   api/1/developers.html raw: canary id + anchor inside the cap (char 908 of 1031)
+OK   api/1/developers.html rawnf: canary id + anchor inside the cap (char 893 of 1001)
+OK   api/1/developers.html md: canary id + anchor inside the cap (char 461 of 492)
+OK   api/1/developers.html mdhtml: canary id + anchor inside the cap (char 447 of 514)
+OK   api/1/developers.html mdnf: canary id + anchor inside the cap (char 462 of 544)
+OK   api/1/developers.html mdpad8: canary id + anchor inside the cap (char 12885 of 12916)
+OK   api/1/developers.html mdpad8: padding sits before the canary
+OK   api/1/about.html: 200 in every view; raw = file bytes
+OK   api/1/about.html: rawnf = raw minus the 2 rel=nofollow only
+OK   api/1/about.html: mdhtml = md with the 2 slot links as inline <a href>, rest byte for byte
+OK   api/1/about.html: mdnf = mdhtml plus rel=nofollow; its <a> bytes = raw's
+OK   api/1/about.html: slot link order as in raw
+OK   api/1/about.html: mdpad8 = smallest pad reaching 8x raw ({'target_tokens': 2480, 'pad_sentences': 158, 'tokens': 2481, 'pad_short': 0})
+OK   api/1/about.html: mdpad8 = md + padding sentences only
+OK   api/1/about.html raw: canary id + anchor inside the cap (char 785 of 908)
+OK   api/1/about.html rawnf: canary id + anchor inside the cap (char 770 of 878)
+OK   api/1/about.html md: canary id + anchor inside the cap (char 456 of 487)
+OK   api/1/about.html mdhtml: canary id + anchor inside the cap (char 442 of 509)
+OK   api/1/about.html mdnf: canary id + anchor inside the cap (char 457 of 539)
+OK   api/1/about.html mdpad8: canary id + anchor inside the cap (char 10432 of 10463)
+OK   api/1/about.html mdpad8: padding sits before the canary
+OK   api/1/r/f27289e89240.html: 200 in every view; raw = file bytes
+OK   api/1/r/f27289e89240.html: rawnf = raw minus the 2 rel=nofollow only
+OK   api/1/r/f27289e89240.html: target page has no slot links; mdhtml = mdnf = md
+OK   api/1/r/f27289e89240.html: mdpad8 = smallest pad reaching 8x raw ({'target_tokens': 2552, 'pad_sentences': 164, 'tokens': 2556, 'pad_short': 0})
+OK   api/1/r/f27289e89240.html: mdpad8 = md + padding sentences only
+OK   school/0/index.html: 200 in every view; raw = file bytes
+OK   school/0/index.html: rawnf = raw minus the 2 rel=nofollow only
+OK   school/0/index.html: mdhtml = md with the 2 slot links as inline <a href>, rest byte for byte
+OK   school/0/index.html: mdnf = mdhtml plus rel=nofollow; its <a> bytes = raw's
+OK   school/0/index.html: slot link order as in raw
+OK   school/0/index.html: mdpad8 = smallest pad reaching 8x raw ({'target_tokens': 2592, 'pad_sentences': 165, 'tokens': 2596, 'pad_short': 0})
+OK   school/0/index.html: mdpad8 = md + padding sentences only
+OK   school/0/index.html raw: canary id + anchor inside the cap (char 755 of 1002)
+OK   school/0/index.html rawnf: canary id + anchor inside the cap (char 755 of 972)
+OK   school/0/index.html md: canary id + anchor inside the cap (char 471 of 581)
+OK   school/0/index.html mdhtml: canary id + anchor inside the cap (char 447 of 603)
+OK   school/0/index.html mdnf: canary id + anchor inside the cap (char 447 of 633)
+OK   school/0/index.html mdpad8: canary id + anchor inside the cap (char 10897 of 11007)
+OK   school/0/index.html mdpad8: padding sits before the canary
+OK   school/0/admissions.html: 200 in every view; raw = file bytes
+OK   school/0/admissions.html: rawnf = raw minus the 2 rel=nofollow only
+OK   school/0/admissions.html: mdhtml = md with the 2 slot links as inline <a href>, rest byte for byte
+OK   school/0/admissions.html: mdnf = mdhtml plus rel=nofollow; its <a> bytes = raw's
+OK   school/0/admissions.html: slot link order as in raw
+OK   school/0/admissions.html: mdpad8 = smallest pad reaching 8x raw ({'target_tokens': 3224, 'pad_sentences': 202, 'tokens': 3236, 'pad_short': 0})
+OK   school/0/admissions.html: mdpad8 = md + padding sentences only
+OK   school/0/admissions.html raw: canary id + anchor inside the cap (char 888 of 1135)
+OK   school/0/admissions.html rawnf: canary id + anchor inside the cap (char 888 of 1105)
+OK   school/0/admissions.html md: canary id + anchor inside the cap (char 486 of 596)
+OK   school/0/admissions.html mdhtml: canary id + anchor inside the cap (char 462 of 618)
+OK   school/0/admissions.html mdnf: canary id + anchor inside the cap (char 462 of 648)
+OK   school/0/admissions.html mdpad8: canary id + anchor inside the cap (char 13517 of 13627)
+OK   school/0/admissions.html mdpad8: padding sits before the canary
+OK   school/0/about.html: 200 in every view; raw = file bytes
+OK   school/0/about.html: rawnf = raw minus the 2 rel=nofollow only
+OK   school/0/about.html: mdhtml = md with the 2 slot links as inline <a href>, rest byte for byte
+OK   school/0/about.html: mdnf = mdhtml plus rel=nofollow; its <a> bytes = raw's
+OK   school/0/about.html: slot link order as in raw
+OK   school/0/about.html: mdpad8 = smallest pad reaching 8x raw ({'target_tokens': 2536, 'pad_sentences': 162, 'tokens': 2537, 'pad_short': 0})
+OK   school/0/about.html: mdpad8 = md + padding sentences only
+OK   school/0/about.html raw: canary id + anchor inside the cap (char 726 of 973)
+OK   school/0/about.html rawnf: canary id + anchor inside the cap (char 726 of 943)
+OK   school/0/about.html md: canary id + anchor inside the cap (char 442 of 552)
+OK   school/0/about.html mdhtml: canary id + anchor inside the cap (char 418 of 574)
+OK   school/0/about.html mdnf: canary id + anchor inside the cap (char 418 of 604)
+OK   school/0/about.html mdpad8: canary id + anchor inside the cap (char 10642 of 10752)
+OK   school/0/about.html mdpad8: padding sits before the canary
+OK   school/0/r/fa10c4141ec3.html: 200 in every view; raw = file bytes
+OK   school/0/r/fa10c4141ec3.html: rawnf = raw minus the 2 rel=nofollow only
+OK   school/0/r/fa10c4141ec3.html: target page has no slot links; mdhtml = mdnf = md
+OK   school/0/r/fa10c4141ec3.html: mdpad8 = smallest pad reaching 8x raw ({'target_tokens': 2672, 'pad_sentences': 171, 'tokens': 2681, 'pad_short': 0})
+OK   school/0/r/fa10c4141ec3.html: mdpad8 = md + padding sentences only
+OK   school/1/index.html: 200 in every view; raw = file bytes
+OK   school/1/index.html: rawnf = raw minus the 2 rel=nofollow only
+OK   school/1/index.html: mdhtml = md with the 2 slot links as inline <a href>, rest byte for byte
+OK   school/1/index.html: mdnf = mdhtml plus rel=nofollow; its <a> bytes = raw's
+OK   school/1/index.html: slot link order as in raw
+OK   school/1/index.html: mdpad8 = smallest pad reaching 8x raw ({'target_tokens': 2608, 'pad_sentences': 166, 'tokens': 2618, 'pad_short': 0})
+OK   school/1/index.html: mdpad8 = md + padding sentences only
+OK   school/1/index.html raw: canary id + anchor inside the cap (char 861 of 1002)
+OK   school/1/index.html rawnf: canary id + anchor inside the cap (char 846 of 972)
+OK   school/1/index.html md: canary id + anchor inside the cap (char 531 of 581)
+OK   school/1/index.html mdhtml: canary id + anchor inside the cap (char 518 of 603)
+OK   school/1/index.html mdnf: canary id + anchor inside the cap (char 533 of 633)
+OK   school/1/index.html mdpad8: canary id + anchor inside the cap (char 11031 of 11081)
+OK   school/1/index.html mdpad8: padding sits before the canary
+OK   school/1/admissions.html: 200 in every view; raw = file bytes
+OK   school/1/admissions.html: rawnf = raw minus the 2 rel=nofollow only
+OK   school/1/admissions.html: mdhtml = md with the 2 slot links as inline <a href>, rest byte for byte
+OK   school/1/admissions.html: mdnf = mdhtml plus rel=nofollow; its <a> bytes = raw's
+OK   school/1/admissions.html: slot link order as in raw
+OK   school/1/admissions.html: mdpad8 = smallest pad reaching 8x raw ({'target_tokens': 3240, 'pad_sentences': 203, 'tokens': 3253, 'pad_short': 0})
+OK   school/1/admissions.html: mdpad8 = md + padding sentences only
+OK   school/1/admissions.html raw: canary id + anchor inside the cap (char 994 of 1135)
+OK   school/1/admissions.html rawnf: canary id + anchor inside the cap (char 979 of 1105)
+OK   school/1/admissions.html md: canary id + anchor inside the cap (char 546 of 596)
+OK   school/1/admissions.html mdhtml: canary id + anchor inside the cap (char 533 of 618)
+OK   school/1/admissions.html mdnf: canary id + anchor inside the cap (char 548 of 648)
+OK   school/1/admissions.html mdpad8: canary id + anchor inside the cap (char 13645 of 13695)
+OK   school/1/admissions.html mdpad8: padding sits before the canary
+OK   school/1/about.html: 200 in every view; raw = file bytes
+OK   school/1/about.html: rawnf = raw minus the 2 rel=nofollow only
+OK   school/1/about.html: mdhtml = md with the 2 slot links as inline <a href>, rest byte for byte
+OK   school/1/about.html: mdnf = mdhtml plus rel=nofollow; its <a> bytes = raw's
+OK   school/1/about.html: slot link order as in raw
+OK   school/1/about.html: mdpad8 = smallest pad reaching 8x raw ({'target_tokens': 2552, 'pad_sentences': 163, 'tokens': 2564, 'pad_short': 0})
+OK   school/1/about.html: mdpad8 = md + padding sentences only
+OK   school/1/about.html raw: canary id + anchor inside the cap (char 832 of 973)
+OK   school/1/about.html rawnf: canary id + anchor inside the cap (char 817 of 943)
+OK   school/1/about.html md: canary id + anchor inside the cap (char 502 of 552)
+OK   school/1/about.html mdhtml: canary id + anchor inside the cap (char 489 of 574)
+OK   school/1/about.html mdnf: canary id + anchor inside the cap (char 504 of 604)
+OK   school/1/about.html mdpad8: canary id + anchor inside the cap (char 10796 of 10846)
+OK   school/1/about.html mdpad8: padding sits before the canary
+OK   school/1/r/ed28c67c05fd.html: 200 in every view; raw = file bytes
+OK   school/1/r/ed28c67c05fd.html: rawnf = raw minus the 2 rel=nofollow only
+OK   school/1/r/ed28c67c05fd.html: target page has no slot links; mdhtml = mdnf = md
+OK   school/1/r/ed28c67c05fd.html: mdpad8 = smallest pad reaching 8x raw ({'target_tokens': 2672, 'pad_sentences': 171, 'tokens': 2681, 'pad_short': 0})
+OK   school/1/r/ed28c67c05fd.html: mdpad8 = md + padding sentences only
+OK   transit/0/index.html: 200 in every view; raw = file bytes
+OK   transit/0/index.html: rawnf = raw minus the 2 rel=nofollow only
+OK   transit/0/index.html: mdhtml = md with the 2 slot links as inline <a href>, rest byte for byte
+OK   transit/0/index.html: mdnf = mdhtml plus rel=nofollow; its <a> bytes = raw's
+OK   transit/0/index.html: slot link order as in raw
+OK   transit/0/index.html: mdpad8 = smallest pad reaching 8x raw ({'target_tokens': 2568, 'pad_sentences': 164, 'tokens': 2576, 'pad_short': 0})
+OK   transit/0/index.html: mdpad8 = md + padding sentences only
+OK   transit/0/index.html raw: canary id + anchor inside the cap (char 725 of 941)
+OK   transit/0/index.html rawnf: canary id + anchor inside the cap (char 725 of 911)
+OK   transit/0/index.html md: canary id + anchor inside the cap (char 435 of 520)
+OK   transit/0/index.html mdhtml: canary id + anchor inside the cap (char 417 of 542)
+OK   transit/0/index.html mdnf: canary id + anchor inside the cap (char 417 of 572)
+OK   transit/0/index.html mdpad8: canary id + anchor inside the cap (char 10771 of 10856)
+OK   transit/0/index.html mdpad8: padding sits before the canary
+OK   transit/0/tickets.html: 200 in every view; raw = file bytes
+OK   transit/0/tickets.html: rawnf = raw minus the 2 rel=nofollow only
+OK   transit/0/tickets.html: mdhtml = md with the 2 slot links as inline <a href>, rest byte for byte
+OK   transit/0/tickets.html: mdnf = mdhtml plus rel=nofollow; its <a> bytes = raw's
+OK   transit/0/tickets.html: slot link order as in raw
+OK   transit/0/tickets.html: mdpad8 = smallest pad reaching 8x raw ({'target_tokens': 3160, 'pad_sentences': 198, 'tokens': 3167, 'pad_short': 0})
+OK   transit/0/tickets.html: mdpad8 = md + padding sentences only
+OK   transit/0/tickets.html raw: canary id + anchor inside the cap (char 859 of 1075)
+OK   transit/0/tickets.html rawnf: canary id + anchor inside the cap (char 859 of 1045)
+OK   transit/0/tickets.html md: canary id + anchor inside the cap (char 451 of 536)
+OK   transit/0/tickets.html mdhtml: canary id + anchor inside the cap (char 433 of 558)
+OK   transit/0/tickets.html mdnf: canary id + anchor inside the cap (char 433 of 588)
+OK   transit/0/tickets.html mdpad8: canary id + anchor inside the cap (char 13190 of 13275)
+OK   transit/0/tickets.html mdpad8: padding sits before the canary
+OK   transit/0/about.html: 200 in every view; raw = file bytes
+OK   transit/0/about.html: rawnf = raw minus the 2 rel=nofollow only
+OK   transit/0/about.html: mdhtml = md with the 2 slot links as inline <a href>, rest byte for byte
+OK   transit/0/about.html: mdnf = mdhtml plus rel=nofollow; its <a> bytes = raw's
+OK   transit/0/about.html: slot link order as in raw
+OK   transit/0/about.html: mdpad8 = smallest pad reaching 8x raw ({'target_tokens': 2504, 'pad_sentences': 160, 'tokens': 2505, 'pad_short': 0})
+OK   transit/0/about.html: mdpad8 = md + padding sentences only
+OK   transit/0/about.html raw: canary id + anchor inside the cap (char 692 of 908)
+OK   transit/0/about.html rawnf: canary id + anchor inside the cap (char 692 of 878)
+OK   transit/0/about.html md: canary id + anchor inside the cap (char 402 of 487)
+OK   transit/0/about.html mdhtml: canary id + anchor inside the cap (char 384 of 509)
+OK   transit/0/about.html mdnf: canary id + anchor inside the cap (char 384 of 539)
+OK   transit/0/about.html mdpad8: canary id + anchor inside the cap (char 10479 of 10564)
+OK   transit/0/about.html mdpad8: padding sits before the canary
+OK   transit/0/r/1ee9d29310a5.html: 200 in every view; raw = file bytes
+OK   transit/0/r/1ee9d29310a5.html: rawnf = raw minus the 2 rel=nofollow only
+OK   transit/0/r/1ee9d29310a5.html: target page has no slot links; mdhtml = mdnf = md
+OK   transit/0/r/1ee9d29310a5.html: mdpad8 = smallest pad reaching 8x raw ({'target_tokens': 2632, 'pad_sentences': 168, 'tokens': 2634, 'pad_short': 0})
+OK   transit/0/r/1ee9d29310a5.html: mdpad8 = md + padding sentences only
+OK   transit/1/index.html: 200 in every view; raw = file bytes
+OK   transit/1/index.html: rawnf = raw minus the 2 rel=nofollow only
+OK   transit/1/index.html: mdhtml = md with the 2 slot links as inline <a href>, rest byte for byte
+OK   transit/1/index.html: mdnf = mdhtml plus rel=nofollow; its <a> bytes = raw's
+OK   transit/1/index.html: slot link order as in raw
+OK   transit/1/index.html: mdpad8 = smallest pad reaching 8x raw ({'target_tokens': 2544, 'pad_sentences': 163, 'tokens': 2563, 'pad_short': 0})
+OK   transit/1/index.html: mdpad8 = md + padding sentences only
+OK   transit/1/index.html raw: canary id + anchor inside the cap (char 817 of 941)
+OK   transit/1/index.html rawnf: canary id + anchor inside the cap (char 802 of 911)
+OK   transit/1/index.html md: canary id + anchor inside the cap (char 481 of 520)
+OK   transit/1/index.html mdhtml: canary id + anchor inside the cap (char 474 of 542)
+OK   transit/1/index.html mdnf: canary id + anchor inside the cap (char 489 of 572)
+OK   transit/1/index.html mdpad8: canary id + anchor inside the cap (char 10775 of 10814)
+OK   transit/1/index.html mdpad8: padding sits before the canary
+OK   transit/1/tickets.html: 200 in every view; raw = file bytes
+OK   transit/1/tickets.html: rawnf = raw minus the 2 rel=nofollow only
+OK   transit/1/tickets.html: mdhtml = md with the 2 slot links as inline <a href>, rest byte for byte
+OK   transit/1/tickets.html: mdnf = mdhtml plus rel=nofollow; its <a> bytes = raw's
+OK   transit/1/tickets.html: slot link order as in raw
+OK   transit/1/tickets.html: mdpad8 = smallest pad reaching 8x raw ({'target_tokens': 3136, 'pad_sentences': 197, 'tokens': 3148, 'pad_short': 0})
+OK   transit/1/tickets.html: mdpad8 = md + padding sentences only
+OK   transit/1/tickets.html raw: canary id + anchor inside the cap (char 951 of 1075)
+OK   transit/1/tickets.html rawnf: canary id + anchor inside the cap (char 936 of 1045)
+OK   transit/1/tickets.html md: canary id + anchor inside the cap (char 497 of 536)
+OK   transit/1/tickets.html mdhtml: canary id + anchor inside the cap (char 490 of 558)
+OK   transit/1/tickets.html mdnf: canary id + anchor inside the cap (char 505 of 588)
+OK   transit/1/tickets.html mdpad8: canary id + anchor inside the cap (char 13165 of 13204)
+OK   transit/1/tickets.html mdpad8: padding sits before the canary
+OK   transit/1/about.html: 200 in every view; raw = file bytes
+OK   transit/1/about.html: rawnf = raw minus the 2 rel=nofollow only
+OK   transit/1/about.html: mdhtml = md with the 2 slot links as inline <a href>, rest byte for byte
+OK   transit/1/about.html: mdnf = mdhtml plus rel=nofollow; its <a> bytes = raw's
+OK   transit/1/about.html: slot link order as in raw
+OK   transit/1/about.html: mdpad8 = smallest pad reaching 8x raw ({'target_tokens': 2480, 'pad_sentences': 159, 'tokens': 2492, 'pad_short': 0})
+OK   transit/1/about.html: mdpad8 = md + padding sentences only
+OK   transit/1/about.html raw: canary id + anchor inside the cap (char 784 of 908)
+OK   transit/1/about.html rawnf: canary id + anchor inside the cap (char 769 of 878)
+OK   transit/1/about.html md: canary id + anchor inside the cap (char 448 of 487)
+OK   transit/1/about.html mdhtml: canary id + anchor inside the cap (char 441 of 509)
+OK   transit/1/about.html mdnf: canary id + anchor inside the cap (char 456 of 539)
+OK   transit/1/about.html mdpad8: canary id + anchor inside the cap (char 10479 of 10518)
+OK   transit/1/about.html mdpad8: padding sits before the canary
+OK   transit/1/r/b54edfd7e525.html: 200 in every view; raw = file bytes
+OK   transit/1/r/b54edfd7e525.html: rawnf = raw minus the 2 rel=nofollow only
+OK   transit/1/r/b54edfd7e525.html: target page has no slot links; mdhtml = mdnf = md
+OK   transit/1/r/b54edfd7e525.html: mdpad8 = smallest pad reaching 8x raw ({'target_tokens': 2632, 'pad_sentences': 168, 'tokens': 2634, 'pad_short': 0})
+OK   transit/1/r/b54edfd7e525.html: mdpad8 = md + padding sentences only
+OK   hotel/0/index.html: 200 in every view; raw = file bytes
+OK   hotel/0/index.html: rawnf = raw minus the 2 rel=nofollow only
+OK   hotel/0/index.html: mdhtml = md with the 2 slot links as inline <a href>, rest byte for byte
+OK   hotel/0/index.html: mdnf = mdhtml plus rel=nofollow; its <a> bytes = raw's
+OK   hotel/0/index.html: slot link order as in raw
+OK   hotel/0/index.html: mdpad8 = smallest pad reaching 8x raw ({'target_tokens': 2552, 'pad_sentences': 163, 'tokens': 2566, 'pad_short': 0})
+OK   hotel/0/index.html: mdpad8 = md + padding sentences only
+OK   hotel/0/index.html raw: canary id + anchor inside the cap (char 702 of 924)
+OK   hotel/0/index.html rawnf: canary id + anchor inside the cap (char 702 of 894)
+OK   hotel/0/index.html md: canary id + anchor inside the cap (char 412 of 503)
+OK   hotel/0/index.html mdhtml: canary id + anchor inside the cap (char 394 of 525)
+OK   hotel/0/index.html mdnf: canary id + anchor inside the cap (char 394 of 555)
+OK   hotel/0/index.html mdpad8: canary id + anchor inside the cap (char 10706 of 10797)
+OK   hotel/0/index.html mdpad8: padding sits before the canary
+OK   hotel/0/rooms.html: 200 in every view; raw = file bytes
+OK   hotel/0/rooms.html: rawnf = raw minus the 2 rel=nofollow only
+OK   hotel/0/rooms.html: mdhtml = md with the 2 slot links as inline <a href>, rest byte for byte
+OK   hotel/0/rooms.html: mdnf = mdhtml plus rel=nofollow; its <a> bytes = raw's
+OK   hotel/0/rooms.html: slot link order as in raw
+OK   hotel/0/rooms.html: mdpad8 = smallest pad reaching 8x raw ({'target_tokens': 3072, 'pad_sentences': 194, 'tokens': 3081, 'pad_short': 0})
+OK   hotel/0/rooms.html: mdpad8 = md + padding sentences only
+OK   hotel/0/rooms.html raw: canary id + anchor inside the cap (char 824 of 1046)
+OK   hotel/0/rooms.html rawnf: canary id + anchor inside the cap (char 824 of 1016)
+OK   hotel/0/rooms.html md: canary id + anchor inside the cap (char 416 of 507)
+OK   hotel/0/rooms.html mdhtml: canary id + anchor inside the cap (char 398 of 529)
+OK   hotel/0/rooms.html mdnf: canary id + anchor inside the cap (char 398 of 559)
+OK   hotel/0/rooms.html mdpad8: canary id + anchor inside the cap (char 12840 of 12931)
+OK   hotel/0/rooms.html mdpad8: padding sits before the canary
+OK   hotel/0/about.html: 200 in every view; raw = file bytes
+OK   hotel/0/about.html: rawnf = raw minus the 2 rel=nofollow only
+OK   hotel/0/about.html: mdhtml = md with the 2 slot links as inline <a href>, rest byte for byte
+OK   hotel/0/about.html: mdnf = mdhtml plus rel=nofollow; its <a> bytes = raw's
+OK   hotel/0/about.html: slot link order as in raw
+OK   hotel/0/about.html: mdpad8 = smallest pad reaching 8x raw ({'target_tokens': 2480, 'pad_sentences': 158, 'tokens': 2481, 'pad_short': 0})
+OK   hotel/0/about.html: mdpad8 = md + padding sentences only
+OK   hotel/0/about.html raw: canary id + anchor inside the cap (char 678 of 900)
+OK   hotel/0/about.html rawnf: canary id + anchor inside the cap (char 678 of 870)
+OK   hotel/0/about.html md: canary id + anchor inside the cap (char 388 of 479)
+OK   hotel/0/about.html mdhtml: canary id + anchor inside the cap (char 370 of 501)
+OK   hotel/0/about.html mdnf: canary id + anchor inside the cap (char 370 of 531)
+OK   hotel/0/about.html mdpad8: canary id + anchor inside the cap (char 10364 of 10455)
+OK   hotel/0/about.html mdpad8: padding sits before the canary
+OK   hotel/0/r/33396ecaefb5.html: 200 in every view; raw = file bytes
+OK   hotel/0/r/33396ecaefb5.html: rawnf = raw minus the 2 rel=nofollow only
+OK   hotel/0/r/33396ecaefb5.html: target page has no slot links; mdhtml = mdnf = md
+OK   hotel/0/r/33396ecaefb5.html: mdpad8 = smallest pad reaching 8x raw ({'target_tokens': 2552, 'pad_sentences': 164, 'tokens': 2556, 'pad_short': 0})
+OK   hotel/0/r/33396ecaefb5.html: mdpad8 = md + padding sentences only
+OK   hotel/1/index.html: 200 in every view; raw = file bytes
+OK   hotel/1/index.html: rawnf = raw minus the 2 rel=nofollow only
+OK   hotel/1/index.html: mdhtml = md with the 2 slot links as inline <a href>, rest byte for byte
+OK   hotel/1/index.html: mdnf = mdhtml plus rel=nofollow; its <a> bytes = raw's
+OK   hotel/1/index.html: slot link order as in raw
+OK   hotel/1/index.html: mdpad8 = smallest pad reaching 8x raw ({'target_tokens': 2560, 'pad_sentences': 163, 'tokens': 2567, 'pad_short': 0})
+OK   hotel/1/index.html: mdpad8 = md + padding sentences only
+OK   hotel/1/index.html raw: canary id + anchor inside the cap (char 806 of 924)
+OK   hotel/1/index.html rawnf: canary id + anchor inside the cap (char 791 of 894)
+OK   hotel/1/index.html md: canary id + anchor inside the cap (char 470 of 503)
+OK   hotel/1/index.html mdhtml: canary id + anchor inside the cap (char 463 of 525)
+OK   hotel/1/index.html mdnf: canary id + anchor inside the cap (char 478 of 555)
+OK   hotel/1/index.html mdpad8: canary id + anchor inside the cap (char 10764 of 10797)
+OK   hotel/1/index.html mdpad8: padding sits before the canary
+OK   hotel/1/rooms.html: 200 in every view; raw = file bytes
+OK   hotel/1/rooms.html: rawnf = raw minus the 2 rel=nofollow only
+OK   hotel/1/rooms.html: mdhtml = md with the 2 slot links as inline <a href>, rest byte for byte
+OK   hotel/1/rooms.html: mdnf = mdhtml plus rel=nofollow; its <a> bytes = raw's
+OK   hotel/1/rooms.html: slot link order as in raw
+OK   hotel/1/rooms.html: mdpad8 = smallest pad reaching 8x raw ({'target_tokens': 3080, 'pad_sentences': 194, 'tokens': 3082, 'pad_short': 0})
+OK   hotel/1/rooms.html: mdpad8 = md + padding sentences only
+OK   hotel/1/rooms.html raw: canary id + anchor inside the cap (char 928 of 1046)
+OK   hotel/1/rooms.html rawnf: canary id + anchor inside the cap (char 913 of 1016)
+OK   hotel/1/rooms.html md: canary id + anchor inside the cap (char 474 of 507)
+OK   hotel/1/rooms.html mdhtml: canary id + anchor inside the cap (char 467 of 529)
+OK   hotel/1/rooms.html mdnf: canary id + anchor inside the cap (char 482 of 559)
+OK   hotel/1/rooms.html mdpad8: canary id + anchor inside the cap (char 12898 of 12931)
+OK   hotel/1/rooms.html mdpad8: padding sits before the canary
+OK   hotel/1/about.html: 200 in every view; raw = file bytes
+OK   hotel/1/about.html: rawnf = raw minus the 2 rel=nofollow only
+OK   hotel/1/about.html: mdhtml = md with the 2 slot links as inline <a href>, rest byte for byte
+OK   hotel/1/about.html: mdnf = mdhtml plus rel=nofollow; its <a> bytes = raw's
+OK   hotel/1/about.html: slot link order as in raw
+OK   hotel/1/about.html: mdpad8 = smallest pad reaching 8x raw ({'target_tokens': 2488, 'pad_sentences': 159, 'tokens': 2495, 'pad_short': 0})
+OK   hotel/1/about.html: mdpad8 = md + padding sentences only
+OK   hotel/1/about.html raw: canary id + anchor inside the cap (char 782 of 900)
+OK   hotel/1/about.html rawnf: canary id + anchor inside the cap (char 767 of 870)
+OK   hotel/1/about.html md: canary id + anchor inside the cap (char 446 of 479)
+OK   hotel/1/about.html mdhtml: canary id + anchor inside the cap (char 439 of 501)
+OK   hotel/1/about.html mdnf: canary id + anchor inside the cap (char 454 of 531)
+OK   hotel/1/about.html mdpad8: canary id + anchor inside the cap (char 10477 of 10510)
+OK   hotel/1/about.html mdpad8: padding sits before the canary
+OK   hotel/1/r/d89847acb230.html: 200 in every view; raw = file bytes
+OK   hotel/1/r/d89847acb230.html: rawnf = raw minus the 2 rel=nofollow only
+OK   hotel/1/r/d89847acb230.html: target page has no slot links; mdhtml = mdnf = md
+OK   hotel/1/r/d89847acb230.html: mdpad8 = smallest pad reaching 8x raw ({'target_tokens': 2552, 'pad_sentences': 164, 'tokens': 2556, 'pad_short': 0})
+OK   hotel/1/r/d89847acb230.html: mdpad8 = md + padding sentences only
+wrote /Users/esben/work/defense-1124-length-or-markup/kran-research/projects/nofollow-canary/results/precheck_tokens.csv (240 rows)
+DIFF md     ...'s](terms.html) | [Careers](careers.html)\n\n[Full 2025 pricing table](r/928fd32725dc.html)\n\n[Office photo gallery archive](r/8ff6391a9ca4.html)\n\n© Northwind Cloud'
+DIFF mdhtml ...'acy.html) | [Terms](terms.html) | [Careers](careers.html)\n\n<a href="r/928fd32725dc.html">Full 2025 pricing table</a>\n\n<a href="r/8ff6391a9ca4.html">Office photo gallery archive</a>\n\n© Northw'
+DIFF mdnf   ...'acy.html) | [Terms](terms.html) | [Careers](careers.html)\n\n<a href="r/928fd32725dc.html" rel="nofollow">Full 2025 pricing table</a>\n\n<a href="r/8ff6391a9ca4.html" rel="nofollow">Office photo'
+DIFF raw    ...'a> | <a href="careers.html">Careers</a></p><div class="fx"><a href="r/928fd32725dc.html" rel="nofollow">Full 2025 pricing table</a></div><div class="fx"><a href="r/8ff6391a9ca4.html" rel="no'
+OK   15 gate + 510 scored runs, each (cell, i) once (525)
+OK   the 15 gate runs (own cell) come first
+OK   i-major (run i of every arm before i + 1)
+OK   raw-free: runs 0..89
+OK   raw-free: {0: 30, 1: 30, 2: 30} per seed block
+OK   raw-free block 0: all 5 templates
+OK   raw-free block 1: all 5 templates
+OK   raw-free block 2: all 5 templates
+OK   rawnf-free: runs 0..89
+OK   rawnf-free: {0: 30, 1: 30, 2: 30} per seed block
+OK   rawnf-free block 0: all 5 templates
+OK   rawnf-free block 1: all 5 templates
+OK   rawnf-free block 2: all 5 templates
+OK   md-free: runs 0..89
+OK   md-free: {0: 30, 1: 30, 2: 30} per seed block
+OK   md-free block 0: all 5 templates
+OK   md-free block 1: all 5 templates
+OK   md-free block 2: all 5 templates
+OK   mdhtml-free: runs 0..89
+OK   mdhtml-free: {0: 30, 1: 30, 2: 30} per seed block
+OK   mdhtml-free block 0: all 5 templates
+OK   mdhtml-free block 1: all 5 templates
+OK   mdhtml-free block 2: all 5 templates
+OK   mdnf-free: runs 0..89
+OK   mdnf-free: {0: 30, 1: 30, 2: 30} per seed block
+OK   mdnf-free block 0: all 5 templates
+OK   mdnf-free block 1: all 5 templates
+OK   mdnf-free block 2: all 5 templates
+OK   mdpad8-free: runs 0..59
+OK   mdpad8-free: {0: 20, 1: 20, 2: 20} per seed block
+OK   mdpad8-free block 0: all 5 templates
+OK   mdpad8-free block 1: all 5 templates
+OK   mdpad8-free block 2: all 5 templates
+OK   every arm uses the stylesheet-hidden canary; one arm per view
+OK   system prompt = parent's neutral prompt
+OK   bare and anchor share one tool description
+OK   new views keep their format's tool description
+OK   CANARY_MAX_STEPS sets the step cap
+OK   access log holds the canary GET with the run label
+OK   after the root moves to the next run's site, the old canary path is 404
+ALL OK

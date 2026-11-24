@@ -47,3 +47,6 @@ commit time. A change inside the FROZEN RULE block starts with "RULE CHANGE:".
   that trained. Qwen3-4B's own Step 0 (NDIF, RL format, k = 8, n = 400, 2x2 balanced) must pass the same bar; if it
   fails, the status is UNCONFIRMED (premise failed; 12 or 16 flips are no longer possible, since training used 8). The
   price P was set with a0 = 0.50 from the 8B Step 0; the post states 4B's a0 next to it.
+- 2026-11-24 05:40 CET (Bruno #29526, kran-research ee091e39d; follows the line above): Qwen3-4B Step 0 (NDIF, RL
+  format, k = 8, n = 400 2x2-balanced; one retry at batch 10 after an NDIF server OOM at batch 50): argmax 0.500, AUROC
+  0.506, Heads on 400/400. The premise holds for the trained model; its a0 = 0.50 equals the a0 the job used for P.

@@ -71,6 +71,12 @@ None of these feeds the status. Each is labelled EXPLORATORY in the proof matrix
   3.55, c 0.1, gamma 1): S* = 473, vs E1's first pass at 400-1,000. 8B (h_max 47.92, c 0.1, gamma 1): S* = 6,326, so
   E2b (2 x 3,200 steps, burn 800) is predicted NOT to plateau. Refuted if E2b's running estimate is flat within its
   batch-means SE from about 1,600 steps on.
+- E2b result (Bruno #30137, data/llc/e2b/m8_k2_s5_cue-m8_k2_s5_u00088_c0.1_long.json, commit 3554a0a32; 1,916 s,
+  peak 4.45 GB): LLC-hat 12.08 (chains 12.05 / 12.12, batch-means SE 0.53). Running estimate at 100 / 500 / 900 /
+  1,600 / 3,200 steps: 35.5 / 14.3 / 12.6 / 12.0 / 12.1; draws 801-2,000 = 12.01 (SE 0.43) vs 2,001-3,200 = 12.15
+  (SE 0.96). By its own stated criterion ('flat within its batch-means SE from about 1,600 steps on') the E2b
+  PREDICTION above is REFUTED: the estimate fell (not rose) from the 100-step value and was flat from about 900 steps,
+  well before the predicted S* = 6,326. A flat running mean does not prove the slowest directions have settled.
 - Correction to E1's summary (Vera #30000): at c 0.1, gamma 1 the gate case is already within 10% at 400 steps per
   chain in Bruno's data (r1 -6.5%, r8 -7.8%) and passes from 1,000 in Vera's own data; at 1,600-6,400 steps it sits
   2-5% high.

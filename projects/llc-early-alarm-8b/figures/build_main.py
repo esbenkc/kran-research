@@ -74,11 +74,12 @@ def main():
     ratios = [w["ratio"] for w in walks]
     data = {
         "title": "Short walks miss a known answer, and on Qwen3-8B they travel like pure noise",
-        "sub_left": "Known-answer test (1,024 weights): reading as a share of the true value",
-        "sub_right": "Qwen3-8B adapter (2.4 million weights): distance each walk travelled",
-        "lines": lines, "strip": strip, "n_diverged": n_div,
-        "walks": walks, "cells": cells, "curves": curves,
+        "sub_left": "Known-answer test (1,024 weights): at 100 steps no setting lands in the band at both ranks; longer walks at the middle step do",
+        "sub_right": "Qwen3-8B adapter (2.4 million weights): each 100-step walk travels exactly as far as pure noise, so the loss did not steer it",
+        "n_diverged": n_div,
         "ratio_range": [min(ratios), max(ratios)] if ratios else None,
+        "cells": cells,
+        "lines": lines, "strip": strip, "walks": walks, "curves": curves,
     }
     Path(a.out).parent.mkdir(parents=True, exist_ok=True)
     Path(a.out).write_text(json.dumps(data, indent=1))

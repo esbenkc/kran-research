@@ -35,3 +35,4 @@ python3 figures/build_main.py                                       # Selma's fi
    gate g3 (start line + empty thought) accuracy within 0.40-0.60 (`data/reader/gate.json`). status.py already
    writes the trust-rule line `- seed-level: final-checkpoint reader acc <est> [<lo>, <hi>] (t-interval over 3 seeds)`.
 4. Fill the draft post (blog branch swarm/oracle-1124-cot-necessity), naming step, gates, final-review, publish.
+5. Video: copy ~/work/oracle-1124-cot-necessity/video/ and follow VIDEO-CONTINUATION.md (board built and reviewed except the result scenes).

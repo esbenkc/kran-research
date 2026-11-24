@@ -105,6 +105,8 @@ def sgld_chain(loss_fn, params, w_star, n: int, batch: int, nbeta: float, eps: f
             log_a = -U1 + U0 - bwd / (2 * eps) + fwd / (2 * eps)
             accs.append(min(1.0, math.exp(min(0.0, log_a))))
         if t % 25 == 24 or t == burn + draws - 1:
+            if params[0].device.type == "mps":  # release cached MPS blocks (memory cap; no effect on values)
+                torch.mps.empty_cache()
             dist.append(sum(_dot(p.detach() - a, p.detach() - a) for p, a in zip(params, w_star)) ** 0.5)
     lam = nbeta * (sum(losses[burn:]) / draws)
     end = end_fn() if end_fn is not None else None  # e.g. the full-batch loss at the last draw (before the reset)

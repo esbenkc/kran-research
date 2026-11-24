@@ -145,6 +145,8 @@ def main():
         g = full_grad()
         grad_norm_wstar = sum(float((x.float() ** 2).sum()) for x in g) ** 0.5
         del g
+        if DEV == "mps":
+            torch.mps.empty_cache()
         chains, L_end = [], []
         for k in range(a.chains):
             ch = sgld_chain(loss_rows, plist, w_star, n, BATCH, nbeta, eps, a.gamma, a.burn, a.draws,

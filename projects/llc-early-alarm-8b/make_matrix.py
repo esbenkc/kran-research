@@ -61,6 +61,11 @@ for S in bud["steps"]:
             L.append(f"| E1 budget (exploratory) | {x['rep']} | RRR rank {r}, c 0.1, gamma 1, {S} steps per chain "
                      f"| {'long chain (code check)' if S >= 1600 else 'none'} | lambda-hat {x['lambda_hat']:.1f} "
                      f"({x['rel_err']:+.3f}); MALA {x['mala_accept_mean']:.2f} | data/gate/budget.json |")
+e4 = json.load(open(HERE / "data/gate/e4_psgld.json"))
+for cell in e4["table"]:
+    L.append(f"| E4 preconditioned SGLD (exploratory) | 0 | RRR, RMSProp-SGLD a 1e-8, eps {cell['eps']:g}, gamma "
+             f"{cell['gamma']:g}, 2 x (25+75) | none | diverged: r1 {cell['r1']['hat']:.3g}, r8 {cell['r8']['hat']:.3g} "
+             f"(vs 236 / 312) | data/gate/e4_psgld.json |")
 e2 = sorted((HERE / "data/llc/e2").glob("m8_*.json")) + sorted((HERE / "data/llc/e2b").glob("m8_*.json"))
 for f in e2:
     x = json.load(open(f))

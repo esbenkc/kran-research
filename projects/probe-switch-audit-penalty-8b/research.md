@@ -304,6 +304,12 @@ Mapping to each REJECTED clause (PREREG FROZEN RULE, 'Title status'):
 - Search "fine-tuning language model penalty against activation patching attention head audit backdoor evade
   interpretability" (month): no paper trains against a head-patching audit and reports hide vs fade. Novelty claim
   from section 4 stands.
+- Re-check 2026-11-24 03:15 PST (web search, past week, "fine-tuning backdoor evade attention head ablation audit
+  adaptive attacker"): new hits are defences or other modalities, none trains against a head audit: Poison-then-Hide
+  arXiv 2611.14970 (vision encoders, dormant backdoor reactivated by finetuning), Uncovering and Aligning Anomalous
+  Attention Heads arXiv 2511.13789 (head-wise defence, no adaptive head-audit attacker), Backdoor Mitigation in
+  Decentralized LLM Fine-Tuning arXiv 2609.37367 (adaptive attacker trains against a probe-prompt test, not heads).
+  Novelty claim unchanged.
 
 ### 11. What is missing
 

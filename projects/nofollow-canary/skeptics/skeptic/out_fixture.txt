@@ -1,0 +1,21 @@
+== true planted {'raw': 66, 'rawnf': 83, 'md': 84, 'mdhtml': 84, 'mdnf': 67, 'mdpad8': 50}
+STATUS CONFIRMED G True CONF legs {'a': True, 'b': True, 'c': True, 'd': True} REJ legs {'a': False, 'b': False}
+analysis.py status CONFIRMED
+== null planted {'raw': 66, 'rawnf': 67, 'md': 84, 'mdhtml': 84, 'mdnf': 83, 'mdpad8': 50}
+STATUS REJECTED G True CONF legs {'a': False, 'b': False, 'c': False, 'd': False} REJ legs {'a': True, 'b': True}
+analysis.py status REJECTED
+== gap8 planted {'raw': 66, 'rawnf': 83, 'md': 74, 'mdhtml': 84, 'mdnf': 60, 'mdpad8': 50}
+STATUS UNCONFIRMED (gap gate) G False CONF legs {'a': True, 'b': True, 'c': True, 'd': True} REJ legs {'a': False, 'b': False}
+analysis.py status UNCONFIRMED
+== gap9edge planted {'raw': 66, 'rawnf': 79, 'md': 75, 'mdhtml': 84, 'mdnf': 66, 'mdpad8': 50}
+STATUS CONFIRMED G True CONF legs {'a': True, 'b': True, 'c': True, 'd': True} REJ legs {'a': False, 'b': False}
+analysis.py status CONFIRMED
+== c_edge_fail planted {'raw': 60, 'rawnf': 73, 'md': 83, 'mdhtml': 85, 'mdnf': 62, 'mdpad8': 40}
+STATUS UNCONFIRMED G True CONF legs {'a': True, 'b': True, 'c': False, 'd': True} REJ legs {'a': True, 'b': False}
+analysis.py status UNCONFIRMED
+== syntax planted {'raw': 66, 'rawnf': 66, 'md': 84, 'mdhtml': 66, 'mdnf': 64, 'mdpad8': 50}
+STATUS REJECTED G True CONF legs {'a': False, 'b': False, 'c': False, 'd': True} REJ legs {'a': True, 'b': True}
+analysis.py status REJECTED
+== rawonly planted {'raw': 66, 'rawnf': 84, 'md': 84, 'mdhtml': 84, 'mdnf': 84, 'mdpad8': 50}
+STATUS UNCONFIRMED G True CONF legs {'a': True, 'b': False, 'c': True, 'd': False} REJ legs {'a': False, 'b': True}
+analysis.py status UNCONFIRMED

@@ -42,7 +42,8 @@ commit time. A change inside the FROZEN RULE block starts with "RULE CHANGE:".
 - 2026-11-24 05:40 CET (Bruno #29516; Kasper #29518, Vera #29519, Iris; not a rule change, the FROZEN block is
   unchanged): J1 nfpimpkalf's frozen timing rule gave S = 20 < 40 on Qwen3-8B, so the job switched to Qwen3-4B-4bit as
   PREREG.md (Model) allows; 8B outputs in data/aborted_Qwen3-8B-4bit/. Clarification, written before any Qwen3-4B
-  result row is read: the frozen necessity premise (argmax <= 0.60 AND AUROC <= 0.60 at N = 8) is checked on the model
+  Step 0 number was posted or committed (commit d4bf44999 at 04:38:31Z; Bruno's file was still uncommitted and
+  unread by Iris) and before any 4B eval row: the frozen necessity premise (argmax <= 0.60 AND AUROC <= 0.60 at N = 8) is checked on the model
   that trained. Qwen3-4B's own Step 0 (NDIF, RL format, k = 8, n = 400, 2x2 balanced) must pass the same bar; if it
   fails, the status is UNCONFIRMED (premise failed; 12 or 16 flips are no longer possible, since training used 8). The
   price P was set with a0 = 0.50 from the 8B Step 0; the post states 4B's a0 next to it.

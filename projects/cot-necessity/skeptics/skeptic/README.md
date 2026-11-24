@@ -10,6 +10,7 @@ the signoff.md comes after J1's rows land. Everything here is my own code; it im
 | `vera_power.py` → `vera_power_K6.txt`, `vera_power_K10.txt` | operating characteristics of the FROZEN RULE (0.60 Wilson band, 2-of-3 seeds, 2-consecutive-or-final) | K=6, n=200: P(YES) 1.00 at true reader acc 0.50, 0.0002 at 0.62; P(NO) 0.29 at 0.70, 0.998 at 0.75. |
 | `vera_power2.py` → `vera_power2_v1rule.txt` | the superseded v1 rule (< 0.50, 3-of-3) with a forced-choice reader | P(YES) = 0 at true chance: why v1.1 was frozen instead. |
 | `vera_rule.py` | my implementation of the FROZEN RULE from the PREREG text, for the J1 rebuild | unit cases: readable+drop → REJECTED, hidden → CONFIRMED, readable-then-collapse → REJECTED, no length drop → UNCONFIRMED |
+| `vera_j1.py` | J1 headline rebuild from raw rows, written before J1 landed: own strict answer parse of `completion`, thought chars recomputed, 2x2 per eval file, primary logit reader vs the gate threshold, frozen rule via `vera_rule.py`. Stops on a missing key instead of guessing. Tested on a synthetic fixture (`COTN_DIR=/tmp/fixture`): readable + 75% length drop gives REJECTED. | to run in the continuation |
 | `novelty.md` | closest prior work check (Kaufmann et al. 2603.30036) | their monitor asks "is this about a coin?"; ours must recover the state |
 
 Run from `projects/cot-necessity`: `python3 skeptics/skeptic/vera_step0.py`; `cd skeptics/skeptic && python3 vera_power.py 6 200`.

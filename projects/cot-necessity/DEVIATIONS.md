@@ -50,3 +50,8 @@ commit time. A change inside the FROZEN RULE block starts with "RULE CHANGE:".
 - 2026-11-24 05:40 CET (Bruno #29526, kran-research ee091e39d; follows the line above): Qwen3-4B Step 0 (NDIF, RL
   format, k = 8, n = 400 2x2-balanced; one retry at batch 10 after an NDIF server OOM at batch 50): argmax 0.500, AUROC
   0.506, Heads on 400/400. The premise holds for the trained model; its a0 = 0.50 equals the a0 the job used for P.
+- 2026-11-24 09:45 CET (Bruno, continuation room oracle-1124-cot-necessity-cont; not a rule change, the FROZEN block
+  and status.py are unchanged): post-hoc DESCRIPTIVE analysis added after the J1 data landed, not pre-registered:
+  trajectory.py -> data/trajectory.json reads the per-update training logs (steps.jsonl; 64 training rollouts per
+  update, not held-out, not reader-scored) and computes the break-even thought length L*(t) = 8 + (a_base - a0) /
+  lambda(t) from the frozen reward. It explains the status; it never feeds it.

@@ -1,6 +1,6 @@
 {
  "shared": {
-  "model": "Qwen3-8B",
+  "model": "Qwen3-4B",
   "question": "Does in-conflict length pressure during RL push a frozen reader's accuracy at predicting the final coin state from Qwen3-8B's thought to chance (within 10 points of 50%), while task accuracy stays at least 80% of its start?",
   "prompt_label": "Test prompt, shortened",
   "flip_same": "same",
@@ -19,7 +19,8 @@
   "foot": "Reader: gpt-oss-20b, never trained, told the puzzle rules and the start side, never the flips. Source: kran-research cot-necessity &middot; Nov 2026",
   "max_notes": 150,
   "col1_note_all": "It said {side} on all {n}, whatever the flips. So it was right only when the coin ended on {side}: a guess.",
-  "col1_note_mixed": "It said Heads on {h} and Tails on {t} of {n}, and was right on {k}: no better than a guess."
+  "col1_note_mixed": "It said Heads on {h} and Tails on {t} of {n}, and was right on {k}: no better than a guess.",
+  "switch_note": "(We trained {model}: a rule fixed before the run switched from Qwen3-8B, which allowed too few training steps in the time we had.)"
  },
  "pending": {
   "head": "Asked to answer at once, {model} says Heads every time",

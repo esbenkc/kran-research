@@ -265,8 +265,10 @@ def main(out: Path) -> None:
     else:
         src += "  PENDING: J1 (labq zfp2nttcl0) has not landed; columns 2-3 and the strip are placeholders\n"
     src += "  built by figure1/gen.py\n-->"
+    gloss = f' <span class="gl">{T["switch_note"]}</span>' if model not in T["question"] else ""
     body = (f'<div class="head">{T["head"]}</div><div class="sub">{T["sub"]}</div>'
-            f'<div class="kick"><b>Question:</b> <span class="q">&ldquo;{E(T["question"])}&rdquo;</span><br>'
+            f'<div class="kick"><b>Question:</b> <span class="q">&ldquo;{E(T["question"])}&rdquo;</span>'
+            f'{gloss}<br>'
             f'<b>Answer:</b> {T["answer"]}</div>{prompt}'
             f'<div class="cols">{col1}<div class="arrow">&rarr;</div>{col2}<div class="arrow">&rarr;</div>{col3}</div>'
             f'<div class="st">{T["strip_title"]}</div>{strip_svg(T, seeds)}'
@@ -294,6 +296,7 @@ PAGE = """<!doctype html>
   .sub b { color: #2b2e35; }
   .kick { font-size: 22px; line-height: 1.3; color: #2b2e35; background: #eef0f3; border-left: 6px solid #b3261e; padding: 9px 14px; border-radius: 6px; margin-top: 16px; }
   .kick .q { color: #4a4d55; }
+  .kick .gl { color: #5f636c; font-size: 20px; }
   .ask { margin-top: 18px; background: #2f6fe4; color: #fff; font-size: 22px; line-height: 1.32; border-radius: 18px 18px 4px 18px; padding: 11px 18px; }
   .ask b { font-weight: 800; }
   .ask .pl { display: inline-block; font-size: 17px; font-weight: 700; background: rgba(255,255,255,0.2); border-radius: 6px; padding: 1px 7px; margin-right: 6px; vertical-align: 2px; }

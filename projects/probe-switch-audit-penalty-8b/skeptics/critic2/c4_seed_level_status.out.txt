@@ -1,0 +1,12 @@
+AO strict 0.990 [0.960, 1.019] R3 0.606 [0.348, 0.863]
+P100 strict 0.062 [-0.174, 0.299] R3 0.482 [-0.202, 1.166]
+P10 strict 0.659 [-0.759, 2.076] R3 0.980 [0.961, 1.000]
+L0 strict 0.996 [0.946, 1.046] R3 0.991 [0.891, 1.090]
+P10 R3 switch-on 0.977 [0.913, 1.041]
+ratios L0/P10 cached 26.905224379556163 48.73117476878565
+AO R/null95 [3.54, 3.4, 4.52]
+P100 push % of L0 cached [0.54, 0.26, 0.62]
+strict {'AO': 0, 'P100': 0, 'P10': 0} L0 hide [False, False] guard hide False
+fp32 {'AO': 0, 'P100': 0, 'P10': 0} L0 hide [False, False] guard hide False
+argmax {'AO': 0, 'P100': 0, 'P10': 0} L0 hide [False, False] guard hide False
+p100_s0 fp32 count 94 argmax count 88

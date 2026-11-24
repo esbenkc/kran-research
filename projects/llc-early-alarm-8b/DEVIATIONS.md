@@ -1,8 +1,8 @@
 # DEVIATIONS — llc-early-alarm-8b
 
 Frozen rule: `PREREG.md` (commit 1b81a5f3e, pushed 2026-11-24T14:07:02Z; header fc37c0966). Every line below was
-written before the run it describes. None changes the status rule, a threshold or the primary metric, so none is a
-"RULE CHANGE:" line.
+written before the run it describes. None changes the status rule, a threshold or the primary metric, so none of
+them is a rule-change line.
 
 ## D1. The gate failed (frozen outcome, not a deviation; recorded here for the timeline)
 Bruno posted the (c, gamma) grid and the selection rule at 2026-11-24T14:08:18Z (room #29971), before the grid ran.

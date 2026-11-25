@@ -1,0 +1,33 @@
+{
+  "head": "On a network it had never seen, the curve called the error closely, but so did copying the training network's error",
+  "q": "Question: Once Aoyagi's formula splits reduced-rank regression into regular and singular parts, does one curve in nbeta/gamma^2 predict the SGLD learning-coefficient error at held-out ranks and widths within 5 percentage points?",
+  "gloss": "(learning coefficient: roughly half the number of weight directions the loss depends on; a formula gives its true value here. SGLD: a random walk from the trained weights that estimates it. gamma: a spring that pulls the walk back. nbeta: the inverse temperature, how hard the loss pulls the walk downhill)",
+  "answer": "<b>Answer: Not settled.</b> The curve landed within 5 points in {win_all} of {n_all} settings (80% needed). But it also had to miss by at most half as much as simple shortcuts, and copying the training network's error did almost as well.",
+  "alt_answer": "Answer: Not settled. The curve landed within 5 points in {win_all} of {n_all} settings (80% needed). But it also had to miss by at most half as much as simple shortcuts, and copying the training network's error did almost as well.",
+  "tag": "A network shape the curve had not seen",
+  "ex_text": "{M} inputs, {H} hidden units, {N} outputs; the true map uses {r} directions (rank {r}). True learning coefficient from Aoyagi's formula: <b>{lam}</b>.",
+  "reg_lab": "{reg} bowl part: exact formula",
+  "sing_lab": "{lam0} singular part: the curve",
+  "chart_t": "A tighter spring makes the walk read low",
+  "chart_sub": "SGLD reading at inverse temperature {nb}; the curve's predictions were pushed before this shape ran.",
+  "leg_pred": "the curve",
+  "leg_n4": "shortcut: training network's error",
+  "leg_meas": "measured, 3 seeds",
+  "truth_lab": "true value {lam}",
+  "num_pred": "curve",
+  "num_n4": "shortcut",
+  "num_meas": "measured",
+  "row_labels": ["spring {g}|loose", "spring {g}", "spring {g}", "spring {g}|tight"],
+  "axis": "learning coefficient read by the walk",
+  "score_t": "Typical miss over all {n_all} settings on 5 unseen shapes",
+  "score_sub": "Median distance between predicted and measured error, in percentage points. Every predictor was fit on the same 2 training shapes.",
+  "law_lab": {
+    "L": "the curve (bowl part split off)",
+    "N4": "shortcut: training network's error",
+    "N2": "one curve, no split",
+    "N3": "the number we first planned",
+    "N1": "one constant"
+  },
+  "need_lab": "needed: {need} or less",
+  "foot": "Source: two-layer linear network y = BAx with a noise-free teacher, 1,024 rows; minibatch SGLD (64 rows a step), 3 seeds \u00d7 4 walks per setting; the curve was fit on 2 other shapes (32 \u2192 16 \u2192 32, ranks 1 and 8). Nov 2026 \u00b7 athanorscience.com"
+}

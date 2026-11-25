@@ -44,6 +44,11 @@ def pct(x):
     return f"{r:.0f}" if r == int(r) or r >= 10 else f"{r:.1f}"
 
 
+def rng(v):
+    lo, hi = pct(min(v)), pct(max(v))
+    return f"{lo}%" if lo == hi else f"{lo}&ndash;{hi}%"
+
+
 def load(path):
     a = json.load(open(path))
     b, tc = a["test_base"], a["test_cut"]
@@ -69,37 +74,63 @@ assert runs, "no k_att=6 audit files"
 assert len({r["statusT"] for r in runs}) == 1
 
 
-live = [r for r in runs if r["live"]]
-assert live, "no live k_att=6 run"
+# status.py output (frozen rule incl. bf16 agreement, G1, monitor health, spare): the counted runs and the status.
+# Without it only PREVIEW renders (then: counted = live runs, status from the fp32 cells alone).
+SF = P / "data/status.json"
+if SF.exists():
+    ST = json.load(open(SF))
+    for r in runs:  # my numbers must equal status.py's cells
+        c = ST["cells"][r["name"]]
+        assert c["live"] == r["live"] and c["fp32"]["S0"] == r["uncut"], r["name"]
+        if r["live"]:
+            assert abs(c["fp32"]["S8"] - r["sw"][KS]) < 1e-12 and abs(c["fp32"]["R8"] - r["rand"]["med"]) < 1e-12, r["name"]
+    status, counted = ST["status"], ST["counted_k6"]
+    notes = ST["notes_k6"]
+else:
+    assert PREVIEW, "no data/status.json: run status.py (collect.sh) first"
+    counted = [r["name"] for r in runs if r["live"]][:3]
+    ok = [r["sw"][KS] < GOAL and r["rand"]["med"] >= RAND_OK for r in runs if r["name"] in counted]
+    status = ("CONFIRMED" if all(ok) else "REJECTED" if any(r["sw"][KS] >= GOAL for r in runs if r["name"] in counted)
+              else "UNCONFIRMED") if len(counted) == 3 else "UNCONFIRMED"
+    notes = []
+live = [next(r for r in runs if r["name"] == n) for n in counted]
+assert live, "no counted k_att=6 run"
 
 
-def maj(r, col):
-    """Answer most prompts give in a column: True = A (mountains)."""
+def want_ans(r, col):
+    """The answer the shown prompt must give in a column: True = A (mountains). Uncut columns: most prompts' answer.
+    Cut columns: A (still switches) when the run misses the 25% goal there, else B."""
     if col == "off":
         return sum(x > 0 for x in r["u"]) > N / 2
     if col == "on":
         return sum(x > 0 for x in r["p"]) > N / 2
-    return r["sw"][col] >= 0.5
+    return r["sw"][col] >= GOAL
 
 
 def answers(r, i):
     return {"off": r["u"][i] > 0, "on": r["p"][i] > 0, KATT: r["cut"][KATT][i] > 0, KS: r["cut"][KS][i] > 0}
 
 
-# README rule: first live k_att=6 run; test0657 if its four answers match that run's majority answer in every
-# column, else the first test id (sorted) that does. No exact ties allowed in the shown rows.
-EXR = live[0]
-want = {c: maj(EXR, c) for c in ("off", "on", KATT, KS)}
+# README rule: the first counted run that misses the goal at top 8 if there is one, else the first counted run;
+# test0657 if its four answers match want_ans in every column, else the first test id (sorted) that does.
+EXR = next((r for r in live if r["sw"][KS] >= GOAL), live[0])
+want = {c: want_ans(EXR, c) for c in ("off", "on", KATT, KS)}
 order = [T["example"]] + sorted(i for i in EXR["ids"] if i != T["example"])
 EX = next(i for i in order if answers(EXR, EXR["ids"].index(i)) == want)
 XI = EXR["ids"].index(EX)
 for v in (EXR["u"][XI], EXR["p"][XI], EXR["cut"][KATT][XI], EXR["cut"][KS][XI]):
     assert v != 0, "tie in the example row"
 YES = sum(r["sw"][KS] < GOAL and r["rand"]["med"] >= RAND_OK for r in live)
-facts = {"example": EX, "example_run": EXR["name"], "runs": [{k: v for k, v in r.items() if k in ("name", "uncut", "live", "sw", "rand")} for r in runs], "n_stopped": YES, "n_live": len(live)}
+ex8 = "A" if want[KS] else "B"
+assert status != "CONFIRMED" or ex8 == "B"
+HEAD = T["heads"][ex8]
+ANS = T["answers"][status]
+facts = {"status": status, "example": EX, "example_run": EXR["name"], "counted": counted, "notes": notes,
+         "runs": [{k: v for k, v in r.items() if k in ("name", "uncut", "live", "sw", "rand")} for r in runs], "n_stopped": YES}
 C = {"n_live": len(live), "n_stopped": YES, "k6": ", ".join(pct(r["sw"][KATT]) + "%" for r in live),
      "k8": ", ".join(pct(r["sw"][KS]) + "%" for r in live),
-     "rmed": f'{pct(min(r["rand"]["med"] for r in live))}&ndash;{pct(max(r["rand"]["med"] for r in live))}%'}
+     "k8max": pct(max(r["sw"][KS] for r in live)) + "%", "k8min": pct(min(r["sw"][KS] for r in live)) + "%",
+     "rmed": rng([r["rand"]["med"] for r in live])}
 
 ROBOT = '<svg width="40" height="45" viewBox="0 0 92 104" aria-hidden="true"><use href="#robot"/></svg>'
 
@@ -146,8 +177,9 @@ def chart():
         cy = top + gap * i
         g.append(f'<text x="{LX}" y="{cy + 8}" class="tl">{seed_label(r)}</text>')
         g.append(f'<line x1="{X0}" y1="{cy}" x2="{X1}" y2="{cy}" stroke="#e2e4e8" stroke-width="2"/>')
-        if not r["live"]:
-            g.append(f'<text x="{X1}" y="{cy - 12}" text-anchor="end" class="bl mu">{T["faded"].format(p=pct(r["uncut"]))}</text>')
+        if r["name"] not in counted:  # faded, monitor tie, or G1 miss: named, no dot
+            why = T["faded"].format(p=pct(r["uncut"])) if not r["live"] else T["not_counted"]
+            g.append(f'<text x="{X1}" y="{cy - 12}" text-anchor="end" class="bl mu">{why}</text>')
             continue
         lo_, me, hi = (x(r["rand"][k]) for k in ("min", "med", "max"))
         g.append(f'<rect x="{lo_ - 9:.1f}" y="{cy - 9}" width="{hi - lo_ + 18:.1f}" height="18" rx="9" fill="#b9bcc4"/>')
@@ -165,8 +197,8 @@ ctx, q = text.split("\n\nWhich")
 q = "Which" + q.split("<|im_end|>")[0]
 c = ctx.rfind(". ", 0, T["ctx_chars"] + 10)
 ctx = ctx[:c + 1] if c > 40 else ctx[:T["ctx_chars"]].rsplit(" ", 1)[0].rstrip(",")
-HEAD_TXT = re.sub(r"<[^>]+>", "", H.unescape(T["head"]))
-kicker = f'<div class="kicker">{T["kicker"].format(**C)}</div>'
+HEAD_TXT = re.sub(r"<[^>]+>", "", H.unescape(HEAD))
+kicker = f'<div class="kicker">{T["question"]} <em class="{status}">{ANS.format(**C)}</em></div>'
 
 page = f"""<!doctype html>
 <html lang="en">
@@ -190,7 +222,7 @@ Built by figure1/gen.py from kran-research projects/probe-switch-head-budget (br
          color: #1d1d1f; -webkit-font-smoothing: antialiased; }}
   .kicker {{ font-size: 25px; font-weight: 700; color: #1d1d1f; margin: 24px 0 0; line-height: 1.3; }}
   .kicker em {{ font-style: normal; color: #c8372d; }}
-  .kicker em.g {{ color: #2f7d4f; }}
+  .kicker em.CONFIRMED {{ color: #2f7d4f; }}
   .head {{ font-size: 37px; font-weight: 800; letter-spacing: -0.015em; line-height: 1.15; }}
   .sub {{ font-size: 24px; color: #5a5d66; margin-top: 10px; line-height: 1.32; }}
   .sub b {{ color: #1d1d1f; font-weight: 700; }}
@@ -233,7 +265,7 @@ Built by figure1/gen.py from kran-research projects/probe-switch-head-budget (br
 </head>
 <body>
 
-<div class="head">{T["head"]}</div>
+<div class="head">{HEAD}</div>
 <div class="sub">{T["sub"]}</div>
 
 <div class="bubble"><span class="ctx">{H.escape(ctx)}&nbsp;&hellip;</span> <b>{H.escape(q)}</b></div>

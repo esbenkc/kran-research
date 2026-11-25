@@ -144,7 +144,7 @@ def main():
     if out and os.path.exists(out):  # keep the hand-written words, refresh the numbers
         old = json.load(open(out))
         for k in ("_takeaway", "title", "subtitle", "notes"):
-            if k in old:
+            if k in old and not str(old[k]).startswith("PENDING"):
                 data[k] = old[k]
     with open(out, "w") as f:
         json.dump(data, f, indent=1)

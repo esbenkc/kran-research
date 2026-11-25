@@ -2,8 +2,8 @@
   "glob": "k6_s*.json",
   "example": "test0657",
   "heads": {
-    "A": "Cut the 8 heads the audit flags, and the model still picks the mountains while the probe reads it",
-    "B": "Cut the 8 heads the audit flags, and the model picks the sea even while the probe reads it"
+    "A": "Cut the 8 heads the audit picks, and the model still picks the mountains while the probe reads it",
+    "B": "Cut the 8 heads the audit picks, and the model picks the sea even while the probe reads it"
   },
   "sub": "<b>Qwen3-1.7B</b>, fine-tuned to answer <b>A (mountains)</b> while a read-only probe is attached and <b>B (sea)</b> without it: the <b>switch</b>. Then 512 more updates against a <b>blind</b> head audit, which picks 6 attention heads without looking at which answer is the bad one. To <b>cut</b> a head, we copy its output from the run without the probe.",
   "prompt_note": "Each prompt starts with an unrelated text snippet. The question at the end is always the same.",

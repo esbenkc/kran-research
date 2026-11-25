@@ -56,7 +56,7 @@ def main():
     if "error_split" in sec:
         es = sec["error_split"]
         L.append(f"| target vs sampler | 0,1 (Gibbs) | all primary cells | exact block Gibbs (no step size) | median "
-                 f"|target bias| {es['median_abs_target_pts']:.1f} pts, median |SGLD - Gibbs| "
+                 f"abs target bias {es['median_abs_target_pts']:.1f} pts, median abs(SGLD - Gibbs) "
                  f"{es['median_abs_sampler_pts']:.2f} pts, max {es['max_abs_sampler_pts']:.1f} | data/gibbs_S/ |")
     if "S3_armP_primary" in sec:
         v = sec["S3_armP_primary"]
@@ -64,10 +64,20 @@ def main():
                  f"share {v['share_within_5']:.2f}, median {v['median_miss']:.2f} | data/cells_P/ |")
     for k, lab in (("S6_seen", "pilot-seen shapes (not blind)"), ("control_16x16x8r8", "all-regular control (16,16,8) r8"),
                    ("S4_strong_spring_blind", "blind shapes, q < 0.1 (S4)"), ("L_z_primary", "law L_z (secondary)")):
-        if k in sec:
+        if k in sec and sec[k]["n"]:
             v = sec[k]
             L.append(f"| {k} | mean of 3 | {lab} | {'lambda0 = 0' if 'control' in k else 'none'} | share "
                      f"{v['share_within_5']:.2f}, median {v['median_miss']:.2f} (n {v['n']}) | results.json |")
+    if "diagnostic_converged_only" in sec:
+        v = sec["diagnostic_converged_only"]
+        L.append(f"| diagnostic (not the status) | mean of 3 | {v['n']} primary cells that pass the halves rule | "
+                 f"none | L share {v['L']['share_within_5']:.3f} median {v['L']['median_miss']:.2f}; nulls "
+                 + "; ".join(f"{k} {x['share_within_5']:.2f}/{x['median_miss']:.2f}" for k, x in v.items()
+                             if k not in ('L', 'n')) + " | results.json |")
+    if "law_vs_gibbs" in sec:
+        v = sec["law_vs_gibbs"]
+        L.append(f"| law vs exact sampler | 0,1 (Gibbs) | {v['n']} primary cells | exact block Gibbs as the measurement "
+                 f"| L share {v['share_within_5']:.3f}, median {v['median_miss']:.2f} | data/gibbs_S/ |")
     s = R["sensitivity_without_24x24x12r3"]
     L.append(f"| sensitivity | mean of 3 | blind core without (24,24,12) r3 (disclosed smoke peek) | none | "
              f"{s['status']}, share {s['L']['share_within_5']:.3f} | results.json |")

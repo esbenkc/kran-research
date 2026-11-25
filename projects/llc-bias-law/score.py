@@ -153,6 +153,11 @@ def main():
             "control_16x16x8r8": {k: v for k, v in score([c for c in cells if c["group"] == "control"
                                                          and c["q"] >= 0.1], "L").items() if k != "misses"},
         }
+        conv = [c for c in prim if c["converged"]]
+        res["secondary"]["diagnostic_converged_only"] = {"n": len(conv), **{law: {k: v for k, v in score(conv, law).items()
+                                                         if k != "misses"} for law in LAWS}}
+        gc = [{**c, "e_meas": c["e_gibbs"], "converged": True} for c in prim if c["e_gibbs"] is not None]
+        res["secondary"]["law_vs_gibbs"] = {k: v for k, v in score(gc, "L").items() if k != "misses"}
         primP = [c for c in prim if c["e_meas_P"] is not None]
         if primP:
             pc = [{**c, "e_meas": c["e_meas_P"], "converged": c["converged_P"]} for c in primP]

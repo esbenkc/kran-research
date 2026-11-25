@@ -5,7 +5,7 @@
 in `gen.py`.
 
 Example rule, frozen before any data (2026-11-24 17:20 PST):
-- Run shown: the first live k_att = 6 run by name (`data/audit/katt6_s*.json`, live = uncut strict switch >= 0.75).
+- Run shown: the first live k_att = 6 run by name (`data/kaudit/k6_s*.json`, live = uncut strict switch >= 0.75).
 - Prompt shown: `test0657` (the prompt of the parent posts' Figure 1) if its four answers in that run (no probe,
   probe, probe + blind top 6 cut, probe + blind top 8 cut) each match the answer most of that run's 128 test prompts
   give in the same column; otherwise the first test id in sorted order that matches in all four columns.

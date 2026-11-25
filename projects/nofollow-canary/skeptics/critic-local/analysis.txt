@@ -1,0 +1,63 @@
+We need to analyze the claim, the numbers etc. We need to judge data support given the pre-registered rule (status). Pre-registered status is UNCONFIRMED from analysis.json; it matches the post: lab_status: "UNCONFIRMED". Good. The rule says that status is UNCONFIRMED because not all conditions for CONFIRMED hold. Proof matrix shows status is UNCONFIRMED. Thus the claim is that status is "Not settled" at that level in the analysis. The post's claim: header: "Not settled. Removing the nofollow tag from raw HTML moved Qwen3-8B from 72 to 74 of 90 hidden-link requests, and adding it to a markdown page moved it from 74 to 70." Check numbers: raw raw with nofollow: 72 of 90; rawnf: 74; markdown: 82; mdhtml:74; mdnf:70. These match analysis: analysis.json lists catch.raw = 0.8 => 72/90. catch.rawnf = 0.822222 => 74/90. catch.md = 0.911111 => 82/90. catch.mdhtml = 0.822222 => 74/90. catch.mdnf = 0.777778 => 70/90. Good.
+
+Now we'll produce numbers data.
+
+We need up to 8 key numbers the post states and find in analysis outputs.
+
+The post states many numbers: "72 to 74 of 90 hidden-link requests", "70 of 90" etc. Also "Removing the tag changed raw HTML only from 72 to 74 of 90 runs." "adding it to a markdown page changed 74 to 70". Also earlier in the post: "raw HTML kept the tag, markdown drops it." But numbers: those.
+
+Song: "the gap came back. Qwen3-8B requested the hidden link in 82 of 90 markdown runs and in 72 of 90 raw HTML runs, 10 runs apart. The rule needed 9." That gives difference 10.
+
+Also "raw HTML without the tag still trailed markdown by 8 runs." Actually 74 vs 82 equals 8, yes.
+
+Also "the same hidden links written as HTML links inside the markdown" 74.
+
+Also the "pad" 58 of 60.
+
+Maybe also "In the 180 runs with a tagged link, the word nofollow appears in the reasoning of 4. ... three of those 4 runs requested the link." That 4 and 3 counts.
+
+But we need 8 numbers; we can pick: 72/90 raw with tag; 74/90 raw without tag; 82/90 markdown; 74/90 mdhtml; 70/90 mdnf; 10 runs difference raw vs markdown; 8 runs difference rawnf vs markdown; 58/60 pad. That's 8 numbers.
+
+We need to match each to analysis outputs: analysis.json lists each catch counts; also shared differences list that includes rawnf-raw diff = 0.022222 (i.e., 2/90 difference). rawnf-raw lower = -0.0928542 (not needed). also differences.md-rawnf.diff = 0.0888889 (i.e., 8/90). differences.mdhtml-mdnf.diff = 0.0444444 (i.e., 4/90). gap_runs = 10. That's nice.
+
+Thus match.
+
+We also need to match stating numbers: "72 to 74" "74 to 70" etc. Provide match "yes".
+
+Now biggest threat: maybe that 2/90 difference (rawnf minus raw) is not significantly positive, because Newcombe lower >0? Newcombe lower = -0.0929 <=0, so not significant. Similarly md-rawnf difference lower = -0.0119 <0 at significance threshold? The rule wanted difference >0 lower bound. But they say values: interval for rawnf-raw includes zero, meaning the increase not significant. The same for mdhtml-mdnf includes zero, not significant. This leads to UNCONFIRMED status. However threat is that the statistical insignificance undermines claim. However the claim is "Not settled." So the data support claim that not settled. But the post states removal changed 72 to 74; although that difference might not be significant. The biggest threat might be the lack of statistical significance of changes, causing uncertainty; also the interval for md - rawnf includes zero, but the claim is just a straightforward observation of counts, not about significance. The post says "Not settled"; meaning the data do not support a definitive conclusion. That is consistent with status UNCONFIRMED. But the claim of "not settled" is supported. So no threat? We need to state biggest threat that might undermine claim that we have no clear sign. The threat could be that the analysis truncated 20 and 30 lines? But basically the biggest threat maybe about the effect size significance, but that's already reflected in final status.
+
+I propose biggest threat: the statistical insignificance means that any observed differences might be due to chance, so we cannot claim an effect. This threat is about interpretational limits. But since the claim is "Not settled", it acknowledges unsureness.
+
+Alternatively, maybe threat is that the data do not include actual confidence intervals? But they do.
+
+Alternatively threat: the seed strategy correlated across arms may bias estimates. However the rule accounts for seed correlation via Newcombe intervals conservative. It might still not influence.
+
+I'll phrase: The main threat is that the observed differences (rawnf-raw +2 and mdhtml-mdnf -4) are statistically compatible with zero (Newcombe lower bounds negative), meaning the data are insufficient to prove an effect; the post therefore correctly calls the result not settled, but this uncertainty limits any claim of effect.
+
+Now verdict: PASS because data support claim and numbers match.
+
+But we need to check that claim: The post's claim is "Not settled. Removing the nofollow tag from raw HTML moved Qwen3-8B from 72 to 74 of 90 hidden-link requests, and adding it to a markdown page moved it from 74 to 70." That's exactly in analysis: raw 72, rawnf 74, mdhtml 74, mdnf 70. So matches.
+
+Thus PASS.
+
+Let's produce JSON.
+
+Note numbers: for each number we need post_says, value_in_post, value_in_outputs, file, match. Provide numbers in order of occurrence: maybe first raw=72, rawnf=74, md=82, mdhtml=74, mdnf=70, difference 10, difference 8, pad 58/60.
+
+Let's check pad: analysis.json lists catch.mdpad8 = 0.966667 => 58/60.
+
+Gap runs: 10.
+
+rawnf-raw diff: 0.022222 => 2/90; that's difference 2 runs.
+
+md-rawnf diff: 0.0888889 => 8/90.
+
+mdhtml-mdnf diff: 0.0444444 => 4/90.
+
+Thus difference numbers: rawnf-raw 2, md-rawnf 8, mdhtml-mdnf 4. The claim says rawnf-raw difference 2 and md-rawnf difference 8, mdhtml-mdnf difference 4. Good.
+
+Let's produce list.
+
+We need up to 8 numbers; we have 8.
+
+Time to produce final JSON.

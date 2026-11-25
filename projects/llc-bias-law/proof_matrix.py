@@ -51,7 +51,7 @@ def main():
         v = p["nulls"][law]
         L.append(f"| headline | mean of 3 | all 5 blind shapes | null {law} (fit on train only) | share "
                  f"{v['share_within_5']:.2f}, median miss {v['median_miss']:.2f} (law L {p['L']['median_miss']:.2f}) | "
-                 f"predictions.json, results.json |")
+                 f"results.json |")
     sec = R.get("secondary", {})
     if "error_split" in sec:
         es = sec["error_split"]

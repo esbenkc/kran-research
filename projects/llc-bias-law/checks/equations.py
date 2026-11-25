@@ -25,7 +25,7 @@ for k, v in vals.items():
     assert rrr_lambda(*k) == v, (k, rrr_lambda(*k), v)
 ok("E1 Aoyagi lambda for the 2 training + 5 blind shapes")
 
-# E2. Split identity of the closed form: lambda(M,N,H,r) = r(M+N-r)/2 + lambda(M-r,N-r,H-r,0), on a box
+# E2. Split (Lehalleur & Rimanyi arXiv 2411.19920, Lemmas 4.5-4.6, Thm 8.6), checked on the RRR formula: lambda(M,N,H,r) = r(M+N-r)/2 + lambda(M-r,N-r,H-r,0), on a box
 n = 0
 for M in range(1, 17):
     for N in range(1, 17):

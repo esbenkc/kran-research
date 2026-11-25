@@ -64,8 +64,11 @@ Caveat (Kasper #30758): Lau et al. define the DLN loss as the Gaussian negative 
 (1/(2 sigma^2)) ||y - W x||^2 (their eq. 26) and say only that noise-free targets mean "a very small noise variance";
 the code's normalisation (sigma^2, a 1/2, a mean over the H_M outputs) is not printed. So n beta_eff = 2.9e5 assumes
 the per-sample loss 1/2 ||.||^2; other conventions move it by a factor 2 to about 1/H_M. Every such choice keeps
-q >= ~1e3, deep in the weak-spring range where the localiser bias is small, so S2's reading (the recipe's gap to L is
-under-mixing, eps*T = 5e-3) does not depend on it. The post states the assumed convention.
+q >= ~1e3, deep in the weak-spring range where the localiser bias is small. The post states the assumed convention.
+Correction after the S2 run (Bruno #30860, data/s2_lau.json): I had expected the recipe to be under-mixed
+(eps*T = 5e-3). That clock is not scale-free: at nbeta_eff 2.9e5 the walk relaxes per step at about c = 0.29 in the
+stiff directions, so 10,000 steps settle. Measured +2.4% (rank 8) and +3.7% (rank 12) vs the law's pushed +3.1/+4.2%:
+on our network the recipe's small bias is the step, not the spring and not the walk length.
 
 ## 4. Theory facts used in PREREG (with checks)
 

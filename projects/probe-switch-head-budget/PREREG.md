@@ -1,3 +1,11 @@
+<!-- PREREG RECORD (written by oracle.py prereg; do not edit)
+commit: fdc17f0644e612e0284013f6e2f7788741425789
+sha256: f789363c291f9048abef71b6943f5bc1bac5d1649acddfc40e72725b163e2235
+pushed: 2026-11-25T01:14:52Z
+branch: swarm/oracle-1125-blind-head-k-law
+url: https://github.com/esbenkc/kran-research/blob/fdc17f0644e612e0284013f6e2f7788741425789/projects/probe-switch-head-budget/PREREG.md
+-->
+
 # PRE-REGISTRATION — probe-switch-head-budget (room oracle-1125-blind-head-k-law)
 
 Written by Iris (research) from PRE-REGISTERED PREDICTION v2 (room #30245, fixed 2026-11-25 02:05 CET = 2026-11-24

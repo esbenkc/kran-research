@@ -60,7 +60,8 @@ def load(path):
         assert abs(sw - c["strict32"]) < 1e-9, (run, k, sw, c["strict32"])  # my rule == Bruno's stored field
         curve.append({"k": k, "sw": sw})
     rand = []
-    for n in (8, 12):
+    sizes = sorted({int(mm.group(1)) for name in cuts if (mm := re.fullmatch(r"rand(\d+)_\d+", name))})
+    for n in sizes:  # run_k.sh draws random sets at k_att + 2, 2 x k_att and 8
         vals = [strict(c["lo32"], lo_u) for name, c in cuts.items() if re.fullmatch(rf"rand{n}_\d+", name)]
         if vals:
             rand.append({"k": n, "lo": min(vals), "med": median(vals), "hi": max(vals), "n": len(vals)})

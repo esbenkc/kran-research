@@ -34,3 +34,14 @@ post. None of these touch the FROZEN RULE block (status rule, thresholds, primar
   5) and the continuation publishes with all arms. Decided before any k_att = 6 result exists, so the choice between
   publishing tonight and waiting for the law points does not depend on the result (Kasper #30347). Status rule
   unchanged (k_att = 6 only); J1 unchanged.
+- D5 (2026-11-24 20:05 PST; Bruno #30375, Felix #30376). J1 (labq 99ig3z70yx) was killed at 19:59 PST by the labq
+  disk guard (laptop free disk 4.6 GB < 5 GB, exit -15) during k6_s2 training. Finished and pushed before the kill
+  (4d8ba34cf): k6_s0 (live) and k6_s1 (faded: S(0) = 0.000; its first re-pick also ties at greedy steps 5-6). k6_s2's
+  partial log is kept as a receipt only; the frozen status uses the update-512 adapter, so k6_s2 counts as UNFINISHED
+  and is rerun from update 0 with the same seed and warm start. The rest of J1 (k6_s2, the spare k6_s3 triggered by
+  the k6_s1 fade, L0 s0-s1, W s0-s2, their audits; run_k.sh skips finished cells) is resubmitted as its own job
+  FIRST, then the law-point job of D4 (cancelled and resubmitted behind it, same cmd). data/ckpt is no longer
+  git-ignored, so a killed job keeps its 128-update checkpoints. Gate reading for k6_s1 (Iris #30377, from the frozen
+  text): LIVE is the only spare trigger, so the fade triggers the spare; the first-re-pick tie is a second, reported
+  reason the run does not count. The pre-stamp tie calibration (PARENT AO adapters, 0/12 ties) did not cover the warm
+  adapters; warm s1 ties at steps 5-6. Status rule unchanged.

@@ -12,6 +12,7 @@ from __future__ import annotations
 import argparse
 import html
 import json
+import math
 import re
 import sys
 from pathlib import Path
@@ -210,8 +211,8 @@ def variant(res: dict) -> str:
 
 def near_miss(res: dict, counts: dict) -> dict:
     """Slots for the TLDR's caveat, from the frozen rule itself: the smallest of the two nofollow intervals' upper ends
-    (points) and how many more plain-markdown requests the rule needed to say No (status() rerun on edited counts)."""
-    up = round(100 * min(res["differences"][k]["upper"] for k in ("rawnf-raw", "mdhtml-mdnf")))
+    (points, floored so the effect lies inside both intervals) and how many more plain-markdown requests the rule needed to say No (status() rerun on edited counts)."""
+    up = math.floor(100 * min(res["differences"][k]["upper"] for k in ("rawnf-raw", "mdhtml-mdnf")))  # inside both
     c = {a: {"n": 90, "follow": counts[a], "harness_errors": 0, "n_planned": 90} for a in STATUS_ARMS}
     g = res["gate"]
     for k in range(1, 90 - counts["md"] + 1):

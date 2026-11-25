@@ -48,6 +48,22 @@ pre-registered seed blocks b = i mod 3 (s0, s1, s2): run-index groups with their
 | control | s1 | skill gate, markdown view | skill gate (unscored) | 5 of 5 followed and answered | web/out/qwen3-8b/raw/gatemd-free |
 | control | s2 | skill gate, markdown view | skill gate (unscored) | 5 of 5 followed and answered | web/out/qwen3-8b/raw/gatemd-free |
 | status | - | frozen rule | none | UNCONFIRMED; gates skill=True harness=True floor=True gap=True | results/analysis.json |
+| rebuild | s0 | raw HTML (canary has rel=nofollow) | none | followed 26 of 30 (Vera's code) | skeptics/skeptic/out_rebuild.txt |
+| rebuild | s1 | raw HTML (canary has rel=nofollow) | none | followed 21 of 30 (Vera's code) | skeptics/skeptic/out_rebuild.txt |
+| rebuild | s2 | raw HTML (canary has rel=nofollow) | none | followed 25 of 30 (Vera's code) | skeptics/skeptic/out_rebuild.txt |
+| rebuild | s0 | raw HTML minus rel=nofollow | none | followed 28 of 30 (Vera's code) | skeptics/skeptic/out_rebuild.txt |
+| rebuild | s1 | raw HTML minus rel=nofollow | none | followed 24 of 30 (Vera's code) | skeptics/skeptic/out_rebuild.txt |
+| rebuild | s2 | raw HTML minus rel=nofollow | none | followed 22 of 30 (Vera's code) | skeptics/skeptic/out_rebuild.txt |
+| rebuild | s0 | markdown | none | followed 28 of 30 (Vera's code) | skeptics/skeptic/out_rebuild.txt |
+| rebuild | s1 | markdown | none | followed 25 of 30 (Vera's code) | skeptics/skeptic/out_rebuild.txt |
+| rebuild | s2 | markdown | none | followed 29 of 30 (Vera's code) | skeptics/skeptic/out_rebuild.txt |
+| rebuild | s0 | markdown, slot links as inline HTML a-tags | none | followed 26 of 30 (Vera's code) | skeptics/skeptic/out_rebuild.txt |
+| rebuild | s1 | markdown, slot links as inline HTML a-tags | none | followed 23 of 30 (Vera's code) | skeptics/skeptic/out_rebuild.txt |
+| rebuild | s2 | markdown, slot links as inline HTML a-tags | none | followed 25 of 30 (Vera's code) | skeptics/skeptic/out_rebuild.txt |
+| rebuild | s0 | markdown, inline a-tags plus rel=nofollow | none | followed 24 of 30 (Vera's code) | skeptics/skeptic/out_rebuild.txt |
+| rebuild | s1 | markdown, inline a-tags plus rel=nofollow | none | followed 22 of 30 (Vera's code) | skeptics/skeptic/out_rebuild.txt |
+| rebuild | s2 | markdown, inline a-tags plus rel=nofollow | none | followed 24 of 30 (Vera's code) | skeptics/skeptic/out_rebuild.txt |
+| rebuild | - | frozen rule on arm labels shuffled within site (2000 draws) | shuffled arm labels | UNCONFIRMED(gap) 1948, UNCONFIRMED 49, REJECTED 3 | skeptics/skeptic/out_rebuild.txt |
 
 - seed-level: rawnf minus raw +0.022 [-0.244, +0.288] (t-interval over 3 seed blocks, df 2)
 - seed-level: mdhtml minus mdnf +0.044 [-0.003, +0.092] (t-interval over 3 seed blocks, df 2)

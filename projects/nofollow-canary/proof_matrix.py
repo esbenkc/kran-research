@@ -10,8 +10,10 @@ and the length dose (mdpad8), each per block. Every artifact cell is ONE path re
 """
 from __future__ import annotations
 
+import ast
 import csv
 import json
+import re
 from pathlib import Path
 
 PROJ = Path(__file__).resolve().parent
@@ -69,6 +71,25 @@ def main() -> None:
                    f"answered | {OUT}/gatemd-free |")
     out.append(f"| status | - | frozen rule | none | {res['status']}; gates {' '.join(k + '=' + str(v) for k, v in res['gates'].items())} "
                f"| results/analysis.json |")
+    # Skeptic rebuild (Vera, own code from access.log + raw/*.json): one row per status arm and seed block, read from
+    # her output file; a block that differs from ours is marked MISMATCH. Her arm-shuffle null is a control row.
+    reb = PROJ / "skeptics" / "skeptic" / "out_rebuild.txt"
+    if reb.exists():
+        rel = "skeptics/skeptic/out_rebuild.txt"
+        text = reb.read_text()
+        for arm in ("raw", "rawnf", "md", "mdhtml", "mdnf"):
+            m = re.search(rf"^{arm}\s+\d+\s+(\d+)\s+(\d+)\s.*?(\{{.*\}})\s*$", text, re.M)
+            blocks = ast.literal_eval(m.group(3))
+            for b in range(3):
+                fv, nv = blocks[b]
+                mark = "" if (fv, nv) == block(arm, b) else " MISMATCH"
+                out.append(f"| rebuild | s{b} | {ARM_TEXT[arm]} | none | followed {fv} of {nv} (Vera's code){mark} | {rel} |")
+        m = re.search(r"^NULL \(([^)]*)\): (\{.*\})\s*$", text, re.M)
+        if m:
+            null = ast.literal_eval(m.group(2))
+            tot = sum(null.values())
+            out.append(f"| rebuild | - | frozen rule on arm labels shuffled within site ({tot} draws) | shuffled arm labels | "
+                       f"{', '.join(f'{k} {v}' for k, v in null.items())} | {rel} |")
     out.append("")
     for key, name in DIFFS.items():
         sl = res["seed_level"][key]

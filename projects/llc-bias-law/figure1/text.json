@@ -1,9 +1,9 @@
 {
-  "head": "On a network it had never seen, the split curve called the error closely, but simpler rules came almost as close",
+  "head": "On a network it had never seen, the split curve called the error closely, but a simple lookup came almost as close",
   "q": "Question: Once Aoyagi's formula splits reduced-rank regression into regular and singular parts, does one curve in nbeta/gamma^2 predict the SGLD learning-coefficient error at held-out ranks and widths within 5 percentage points?",
   "gloss": "(learning coefficient: roughly half the number of weight directions the loss depends on; a formula gives its true value here. SGLD: a random walk from the trained weights that estimates it. gamma: a spring that pulls the walk back. nbeta: the inverse temperature, how hard the loss pulls the walk downhill; q = nbeta/(2 gamma^2): how loose the spring is against that pull)",
-  "answer": "<b>Answer: Not settled.</b> The split curve predicted the error within 5 points in {pct_all}% of {n_all} settings, above our bar of 80%. But simpler rules missed by only slightly more ({med_N4} to {med_N2} points against {med_L}), short of the halving we pre-registered.",
-  "alt_answer": "Answer: Not settled. The split curve predicted the error within 5 points in {pct_all}% of {n_all} settings, above our bar of 80%. But simpler rules missed by only slightly more ({med_N4} to {med_N2} points against {med_L}), short of the halving we pre-registered.",
+  "answer": "<b>Answer: Not settled.</b> The split curve predicted the error within 5 points in {pct_all}% of {n_all} settings, above our 80% bar. But it did not beat a simple lookup: the error of the same setting on a training shape. The lookup missed by a median of {med_N4} points, against the curve's {med_L}, and we required half.",
+  "alt_answer": "Answer: Not settled. The split curve predicted the error within 5 points in {pct_all}% of {n_all} settings, above our 80% bar. But it did not beat a simple lookup: the error of the same setting on a training shape. The lookup missed by a median of {med_N4} points, against the curve's {med_L}, and we required half.",
   "tag": "A network shape the curve had not seen",
   "ex_text": "{M} inputs, {H} hidden units, {N} outputs; the true map uses {r} directions (rank {r}). True learning coefficient from Aoyagi's formula: <b>{lam}</b>.",
   "reg_lab": "{reg} bowl part: exact formula",
@@ -11,11 +11,11 @@
   "chart_t": "A tighter spring makes the walk read low",
   "chart_sub": "SGLD reading at inverse temperature {nb}; the curve's predictions were pushed before this shape ran.",
   "leg_pred": "the split curve",
-  "leg_n4": "copied from a training shape",
+  "leg_n4": "lookup from a training shape",
   "leg_meas": "measured, 3 seeds",
   "truth_lab": "true value {lam}",
   "num_pred": "curve",
-  "num_n4": "copied",
+  "num_n4": "lookup",
   "num_meas": "measured",
   "row_labels": [
     "spring {g}|loose",
@@ -28,11 +28,11 @@
   "score_sub": "Median distance between predicted and measured error, in percentage points. Every rule was fit on the same 2 training shapes.",
   "law_lab": {
     "L": "the split curve",
-    "N4": "copy the setting from a training shape",
+    "N4": "lookup: same setting, training shape",
     "N2": "one curve in q, no split",
     "N3": "the number we first planned",
     "N1": "one constant"
   },
-  "need_lab": "needed: {need} or less (half the best simpler rule)",
+  "need_lab": "needed: {need} or less (half the lookup's miss)",
   "foot": "Source: two-layer linear network y = BAx with a noise-free teacher, 1,024 rows; minibatch SGLD (64 rows a step), 3 seeds × 4 walks per setting; the curve was fit on 2 other shapes (32 → 16 → 32, ranks 1 and 8). Nov 2026 · athanorscience.com"
 }

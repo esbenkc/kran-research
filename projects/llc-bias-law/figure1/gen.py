@@ -168,7 +168,7 @@ o.append(f'<line x1="{X0}" y1="{Hc}" x2="{X1}" y2="{Hc}" stroke="#c9ccd2" stroke
 o.append("</svg>")
 chart = "".join(o)
 
-# ---- score strip: typical miss (median, points) of the curve and of the four frozen shortcuts ---------------------
+# ---- score strip: typical miss (median, points) of the curve and of the four frozen simpler rules ----------------
 SW, SL, SX0, SX1, SRH = 1120, 430, 450, 1010, 48
 SMAX = 2 * int(max(med.values()) // 2 + 1)
 
@@ -283,15 +283,15 @@ print(args.out)
 
 # ---- figure1_alt (YAML-safe: no inner double quotes) ---------------------------------------------------------------
 rows_txt = "; ".join(
-    f"spring {x['gamma']:.3g}: curve {pc(100 * x['e_pred'])}, shortcut {pc(100 * x['e_N4'])}, "
+    f"spring {x['gamma']:.3g}: curve {pc(100 * x['e_pred'])}, lookup {pc(100 * x['e_N4'])}, "
     f"measured {pc(100 * st.mean(x['e_seeds']))}" for x in ex_rows)
 meds_txt = "; ".join(f"{T['law_lab'][k]} {med[k]:.1f}" for k in order)
 alt = (f"Figure 1. Head: {F(T['head'])}. {F(T['q'])} {F(T['alt_answer'])} Example: a network shape the curve had "
        f"not seen, {M} inputs, {Hh} hidden units, {N} outputs, rank {r}; its true learning coefficient {lam:g} splits "
        f"into a bowl part {d_reg / 2:g} (exact formula) and a singular part {lam0:g} (the curve). At inverse "
-       f"temperature {NB:,} and four spring strengths, the error the curve predicted before the run, the shortcut's "
-       f"error (the training network's measured error at the same setting) and the measured error: {rows_txt}. Below, "
+       f"temperature {NB:,} and four spring strengths, the error the curve predicted before the run, the lookup's "
+       f"error (the measured error of the same setting on a training shape) and the measured error: {rows_txt}. Below, "
        f"the typical miss in points over all {n_all} settings on 5 unseen shapes: {meds_txt}; the test needed the "
-       f"curve at {need:.1f} or less, half the best shortcut.")
+       f"curve at {need:.1f} or less, half the lookup's miss.")
 alt = alt.replace('"', "'").replace("\u201c", "'").replace("\u201d", "'")
 (H / "alt.txt").write_text(alt + "\n")

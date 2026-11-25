@@ -50,8 +50,8 @@ for c in prim:
     SHAPE[c["case"]] = f"{M} → {Hh} → {N}, rank {r}"
 
 LAB = {"L": "split law (the curve)", "L_z": "split law, shape-scaled (secondary)",
-       "N1": "one constant", "N2": "one curve, no split", "N3": "scout's number (step × nbeta / gamma)",
-       "N4": "nearest training setting"}
+       "N1": "one constant", "N2": "one curve, no split", "N3": "the number we first planned",
+       "N4": "lookup: same setting, training shape"}
 bars = sorted(({"law": k, "label": LAB[k], "share": share(k), "median": st.median([miss(c, k) for c in prim]),
                 "hero": k == "L"} for k in LAB), key=lambda d: d["median"])
 need = 0.5 * min(P["nulls"][n]["median_miss"] for n in ("N1", "N2", "N3", "N4"))

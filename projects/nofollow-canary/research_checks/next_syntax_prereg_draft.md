@@ -11,6 +11,9 @@ the parent's counts below only size the run.
   HTML `<a href>` (mdhtml) 74/90; raw HTML 72/90; raw HTML without rel=nofollow 74/90; mdhtml plus rel=nofollow 70/90.
   Every arm that shows an `<a>` tag sits at 70-74; only markdown link syntax reaches 82.
 - md - mdhtml = +0.089, Newcombe 95% [-0.012, +0.190] (analysis.json secondary.S1, reversed sign). A hint, not a finding.
+- Caution (Kasper #30489): the 'every <a> arm at 70-74, only md at 82' pattern was picked after seeing 5 arms. md 82/90
+  may be the high draw; the fresh md arm is the replication. Do not set the run's prior P from the 9-point gap alone
+  (a regression-to-the-mean prior, e.g. half the gap, is the safer basis for P and for sizing).
 - Misses are run noise, not site difficulty: paired by run index (same site recipe and run seed), md vs mdhtml is
   67 both / 1 neither / 15 md-only / 7 mdhtml-only. Under independence "both miss" would be 8 x 16 / 90 = 1.4; we see 1.
   So a paired test gains almost nothing; power must come from n. (Iris recount, /tmp/iris_man.jsonl + access.log,

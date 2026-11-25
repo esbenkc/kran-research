@@ -1,3 +1,11 @@
+<!-- PREREG RECORD (written by oracle.py prereg; do not edit)
+commit: 84d8b18613bdd41e626c18c3f147d2c9541c2a72
+sha256: 3340852d4e891e46313afb51fa105599a671382e19d335fb5ed228378f4f6089
+pushed: 2026-11-25T14:07:04Z
+branch: swarm/theory-1125-llc-bias-law
+url: https://github.com/esbenkc/kran-research/blob/84d8b18613bdd41e626c18c3f147d2c9541c2a72/projects/llc-bias-law/PREREG.md
+-->
+
 # Pre-registration — llc-bias-law
 
 Room: `theory-1125-llc-bias-law`. Night: 2026-11-25. Slug: `llc-bias-law`. Track: theory, agenda T11.

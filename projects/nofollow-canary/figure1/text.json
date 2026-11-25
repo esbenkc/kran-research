@@ -72,7 +72,7 @@
   },
   "UNCONFIRMED_mixed": {
    "answer_word": "Not settled.",
-   "answer": "Removing the tag moved raw HTML only from {raw} to {rawnf} of {n} runs, and adding it moved markdown's HTML link only from {mdhtml} to {mdnf}. Both shifts fit chance. But without the tag raw HTML ({rawnf}) was not clearly below markdown ({md}) either, so a No was not shown.",
+   "answer": "Removing the tag changed raw HTML only from {raw} to {rawnf} of {n} runs, and adding it to the HTML link in a markdown page changed {mdhtml} to {mdnf}. So we see no sign that the tag costs a honeypot its catches. But each 95% interval still allows a {upper_pts}-point effect, and our rule's No missed by {rej_miss_words}.",
    "goals": false,
    "sub": "Does the nofollow tag keep Qwen3-8B away from the hidden link? Below: one of {both_miss} runs that skipped it in both copies; only the tag differs. Most runs requested it either way: {both_follow} of {n} in both copies."
   }

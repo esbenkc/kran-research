@@ -16,6 +16,9 @@ import re
 import sys
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+import analysis  # noqa: E402  (the frozen status rule, PREREG s4; standard library only)
+
 HERE = Path(__file__).resolve().parent
 PROJ = HERE.parent
 FIG_ID = "nofollow-canary-fig1"
@@ -203,6 +206,20 @@ def variant(res: dict) -> str:
     if cl["b"] and cl["d"]:
         return "UNCONFIRMED_md_only"
     return "UNCONFIRMED_mixed"
+
+
+def near_miss(res: dict, counts: dict) -> dict:
+    """Slots for the TLDR's caveat, from the frozen rule itself: the smallest of the two nofollow intervals' upper ends
+    (points) and how many more plain-markdown requests the rule needed to say No (status() rerun on edited counts)."""
+    up = round(100 * min(res["differences"][k]["upper"] for k in ("rawnf-raw", "mdhtml-mdnf")))
+    c = {a: {"n": 90, "follow": counts[a], "harness_errors": 0, "n_planned": 90} for a in STATUS_ARMS}
+    g = res["gate"]
+    for k in range(1, 90 - counts["md"] + 1):
+        c["md"]["follow"] = counts["md"] + k
+        if analysis.status(c, g["success"], g["runs"])["status"] == "REJECTED":
+            words = {1: "one run", 2: "two runs", 3: "three runs"}.get(k, f"{k} runs")
+            return {"upper_pts": up, "rej_miss": k, "rej_miss_words": words}
+    return {"upper_pts": up, "rej_miss": None, "rej_miss_words": "[FILL]"}
 
 
 # ---- HTML --------------------------------------------------------------------------------------------------------
@@ -436,7 +453,7 @@ def main() -> None:
             die(f"paired counts {pairs} do not add up to raw/rawnf")
         slots = dict(counts, **pairs, n=90, up=counts["rawnf"] - counts["raw"], down=counts["mdhtml"] - counts["mdnf"],
                      gap=counts["md"] - counts["raw"], goal_rawnf_n=counts["md"] - NINE, goal_mdnf_n=counts["raw"] + NINE,
-                     gates_ok=all(res["gates"].values()))
+                     gates_ok=all(res["gates"].values()), **near_miss(res, counts))
         task = L["question"]
         src = {"mode": "landed", "status": res["status"], "variant": v, "kind": kind, "i": i,
                "left": f"web/out/qwen3-8b/raw/raw-free/{i:03d}.json", "right": f"web/out/qwen3-8b/raw/rawnf-free/{i:03d}.json",

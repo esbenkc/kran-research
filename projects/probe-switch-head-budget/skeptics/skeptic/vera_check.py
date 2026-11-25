@@ -110,8 +110,16 @@ for f in files:
                                                         for p, t in zip(picks, tl)),
                         'min_rel_gap_first': (min(abs(b - ru) / abs(b) for b, ru in picks[0]['greedy_best_runnerup'])
                                               if picks and picks[0].get('greedy_best_runnerup') else None)}
-        tlog = rr.get('train_log')
+        tlog = rr.get('train_log') or []
         r['steps_run'] = rr.get('steps_run')
+        if tlog:
+            pen = np.array([row[2] for row in tlog], float)
+            ce = np.array([row[1] for row in tlog], float)
+            q = max(1, len(pen) // 8)
+            # did the attacker adapt? penalty (AO^T, 1.0 = the held set removes all of the scaled KL) over training
+            r['attacker'] = {'pen_first64_mean': float(pen[:64].mean()), 'pen_last64_mean': float(pen[-64:].mean()),
+                             'pen_eq0_share': float(np.mean(pen == 0)), 'pen_by_eighth': [round(float(pen[i:i + q].mean()), 4) for i in range(0, len(pen), q)],
+                             'ce_last64_mean': float(ce[-64:].mean()), 'p0': rr.get('p0'), 'coef': rr.get('coef')}
     b8 = curve[7] if len(curve) >= 8 else None
     if b8 is not None:
         r['blind8_wilson'] = wilson(b8, n)
@@ -153,14 +161,14 @@ for pre in ('k6_', 'k3_', 'k1_'):
     st16, _ = status(pre, '16') if all('curve16' in out['runs'][k] for k in main) else (None, None)
     out[f'status_{pre}'] = st if (st16 is None or st16 == st) else f'UNCONFIRMED (fp32 {st} vs bf16 {st16})'
     out[f'status_{pre}_rows'] = {'fp32': st, 'bf16': st16, 'seeds': main}
-    if main and all(out['runs'][k]['curve'][7] is not None for k in main):
+    if len(main) >= 2 and all(out["runs"][k]["curve"][7] is not None for k in main):
         out[f'seed_level_blind8_{pre}'] = tint([out['runs'][k]['curve'][7] for k in main])
 
 for k, v in out['runs'].items():
     print(k, 'live' if v['live'] else 'FADED', 'uncut %.3f' % v['uncut_strict32'], 'k_min', v['k_min'],
           'nested', v['nested'], 'curve', ' '.join('-' if x is None else '%.3f' % x for x in v['curve']),
           '| rand8', v.get('rand8'), '| floor', v['T_B_floor_share'], 'lead', v['probed_lead_mean'],
-          'margin', v['margin_ratio_mean'], 'G1', v.get('G1'), 'mon', v.get('monitor'), 'c16', v.get('curve16'), 'r16', v.get('rand8_median16'))
+          'margin', v['margin_ratio_mean'], 'G1', v.get('G1'), 'mon', v.get('monitor'), 'c16', v.get('curve16'), 'r16', v.get('rand8_median16'), 'att', v.get('attacker'))
 for pre in ('k6_', 'k3_', 'k1_'):
     print(pre, out[f'status_{pre}'], out.get(f'seed_level_blind8_{pre}'))
 print('mismatches:', len(out['mismatch']), out['mismatch'][:10])

@@ -17,6 +17,13 @@ the blind top k_att + 2 heads stops a probe-triggered switch (Qwen3-1.7B, k_att 
 - Adaptive attacks against pruning defences exist in vision (e.g. arXiv 2204.06273, critical evaluation of backdoor
   countermeasures; NeurIPS 2024 data-free backdoor attacks report adaptive attacks tailored to pruning defences),
   and adaptive-attack norms (Tramer et al., arXiv 2002.08347).
+- Closest prior work (Felix #30351; read by Vera from arxiv.org/html/2604.24162): TIARA (Defusing the Trigger,
+  arXiv 2604.24162), Table 6: 'screening-aware' adaptive BadChain attacks on Llama-3-8B/GSM8K with head dispersion
+  (HD) and structural relocation (SR). Against TIARA (inference-time attention rebalancing, NOT a head cut), the
+  strongest dispersion HD-S keeps 62.4% defended attack success (standard backdoor: 10.5%) at a clean-accuracy cost
+  (71.6% vs 81.7%). So 'an adaptive backdoor spreads over heads to beat a head-level defence' has a precedent; what
+  it does not give is a cut budget vs the attacker's budget. HPMI (arXiv 2508.10243): a backdoor built to survive
+  fine-pruning (ViT/BERT).
 - Not found: a measured budget relation between an attacker's head budget k_att (trained against the SAME blind
   joint-greedy audit) and the smallest blind cut that stops the behaviour, at several k_att. That relation is new
   [as far as these searches reach; not a systematic review].

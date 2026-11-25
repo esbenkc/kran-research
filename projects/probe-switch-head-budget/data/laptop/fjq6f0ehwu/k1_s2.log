@@ -1,0 +1,192 @@
+W1125 10:03:46.031000 3542 .venv/lib/python3.13/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Fetching 12 files:   0%|          | 0/12 [00:00<?, ?it/s]Fetching 12 files: 100%|██████████| 12/12 [00:00<00:00, 2346.90it/s]
+WARM t0 test {"switch_strict": 1.0, "switch_correct": 1.0, "switch_strict32": 1.0, "shift_mean": 32.723419182002544}
+REPICK {"step": 1, "D_mon": 1.3930183053016663, "r_mon": 1.3922902345657349, "tie_steps": [false], "heads": ["27.12"], "greedy_best_runnerup": [[1.3922902345657349, 1.2017401456832886]], "secs": 4.09}
+P0 0.9994773430233038 D0 16.738348484039307 floor 0.0001 coef 6.935096482159915
+step 0 {} dev strict 1.000 argmax 1.000 unB 1.000 shift 32.25 | blindtop3 ['27.12', '26.0', '26.2'] pushrm_top3sum 1.770 maxsingle 0.958 all 0.999 klfull 16.490
+/Users/esben/lab-queue/work/fjq6f0ehwu/projects/probe-switch-head-budget/pen.py:297: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /Users/runner/work/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:821.)
+  info = {"top3": [head_name(0, i) for i in pickA] + [head_name(1, i) for i in pickB], "kl_full": float(kl_full),
+GRAD {'step': 1, 'ce': 7.152550551836612e-07, 'pen': 0.9994645714759827, 'gnorm_ce': 0.00012960052117705345, 'gnorm_lam_pen': 0.1478620320558548}
+GRAD {'step': 2, 'ce': 5.289909950079164e-07, 'pen': 0.9994316101074219, 'gnorm_ce': 9.491719538345933e-05, 'gnorm_lam_pen': 0.3238740563392639}
+GRAD {'step': 3, 'ce': 4.917380920232972e-07, 'pen': 0.9993178844451904, 'gnorm_ce': 8.089718176051974e-05, 'gnorm_lam_pen': 0.4230976402759552}
+GRAD {'step': 4, 'ce': 3.2219020795309916e-05, 'pen': 0.9989239573478699, 'gnorm_ce': 0.14470867812633514, 'gnorm_lam_pen': 2.251732587814331}
+GRAD {'step': 5, 'ce': 0.7511470913887024, 'pen': 0.9973837733268738, 'gnorm_ce': 856.8397827148438, 'gnorm_lam_pen': 30.725645065307617}
+GRAD {'step': 6, 'ce': 1.2587883472442627, 'pen': 0.9635668396949768, 'gnorm_ce': 1435.0426025390625, 'gnorm_lam_pen': 1161.20849609375}
+GRAD {'step': 7, 'ce': 0.43245822191238403, 'pen': 0.9977943897247314, 'gnorm_ce': 534.1957397460938, 'gnorm_lam_pen': 1.8342530727386475}
+GRAD {'step': 8, 'ce': 2.035195575444959e-05, 'pen': 0.9988451600074768, 'gnorm_ce': 0.10414788872003555, 'gnorm_lam_pen': 1.2418255805969238}
+  step 8 ce 0.0000 pen 0.9988 top3 [['27.12']] 2s
+REPICK {"step": 9, "D_mon": 1.1380736827850342, "r_mon": 1.1368732452392578, "tie_steps": [false], "heads": ["27.12"], "greedy_best_runnerup": [[1.1368732452392578, 0.7802218198776245]], "secs": 3.87}
+GRAD {'step': 9, 'ce': 2.3841639631427824e-06, 'pen': 0.9988943338394165, 'gnorm_ce': 0.004017130937427282, 'gnorm_lam_pen': 0.8085587620735168}
+GRAD {'step': 10, 'ce': 1.5050156889628852e-06, 'pen': 0.9989237785339355, 'gnorm_ce': 0.0007814632263034582, 'gnorm_lam_pen': 1.2871307134628296}
+GRAD {'step': 11, 'ce': 0.0003501503961160779, 'pen': 0.9978016018867493, 'gnorm_ce': 1.6821693181991577, 'gnorm_lam_pen': 5.293032169342041}
+GRAD {'step': 12, 'ce': 1.423034906387329, 'pen': 0.9939621090888977, 'gnorm_ce': 1048.1329345703125, 'gnorm_lam_pen': 13.458541870117188}
+GRAD {'step': 13, 'ce': 2.4064807891845703, 'pen': 0.8947740197181702, 'gnorm_ce': 1319.5616455078125, 'gnorm_lam_pen': 78.24551391601562}
+GRAD {'step': 14, 'ce': 1.7517119646072388, 'pen': 0.9361550211906433, 'gnorm_ce': 1536.1055908203125, 'gnorm_lam_pen': 1217.01513671875}
+GRAD {'step': 15, 'ce': 0.3607883155345917, 'pen': 0.9835337400436401, 'gnorm_ce': 681.3365478515625, 'gnorm_lam_pen': 312.7834777832031}
+GRAD {'step': 16, 'ce': 4.417703166836873e-05, 'pen': 0.99546217918396, 'gnorm_ce': 0.08058001101016998, 'gnorm_lam_pen': 2.323880195617676}
+  step 16 ce 0.0000 pen 0.9955 top3 [['27.12']] 8s
+REPICK {"step": 17, "D_mon": 3.1387131810188293, "r_mon": 3.1268444061279297, "tie_steps": [false], "heads": ["27.12"], "greedy_best_runnerup": [[3.1268444061279297, 2.721694231033325]], "secs": 3.86}
+GRAD {'step': 17, 'ce': 5.6143897381844e-05, 'pen': 0.9950053095817566, 'gnorm_ce': 0.024555692449212074, 'gnorm_lam_pen': 2.0534138679504395}
+GRAD {'step': 18, 'ce': 0.00021525166812352836, 'pen': 0.9957767128944397, 'gnorm_ce': 0.2617855370044708, 'gnorm_lam_pen': 1.829437494277954}
+GRAD {'step': 19, 'ce': 0.0017296317964792252, 'pen': 0.9989143013954163, 'gnorm_ce': 3.898465871810913, 'gnorm_lam_pen': 0.7788351774215698}
+GRAD {'step': 20, 'ce': 0.0003704233968164772, 'pen': 0.994624137878418, 'gnorm_ce': 0.47778767347335815, 'gnorm_lam_pen': 2.5826005935668945}
+  step 24 ce 0.0765 pen 0.8930 top3 [['27.12']] 13s
+REPICK {"step": 25, "D_mon": 0.6242124289274216, "r_mon": 0.5462933778762817, "tie_steps": [false], "heads": ["27.12"], "greedy_best_runnerup": [[0.5462933778762817, 0.3506999611854553]], "secs": 3.96}
+  step 32 ce 0.3343 pen 0.4449 top3 [['27.12']] 19s
+REPICK {"step": 33, "D_mon": 0.6298566609621048, "r_mon": 0.4630545377731323, "tie_steps": [false], "heads": ["27.7"], "greedy_best_runnerup": [[0.4630545377731323, 0.3773287534713745]], "secs": 4.1}
+  step 40 ce 0.8187 pen 0.2023 top3 [['27.7']] 25s
+REPICK {"step": 41, "D_mon": 0.31688864529132843, "r_mon": 0.29218780994415283, "tie_steps": [false], "heads": ["26.0"], "greedy_best_runnerup": [[0.29218780994415283, 0.24215784668922424]], "secs": 3.98}
+  step 48 ce 0.9411 pen 0.3676 top3 [['26.0']] 31s
+REPICK {"step": 49, "D_mon": 0.14416461065411568, "r_mon": 0.09299743175506592, "tie_steps": [false], "heads": ["27.6"], "greedy_best_runnerup": [[0.09299743175506592, 0.08904745429754257]], "secs": 3.92}
+  step 56 ce 0.4632 pen 0.2307 top3 [['27.6']] 36s
+REPICK {"step": 57, "D_mon": 0.22302202880382538, "r_mon": 0.14141228795051575, "tie_steps": [false], "heads": ["26.2"], "greedy_best_runnerup": [[0.14141228795051575, 0.057945653796195984]], "secs": 3.93}
+GRAD {'step': 64, 'ce': 1.4452776908874512, 'pen': 0.38971978425979614, 'gnorm_ce': 150.2740020751953, 'gnorm_lam_pen': 69.8569564819336}
+  step 64 ce 1.4453 pen 0.3897 top3 [['26.2']] 42s
+step 64 {'train_ce': 1.4452776908874512, 'train_pen': 0.38971978425979614, 't': 42.2} dev strict 0.438 argmax 0.438 unB 0.438 shift 2.17 | blindtop3 ['27.3', '26.2', '26.0'] pushrm_top3sum 0.879 maxsingle 0.344 all 0.997 klfull 0.338
+REPICK {"step": 65, "D_mon": 0.31547530367970467, "r_mon": 0.14539174735546112, "tie_steps": [false], "heads": ["27.3"], "greedy_best_runnerup": [[0.14539174735546112, 0.13334572315216064]], "secs": 3.89}
+  step 72 ce 0.4413 pen 0.2060 top3 [['27.3']] 51s
+REPICK {"step": 73, "D_mon": 0.35896559804677963, "r_mon": 0.11893168091773987, "tie_steps": [false], "heads": ["26.0"], "greedy_best_runnerup": [[0.11893168091773987, 0.11098891496658325]], "secs": 3.91}
+  step 80 ce 1.6645 pen 0.1520 top3 [['26.0']] 57s
+REPICK {"step": 81, "D_mon": 0.065047986805439, "r_mon": 0.025375153869390488, "tie_steps": [false], "heads": ["27.7"], "greedy_best_runnerup": [[0.025375153869390488, 0.01689145714044571]], "secs": 3.84}
+  step 88 ce 1.0789 pen 0.1501 top3 [['27.7']] 62s
+REPICK {"step": 89, "D_mon": 0.021963007980957627, "r_mon": 0.0032555721700191498, "tie_steps": [false], "heads": ["27.7"], "greedy_best_runnerup": [[0.0032555721700191498, 0.0022434405982494354]], "secs": 3.85}
+  step 96 ce 0.1843 pen 0.1635 top3 [['27.7']] 68s
+REPICK {"step": 97, "D_mon": 0.0678901756182313, "r_mon": 0.002351321280002594, "tie_steps": [false], "heads": ["26.2"], "greedy_best_runnerup": [[0.002351321280002594, 0.0014603883028030396]], "secs": 3.85}
+  step 104 ce 0.6970 pen 0.3213 top3 [['26.2']] 73s
+REPICK {"step": 105, "D_mon": 0.022997440304607153, "r_mon": 0.0011731255799531937, "tie_steps": [false], "heads": ["26.2"], "greedy_best_runnerup": [[0.0011731255799531937, 0.0005382150411605835]], "secs": 3.9}
+  step 112 ce 1.1852 pen 0.0635 top3 [['26.2']] 79s
+REPICK {"step": 113, "D_mon": 0.6350157707929611, "r_mon": 0.13927686214447021, "tie_steps": [false], "heads": ["26.2"], "greedy_best_runnerup": [[0.13927686214447021, 0.10060685873031616]], "secs": 4.02}
+  step 120 ce 3.7884 pen 0.1211 top3 [['26.2']] 85s
+REPICK {"step": 121, "D_mon": 0.0123540498316288, "r_mon": 0.0006484929472208023, "tie_steps": [false], "heads": ["27.9"], "greedy_best_runnerup": [[0.0006484929472208023, 0.0004786588251590729]], "secs": 3.88}
+GRAD {'step': 128, 'ce': 0.656634509563446, 'pen': 0.20962341129779816, 'gnorm_ce': 323.8040466308594, 'gnorm_lam_pen': 320.10296630859375}
+  step 128 ce 0.6566 pen 0.2096 top3 [['27.9']] 90s
+step 128 {'train_ce': 0.656634509563446, 'train_pen': 0.20962341129779816, 't': 90.4} dev strict 0.016 argmax 0.016 unB 0.016 shift 5.11 | blindtop3 ['26.0', '27.9', '26.2'] pushrm_top3sum 0.703 maxsingle 0.251 all 0.998 klfull 0.044
+REPICK {"step": 129, "D_mon": 0.007841685437597334, "r_mon": 0.00046355603262782097, "tie_steps": [false], "heads": ["26.0"], "greedy_best_runnerup": [[0.00046355603262782097, 0.00041677849367260933]], "secs": 3.84}
+  step 136 ce 1.5154 pen 0.9788 top3 [['26.0']] 100s
+REPICK {"step": 137, "D_mon": 3.2593647241592407, "r_mon": 3.105804443359375, "tie_steps": [false], "heads": ["26.2"], "greedy_best_runnerup": [[3.105804443359375, 3.0834217071533203]], "secs": 3.85}
+  step 144 ce 5.5181 pen 0.1498 top3 [['26.2']] 106s
+REPICK {"step": 145, "D_mon": 1.3456058695737738e-05, "r_mon": 4.3520567487576045e-06, "tie_steps": [false], "heads": ["26.0"], "greedy_best_runnerup": [[4.3520567487576045e-06, 4.201117917546071e-06]], "secs": 3.89}
+  step 152 ce 3.7914 pen 0.1242 top3 [['26.0']] 111s
+REPICK {"step": 153, "D_mon": 1.7462177993365913e-05, "r_mon": 7.835658834665082e-06, "tie_steps": [false], "heads": ["26.0"], "greedy_best_runnerup": [[7.835658834665082e-06, 6.558191671501845e-06]], "secs": 3.96}
+  step 160 ce 0.7086 pen 0.4519 top3 [['26.0']] 117s
+REPICK {"step": 161, "D_mon": 0.0002215995809820015, "r_mon": 0.00010538712376728654, "tie_steps": [false], "heads": ["27.9"], "greedy_best_runnerup": [[0.00010538712376728654, 8.839320798870176e-05]], "secs": 4.01}
+  step 168 ce 0.9596 pen 0.0000 top3 [['27.9']] 123s
+REPICK {"step": 169, "D_mon": 0.0001445707239327021, "r_mon": 5.008130392525345e-05, "tie_steps": [false], "heads": ["27.12"], "greedy_best_runnerup": [[5.008130392525345e-05, 4.5559077989310026e-05]], "secs": 3.92}
+  step 176 ce 0.9120 pen 0.0000 top3 [['27.12']] 128s
+REPICK {"step": 177, "D_mon": 0.00015986510697985068, "r_mon": 2.664628846105188e-05, "tie_steps": [false], "heads": ["26.0"], "greedy_best_runnerup": [[2.664628846105188e-05, 2.0509061869233847e-05]], "secs": 3.91}
+  step 184 ce 0.8957 pen 0.0000 top3 [['26.0']] 134s
+REPICK {"step": 185, "D_mon": 0.00018585554062156007, "r_mon": 2.103732549585402e-05, "tie_steps": [false], "heads": ["27.3"], "greedy_best_runnerup": [[2.103732549585402e-05, 1.893893931992352e-05]], "secs": 3.94}
+GRAD {'step': 192, 'ce': 0.7308238744735718, 'pen': 0.0, 'gnorm_ce': 2.290555715560913, 'gnorm_lam_pen': 0.0}
+  step 192 ce 0.7308 pen 0.0000 top3 [['27.3']] 140s
+step 192 {'train_ce': 0.7308238744735718, 'train_pen': 0.0, 't': 139.6} dev strict 0.000 argmax 0.000 unB 0.234 shift -0.00 | blindtop3 ['26.0', '27.9', '26.4'] pushrm_top3sum -0.206 maxsingle 0.821 all 0.637 klfull 0.000
+REPICK {"step": 193, "D_mon": 7.625663511134917e-05, "r_mon": 3.1103409128263593e-06, "tie_steps": [false], "heads": ["27.8"], "greedy_best_runnerup": [[3.1103409128263593e-06, 2.8281938284635544e-06]], "secs": 3.87}
+  step 200 ce 0.7365 pen 0.0000 top3 [['27.8']] 149s
+REPICK {"step": 201, "D_mon": 6.701219172100537e-05, "r_mon": 1.7362031940137967e-05, "tie_steps": [false], "heads": ["26.0"], "greedy_best_runnerup": [[1.7362031940137967e-05, 1.0804815246956423e-05]], "secs": 3.89}
+  step 208 ce 0.7102 pen 0.0000 top3 [['26.0']] 154s
+REPICK {"step": 209, "D_mon": 4.614244244294241e-05, "r_mon": 7.608818123117089e-06, "tie_steps": [false], "heads": ["26.15"], "greedy_best_runnerup": [[7.608818123117089e-06, 7.040682248771191e-06]], "secs": 3.88}
+  step 216 ce 0.6956 pen 0.1036 top3 [['26.15']] 160s
+REPICK {"step": 217, "D_mon": 4.2437506635906175e-05, "r_mon": 1.616689951333683e-05, "tie_steps": [false], "heads": ["26.0"], "greedy_best_runnerup": [[1.616689951333683e-05, 1.4580520655727014e-05]], "secs": 3.91}
+  step 224 ce 0.7163 pen 0.0000 top3 [['26.0']] 166s
+REPICK {"step": 225, "D_mon": 4.848278422286967e-05, "r_mon": 1.5563255146844313e-05, "tie_steps": [false], "heads": ["27.9"], "greedy_best_runnerup": [[1.5563255146844313e-05, 1.1347106919856742e-05]], "secs": 3.9}
+  step 232 ce 0.7118 pen 0.1594 top3 [['27.9']] 171s
+REPICK {"step": 233, "D_mon": 3.696814655995695e-05, "r_mon": 4.224861186230555e-06, "tie_steps": [false], "heads": ["26.13"], "greedy_best_runnerup": [[4.224861186230555e-06, 3.333461791044101e-06]], "secs": 3.89}
+  step 240 ce 0.7233 pen 0.0000 top3 [['26.13']] 177s
+REPICK {"step": 241, "D_mon": 6.889188807690516e-05, "r_mon": 2.6107380108442158e-05, "tie_steps": [false], "heads": ["27.12"], "greedy_best_runnerup": [[2.6107380108442158e-05, 2.278619649587199e-05]], "secs": 3.87}
+  step 248 ce 0.7049 pen 0.0000 top3 [['27.12']] 183s
+REPICK {"step": 249, "D_mon": 2.7235014385951217e-05, "r_mon": 3.8335201679728925e-06, "tie_steps": [false], "heads": ["27.5"], "greedy_best_runnerup": [[3.8335201679728925e-06, 3.636916517280042e-06]], "secs": 3.87}
+GRAD {'step': 256, 'ce': 0.698513925075531, 'pen': 0.0, 'gnorm_ce': 0.6787497997283936, 'gnorm_lam_pen': 0.0}
+  step 256 ce 0.6985 pen 0.0000 top3 [['27.5']] 188s
+step 256 {'train_ce': 0.698513925075531, 'train_pen': 0.0, 't': 188.1} dev strict 0.000 argmax 0.016 unB 0.719 shift -0.00 | blindtop3 ['26.8', '26.14', '26.15'] pushrm_top3sum 0.746 maxsingle 0.562 all 0.722 klfull 0.000
+REPICK {"step": 257, "D_mon": 2.5634057692514034e-05, "r_mon": 8.218627044698223e-06, "tie_steps": [false], "heads": ["26.8"], "greedy_best_runnerup": [[8.218627044698223e-06, 6.759588359273039e-06]], "secs": 3.85}
+  step 264 ce 0.6995 pen 0.0481 top3 [['26.8']] 197s
+REPICK {"step": 265, "D_mon": 1.8237458334624534e-05, "r_mon": 2.691538611543365e-06, "tie_steps": [false], "heads": ["27.9"], "greedy_best_runnerup": [[2.691538611543365e-06, 1.8016016838373616e-06]], "secs": 3.87}
+  step 272 ce 0.7628 pen 0.0000 top3 [['27.9']] 203s
+REPICK {"step": 273, "D_mon": 3.082802459175582e-05, "r_mon": 6.000218490953557e-06, "tie_steps": [false], "heads": ["26.13"], "greedy_best_runnerup": [[6.000218490953557e-06, 4.629800969269127e-06]], "secs": 3.88}
+  step 280 ce 0.7275 pen 0.0000 top3 [['26.13']] 209s
+REPICK {"step": 281, "D_mon": 2.4953637421276653e-05, "r_mon": 2.632119503687136e-06, "tie_steps": [false], "heads": ["26.2"], "greedy_best_runnerup": [[2.632119503687136e-06, 9.343511919723824e-07]], "secs": 3.87}
+  step 288 ce 0.7078 pen 0.0000 top3 [['26.2']] 214s
+REPICK {"step": 289, "D_mon": 1.75435832261428e-05, "r_mon": 2.954916453745682e-06, "tie_steps": [false], "heads": ["27.9"], "greedy_best_runnerup": [[2.954916453745682e-06, 2.689527718757745e-06]], "secs": 3.87}
+  step 296 ce 0.6950 pen 0.0000 top3 [['27.9']] 220s
+REPICK {"step": 297, "D_mon": 9.611720543034608e-06, "r_mon": 1.2153841453255154e-06, "tie_steps": [false], "heads": ["26.3"], "greedy_best_runnerup": [[1.2153841453255154e-06, 9.206296454067342e-07]], "secs": 3.87}
+  step 304 ce 0.6980 pen 0.0000 top3 [['26.3']] 225s
+REPICK {"step": 305, "D_mon": 1.1156033338011184e-05, "r_mon": 3.293861482234206e-06, "tie_steps": [false], "heads": ["26.15"], "greedy_best_runnerup": [[3.293861482234206e-06, 2.9061939130770043e-06]], "secs": 3.87}
+  step 312 ce 0.6926 pen 0.0508 top3 [['26.15']] 231s
+REPICK {"step": 313, "D_mon": 1.0021563639384112e-05, "r_mon": 2.1285923139657825e-06, "tie_steps": [false], "heads": ["26.1"], "greedy_best_runnerup": [[2.1285923139657825e-06, 2.0108273020014167e-06]], "secs": 3.88}
+GRAD {'step': 320, 'ce': 0.6970537900924683, 'pen': 0.0, 'gnorm_ce': 2.132269859313965, 'gnorm_lam_pen': 0.0}
+  step 320 ce 0.6971 pen 0.0000 top3 [['26.1']] 237s
+step 320 {'train_ce': 0.6970537900924683, 'train_pen': 0.0, 't': 236.8} dev strict 0.000 argmax 0.141 unB 0.594 shift 0.01 | blindtop3 ['26.6', '26.8', '26.4'] pushrm_top3sum -0.098 maxsingle 0.946 all 0.882 klfull 0.000
+REPICK {"step": 321, "D_mon": 9.289381523558404e-06, "r_mon": 3.029995241377037e-06, "tie_steps": [false], "heads": ["26.14"], "greedy_best_runnerup": [[3.029995241377037e-06, 2.914449396484997e-06]], "secs": 3.84}
+  step 328 ce 0.7069 pen 0.0000 top3 [['26.14']] 246s
+REPICK {"step": 329, "D_mon": 7.30753038169496e-06, "r_mon": 1.93232608580729e-07, "tie_steps": [false], "heads": ["26.10"], "greedy_best_runnerup": [[1.93232608580729e-07, 1.2560667528305203e-07]], "secs": 3.88}
+  step 336 ce 0.6942 pen 0.0059 top3 [['26.10']] 252s
+REPICK {"step": 337, "D_mon": 1.0313614666301874e-05, "r_mon": 1.976440216822084e-06, "tie_steps": [false], "heads": ["26.0"], "greedy_best_runnerup": [[1.976440216822084e-06, 1.6100211723824032e-06]], "secs": 3.87}
+  step 344 ce 0.6956 pen 0.0152 top3 [['26.0']] 257s
+REPICK {"step": 345, "D_mon": 9.084821158467093e-06, "r_mon": 1.8388827811577357e-06, "tie_steps": [false], "heads": ["26.15"], "greedy_best_runnerup": [[1.8388827811577357e-06, 5.750225682277232e-07]], "secs": 3.87}
+  step 352 ce 0.6964 pen 0.0009 top3 [['26.15']] 263s
+REPICK {"step": 353, "D_mon": 1.0532494798098924e-05, "r_mon": 2.1269188437145203e-06, "tie_steps": [false], "heads": ["27.15"], "greedy_best_runnerup": [[2.1269188437145203e-06, 1.6249987311311997e-06]], "secs": 3.88}
+  step 360 ce 0.6965 pen 0.0062 top3 [['27.15']] 269s
+REPICK {"step": 361, "D_mon": 8.178682037396356e-06, "r_mon": 9.942423275788315e-07, "tie_steps": [false], "heads": ["27.12"], "greedy_best_runnerup": [[9.942423275788315e-07, 7.48922502680216e-07]], "secs": 3.87}
+  step 368 ce 0.6956 pen 0.0319 top3 [['27.12']] 274s
+REPICK {"step": 369, "D_mon": 1.0682404990802752e-05, "r_mon": 3.011346962011885e-06, "tie_steps": [false], "heads": ["26.3"], "greedy_best_runnerup": [[3.011346962011885e-06, 2.4724286049604416e-06]], "secs": 3.86}
+  step 376 ce 0.6948 pen 0.0000 top3 [['26.3']] 280s
+REPICK {"step": 377, "D_mon": 5.578564071129222e-06, "r_mon": 2.7082660380983725e-07, "tie_steps": [false], "heads": ["26.1"], "greedy_best_runnerup": [[2.7082660380983725e-07, 9.668883649283089e-08]], "secs": 3.84}
+GRAD {'step': 384, 'ce': 0.6947637796401978, 'pen': 0.032579172402620316, 'gnorm_ce': 1.3427386283874512, 'gnorm_lam_pen': 14.532632827758789}
+  step 384 ce 0.6948 pen 0.0326 top3 [['26.1']] 286s
+step 384 {'train_ce': 0.6947637796401978, 'train_pen': 0.032579172402620316, 't': 285.5} dev strict 0.000 argmax 0.094 unB 0.688 shift -0.01 | blindtop3 ['26.2', '26.3', '27.6'] pushrm_top3sum 2.451 maxsingle 1.862 all 1.367 klfull 0.000
+REPICK {"step": 385, "D_mon": 8.325802809849847e-06, "r_mon": 2.0210654838592745e-06, "tie_steps": [false], "heads": ["27.6"], "greedy_best_runnerup": [[2.0210654838592745e-06, 1.4128618204267696e-06]], "secs": 3.83}
+  step 392 ce 0.6951 pen 0.0035 top3 [['27.6']] 295s
+REPICK {"step": 393, "D_mon": 6.642608809670492e-06, "r_mon": 1.8128898773284163e-06, "tie_steps": [false], "heads": ["26.3"], "greedy_best_runnerup": [[1.8128898773284163e-06, 1.360346686851699e-06]], "secs": 3.84}
+  step 400 ce 0.6960 pen 0.0000 top3 [['26.3']] 300s
+REPICK {"step": 401, "D_mon": 4.801965758360893e-06, "r_mon": 1.5595046534144785e-06, "tie_steps": [false], "heads": ["27.3"], "greedy_best_runnerup": [[1.5595046534144785e-06, 1.2161140148236882e-06]], "secs": 3.87}
+  step 408 ce 0.6942 pen 0.0000 top3 [['27.3']] 306s
+REPICK {"step": 409, "D_mon": 4.604068635671865e-06, "r_mon": 7.053909030219074e-07, "tie_steps": [false], "heads": ["27.13"], "greedy_best_runnerup": [[7.053909030219074e-07, 5.875986062164884e-07]], "secs": 3.87}
+  step 416 ce 0.6953 pen 0.0000 top3 [['27.13']] 311s
+REPICK {"step": 417, "D_mon": 4.954994778927357e-06, "r_mon": 1.7910483620653395e-06, "tie_steps": [false], "heads": ["26.14"], "greedy_best_runnerup": [[1.7910483620653395e-06, 9.95790287561249e-07]], "secs": 3.89}
+  step 424 ce 0.6935 pen 0.0300 top3 [['26.14']] 317s
+REPICK {"step": 425, "D_mon": 3.6518138131214073e-06, "r_mon": 9.176810635835864e-07, "tie_steps": [false], "heads": ["27.12"], "greedy_best_runnerup": [[9.176810635835864e-07, 8.894010079529835e-07]], "secs": 3.86}
+  step 432 ce 0.6933 pen 0.0000 top3 [['27.12']] 322s
+REPICK {"step": 433, "D_mon": 5.413413418864366e-06, "r_mon": 1.875928546724026e-06, "tie_steps": [false], "heads": ["26.0"], "greedy_best_runnerup": [[1.875928546724026e-06, 1.764009994076332e-06]], "secs": 3.87}
+  step 440 ce 0.6950 pen 0.0132 top3 [['26.0']] 328s
+REPICK {"step": 441, "D_mon": 4.438604491951992e-06, "r_mon": 5.191800482862163e-07, "tie_steps": [false], "heads": ["27.12"], "greedy_best_runnerup": [[5.191800482862163e-07, 3.8730013329768553e-07]], "secs": 3.87}
+GRAD {'step': 448, 'ce': 0.6936572194099426, 'pen': 0.0, 'gnorm_ce': 0.2109130471944809, 'gnorm_lam_pen': 0.0}
+  step 448 ce 0.6937 pen 0.0000 top3 [['27.12']] 333s
+step 448 {'train_ce': 0.6936572194099426, 'train_pen': 0.0, 't': 333.1} dev strict 0.000 argmax 0.094 unB 0.188 shift -0.01 | blindtop3 ['27.3', '26.1', '27.7'] pushrm_top3sum 0.937 maxsingle 3.366 all -3.838 klfull 0.000
+REPICK {"step": 449, "D_mon": 4.52390924010615e-06, "r_mon": 6.186692189658061e-07, "tie_steps": [false], "heads": ["27.12"], "greedy_best_runnerup": [[6.186692189658061e-07, 5.390065780375153e-07]], "secs": 3.9}
+  step 456 ce 0.6935 pen 0.0000 top3 [['27.12']] 342s
+REPICK {"step": 457, "D_mon": 3.885453565999342e-06, "r_mon": 2.2081007955421228e-07, "tie_steps": [false], "heads": ["26.3"], "greedy_best_runnerup": [[2.2081007955421228e-07, 7.291578185686376e-08]], "secs": 3.91}
+  step 464 ce 0.6942 pen 0.0262 top3 [['26.3']] 348s
+REPICK {"step": 465, "D_mon": 4.966909614267934e-06, "r_mon": 1.309550498262979e-06, "tie_steps": [false], "heads": ["26.3"], "greedy_best_runnerup": [[1.309550498262979e-06, 9.966897778213024e-07]], "secs": 3.93}
+  step 472 ce 0.7106 pen 0.0000 top3 [['26.3']] 354s
+REPICK {"step": 473, "D_mon": 3.1261417632322264e-06, "r_mon": 6.352317996061174e-07, "tie_steps": [false], "heads": ["26.0"], "greedy_best_runnerup": [[6.352317996061174e-07, 4.897890448773978e-07]], "secs": 3.95}
+  step 480 ce 0.7167 pen 0.0069 top3 [['26.0']] 360s
+REPICK {"step": 481, "D_mon": 3.249154758577788e-06, "r_mon": 1.106621766666649e-06, "tie_steps": [false], "heads": ["27.12"], "greedy_best_runnerup": [[1.106621766666649e-06, 7.126316177163972e-07]], "secs": 3.9}
+  step 488 ce 0.6999 pen 0.0080 top3 [['27.12']] 365s
+REPICK {"step": 489, "D_mon": 3.2108059144775325e-06, "r_mon": 3.354819000378484e-07, "tie_steps": [false], "heads": ["27.1"], "greedy_best_runnerup": [[3.354819000378484e-07, 3.2885600376175717e-07]], "secs": 3.89}
+  step 496 ce 0.6956 pen 0.0046 top3 [['27.1']] 370s
+REPICK {"step": 497, "D_mon": 2.759657036222052e-06, "r_mon": 4.8568881538813e-07, "tie_steps": [false], "heads": ["26.8"], "greedy_best_runnerup": [[4.8568881538813e-07, 3.451950760791078e-07]], "secs": 3.9}
+  step 504 ce 0.6942 pen 0.0000 top3 [['26.8']] 376s
+REPICK {"step": 505, "D_mon": 2.253826039577689e-06, "r_mon": 5.302536010276526e-07, "tie_steps": [false], "heads": ["26.10"], "greedy_best_runnerup": [[5.302536010276526e-07, 4.6409036258410197e-07]], "secs": 3.91}
+GRAD {'step': 512, 'ce': 0.6933097839355469, 'pen': 0.01623590476810932, 'gnorm_ce': 0.28983020782470703, 'gnorm_lam_pen': 5.688239097595215}
+  step 512 ce 0.6933 pen 0.0162 top3 [['26.10']] 382s
+step 512 {'train_ce': 0.6933097839355469, 'train_pen': 0.01623590476810932, 't': 382.1} dev strict 0.000 argmax 0.000 unB 0.000 shift 0.00 | blindtop3 ['27.9', '26.13', '26.4'] pushrm_top3sum 1.554 maxsingle 2.441 all 1.316 klfull 0.000
+MPS driver_allocated_memory GB 4.88
+DONE k1_s2 test strict 0.0 argmax 0.0 strict32 0.0 shift 0.004 train_s 385.7
+      404.49 real        25.53 user        11.56 sys
+          1540177920  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              162387  page reclaims
+               20923  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                  29  messages sent
+                  94  messages received
+                   1  signals received
+                5714  voluntary context switches
+              356944  involuntary context switches
+            68451885  instructions retired
+            30601645  cycles elapsed
+             7979416  peak memory footprint

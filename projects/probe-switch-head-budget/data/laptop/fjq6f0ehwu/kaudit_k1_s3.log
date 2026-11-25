@@ -1,0 +1,22 @@
+W1125 10:23:14.853000 11837 .venv/lib/python3.13/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Fetching 12 files:   0%|          | 0/12 [00:00<?, ?it/s]Fetching 12 files: 100%|██████████| 12/12 [00:00<00:00, 1484.23it/s]
+MPS driver_allocated_memory GB 4.66
+KAUDIT k1_s3 {"base_strict32": 0.171875, "base_strict": 0.171875, "strict32_after_greedy_k": {"TB": [0.171875, 0.171875, 0.171875, 0.171875, 0.171875, 0.171875, 0.171875, 0.171875, 0.171875, 0.171875, 0.171875, 0.171875], "T16": [0.171875, 0.171875, 0.171875, 0.1640625, 0.1484375, 0.1328125, 0.1015625, 0.0546875, 0.03125, 0.0234375, 0.0234375, 0.0], "T4": [0.171875, 0.171875, 0.171875, 0.171875, 0.171875, 0.171875, 0.171875, 0.171875, 0.171875, 0.171875, 0.171875, 0.171875], "T1": [0.171875, 0.171875, 0.171875, 0.15625, 0.125, 0.078125, 0.0546875, 0.03125, 0.015625, 0.0, 0.0, 0.0]}, "strict32_smallest_k_below_0.25": {"TB": 1, "T16": 1, "T4": 1, "T1": 1}, "strict32_random_min_median_max": {"2": [0.171875, 0.171875, 0.171875], "3": [0.171875, 0.171875, 0.171875], "8": [0.1484375, 0.171875, 0.171875]}, "strict_after_greedy_k": {"TB": [0.171875, 0.171875, 0.171875, 0.171875, 0.171875, 0.171875, 0.171875, 0.171875, 0.171875, 0.171875, 0.171875, 0.171875], "T16": [0.171875, 0.171875, 0.171875, 0.1640625, 0.1484375, 0.1328125, 0.1015625, 0.0546875, 0.03125, 0.0234375, 0.0234375, 0.0], "T4": [0.171875, 0.171875, 0.171875, 0.171875, 0.171875, 0.171875, 0.171875, 0.171875, 0.171875, 0.171875, 0.171875, 0.171875], "T1": [0.171875, 0.171875, 0.171875, 0.15625, 0.125, 0.0703125, 0.046875, 0.03125, 0.0078125, 0.0, 0.0, 0.0]}, "strict_smallest_k_below_0.25": {"TB": 1, "T16": 1, "T4": 1, "T1": 1}, "strict_random_min_median_max": {"2": [0.171875, 0.171875, 0.171875], "3": [0.171875, 0.171875, 0.171875], "8": [0.1484375, 0.171875, 0.171875]}, "identity_strict32": 0.171875, "all_heads_strict32": 0.0, "identity_ok": true} secs 268.3
+      272.91 real         9.77 user         3.61 sys
+          1486979072  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              148040  page reclaims
+                8183  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                  29  messages sent
+                  88  messages received
+                   1  signals received
+                5594  voluntary context switches
+              177196  involuntary context switches
+            67414804  instructions retired
+            29483260  cycles elapsed
+             7979416  peak memory footprint

@@ -1,0 +1,22 @@
+W1125 08:55:35.205000 56262 .venv/lib/python3.13/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Fetching 12 files:   0%|          | 0/12 [00:00<?, ?it/s]Fetching 12 files: 100%|██████████| 12/12 [00:00<00:00, 2342.86it/s]
+MPS driver_allocated_memory GB 4.65
+KAUDIT k3_s0 {"base_strict32": 0.921875, "base_strict": 0.921875, "strict32_after_greedy_k": {"TB": [0.3828125, 0.0625, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], "T16": [0.3828125, 0.0625, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], "T4": [0.3828125, 0.0625, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], "T1": [0.3828125, 0.0625, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]}, "strict32_smallest_k_below_0.25": {"TB": 2, "T16": 2, "T4": 2, "T1": 2}, "strict32_random_min_median_max": {"5": [0.0, 0.16796875, 0.90625], "6": [0.0, 0.0859375, 0.8984375], "8": [0.0, 0.0, 0.34375]}, "strict_after_greedy_k": {"TB": [0.34375, 0.0625, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], "T16": [0.34375, 0.0625, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], "T4": [0.34375, 0.0625, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], "T1": [0.34375, 0.0625, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]}, "strict_smallest_k_below_0.25": {"TB": 2, "T16": 2, "T4": 2, "T1": 2}, "strict_random_min_median_max": {"5": [0.0, 0.15234375, 0.90625], "6": [0.0, 0.08203125, 0.8828125], "8": [0.0, 0.0, 0.328125]}, "identity_strict32": 0.921875, "all_heads_strict32": 0.0, "identity_ok": true} secs 283.8
+      287.37 real         9.68 user         3.62 sys
+          1476886528  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              154773  page reclaims
+                   4  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                  29  messages sent
+                  96  messages received
+                   1  signals received
+                  37  voluntary context switches
+              175627  involuntary context switches
+            67031271  instructions retired
+            26724519  cycles elapsed
+             8044952  peak memory footprint

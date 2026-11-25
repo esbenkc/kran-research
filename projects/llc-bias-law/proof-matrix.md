@@ -33,7 +33,8 @@ seed-level: 0.819 [0.811, 0.826] (t-interval over 3 seeds; per seed 0.817, 0.822
 | headline | mean of 3 | all 5 blind shapes | null N3 (fit on train only) | share 0.54, median miss 4.63 (law L 1.90) | predictions.json, results.json |
 | headline | mean of 3 | all 5 blind shapes | null N4 (fit on train only) | share 0.74, median miss 2.01 (law L 1.90) | predictions.json, results.json |
 | target vs sampler | 0,1 (Gibbs) | all primary cells | exact block Gibbs (no step size) | median abs target bias 5.4 pts, median abs(SGLD - Gibbs) 0.59 pts, max 20.6 | data/gibbs_S/ |
-| arm P control | 0,1 | 5 blind shapes, full-gradient Langevin | population loss, no minibatch | share 0.88, median 1.56 | data/cells_P/ |
+| arm P control | 0,1 | 5 blind shapes, full-gradient Langevin | population loss, no minibatch | share 0.82, median 2.00 | data/cells_P/ |
+| S6_seen | mean of 3 | pilot-seen shapes (not blind) | none | share 0.90, median 0.89 (n 72) | results.json |
 | S4_strong_spring_blind | mean of 3 | blind shapes, q < 0.1 (S4) | none | share 0.71, median 3.64 (n 90) | results.json |
 | L_z_primary | mean of 3 | law L_z (secondary) | none | share 0.82, median 1.39 (n 180) | results.json |
 | diagnostic (not the status) | mean of 3 | 151 primary cells that pass the halves rule | none | L share 0.980 median 1.73; nulls L_z 0.98/1.14; N1 0.35/6.46; N2 0.83/1.88; N3 0.65/3.69; N4 0.88/1.48 | results.json |

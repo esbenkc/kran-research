@@ -32,6 +32,9 @@ ARMS = {
     "mdpad8": ("len", False),
 }
 ORDER = ["raw", "rawnf", "md", "mdhtml", "mdnf", "mdpad8"]
+# The main figure shows the 2x2 (raw +/- tag, HTML link in markdown +/- tag) plus plain markdown as the reference;
+# the length check (mdpad8) is counted and printed here but stays out of data.json (Tove, room defense-1125-nofollow-double).
+FIG_ARMS = ["raw", "rawnf", "md", "mdhtml", "mdnf"]
 
 
 def wilson(k: int, n: int) -> tuple[float, float]:
@@ -216,7 +219,8 @@ def main() -> None:
         for t in ("label", "short"):
             if t in labels.get(r["arm"], {}):
                 r[t] = labels[r["arm"]][t]
-    data.update({"rows": rows, "pairs": pairs, "status": rule["status"] if rule else None,
+    rows = [r for r in rows if r["arm"] in FIG_ARMS]
+    data.update({"rows": rows, "ref": "md", "pairs": pairs, "status": rule["status"] if rule else None,
                  "legs": rule["legs"] if rule else None, "seed_t": rule["seed_t"] if rule else None})
     path.write_text(json.dumps(data, indent=1) + "\n")
     print("wrote", path)

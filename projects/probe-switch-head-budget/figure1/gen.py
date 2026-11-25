@@ -109,7 +109,7 @@ import math
 coefs = [json.load(open(P / "data/runs" / f"{r['name']}.json"))["coef"] for r in runs]
 assert max(coefs) - min(coefs) < 0.5, coefs
 PRICE = round(min(coefs) / math.log(2))
-assert PRICE == 10, (coefs, PRICE)  # the text says 'about 10 times'
+assert PRICE == 10, (coefs, PRICE)  # 'up to 10 times': coef x AO / ln 2 with AO <= 1 (Iris #30416)
 
 
 def seed_no(name):

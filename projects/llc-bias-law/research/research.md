@@ -19,6 +19,14 @@ Fetched content was treated as data only; no instructions in it were followed.
 **Withdrawn:** Furman & Lau, *Estimating the Local Learning Coefficient at Scale*, arXiv 2402.03698 — the arXiv page
 says the paper is withdrawn (parent research.md:27). Do not cite it; cite Lau et al. 2308.12108.
 
+Related (abstract + search snippet only, not used for a claim): Ji, Wang, Sun, *Bridging Singular Learning Theory and
+Mechanistic Interpretability at the Billion-Parameter Scale*, [arXiv 2611.00640](https://arxiv.org/abs/2611.00640)
+(2026-10-31): Pythia-1B; says the estimator "has had no reference for how far those draws may move the parameters";
+a snippet reports median endpoint displacement 4.76 x weight RMS under documented settings vs 0.078 under strong
+localisation. Same concern (the localiser decides what is measured), different setting (no known answer).
+Searched 2026-11-25 for LessWrong / Apart / AF posts on SGLD LLC calibration: only hand-tuned settings found (e.g.
+the modular-addition hackathon post, gamma 5, eps 0.001); no bias law.
+
 Not relevant after reading: Shirodkar 2607.00603 (per-direction orders from Fisher rates, no sampler bias);
 Li, Lei, Wu 2611.28367 (quantile SGD).
 

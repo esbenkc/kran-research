@@ -357,4 +357,15 @@ Built by figure1/gen.py from kran-research projects/probe-switch-head-budget (br
 """
 assert PREVIEW or "[FILL" not in page, "fill the head and the answer in text.json from the TLDR"
 Path(sys.argv[1]).write_text(page)
+# figure1_alt for the post's front matter: plain, no double quotes (pasted into figure1_alt: "...")
+A = lambda a: "A (mountains)" if a else "B (sea)"
+alt = (f"Figure 1. {re.sub(r'<[^>]+>', '', T['sub'])} Example prompt {EX}: a text snippet, then 'Which would you rather visit, "
+       f"the mountains or the sea?' {seed_label(EXR['name'])} answers {A(ex_ans['off'])} without the probe and {A(ex_ans['on'])} "
+       f"with it; with the audit's top 6 heads cut it answers {A(ex_ans[KATT])}, with the top 8 cut {A(ex_ans[KS])}. Over 128 "
+       f"held-out prompts, the share that still switches after the top-6 cut is {C['k6']} and after the top-8 cut {C['k8']}; "
+       f"50 random 8-head cuts leave a median of {re.sub('&ndash;', ' to ', C['rmed'])}. "
+       f"{re.sub(r'<[^>]+>', '', ANS.format(**C))}")
+alt = alt.replace('"', "'")
+(D / "alt.txt").write_text(alt + "\n")
 print("ok", EX, json.dumps(facts))
+print("ALT:", alt)

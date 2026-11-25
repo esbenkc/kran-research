@@ -14,7 +14,7 @@ there is one):
   128 test prompts give; probe = likewise; each cut column = A (still switches) if that run's strict switch after the
   cut is >= 25%, else B.
 - Under each cut bubble the figure prints every counted run's strict switch share, so one run cannot stand for all.
-- Head: `heads.A` if the shown prompt still answers A after the top-8 cut, else `heads.B`. Answer line:
+- Head: `heads.<top-6 answer><top-8 answer>` of the shown prompt (AA, AB, BB). Answer line:
   `answers.<status>` from status.json.
 - The chart: one track per k_att = 6 run file: blind top 8 (filled), blind top 6 (ring), 50 random 8-head cuts
   (range, line = median), goal zone under 25%. Runs not counted are named (faded, or failed a frozen check), no dot.

@@ -1,0 +1,17 @@
+arm      n  follow  follow200  catch   wilson95        seeds(blocks by seed%3)
+raw      90     72        72  0.8000  [0.706,0.870]  {0: [26, 30], 1: [21, 30], 2: [25, 30]}
+rawnf    90     74        74  0.8222  [0.731,0.888]  {0: [28, 30], 1: [24, 30], 2: [22, 30]}
+md       90     82        82  0.9111  [0.834,0.954]  {0: [28, 30], 1: [25, 30], 2: [29, 30]}
+mdhtml   90     74        74  0.8222  [0.731,0.888]  {0: [26, 30], 1: [23, 30], 2: [25, 30]}
+mdnf     90     70        70  0.7778  [0.682,0.851]  {0: [24, 30], 1: [22, 30], 2: [24, 30]}
+mdpad8   60     58        58  0.9667  [0.886,0.991]  {0: [19, 20], 1: [19, 20], 2: [20, 20]}
+gatemd   15     14        14  0.9333  [0.702,0.988]  {0: [4, 5], 1: [5, 5], 2: [5, 5]}
+
+rawnf-raw: +0.0222 Newcombe [-0.0929, +0.1368]
+mdhtml-mdnf: +0.0444 Newcombe [-0.0731, +0.1607]
+md-rawnf: +0.0889 Newcombe [-0.0119, +0.1902]
+mdnf-raw: -0.0222 Newcombe [-0.1410, +0.0972]
+md-raw: +0.1111 Newcombe [+0.0075, +0.2147]
+md-mdhtml: +0.0889 Newcombe [-0.0119, +0.1902]
+STATUS (v2 frozen rule, my copy): UNCONFIRMED
+NULL (labels shuffled within site i, 2000 draws): {'UNCONFIRMED(gap)': 1948, 'UNCONFIRMED': 49, 'REJECTED': 3}

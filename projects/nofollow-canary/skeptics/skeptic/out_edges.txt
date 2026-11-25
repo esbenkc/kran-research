@@ -1,0 +1,8 @@
+observed {'raw': 72, 'rawnf': 74, 'md': 82, 'mdhtml': 74, 'mdnf': 70} -> UNCONFIRMED
+E1 one-arm edges (nearest count change up and down that flips the status):
+  raw 72+2 -> UNCONFIRMED (gap gate)
+  rawnf 74-2 -> REJECTED
+  md 82+1 -> REJECTED
+  md 82-2 -> UNCONFIRMED (gap gate)
+E2 bootstrap at observed rates: {'CONFIRMED': 0.0054, 'REJECTED': 0.2756, 'UNCONFIRMED': 0.3453, 'UNCONFIRMED (gap gate)': 0.3737}
+E3 attribute-null fitted (raw=rawnf=0.811, mdhtml=mdnf=0.800): {'CONFIRMED': 0.0004, 'REJECTED': 0.3242, 'UNCONFIRMED': 0.2223, 'UNCONFIRMED (gap gate)': 0.4531}

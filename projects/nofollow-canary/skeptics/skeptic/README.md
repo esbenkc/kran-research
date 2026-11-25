@@ -19,13 +19,20 @@ one build file used is the harness, as a black box for the view check, and as th
 
 The prereg stamp is checked: sha256 of `c6173ca68:PREREG.md` = `0d02e594…3fff`, which matches the header.
 
-## Still to do (continuation room, after laptop job tswdjfbrh2)
+## Done after data (rooms defense-1124-length-or-markup continuation and defense-1125-nofollow-double)
 
-Commands, from `projects/nofollow-canary/` after `git pull --rebase --autostash`:
+Run from `projects/nofollow-canary/`. The verdict and all numbers are in `signoff.md`.
 
-    python3 skeptics/skeptic/vera_check.py web/out/qwen3-8b > skeptics/skeptic/out_check.txt
-    python3 skeptics/skeptic/vera_null.py web/out/qwen3-8b 20000 > skeptics/skeptic/out_null.txt
-
-Then diff every count and Newcombe bound in `out_check.txt` against `results/analysis.json` (catch, differences,
-seed_level, gates). Check that the gate runs (cell gatemd-free) are excluded from the arms. Then write `signoff.md`
-(role / model / verdict lines first). That file does not exist yet, because no run of this room has finished.
+| file | what it does | result |
+|---|---|---|
+| `vera_rebuild.py web/out/qwen3-8b --null 2000` → `out_rebuild.txt` | fresh rebuild (2026-11-25 room) of the 5 status arms from `access.log`, Newcombe intervals, my copy of the frozen rule, arm-label shuffle within site index | 72/74/82/74/70 of 90, UNCONFIRMED; null: CONFIRMED 0/2000 |
+| `vera_check.py` → `out_check.txt` | first landed rebuild + seed-level t-intervals | same counts and status |
+| `vera_diff.py` → `out_diff.txt` | every field of `results/analysis.json` vs my rebuild | 127 fields, 0 mismatches |
+| `vera_gates.py` → `out_gates.txt` | dedupe, id leaks, gates, harness-flag agreement | 0 duplicates, 0 leaks, gates hold |
+| `vera_manip.py` → `out_manip.txt` | the canary markup the model actually saw | as designed in 90/90 runs per arm |
+| `vera_landed_views.py` → `out_landed_views.txt` | raw vs rawnf and mdnf vs mdhtml pages equal after removing rel | 90/90 equal |
+| `vera_null.py` → `out_null.txt` | label-shuffle null of the frozen rule (20,000 draws) | CONFIRMED 0.0001, REJECTED 0.0031 |
+| `vera_paired.py` → `out_paired.txt` | paired exact McNemar per site index (sensitivity) | nofollow moves p 0.79 and 0.50 |
+| `vera_edges.py` → `out_edges.txt` | one-arm edges and bootstrap of the status | 2 fewer rawnf follows flip to REJECTED |
+| `vera_secondary.py` → `out_secondary.txt` | length arm (mdpad8) and miss reasons | mdpad8 58/60 |
+| `vera_power_rep.py` → `out_power_rep.txt` | would a fresh replication settle it tonight | UNCONFIRMED 72-89% at 36-90 runs per arm |

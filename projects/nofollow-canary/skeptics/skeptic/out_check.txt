@@ -1,0 +1,14 @@
+md       follow 82/90 = 0.911  200-only 82  offtask 0
+mdhtml   follow 74/90 = 0.822  200-only 74  offtask 0
+mdnf     follow 70/90 = 0.778  200-only 70  offtask 0
+mdpad8   follow 58/60 = 0.967  200-only 58  offtask 0
+raw      follow 72/90 = 0.800  200-only 72  offtask 1
+rawnf    follow 74/90 = 0.822  200-only 74  offtask 1
+STATUS UNCONFIRMED G True CONF legs {'a': False, 'b': False, 'c': True, 'd': True} REJ legs {'a': False, 'b': True}
+md-raw: +0.111 run-level [+0.007, +0.215]  seed-level +0.111 [+0.015, +0.207] blocks [0.067, 0.133, 0.133]
+rawnf-raw: +0.022 run-level [-0.093, +0.137]  seed-level +0.022 [-0.244, +0.288] blocks [0.067, 0.1, -0.1]
+mdhtml-mdnf: +0.044 run-level [-0.073, +0.161]  seed-level +0.044 [-0.003, +0.092] blocks [0.067, 0.033, 0.033]
+md-rawnf: +0.089 run-level [-0.012, +0.190]  seed-level +0.089 [-0.225, +0.402] blocks [0.0, 0.033, 0.233]
+mdnf-raw: -0.022 run-level [-0.141, +0.097]  seed-level -0.022 [-0.149, +0.104] blocks [-0.067, 0.033, -0.033]
+mdhtml-md: -0.089 run-level [-0.190, +0.012]  seed-level -0.089 [-0.185, +0.007] blocks [-0.067, -0.067, -0.133]
+md-mdpad8: -0.056 run-level [-0.136, +0.036]  seed-level -0.056 [-0.189, +0.078] blocks [-0.017, -0.117, -0.033]

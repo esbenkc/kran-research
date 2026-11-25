@@ -36,9 +36,12 @@ noise-free: my Gibbs -30.1/-30.2% (r1), -33.0/-33.2% (r8); the post says 30% to 
 - Shuffled q (vera_robust.py `shuffle_null`): q permuted across the 72 train cells, curve refit, scored on the
   blind core, 300 perms: share 0.59 mean, 95th pct 0.71, vs 0.822 real (p = 0.003). The q curve carries signal.
 - Lookup null N4 (same setting on a training shape): median miss 2.01 vs L 1.90. On settled cells N4 is better
-  (1.48 vs 1.73). At a fixed setting the 5 blind shapes differ by a median 4.5 pts (8.1 at q 0.1, 2.2 at q 100), and
-  the setting alone explains 93.6% of the variance of the measured error (vera_shape_spread.py). The blind core
-  therefore barely tests transfer across shapes.
+  (1.48 vs 1.73). At a fixed setting the 5 blind shapes differ by a median 5.03 pts over all 180 cells (setting R^2
+  0.927; the post's 5.0 / 93%); on settled cells only, settings with >= 3 shapes, 4.5 pts and 93.6% (8.1 at q 0.1,
+  2.2 at q 100; vera_shape_spread.py). The blind core therefore barely tests transfer across shapes.
+- Seen shapes S6 (pilot-touched, not blind; vera_s6.py): 216 cells, L 0.727, median 1.83. Width 32 r2/r4/r12:
+  0.86/0.94/0.92. Width 16 r1/r2/r4: 0.39 (median 7.2)/0.53 (4.5)/0.72. All-regular control (16,16,8,8): 0.75,
+  median 0.60, settled 27/28 within 5. The one curve in q does not carry to the narrow low-rank shapes.
 - The status edge is thin: with the frozen reading (a failed cell is a miss of 100 for every predictor; score.py at
   3514192de, before data) L 1.90 < N4 2.01, so not REJECTED. Seed 1 alone: L 1.95 >= N4 1.90. Cell bootstrap
   P(L >= best null) = 0.37. With the 100 applied to the law only: N4 1.64 and N2 1.86 < L 1.90, REJECTED
@@ -66,6 +69,7 @@ in DEVIATIONS.md. The secondary L_z (median 1.4) is labelled "added after a pilo
 2. The status margin is 0.11 pt and depends on how failed cells are scored (law-only reading gives REJECTED).
 3. The 29 unsettled flags match chain noise (29 vs 29.4 expected).
 4. Pre-freeze pilot (mine, vera_power_v2.py, 06:03 PST) touched the seven "seen" shapes, not the blind core.
+5. On the seen width-16 shapes at rank 1 and 2 the curve hit only 39% and 53% (shape matters there).
 
 ## 7. Novelty
 

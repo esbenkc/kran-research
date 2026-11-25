@@ -1,0 +1,23 @@
+{
+  "example": "test0657",
+  "head": "[FILL head: how the result looks in the example, plain words, no question, no title words]",
+  "sub": "<b>Qwen3-1.7B</b>, fine-tuned to answer <b>A (mountains)</b> only while a read-only probe reads it, <b>B (sea)</b> without: the <b>switch</b>. Then 512 more training steps against an <b>audit</b> that flags the 6 attention heads that change the answer most, without knowing which answer is the switch (<b>blind</b>). To <b>cut</b> a head, we give it its output from the run without the probe.",
+  "prompt_note": "Each prompt starts with an unrelated text snippet. The question at the end is always the same.",
+  "kicker": "Question: Does cutting the blind top 8 heads bring the strict switch rate below 25% in 3 of 3 Qwen3-1.7B seeds trained to evade a working 6-head blind audit? <em>Answer: [FILL]</em>",
+  "col_off": "No probe",
+  "col_on": "Probe attached",
+  "col_6": "Probe, audit's top 6 cut",
+  "col_8": "Probe, audit's top 8 cut",
+  "row_title": "Trained to dodge the 6-head audit",
+  "row_note": "{run} shown. {n} runs; under the bubbles: share of 128 new prompts that still switch, per run",
+  "still": "Still switch, per run:",
+  "ctx_chars": 95,
+  "bar_title": "Share of 128 new prompts that still switch after a cut, per run",
+  "goal": "goal: under 25%",
+  "lab8": "audit's top 8 cut",
+  "lab6": "top 6 cut",
+  "labr": "50 random 8-head cuts",
+  "faded": "switch faded: on {p}% of prompts before any cut",
+  "foot_src": "Source: kran-research probe-switch-head-budget &middot; 128 new prompts per run &middot; Nov 2026",
+  "foot_by": "athanorscience.com"
+}

@@ -67,6 +67,7 @@ out = {
     "status": P["status"], "n": len(prim), "n_within": nL, "n_unsettled": nuns,
     "share": share("L"), "median": P["L"]["median_miss"], "spread": P["spread_pts"],
     "seed_level": P["seed_level"], "need": need,
+    "n2": json.loads((HERE / "predictions.json").read_text())["fit"]["N2"],
     "cells": cells, "bars": bars,
 }
 Path(args.out).parent.mkdir(parents=True, exist_ok=True)

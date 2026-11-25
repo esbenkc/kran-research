@@ -107,7 +107,7 @@ src = {"case": args.case, "lam": lam, "lam0": lam0, "d_reg": d_reg, "nbeta": NB,
 fill = {"lam": f"{lam:g}", "reg": f"{d_reg / 2:g}", "lam0": f"{lam0:g}", "M": M, "N": N, "H": Hh, "r": r,
         "nb": f"{NB:,}", "n_all": n_all, "win_all": win_all, "pct_all": round(100 * win_all / n_all),
         "uns_all": uns_all, "med_L": f"{med['L']:.1f}", "med_N4": f"{med['N4']:.1f}", "need": f"{need:.1f}",
-        "win_N4": win["N4"]}
+        "win_N4": win["N4"], "med_N2": f"{med['N2']:.1f}"}
 
 
 def F(s):

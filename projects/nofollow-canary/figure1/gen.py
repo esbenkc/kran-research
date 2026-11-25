@@ -212,15 +212,17 @@ def variant(res: dict) -> str:
 def near_miss(res: dict, counts: dict) -> dict:
     """Slots for the TLDR's caveat, from the frozen rule itself: the smallest of the two nofollow intervals' upper ends
     (points, floored so the effect lies inside both intervals) and how many more plain-markdown requests the rule needed to say No (status() rerun on edited counts)."""
-    up = math.floor(100 * min(res["differences"][k]["upper"] for k in ("rawnf-raw", "mdhtml-mdnf")))  # inside both
+    top = 100 * min(res["differences"][k]["upper"] for k in ("rawnf-raw", "mdhtml-mdnf"))
+    up = math.floor(top)  # an effect this big lies inside both intervals
+    about = round(top)  # 'up to about N points': the smaller ceiling, rounded (13.7 -> 14)
     c = {a: {"n": 90, "follow": counts[a], "harness_errors": 0, "n_planned": 90} for a in STATUS_ARMS}
     g = res["gate"]
     for k in range(1, 90 - counts["md"] + 1):
         c["md"]["follow"] = counts["md"] + k
         if analysis.status(c, g["success"], g["runs"])["status"] == "REJECTED":
             words = {1: "one run", 2: "two runs", 3: "three runs"}.get(k, f"{k} runs")
-            return {"upper_pts": up, "rej_miss": k, "rej_miss_words": words}
-    return {"upper_pts": up, "rej_miss": None, "rej_miss_words": "[FILL]"}
+            return {"upper_pts": up, "upper_about": about, "rej_miss": k, "rej_miss_words": words}
+    return {"upper_pts": up, "upper_about": about, "rej_miss": None, "rej_miss_words": "[FILL]"}
 
 
 # ---- HTML --------------------------------------------------------------------------------------------------------

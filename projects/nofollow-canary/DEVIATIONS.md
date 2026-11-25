@@ -49,3 +49,5 @@ rule-change line here and would make the run EXPLORATORY. There is none.
 - Rebuild check by Bruno on this branch: `uv run python analysis.py --res /tmp/nfres` reproduces
   `results/analysis.json` key for key and `results/analysis_runs.csv` byte for byte (status UNCONFIRMED), and
   `python3 proof_matrix.py` rewrites `proof-matrix.md` byte for byte.
+- lab_night 2026-11-24 = night of the run (job tswdjfbrh2); published from room defense-1125-nofollow-double on 2026-11-25
+  (Felix #30497).

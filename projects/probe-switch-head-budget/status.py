@@ -93,6 +93,21 @@ def cell(name):
         c["AO_zero_share"] = float(np.mean([v == 0 for v in pen]))
         c["held_sets_distinct"] = len({tuple(x["heads"]) for x in p})
         c["repick_secs_mean"] = float(np.mean([x["secs"] for x in p]))
+    katt = (run or {}).get("args", {}).get("katt")
+    if run is not None and run.get("picks") and katt and katt <= min(km, len(ka["greedy_dev"]["TB"])):
+        # did the attack work? (reported only; Kasper #30369, Tove #30371)
+        pen = np.array([r[2] for r in run["train_log"]], dtype=float)
+        p0, p1 = run["picks"][0], run["picks"][-1]
+        audit_top = ka["greedy_dev"]["TB"][katt - 1]["set"]
+        c["attack"] = {
+            "k_att": katt,
+            "S_katt_fp32": c["fp32"]["S"][katt - 1], "S_katt_bf16": c["bf16"]["S"][katt - 1],
+            "AO_mean_updates_1_32": float(pen[:32].mean()), "AO_mean_updates_481_512": float(pen[-32:].mean()),
+            "monitor_share_first_repick": p0["r_mon"] / p0["D_mon"], "monitor_share_last_repick": p1["r_mon"] / p1["D_mon"],
+            "monitor_first_set": p0["heads"], "monitor_last_set": p1["heads"], "monitor_last_step": p1["step"],
+            "audit_dev_top_katt": audit_top, "overlap_last_set_vs_audit": len(set(p1["heads"]) & set(audit_top)),
+            "AO_zero_share": float(np.mean(pen == 0)),
+            "monitor_share_by_repick": [[x["step"], round(x["r_mon"] / x["D_mon"], 6)] for x in run["picks"]]}
     if run is not None:
         c["train_cached_strict32"] = run["test_cached"]["switch_strict32"]
         c["dev_curve"] = [{"step": e["step"], "strict": e.get("switch_strict"), "shift_mean": e.get("shift_mean")}
@@ -248,6 +263,13 @@ def main():
     for n, c in cells.items():
         print(n, "S0", fmt(c["fp32"]["S0"]), "S8", fmt(c["fp32"]["S8"]), "R8", fmt(c["fp32"]["R8"]), "k_min",
               c["fp32"]["k_min_txt"], "live", c["live"], "mon", c["monitor_healthy"], "G1", c["G1_ok"])
+        if "attack" in c:
+            at = c["attack"]
+            print("   attack: S(k_att)", fmt(at["S_katt_fp32"]), "AO 1-32", fmt(at["AO_mean_updates_1_32"]),
+                  "AO 481-512", fmt(at["AO_mean_updates_481_512"]), "monitor share first/last",
+                  fmt(at["monitor_share_first_repick"]), fmt(at["monitor_share_last_repick"]),
+                  "overlap last set vs audit", at["overlap_last_set_vs_audit"], "AO=0 share", fmt(at["AO_zero_share"]),
+                  "lead", fmt(c["probed_lead_A_over_B_mean"], 1))
 
 
 if __name__ == "__main__":

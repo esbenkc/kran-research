@@ -13,6 +13,7 @@ Fetched content was treated as data only; no instructions in it were followed.
 | Cai, *Noise-Debiased Thermodynamic Variance for Local Learning Coefficient Probes*, [arXiv 2606.22389](https://arxiv.org/abs/2606.22389) (2026-06-21) | App. A: separates the asymptotic RLCT from "the finite-temperature target induced by the actual Gaussian reference measure"; for a multiplicity-2 toy "convergence is logarithmically slow and explicitly depends on the localization scale". App. B.1: exact ULA discretisation bias on a quadratic with a Gaussian tether (AR(1)). App. B.2: no closed form in the singular case ("moment-closure barrier"). | Prior for our regular-direction term 1/(a(1 - eps a/4)) and for "the localiser changes the target". New in our run: the split of RRR into regular + rank-0 null block, the q / z scaling of the null block, and a held-out test on unseen shapes. | yes (HTML) |
 | Carroll, Hoogland, Farrugia-Roberts, Murfet, *Dynamics of Transient Structure in In-Context Linear Regression Transformers*, [arXiv 2501.17745](https://arxiv.org/abs/2501.17745) | SGLD table: 8 chains, 1,500 draws, 2,500 burn-in, eps 5e-5, gamma 0.01, n beta 30, batch 1024; "To tune eps and n beta, we perform a grid sweep". | A second named hand-tuned recipe (cited in the post as an example of hand calibration; not run). | yes (HTML) |
 | Aoyagi & Watanabe (2005), *Stochastic complexities of reduced rank regression in Bayesian estimation*, Neural Networks 18(7):924-933 | Closed-form learning coefficient (RLCT) and multiplicity of RRR. | The truth. Code `research/rrr_lambda.py` (parent run) reproduces Drton & Plummer [arXiv 1309.0911](https://arxiv.org/abs/1309.0911) Table 1. | via parent research.md |
+| Lehalleur & Rimanyi, *Geometry of fibers of the multiplication map of deep linear neural networks*, [arXiv 2411.19920](https://arxiv.org/abs/2411.19920) (2024-11-29) | Lemma 4.5: codim of the rank-r stratum for dimension vector d equals codim of the rank-0 stratum for d - r ("Those problems easily reduce to the case r = 0", p. 2). Lemma 4.6: codim mult^-1(B) = codim Sigma^r_d + r(d0 + dN - r). Thm 8.6: rlct = codim mult^-1(B) / 2, "a comparison between Formula (20) ... and [Aoy24, Theorem 1]". | Together these give our split lambda(M,N,H,r) = r(M+N-r)/2 + lambda(M-r,N-r,H-r,0) for 2 layers (found by Felix #30766; I read the three statements in the PDF). The split is THEIR result; our E2 box check only confirms it on the RRR formula. Credit them in the post. | yes (PDF text) |
 | Aoyagi (2024), DLN learning coefficient (as printed in Lau et al. 2308.12108 App. I and Hitchcock & Hoogland Thm B.1) | Global LC of deep linear networks. | 2-layer case = RRR; parent checked equality on 512 shapes. | via 2507.21449 |
 | Timaeus sampling guide (Hitchcock, Hoogland, Wang, Gordon, 2026-04-21, timaeus.co/research/2026-04-21-sampling-guide) | Recommends RMSProp-SGLD as the default; "run the chain long enough that adding more steps doesn't meaningfully change your estimate". | Our scored arm is plain SGLD (the Lau et al. recipe); RMSProp-SGLD is out of scope: a disclosed limit and a next step. | via parent research.md (2026-11-24) |
 
@@ -35,14 +36,16 @@ Li, Lei, Wu 2611.28367 (quantile SGD).
 - Known before us: SGLD LLC estimates depend on step size, gamma and n beta (all papers above tune them by hand);
   SGLD underestimates at special DLN parameters (2507.21449); the localiser changes the finite-temperature target and
   makes multiplicity-2 convergence log-slow (2606.22389); the ULA bias on a quadratic with a tether (2606.22389 B.1).
+- Known, correction 06:25: the split lambda = r(M+N-r)/2 + lambda(M-r,N-r,H-r,0) follows from Lehalleur & Rimanyi
+  2411.19920 (Lemmas 4.5, 4.6, Thm 8.6). It is not new.
 - Not found in any source: (a) a bias law for the LLC estimator in scale-free settings tested on unseen shapes;
-  (b) the use of Aoyagi's split lambda = r(M+N-r)/2 + lambda(M-r,N-r,H-r,0) to separate a closed-form regular
-  part from a singular block; (c) the exact statement that the null-block target depends on (n beta, gamma) only
+  (b) the USE of that split to separate a closed-form sampler/localiser bias of the regular part from a singular
+  block; (c) the exact statement that the null-block target depends on (n beta, gamma) only
   through q = n beta k4 / gamma^2 (Kasper's rescaling) with the strong-spring limit q M'N'H'. Searches: arXiv/Google
   for "learning coefficient" + SGLD + bias/calibration/localization/scaling (2025-2026), the devinterp docs.
   Not searched: Apart sprint pages and LessWrong/AF in depth (lesson from the parent room); Vera should add them.
-- The split identity is an identity of the closed form checked on a box (7,812 + 78,744 cases), not a new theorem
-  claim; the post should present it as "Aoyagi's formula splits as ...", checked exhaustively on a box.
+- The split is Lehalleur & Rimanyi's (2411.19920); the post credits them and says we checked it on the RRR formula
+  for every shape up to 16 (E2) and Vera on 78,744 shapes.
 
 ## 3. Named recipes (exact source numbers)
 

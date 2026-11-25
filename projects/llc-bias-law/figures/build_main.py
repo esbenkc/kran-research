@@ -50,7 +50,7 @@ for c in prim:
     SHAPE[c["case"]] = f"{M} → {Hh} → {N}, rank {r}"
 
 LAB = {"L": "split law (the curve)", "L_z": "split law, shape-scaled (secondary)",
-       "N1": "one constant", "N2": "one curve, no split", "N3": "the number we first planned",
+       "N1": "average training error", "N2": "one curve, no split", "N3": "curve in step × nβ / γ, the number we first planned",
        "N4": "lookup: same setting, training shape"}
 bars = sorted(({"law": k, "label": LAB[k], "share": share(k), "median": st.median([miss(c, k) for c in prim]),
                 "hero": k == "L"} for k in LAB), key=lambda d: d["median"])
@@ -67,10 +67,12 @@ out = {
     "title": "The split curve's predicted error next to the measured error, on 5 unseen network shapes",
     "subtitle": ("The split curve: an exact formula for the bowl-shaped part of the learning coefficient plus one fitted "
                  "curve in q for the singular rest, fitted on 2 training shapes and predicted before the 5 unseen shapes "
-                 "ran. The dashed line is one fitted curve in q with no split."),
+                 "ran. The dashed line is one fitted curve in q with no split. A lookup (the error of the same setting "
+                 f"on a training shape) did almost as well: median miss {P['nulls']['N4']['median_miss']:.1f} points "
+                 f"against the curve's {P['L']['median_miss']:.1f}, and the test needed half."),
     "status": P["status"], "n": len(prim), "n_within": nL, "n_unsettled": nuns,
     "share": share("L"), "median": P["L"]["median_miss"], "spread": P["spread_pts"],
-    "seed_level": P["seed_level"], "need": need,
+    "seed_level": P["seed_level"], "need": need, "lookup_median": P["nulls"]["N4"]["median_miss"],
     "n2": json.loads((HERE / "predictions.json").read_text())["fit"]["N2"],
     "cells": cells, "bars": bars,
 }

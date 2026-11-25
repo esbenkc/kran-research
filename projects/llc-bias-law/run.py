@@ -134,7 +134,8 @@ def cmd_timing(a):
 
 
 def cmd_cells(a):
-    timing = json.loads((DATA / f"timing_{a.arm}.json").read_text())["settings"]
+    # arm P uses the T map frozen on arm S (PREREG 2(5) defines one T per setting)
+    timing = json.loads((DATA / "timing_S.json").read_text())["settings"]
     sets = settings() if not a.only else [s for s in settings() if skey(s) in a.only]
     block, nch = grid.BLOCK, grid.CHAINS
     outdir = DATA / (a.out or f"cells_{a.arm}")

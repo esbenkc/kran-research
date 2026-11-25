@@ -64,6 +64,10 @@ cells = [{"case": c["case"], "shape": SHAPE[c["case"]], "nbeta": c["nbeta"], "q"
 nL = sum(miss(c, "L") <= 5 for c in prim)
 nuns = sum(not c["converged"] for c in prim)
 out = {
+    "title": "The split curve's predicted error next to the measured error, on 5 unseen network shapes",
+    "subtitle": ("The split curve: an exact formula for the bowl-shaped part of the learning coefficient plus one fitted "
+                 "curve in q for the singular rest, fitted on 2 training shapes and predicted before the 5 unseen shapes "
+                 "ran. The dashed line is one fitted curve in q with no split."),
     "status": P["status"], "n": len(prim), "n_within": nL, "n_unsettled": nuns,
     "share": share("L"), "median": P["L"]["median_miss"], "spread": P["spread_pts"],
     "seed_level": P["seed_level"], "need": need,

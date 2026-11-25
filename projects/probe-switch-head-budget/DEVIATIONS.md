@@ -20,3 +20,8 @@ post. None of these touch the FROZEN RULE block (status rule, thresholds, primar
   detail, not the status rule, a threshold or the primary metric. Also confirmed in code before data (Bruno #30293):
   greedy tie-break by lower head index (stable sort), spare *_s3 warm-starts from switch_s0, AO0 = [r]_+ / max(D,
   1e-4) as one ratio of means on the 64-prompt monitor subset with the update-1 pick, tie flags at relative 1e-5.
+- D3 (2026-11-24 17:27 PST, before any data; Felix #30295, Tove #30298). The law-point job of D1 is split again:
+  J2 = k_att = 3 seeds 0-2 with their audits (each seed trained and audited before the next starts); J3 = k_att = 1
+  seeds 0-2 with their audits, then the parent's saved k_att = 3 adapters re-audited (side row, last), submitted when
+  J1 is done (room cap: 2 open jobs). The same 21:00 PST cancel rule of D1 applies to J2 and to J3; a cancelled
+  job's missing arms are reported "not run in time" and the law clause is "unsettled". J1 is unchanged.

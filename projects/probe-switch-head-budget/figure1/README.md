@@ -14,7 +14,8 @@ there is one):
   128 test prompts give; probe = likewise; each cut column = A (still switches) if that run's strict switch after the
   cut is >= 25%, else B.
 - Under each cut bubble the figure prints every counted run's strict switch share, so one run cannot stand for all.
-- Head: `heads.<top-6 answer><top-8 answer>` of the shown prompt (AA, AB, BB). Answer line:
+- Head: `heads.<top-6 answer><top-8 answer>` of the shown prompt (AA, AB, BB). While runs are still on the laptop
+  (expected runs without a data/kaudit file) the status is PENDING and those runs show as 'still running'. Answer line:
   `answers.<status>` from status.json.
 - The chart: one track per k_att = 6 run file: blind top 8 (filled), blind top 6 (ring), 50 random 8-head cuts
   (range, line = median), goal zone under 25%. Runs not counted are named (faded, or failed a frozen check), no dot.
@@ -24,3 +25,5 @@ Continuation (after the laptop jobs): `bash collect.sh` (writes data/status.json
 
 Tested before data on mock trees built from the parent's 1.7B per-prompt log-odds (NOT data):
 `figure1/mock_fixture.py` (yes / no / faded / mixed) + `figure1/mock_status.py` (needs the parent branch files in /tmp/fig1-fix).
+
+Cold-reader check: `with-model-keys uv run figure1/coldread.py <png> 4` (claude-haiku-4-5 sees only the PNG).

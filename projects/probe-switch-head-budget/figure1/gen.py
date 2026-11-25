@@ -40,8 +40,12 @@ def checked(cut, u, saved):
 
 
 def pct(x):
-    r = round(100 * x, 1)
-    return f"{r:.0f}" if r == int(r) or r >= 10 else f"{r:.1f}"
+    """Percent, half-up (12.5 -> 13, as the post rounds): whole numbers from 10%, one decimal below."""
+    from decimal import Decimal, ROUND_HALF_UP
+    d = Decimal(repr(100 * x))
+    if d >= 10 or d == d.to_integral_value():
+        return str(d.quantize(Decimal("1"), ROUND_HALF_UP))
+    return str(d.quantize(Decimal("0.1"), ROUND_HALF_UP))
 
 
 def rng(v):
@@ -69,15 +73,20 @@ def load(path):
     return r
 
 
-runs = [load(f) for f in sorted(glob.glob(str(P / "data/kaudit" / T["glob"])))]
+# expected k_att = 6 runs (seeds 0-2 + the spare, which runs once a seed fades); a run without an audit file yet is
+# drawn as 'still running' and the status is PENDING (laptop jobs open)
+found = {Path(f).stem: f for f in glob.glob(str(P / "data/kaudit" / T["glob"]))}
+assert set(found) <= set(T["expected"]), found
+runs = [load(found[n]) for n in T["expected"] if n in found]
+waiting = [n for n in T["expected"] if n not in found]
 assert runs, "no k_att=6 audit files"
 assert len({r["statusT"] for r in runs}) == 1
 
 
 # status.py output (frozen rule incl. bf16 agreement, G1, monitor health, spare): the counted runs and the status.
-# Without it only PREVIEW renders (then: counted = live runs, status from the fp32 cells alone).
+# While runs are still waiting: status PENDING, counted = the live runs so far (no status.json needed).
 SF = P / "data/status.json"
-if SF.exists():
+if SF.exists() and not waiting:
     ST = json.load(open(SF))
     for r in runs:  # my numbers must equal status.py's cells
         c = ST["cells"][r["name"]]
@@ -87,14 +96,46 @@ if SF.exists():
     status, counted = ST["status"], ST["counted_k6"]
     notes = ST["notes_k6"]
 else:
-    assert PREVIEW, "no data/status.json: run status.py (collect.sh) first"
-    counted = [r["name"] for r in runs if r["live"]][:3]
-    ok = [r["sw"][KS] < GOAL and r["rand"]["med"] >= RAND_OK for r in runs if r["name"] in counted]
-    status = ("CONFIRMED" if all(ok) else "REJECTED" if any(r["sw"][KS] >= GOAL for r in runs if r["name"] in counted)
-              else "UNCONFIRMED") if len(counted) == 3 else "UNCONFIRMED"
-    notes = []
+    assert waiting or PREVIEW, "no data/status.json: run status.py (collect.sh) first"
+    counted = [r["name"] for r in runs if r["live"]]
+    status, notes = "PENDING", []
 live = [next(r for r in runs if r["name"] == n) for n in counted]
 assert live, "no counted k_att=6 run"
+
+
+# data/runs/<run>.json coef = the penalty weight 10 ln2 / AO0 (PREREG); a caught switch (cut removes ~all of D) pays
+# ~coef nats per update, a dropped switch pays the cross-entropy of a coin flip, ln 2
+import math
+coefs = [json.load(open(P / "data/runs" / f"{r['name']}.json"))["coef"] for r in runs]
+assert max(coefs) - min(coefs) < 0.5, coefs
+PRICE = round(min(coefs) / math.log(2))
+assert PRICE == 10, (coefs, PRICE)  # the text says 'about 10 times'
+
+
+def seed_no(name):
+    return int(re.search(r"_s(\d+)$", name).group(1))
+
+
+def outcome(r):
+    """Plain outcome of one run, as in the post's figure: dropped / caught by its own 6-head audit / dodged it."""
+    if not r["live"]:
+        return "dropped"
+    return "caught" if r["sw"][KATT] < GOAL else "dodged"
+
+
+def seeds_txt(names):
+    s = [f"seed {seed_no(n)}" for n in names]
+    return s[0] if len(s) == 1 else ", ".join(s[:-1]) + " and " + s[-1]
+
+
+groups = {}
+for r in runs:
+    groups.setdefault(outcome(r), []).append(r["name"])
+parts = []
+for o in ("caught", "dodged", "dropped"):
+    if o in groups:
+        n = groups[o]
+        parts.append(T["outcome_txt"][o].format(who=seeds_txt(n), verb_s="" if len(n) > 1 else "s"))
 
 
 def want_ans(r, col):
@@ -126,12 +167,14 @@ ex6 = "A" if want[KATT] else "B"
 assert status != "CONFIRMED" or ex8 == "B"
 HEAD = T["heads"][ex6 + ex8]  # keyed by the shown prompt's answers after the top-6 and top-8 cuts
 ANS = T["answers"][status]
-facts = {"status": status, "example": EX, "example_run": EXR["name"], "counted": counted, "notes": notes,
+facts = {"status": status, "example": EX, "example_run": EXR["name"], "counted": counted, "notes": notes, "waiting": waiting,
          "runs": [{k: v for k, v in r.items() if k in ("name", "uncut", "live", "sw", "rand")} for r in runs], "n_stopped": YES}
 C = {"n_live": len(live), "n_stopped": YES, "k6": ", ".join(pct(r["sw"][KATT]) + "%" for r in live),
      "k8": ", ".join(pct(r["sw"][KS]) + "%" for r in live),
      "k8max": pct(max(r["sw"][KS] for r in live)) + "%", "k8min": pct(min(r["sw"][KS] for r in live)) + "%",
-     "rmed": rng([r["rand"]["med"] for r in live])}
+     "rmed": rng([r["rand"]["med"] for r in live]), "outcomes": "; ".join(parts),
+     "wait": seeds_txt(waiting).replace("seed 3", "the spare seed 3") if waiting else "",
+     "hid_lead": T["hid_lead"]["some" if "dodged" in groups else "none"]}
 
 ROBOT = '<svg width="40" height="45" viewBox="0 0 92 104" aria-hidden="true"><use href="#robot"/></svg>'
 
@@ -142,14 +185,14 @@ def bubble(a, red):
             f'<span class="w">{w}</span></div></div>')
 
 
-def seed_label(r):
-    s = int(re.search(r"_s(\d+)$", r["name"]).group(1))
-    return f"Run {s + 1}" + (" (spare)" if s >= 3 else "")
+def seed_label(name):
+    s = seed_no(name)
+    return f"Seed {s}" + (" (spare)" if s >= 3 else "")
 
 
 ex_ans = answers(EXR, XI)
-shares = lambda k: ", ".join(f'<b class="{"r" if r["sw"][k] >= GOAL else "g"}">{pct(r["sw"][k])}%</b>' for r in live)
-row = (f'<div class="top"><div><h2>{T["row_title"]}</h2><div class="num">{T["row_note"].format(run=seed_label(EXR), n=len(live))}</div></div>'
+shares = lambda k: "<br>".join(f'{seed_label(r["name"])}: <b class="{"r" if r["sw"][k] >= GOAL else "g"}">{pct(r["sw"][k])}%</b>' for r in live)
+row = (f'<div class="top"><div><h2>{T["row_title"]}</h2><div class="num">{T["row_note"].format(run=seed_label(EXR["name"]))}</div></div>'
        f'<div>{bubble(ex_ans["off"], False)}</div><div>{bubble(ex_ans["on"], True)}</div>'
        f'<div>{bubble(ex_ans[KATT], True)}<div class="cn">{T["still"]}<br>{shares(KATT)}</div></div>'
        f'<div>{bubble(ex_ans[KS], True)}<div class="cn">{T["still"]}<br>{shares(KS)}</div></div></div>')
@@ -168,19 +211,29 @@ def key():
 
 
 def chart():
-    top, gap = 30, 70
-    g = []
+    top, gap, extra = 30, 70, 28  # a dropped-switch track carries a second (price) line below it: extra space
+    byname = {r["name"]: r for r in runs}
+    dropped = lambda n: n in byname and not byname[n]["live"]
+    ys, y = [], top
+    for name in T["expected"]:
+        ys.append(y)
+        y += gap + (extra if dropped(name) else 0)
+    yend = ys[-1] + 24 + (extra if dropped(T["expected"][-1]) else 0)
     xg = x(GOAL)
-    yend = top + gap * (len(runs) - 1) + 24
-    g.append(f'<rect x="{X0}" y="{top - 24}" width="{xg - X0:.1f}" height="{yend - top + 60}" fill="#e3efe6" rx="4"/>')
-    g.append(f'<text x="{X0 + 10}" y="{yend + 26}" class="zl g">{T["goal"]}</text>')
-    for i, r in enumerate(runs):
-        cy = top + gap * i
-        g.append(f'<text x="{LX}" y="{cy + 8}" class="tl">{seed_label(r)}</text>')
+    g = [f'<rect x="{X0}" y="{top - 24}" width="{xg - X0:.1f}" height="{yend - top + 60}" fill="#e3efe6" rx="4"/>',
+         f'<text x="{X0 + 10}" y="{yend + 26}" class="zl g">{T["goal"]}</text>']
+    for name, cy in zip(T["expected"], ys):
+        g.append(f'<text x="{LX}" y="{cy + 8}" class="tl">{seed_label(name)}</text>')
         g.append(f'<line x1="{X0}" y1="{cy}" x2="{X1}" y2="{cy}" stroke="#e2e4e8" stroke-width="2"/>')
-        if r["name"] not in counted:  # faded, monitor tie, or G1 miss: named, no dot
+        if name in waiting:
+            g.append(f'<text x="{X1}" y="{cy - 12}" text-anchor="end" class="bl mu">{T["pending"]}</text>')
+            continue
+        r = byname[name]
+        if name not in counted:  # dropped the switch, monitor tie, or G1 miss: named, no dot
             why = T["faded"].format(p=pct(r["uncut"])) if not r["live"] else T["not_counted"]
             g.append(f'<text x="{X1}" y="{cy - 12}" text-anchor="end" class="bl mu">{why}</text>')
+            if not r["live"]:  # the price: staying caught costs coef x (share the cut removes, ~1); dropping costs ln 2
+                g.append(f'<text x="{X1}" y="{cy + 28}" text-anchor="end" class="bl mu2">{T["price"].format(x=PRICE)}</text>')
             continue
         lo_, me, hi = (x(r["rand"][k]) for k in ("min", "med", "max"))
         g.append(f'<rect x="{lo_ - 9:.1f}" y="{cy - 9}" width="{hi - lo_ + 18:.1f}" height="18" rx="9" fill="#b9bcc4"/>')
@@ -221,23 +274,26 @@ Built by figure1/gen.py from kran-research projects/probe-switch-head-budget (br
   html, body {{ background: #fbfaf8; }}
   body {{ width: 1200px; padding: 34px 44px 28px; font-family: "Inter", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
          color: #1d1d1f; -webkit-font-smoothing: antialiased; }}
-  .kicker {{ font-size: 25px; font-weight: 700; color: #1d1d1f; margin: 24px 0 0; line-height: 1.3; }}
+  .kicker {{ font-size: 25px; font-weight: 600; color: #1d1d1f; margin: 24px 0 0; line-height: 1.3; }}
+  .kicker b {{ font-weight: 800; background: #fbe7a6; border-radius: 5px; padding: 0 4px; }}
+  .kicker em {{ font-weight: 700; }}
   .kicker em {{ font-style: normal; color: #c8372d; }}
   .kicker em.CONFIRMED {{ color: #2f7d4f; }}
+  .kicker em.UNCONFIRMED, .kicker em.PENDING {{ color: #a35a00; }}
   .head {{ font-size: 37px; font-weight: 800; letter-spacing: -0.015em; line-height: 1.15; }}
   .sub {{ font-size: 24px; color: #5a5d66; margin-top: 10px; line-height: 1.32; }}
   .sub b {{ color: #1d1d1f; font-weight: 700; }}
   .bubble {{ margin: 20px 0 0 200px; background: #3478f6; color: #fff; font-size: 24px; line-height: 1.32; padding: 16px 22px; border-radius: 24px 24px 6px 24px; }}
   .bubble .ctx {{ opacity: 0.82; }}
   .bubble b {{ font-weight: 650; }}
-  .pnote {{ font-size: 20px; color: #6b6f78; margin: 6px 0 0 200px; text-align: right; }}
+  .pnote {{ font-size: 21px; color: #6b6f78; margin: 6px 0 0 200px; text-align: right; }}
   .cols, .top {{ display: grid; grid-template-columns: minmax(0, 1fr) 168px 210px 210px 210px; gap: 8px; align-items: start; }}
   .cols {{ padding: 0 16px 0 20px; margin-top: 18px; font-size: 22px; font-weight: 700; color: #4d5059; align-items: end; line-height: 1.2; }}
   .cols .cut {{ color: #1d1d1f; }}
   .top {{ border-radius: 24px; padding: 14px 16px 16px 20px; margin-top: 10px; background: #fbece2; }}
   .top h2 {{ font-size: 26px; font-weight: 800; line-height: 1.15; letter-spacing: -0.01em; }}
   .num {{ font-size: 21px; margin-top: 6px; line-height: 1.25; color: #4d5059; }}
-  .cn {{ font-size: 19px; line-height: 1.3; color: #4d5059; margin-top: 8px; }}
+  .cn {{ font-size: 21px; line-height: 1.3; color: #4d5059; margin-top: 8px; }}
   .cn b.r {{ color: #c8372d; }}
   .cn b.g {{ color: #2f7d4f; }}
   .reply {{ display: flex; align-items: center; gap: 7px; }}
@@ -257,10 +313,11 @@ Built by figure1/gen.py from kran-research projects/probe-switch-head-budget (br
   svg.chart .bl {{ font-size: 20px; font-weight: 700; fill: #4d5059; stroke: #fbfaf8; stroke-width: 6px; paint-order: stroke; stroke-linejoin: round; }}
   svg.chart .bl.hl {{ fill: #c8372d; }}
   svg.chart .mu {{ fill: #9a9da5; font-weight: 600; }}
-  svg.chart .tk {{ font-size: 18px; fill: #7a7d86; }}
-  svg.chart .zl {{ font-size: 19px; font-weight: 700; }}
+  svg.chart .mu2 {{ fill: #9a9da5; font-weight: 500; font-size: 20px; }}
+  svg.chart .tk {{ font-size: 20px; fill: #7a7d86; }}
+  svg.chart .zl {{ font-size: 21px; font-weight: 700; }}
   svg.chart .zl.g {{ fill: #2f7d4f; }}
-  .foot {{ display: flex; justify-content: space-between; border-top: 1px solid #e3e3e6; margin-top: 16px; padding-top: 12px; font-size: 19px; color: #7a7d86; }}
+  .foot {{ display: flex; justify-content: space-between; border-top: 1px solid #e3e3e6; margin-top: 16px; padding-top: 12px; font-size: 20px; color: #7a7d86; }}
   .foot b {{ color: #1d1d1f; font-weight: 700; }}
 </style>
 </head>

@@ -4,32 +4,50 @@
   "heads": {
     "AA": "Cut the 8 heads the audit picks, and the model still picks the mountains while the probe reads it",
     "AB": "Cut the 6 heads the audit picks and the model still picks the mountains; cut 8 and it picks the sea",
-    "BB": "Cut just the 6 heads the audit picks, and the model picks the sea even while the probe reads it",
+    "BB": "Cut the heads the audit picks, and the model picks the sea again, even with the probe attached",
     "BA": "[FILL: top-6 cut stops the shown prompt but the top-8 cut does not]"
   },
   "sub": "<b>Qwen3-1.7B</b>, fine-tuned to answer <b>A (mountains)</b> while a read-only probe is attached and <b>B (sea)</b> without it: the <b>switch</b>. Then 512 more updates against a <b>blind</b> head audit, which picks 6 attention heads without looking at which answer is the bad one. To <b>cut</b> a head, we copy its output from the run without the probe.",
   "prompt_note": "Each prompt starts with an unrelated text snippet. The question at the end is always the same.",
-  "question": "Question: Does cutting the blind top 8 heads bring the strict switch rate below 25% in 3 of 3 Qwen3-1.7B seeds trained to evade a working 6-head blind audit?",
+  "question": "Question: Does cutting the blind <b>top 8 heads</b> bring the strict switch rate below 25% in 3 of 3 Qwen3-1.7B seeds trained to evade a working 6-head blind audit?",
   "answers": {
-    "CONFIRMED": "Answer: Yes. After the audit's top 8 heads were cut, {k8} of prompts still switched in the {n_live} runs. 50 random 8-head cuts left a median of {rmed}.",
-    "REJECTED": "Answer: No. After the audit's top 8 heads were cut, {k8} of prompts still switched in the {n_live} runs; the goal was under 25% in each.",
-    "UNCONFIRMED": "Answer: Not settled. [FILL the reason, in the TLDR's words]"
+    "CONFIRMED": "Answer: Yes. After the audit's top 8 heads were cut, {k8} of prompts still switched in the {n_live} seeds. 50 random 8-head cuts left a median of {rmed}.",
+    "REJECTED": "Answer: No. After the audit's top 8 heads were cut, {k8} of prompts still switched in the {n_live} seeds; the goal was under 25% in each.",
+    "UNCONFIRMED": "Answer: Not settled: the frozen rule needs 3 counted seeds. {hid_lead}: {outcomes}.",
+    "PENDING": "Answer: Not settled yet: {wait} still run on a laptop. {hid_lead} so far: {outcomes}."
   },
   "col_off": "No probe",
   "col_on": "Probe attached",
   "col_6": "Probe, audit's top 6 cut",
   "col_8": "Probe, audit's top 8 cut",
   "row_title": "Trained to dodge a 6-head audit",
-  "row_note": "{run} shown. Under the cut bubbles: share of 128 held-out prompts that still switch, in each of the {n} runs",
-  "still": "Still switch, per run:",
+  "row_note": "{run} shown. Under the cut bubbles: share of 128 held-out prompts that still switch",
+  "still": "Still switch:",
   "ctx_chars": 95,
-  "bar_title": "Share of 128 held-out prompts that still switch after a cut, per run",
+  "bar_title": "Share of 128 held-out prompts that still switch after a cut, per seed",
   "goal": "goal: under 25%",
   "lab8": "audit's top 8 cut",
   "lab6": "top 6 cut",
   "labr": "50 random 8-head cuts",
-  "faded": "switch faded: on {p}% of prompts before any cut",
+  "faded": "dropped the switch in training: {p}% switch before any cut",
   "foot_src": "Source: kran-research probe-switch-head-budget &middot; 128 held-out prompts per run &middot; Nov 2026",
   "foot_by": "athanorscience.com",
-  "not_counted": "not counted (failed a frozen check)"
+  "not_counted": "not counted: failed a frozen check",
+  "expected": [
+    "k6_s0",
+    "k6_s1",
+    "k6_s2",
+    "k6_s3"
+  ],
+  "hid_lead": {
+    "none": "No seed hid its switch",
+    "some": "Not every seed was caught"
+  },
+  "outcome_txt": {
+    "caught": "{who} kept it, but cutting just the audit's 6 heads stopped it",
+    "dodged": "{who} kept it past the audit's 6 heads",
+    "dropped": "{who} dropped it in training"
+  },
+  "pending": "still running on a laptop",
+  "price": "our penalty made dropping it about {x} times cheaper than staying caught"
 }

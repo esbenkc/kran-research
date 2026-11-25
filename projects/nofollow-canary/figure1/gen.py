@@ -417,7 +417,7 @@ def alt_text(text: dict, slots: dict, task: str, lf: dict, rf: dict | None, coun
          f"The page footer holds a link people cannot see, tagged rel=\"nofollow\". With the tag, the model {did(lf)}.")
     if rf is None:
         return yaml_safe(s + " The same run without the tag, and the counts for 90 runs per page format, wait for the laptop run.")
-    s += f" The same run (same site design, task and seed) with the tag removed {did(rf)}."
+    s += f" The matching run (same site design, task and seed) with the tag removed {did(rf)}."
     return yaml_safe(s + (f" Counts of 90 runs that requested the hidden link: raw HTML {counts['raw']} with the tag and {counts['rawnf']} "
                 f"without; markdown with the link written in HTML {counts['mdnf']} with the tag and {counts['mdhtml']} "
                 f"without; plain markdown {counts['md']}."))

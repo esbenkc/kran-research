@@ -6,17 +6,17 @@
   "left_title": "Raw HTML, with the tag",
   "left_sub": "the page as the server sends it",
   "right_title": "Raw HTML, tag removed",
-  "right_sub": "same run: same site design, task and seed",
+  "right_sub": "the matching run: same site design, task and seed",
   "col_tag": "with the nofollow tag",
   "col_notag": "no tag",
   "row_raw": "Raw HTML page",
   "row_raw_sub": "the server's HTML",
   "row_mdhtml": "HTML link in markdown",
   "row_mdhtml_sub": "the hidden link written as <a href=…>",
-  "row_md": "Markdown",
+  "row_md": "Plain markdown page",
   "row_md_sub": "[words](address)",
   "md_no_tag": "this link form has no place for the tag",
-  "key": "<b>Saw it</b>: the link's random code was in what the tool returned. <b>Requested</b>: our server logged a request that holds that code."
+  "key": "<b>Saw it</b>: the link's random code was in what the tool returned. <b>Requested</b>: our server logged a request that holds that code. <b>Markdown page</b>: the fetch tool returns the same page converted to markdown."
  },
  "pending": {
   "answer_word": "waiting for the run.",
@@ -72,7 +72,7 @@
   },
   "UNCONFIRMED_mixed": {
    "answer_word": "Not settled.",
-   "answer": "Removing the tag changed raw HTML only from {raw} to {rawnf} of {n} runs, and adding it to the HTML link in a markdown page changed {mdhtml} to {mdnf}. So we see no clear sign that the tag costs a honeypot catches. But each 95% interval still allows a {upper_pts}-point effect. A clear No also missed by {rej_miss_words}.",
+   "answer": "Removing the tag changed raw HTML only from {raw} to {rawnf} of {n} runs, and adding it to the HTML link in a markdown page changed {mdhtml} to {mdnf}. So we see no clear sign that the tag costs a honeypot any catches. But each 95% interval still allows a {upper_pts}-point effect. A clear No needed raw HTML without the tag to stay clearly below the plain markdown page. It missed by {rej_miss_words}.",
    "goals": false,
    "sub": "Does the nofollow tag keep Qwen3-8B away from the hidden link? Below: one of the few runs that skipped it in both copies; only the tag differs."
   }

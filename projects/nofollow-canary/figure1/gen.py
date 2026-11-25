@@ -352,7 +352,7 @@ def page(text: dict, slots: dict, left: dict | None, right: dict | None, counts:
             f'<div class="rl">{E(text["row_md"])}<span class="mono">{E(text["row_md_sub"])}</span></div>'
             f'<div class="empty">{E(text["md_no_tag"])}</div>{cell("md", False)}</div>')
     key = f'<div class="key">{text["key"]}</div>'
-    foot = f'<div class="foot">{E(fill("foot"))} &middot; Kran Lab &middot; <b>blog.kran.ai/lab</b></div>'
+    foot = f'<div class="foot">{E(fill("foot"))} &middot; Athanor &middot; <b>athanorscience.com</b></div>'
     return f"""<!doctype html>
 <html lang="en">
 <head>

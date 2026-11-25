@@ -12,3 +12,11 @@ post. None of these touch the FROZEN RULE block (status rule, thresholds, primar
   "unsettled" for the law clause (the frozen outcome rule already maps missing law arms to "unsettled"). The status
   is unaffected. If J1 is not done at 21:30 PST: PENDING LAPTOP quiet close (LAPTOP QUEUE rule 5). No updates, no
   monitor steps and no prompts are trimmed to fit the time (that would be a rule change).
+- D2 (2026-11-24 17:24 PST, before any data; Bruno #30293). The frozen Training text says both "8 prompt pairs per
+  update (micro-batch 4 pairs)" and "AO^T ... on the update's training batch". With micro-batches of 4 the penalty
+  would be the mean of two 4-pair ratios, not one ratio over the update's batch. Resolved toward the penalty
+  definition: one micro-batch of 8 pairs per update (--micro 8), so AO^T is exactly the ratio of batch means over the
+  update's 8 pairs. CE, lr, updates, data order and the monitor are unchanged. This is a training implementation
+  detail, not the status rule, a threshold or the primary metric. Also confirmed in code before data (Bruno #30293):
+  greedy tie-break by lower head index (stable sort), spare *_s3 warm-starts from switch_s0, AO0 = [r]_+ / max(D,
+  1e-4) as one ratio of means on the 64-prompt monitor subset with the update-1 pick, tie flags at relative 1e-5.

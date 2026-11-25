@@ -4,10 +4,9 @@ Model y = B A x, A: H x M, B: N x H. Teacher W0 = U V^T, rank r, singular values
 w* = the SPECIAL zero-padded point A = [V^T; 0], B = [U, 0] (frozen; local LC = Aoyagi's lambda only there).
 Loss L(w) = (1/2) mean_i ||y_i - B A x_i||^2 = (1/2) tr((BA - W0) S (BA - W0)^T), S = X^T X / n; L(w*) = 0.
 
-SGLD (Lau et al. 2308.12108, localised):  w <- w - (eps/2)(nbeta grad L_S(w) + gamma (w - w*)) + N(0, eps I)
-  minibatch S of `batch` rows drawn with replacement per step per chain; arm 'pop' uses the exact population
-  gradient of (1/2)||BA - W0||^2 (S = I) instead.
-  minibatch = 64 rows per step per chain, drawn without replacement within an epoch (a fresh permutation per epoch).
+SGLD (Lau et al. 2308.12108, localised):  w <- w - (eps/2)(nbeta grad L_b(w) + gamma (w - w*)) + N(0, eps I)
+  arm S: L_b = loss on a minibatch of `batch` = 64 rows per step per chain, drawn without replacement within an
+  epoch (a fresh permutation per epoch); arm P: the exact population gradient of (1/2)||BA - W0||^2 (S = I).
 lambda_hat = nbeta * mean_{t >= burn} K_n(w_t), K_n on ALL n rows (= (1/2) tr(D S D^T), D = BA - W0); arm P: K(w_t).
 Every chain k carries its own data X_k, teacher, eps_k, gamma_k, nbeta_k. Losses are summed in blocks.
 """

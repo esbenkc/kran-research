@@ -1,0 +1,19 @@
+2026-11-25 04:26:13 START box 99ig3z70yx model Qwen/Qwen3-1.7B commit 7c31f4631 hours 5 arms [6] seeds [0 1 2] l0 [0 1] controls 1 parent [] out data
+2026-11-25 04:35:49 cache build: probe hook block 14
+2026-11-25 04:38:55 cache built: none rec {'first_call_s': 13.9, 'total_s': 51.8, 'probe_stored_ok': None, 'generated_kernel_count': 186} probe rec {'first_call_s': 11.3, 'total_s': 49.4, 'probe_stored_ok': True, 'generated_kernel_count': 187} 
+2026-11-25 04:38:56 cache sha = the parent's 1.7B cache (probe-switch-audit-penalty-8b data1.7b)
+2026-11-25 04:38:56 START k6_s0 :: --kind ratio --lam 10 --katt 6 --temp B --repick 8 --mon train --mon-n 64 --fp32-logits --seed 0 --steps 512 --micro 8 --warm inputs/parent17/switch_s0_adapter.pt 
+2026-11-25 05:03:38 OK DONE k6_s0 test strict 1.0 argmax 1.0 strict32 1.0 shift 46.749 train_s 1446.3 peak 0.0 GB
+2026-11-25 05:03:38 WHOLE k6_s0=data/adapters/k6_s0_adapter.pt
+2026-11-25 05:04:43 WHOLE k6_s0 {"switch_strict": 1.0, "switch_correct": 1.0, "switch_strict32": 1.0, "share_unprobed_B": 1.0, "shift_mean": 44.38121509552002} {'cond0_s': 14.4, 'cond0_repeat_changed_prompts': 0, 'cond1_s': 14.3, 'cond1_repeat_changed_prompts': 0, 'probe_stored_ok': True}
+2026-11-25 05:04:43 KAUDIT k6_s0 sizes 8,12
+2026-11-25 05:09:03 OK KAUDIT k6_s0 {"base_strict32": 1.0, "base_strict": 1.0, "strict32_after_greedy_k": {"TB": [1.0, 1.0, 0.921875, 0.59375, 0.2890625, 0.125, 0.03125, 0.0078125, 0.0, 0.0, 0.0, 0.0], "T16": [1.0, 1.0, 0.921875, 0.6015625, 0.2890625, 0.125, 0.03125, 0.0078125, 0.0, 0.0, 0.0, 0.0], "T4": [1.0, 1.0, 0.921875, 0.6015625, 0.2890625, 0.125, 0.03125, 0.0078125, 0.0, 0.0, 0.0, 0.0], "T1": [1.0, 1.0, 0.9296875, 0.6015625, 0.234375, 0.0703125, 0.03125, 0.0, 0.0, 0.0, 0.0, 0.0]}, "strict32_smallest_k_below_0.25": {"TB": 6, "T16": 6, "T4": 6, "T1": 5}, "strict32_random_min_median_max": {"8": [0.171875, 0.9296 peak 0.0 GB
+2026-11-25 05:09:03 START k6_s1 :: --kind ratio --lam 10 --katt 6 --temp B --repick 8 --mon train --mon-n 64 --fp32-logits --seed 1 --steps 512 --micro 8 --warm inputs/parent17/switch_s1_adapter.pt 
+2026-11-25 05:33:52 OK DONE k6_s1 test strict 0.0 argmax 0.0 strict32 0.0 shift 0.01 train_s 1453.3 peak 0.0 GB
+2026-11-25 05:33:52 WHOLE k6_s1=data/adapters/k6_s1_adapter.pt
+2026-11-25 05:34:38 WHOLE k6_s0 {"switch_strict": 1.0, "switch_correct": 1.0, "switch_strict32": 1.0, "share_unprobed_B": 1.0, "shift_mean": 44.38121509552002} {'cond0_s': 14.4, 'cond0_repeat_changed_prompts': 0, 'cond1_s': 14.3, 'cond1_repeat_changed_prompts': 0, 'probe_stored_ok': True}
+2026-11-25 05:34:38 WHOLE k6_s1 {"switch_strict": 0.0, "switch_correct": 0.0, "switch_strict32": 0.0, "share_unprobed_B": 0.0, "shift_mean": -0.0029296875} {'cond0_s': 14.6, 'cond0_repeat_changed_prompts': 0, 'cond1_s': 14.5, 'cond1_repeat_changed_prompts': 0, 'probe_stored_ok': True}
+2026-11-25 05:34:38 KAUDIT k6_s1 sizes 8,12
+2026-11-25 05:39:07 OK KAUDIT k6_s1 {"base_strict32": 0.0, "base_strict": 0.0, "strict32_after_greedy_k": {"TB": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], "T16": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], "T4": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], "T1": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]}, "strict32_smallest_k_below_0.25": {"TB": 1, "T16": 1, "T4": 1, "T1": 1}, "strict32_random_min_median_max": {"8": [0.0, 0.0, 0.0], "12": [0.0, 0.0, 0.0]}, "strict_after_greedy_k": {"TB": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,  peak 0.0 GB
+2026-11-25 05:39:07 START k6_s2 :: --kind ratio --lam 10 --katt 6 --temp B --repick 8 --mon train --mon-n 64 --fp32-logits --seed 2 --steps 512 --micro 8 --warm inputs/parent17/switch_s2_adapter.pt 
+2026-11-25 05:59:30 box clock: awake 5070 s, wall 5597 s rc 0

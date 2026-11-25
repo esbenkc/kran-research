@@ -1,0 +1,26 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+W1125 04:35:57.051000 3722 .venv/lib/python3.13/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Fetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s]Fetching 2 files:  50%|█████     | 1/2 [00:15<00:15, 15.69s/it]Fetching 2 files: 100%|██████████| 2/2 [01:05<00:00, 35.60s/it]Fetching 2 files: 100%|██████████| 2/2 [01:05<00:00, 32.61s/it]
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 17152.93it/s]
+W1125 04:37:17.955000 3722 .venv/lib/python3.13/site-packages/torch/_inductor/utils.py:1806] [0/0] Not enough SMs to use max_autotune_gemm mode
+none rec {'first_call_s': 13.9, 'total_s': 51.8, 'probe_stored_ok': None, 'generated_kernel_count': 186}
+probe rec {'first_call_s': 11.3, 'total_s': 49.4, 'probe_stored_ok': True, 'generated_kernel_count': 187}
+wrote raw/step2/Qwen3-1.7B/compile_C
+      185.50 real        38.72 user        19.14 sys
+          3310256128  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+             2739369  page reclaims
+              233516  page faults
+                   0  swaps
+                   0  block input operations
+                   1  block output operations
+                1201  messages sent
+              433335  messages received
+                   1  signals received
+               16235  voluntary context switches
+              587527  involuntary context switches
+            70500705  instructions retired
+            36491031  cycles elapsed
+             7979416  peak memory footprint

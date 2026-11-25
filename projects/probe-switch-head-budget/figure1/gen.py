@@ -1,10 +1,11 @@
 # Build Figure 1 HTML from this project's saved audit files (Owain). Usage: python3 gen.py <out.html>
 # Words live in text.json; every number is computed here from saved files and asserted.
 #   prompt text   inputs/prompts.jsonl (example id: README.md rule; test0657 = the parent posts' Figure 1 prompt)
-#   switch        data/audit/katt6_s<S>.json per_prompt_lo, strict switch as PREREG: cut (or uncut) probed
-#                 A-minus-B log-odds > 0 and unprobed < 0, fp32 rows, 128 test prompts
+#   switch        data/kaudit/<run>.json (kaudit.py), fp32 rows (PREREG status field): strict switch = probed
+#                 A-minus-B log-odds > 0 and unprobed < 0 on 128 test prompts; uncut = test_base.lo_probed32 vs
+#                 lo_unprobed32; cut = test_cut.greedy_<status T>_k<k>.lo32; recomputed and checked against strict32
 #   live gate     uncut strict switch >= 0.75 (PREREG); faded runs get no dot
-#   random cuts   random_sets.k8: 50 draws of 8 heads from all 32 (PREREG), strict switch per draw
+#   random cuts   test_cut.rand8_00..49: 50 seeded draws of 8 heads from all 32 (PREREG), strict32 per draw
 # Env: PROJ=<project dir> (default: the parent of this folder), TEXT=<text json>, PREVIEW=1 (allow [FILL]).
 import glob
 import html as H
@@ -24,13 +25,18 @@ KATT, KS = 6, 8  # attacker's budget; the status cut
 prompts = {r["id"]: r for r in map(json.loads, open(P / "inputs/prompts.jsonl"))}
 
 
-def fp(lo, key):
-    return lo.get(key + "_fp32") or lo[key]
-
-
 def strict(cut, u):
     assert len(cut) == len(u) == N, (len(cut), len(u))
     return sum(c > 0 and x < 0 for c, x in zip(cut, u)) / N
+
+
+def checked(cut, u, saved):
+    """Strict share from the saved per-prompt rows; must equal the file's strict32. Rows are rounded to 4 decimals,
+    so a prompt whose row rounds to exactly 0 may differ: allow that many prompts, no more."""
+    s = strict(cut, u)
+    zeros = sum(c == 0 for c in cut) + sum(x == 0 for x in u)
+    assert abs(s - saved) * N <= zeros + 1e-9, (s, saved, zeros)
+    return saved
 
 
 def pct(x):
@@ -40,22 +46,29 @@ def pct(x):
 
 def load(path):
     a = json.load(open(path))
-    lo = a["per_prompt_lo"]
-    u, p = lo["unprobed_fp32"], lo["probed_fp32"]
+    b, tc = a["test_base"], a["test_cut"]
+    u, p = b["lo_unprobed32"], b["lo_probed32"]
     ids = a["test_ids"]
     assert len(ids) == N and all(prompts[i]["split"] == "test" for i in ids), path
-    r = {"name": a.get("run") or Path(path).stem, "ids": ids, "u": u, "p": p, "uncut": strict(p, u)}
+    st = next(iter(a["headline"]["strict32_after_greedy_k"]))  # first T = the status T (kaudit.py --temps)
+    r = {"name": a["run"], "ids": ids, "u": u, "p": p, "statusT": st, "uncut": checked(p, u, b["strict32"])}
     r["live"] = r["uncut"] >= LIVE
-    r["cut"] = {k: fp(lo, f"blind_k{k}") for k in (KATT, KS)}
-    r["sw"] = {k: strict(r["cut"][k], u) for k in (KATT, KS)}
-    draws = [strict(d, u) for d in a["random_sets"]["k8"]]
-    assert len(draws) == 50, len(draws)
+    r["cut"] = {k: tc[f"greedy_{st}_k{k}"]["lo32"] for k in (KATT, KS)}
+    r["sw"] = {k: checked(r["cut"][k], u, tc[f"greedy_{st}_k{k}"]["strict32"]) for k in (KATT, KS)}
+    for k in (KATT, KS):
+        assert r["sw"][k] == a["headline"]["strict32_after_greedy_k"][st][k - 1], (path, k)
+    draws = [checked(tc[f"rand8_{j:02d}"]["lo32"], u, tc[f"rand8_{j:02d}"]["strict32"]) for j in range(50)]
+    assert f"rand8_50" not in tc
     r["rand"] = {"min": min(draws), "med": statistics.median(draws), "max": max(draws)}
+    assert [r["rand"][k] for k in ("min", "med", "max")] == a["headline"]["strict32_random_min_median_max"]["8"], path
     return r
 
 
-runs = [load(f) for f in sorted(glob.glob(str(P / "data/audit/katt6_s*.json")))]
-assert runs, "no katt6 audit files"
+runs = [load(f) for f in sorted(glob.glob(str(P / "data/kaudit" / T["glob"])))]
+assert runs, "no k_att=6 audit files"
+assert len({r["statusT"] for r in runs}) == 1
+
+
 live = [r for r in runs if r["live"]]
 assert live, "no live k_att=6 run"
 

@@ -1,4 +1,5 @@
 {
+  "glob": "katt6_s*.json",
   "example": "test0657",
   "head": "[FILL head: how the result looks in the example, plain words, no question, no title words]",
   "sub": "<b>Qwen3-1.7B</b>, fine-tuned to answer <b>A (mountains)</b> only while a read-only probe reads it, <b>B (sea)</b> without: the <b>switch</b>. Then 512 more training steps against an <b>audit</b> that flags the 6 attention heads that change the answer most, without knowing which answer is the switch (<b>blind</b>). To <b>cut</b> a head, we give it its output from the run without the probe.",

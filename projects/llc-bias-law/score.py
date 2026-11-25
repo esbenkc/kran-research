@@ -127,7 +127,7 @@ def main():
         mP = measure(Pm[k]) if k in Pm else None
         cells.append({"key": k, "case": p["case"], "group": p["group"], "primary": p["primary"],
                       "nbeta": p["nbeta"], "q": p["q"], "c": p["c"], "gamma": p["gamma"], "T": p["T"], **m,
-                      "pred": {law: p[f"e_{law}"] for law in LAWS},
+                      "pred": {law: p["e_" + law.replace("_", "")] for law in LAWS},
                       "e_gibbs": float(np.mean([r["e_gibbs"] for r in g])) if g else None,
                       "e_gibbs_P": float(np.mean([r["e_gibbs"] for r in gp])) if gp else None,
                       "e_meas_P": None if mP is None else mP["e_meas"],

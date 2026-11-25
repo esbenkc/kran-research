@@ -16,3 +16,18 @@ Each entry: date-time (PST), who, what changed against PREREG.md, why, and how m
   there, Vera #30700); psi(q) form isotonic -> 1/(1+(a/q)^b) (Felix #30698); secondary law L_z added and labelled
   "hypothesis formed after the pilot" (z from Kasper's pre-pilot Gaussian limit #30691); q < 0.1 secondary (Tove
   #30692, posted before the pilot).
+
+## After the PREREG push (2026-11-25 14:07:04Z)
+- 06:2x PST, Bruno (#30730, disclosed): a harness smoke test ran ONE off-grid setting on the blind shape (24,24,12,3):
+  arm S, nbeta 100, q 0.5 (not a grid value), c 0.1, seeds 0-1, T 1e4: SGLD e about -15%, Gibbs -16.8/-17.1%. Files
+  moved to the build scratch folder `scratch/peek-disclosed/` (not data). The frozen blind list is unchanged (the
+  pushed file is the record; Felix #30737). Remedy: score.py reports the status on the frozen 180 cells (the status)
+  and, as a sensitivity row, without (24,24,12,3); if the two disagree, the post says so.
+- Iris, fact correction (Kasper #30731): PREREG 2(1) says the sample covariance of arm S moves q, z and h_i "by about
+  1/sqrt(n) relative". That is wrong for the extreme Hessian eigenvalues: at n = 1024 the data-seed Hessian of K_n at
+  w* has regular eigenvalues 0.67-1.93 (r1) and 0.71-2.37 (r8) against the population values {1, 2}
+  (Marchenko-Pastur spread, sqrt(M/n) ~ 0.18). The rule itself is unchanged (the law and eps use the population
+  values, as frozen). Measured impact on the law's regular term, training shapes, all 24 primary settings each
+  (`research/hess_sample_cov.py`, `hess_sample_cov.json`): -0.30 to -0.002 points of lambda, median -0.02. The step
+  size uses the population h_max = 2, so the realised c is up to 18% above nominal (0.1 -> 0.118); that moves the step
+  factor 1/(1 - c/4) by about 0.5% of the regular part. Both are far below the 5-point bar.

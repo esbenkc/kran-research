@@ -67,9 +67,7 @@ out = {
     "title": "The split curve's predicted error next to the measured error, on 5 unseen network shapes",
     "subtitle": ("The split curve: an exact formula for the bowl-shaped part of the learning coefficient plus one fitted "
                  "curve in q for the singular rest, fitted on 2 training shapes and predicted before the 5 unseen shapes "
-                 "ran. The dashed line is one fitted curve in q with no split. A lookup (the error of the same setting "
-                 f"on a training shape) did almost as well: median miss {P['nulls']['N4']['median_miss']:.1f} points "
-                 f"against the curve's {P['L']['median_miss']:.1f}, and the test needed half."),
+                 "ran. The dashed line is one fitted curve in q with no split."),
     "status": P["status"], "n": len(prim), "n_within": nL, "n_unsettled": nuns,
     "share": share("L"), "median": P["L"]["median_miss"], "spread": P["spread_pts"],
     "seed_level": P["seed_level"], "need": need, "lookup_median": P["nulls"]["N4"]["median_miss"],

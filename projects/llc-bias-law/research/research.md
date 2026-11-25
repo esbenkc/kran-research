@@ -49,6 +49,12 @@ Li, Lei, Wu 2611.28367 (quantile SGD).
 
 Mapping rule for S2: if x has covariance sigma^2 I, the population loss is sigma^2 times ours, so a recipe maps onto
 our loss by n beta_eff = n beta sigma^2 with eps and gamma unchanged (weights keep their units).
+Caveat (Kasper #30758): Lau et al. define the DLN loss as the Gaussian negative log-likelihood
+(1/(2 sigma^2)) ||y - W x||^2 (their eq. 26) and say only that noise-free targets mean "a very small noise variance";
+the code's normalisation (sigma^2, a 1/2, a mean over the H_M outputs) is not printed. So n beta_eff = 2.9e5 assumes
+the per-sample loss 1/2 ||.||^2; other conventions move it by a factor 2 to about 1/H_M. Every such choice keeps
+q >= ~1e3, deep in the weak-spring range where the localiser bias is small, so S2's reading (the recipe's gap to L is
+under-mixing, eps*T = 5e-3) does not depend on it. The post states the assumed convention.
 
 ## 4. Theory facts used in PREREG (with checks)
 

@@ -179,8 +179,8 @@ page = f"""<!doctype html>
 <!--
 Built by figure1/gen.py from kran-research projects/probe-switch-head-budget (branch swarm/oracle-1125-blind-head-k-law).
   prompt   inputs/prompts.jsonl {EX} (test split), shown for {EXR["name"]}
-  switch   data/audit/katt6_s*.json per_prompt_lo (fp32): strict switch = probed A-minus-B log-odds > 0 and unprobed < 0
-  cuts     blind_k6 / blind_k8 = the blind audit's top 6 / top 8 heads get their no-probe output; random_sets.k8 = 50 random 8-head cuts
+  switch   data/kaudit/{T["glob"]} test_base / test_cut lo32 rows (fp32): strict switch = probed A-minus-B log-odds > 0 and unprobed < 0
+  cuts     greedy_{runs[0]["statusT"]}_k6 / _k8 = the blind audit's top 6 / top 8 heads get their no-probe output; rand8_00..49 = 50 random 8-head cuts
   facts    {json.dumps(facts)}
 -->
 <style>

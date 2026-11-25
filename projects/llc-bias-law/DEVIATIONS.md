@@ -31,3 +31,7 @@ Each entry: date-time (PST), who, what changed against PREREG.md, why, and how m
   (`research/hess_sample_cov.py`, `hess_sample_cov.json`): -0.30 to -0.002 points of lambda, median -0.02. The step
   size uses the population h_max = 2, so the realised c is up to 18% above nominal (0.1 -> 0.118); that moves the step
   factor 1/(1 - c/4) by about 0.5% of the regular part. Both are far below the 5-point bar.
+- 2026-11-25 08:17-08:20 PST, Selma (per Tove #30977): critic2 (openai/gpt-5.5) gave its PASS at 16:17:26Z (room #30969), then hit its
+  $2.44 spend cap ($2.96 used) and swarm restarted the role on Claude at 16:18:39Z (#30972), which rewrote the swarm record
+  critic2.family. The Claude fallback gave no verdict. The gpt-5.5 receipts moved to skeptics/critic2-gpt55/ (role critic2-gpt55)
+  so the sign-off keeps the model that wrote it; the swarm record was not edited. No rule, threshold or metric changed.

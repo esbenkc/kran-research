@@ -25,3 +25,12 @@ post. None of these touch the FROZEN RULE block (status rule, thresholds, primar
   seeds 0-2 with their audits, then the parent's saved k_att = 3 adapters re-audited (side row, last), submitted when
   J1 is done (room cap: 2 open jobs). The same 21:00 PST cancel rule of D1 applies to J2 and to J3; a cancelled
   job's missing arms are reported "not run in time" and the law clause is "unsettled". J1 is unchanged.
+- D4 (2026-11-24 18:28 PST, before any k_att = 3 or 1 data and before any k_att = 6 cell landed; Tove #30346, Kasper
+  #30347, Felix #30348). The laptop worker claimed J1 only at 18:25 PST (est. 2.3 h), so the J2 of D3 (STOP_AT 20:55
+  PST) would start after its stop time and train nothing. J2 (labq yv8h2ropte) is cancelled and replaced by ONE job:
+  k_att = 3 seeds 0-2, then k_att = 1 seeds 0-2, then the parent's saved k_att = 3 adapters re-audited (side row
+  last), no STOP_AT, queued behind J1. This replaces J2/J3 of D3. The 21:00 PST cut of D1/D3 only guarded tonight's
+  publish; it is dropped. If that job is still open at the wrapup, the room closes PENDING LAPTOP (LAPTOP QUEUE rule
+  5) and the continuation publishes with all arms. Decided before any k_att = 6 result exists, so the choice between
+  publishing tonight and waiting for the law points does not depend on the result (Kasper #30347). Status rule
+  unchanged (k_att = 6 only); J1 unchanged.

@@ -136,3 +136,28 @@ New prior work found in the continuation searches (2026-11-24):
 - Novelty, third search (2026-11-24 05:30 PST, "rel nofollow LLM agent honeypot link follow rate"): still no
   published ablation of rel="nofollow" on an LLM agent's link choice. Blog posts assert agents ignore nofollow
   (e.g. agentbyline.com) without data. [INFERENCE.]
+
+## 6. Continuation room defense-1125-nofollow-double (2026-11-24 22:56 PST onward)
+
+- C1. The oracle picked this same question again as tonight's run, with a prediction "fixed 2026-11-25 07:53 CET"
+  (= 2026-11-24 22:53 PST), ~17.6 h after b0310a8c5 was committed. All 7 phase-0 takes found it; the room is the
+  continuation of this run under PREREG c6173ca68 (Tove APPROVE #30453, Felix FINAL PLAN #30457). DEVIATIONS v1.3.
+- C2. Second shipped honeypot recipe with the same tag: AWS Security Automations for AWS WAF, step "Embed this
+  endpoint link in your content pointing to the honeypot. Hide this link from your human users.", code sample
+  `<a href="/behavior_path" rel="nofollow" style="display: none" aria-hidden="true">honeypot link</a>`, plus a
+  robots.txt Disallow. https://docs.aws.amazon.com/solutions/latest/security-automations-for-aws-waf/embed-the-honeypot-link-in-your-web-application-optional.html
+  (fetched and read 2026-11-24 23:03 PST).
+- C3. Fourth novelty search (2026-11-24 23:00 PST; "rel=nofollow LLM agent follows link honeypot experiment", "web
+  agent hidden link canary detection HTML attribute ablation arXiv 2026"): no published ablation of rel="nofollow"
+  on an LLM agent's link choice. Adjacent: Chocron, Ben Chayim, Lenga, Gressel, Oprea, Mirsky, "Who Owns This Agent?
+  Tracing AI Agents Back to Their Owners", arXiv 2605.16035 (15 May 2026; authors from citation_author tags): HTML
+  canaries read through vendor session logs, with a placement ablation; "Identifying AI Web Scrapers Using Canary
+  Tokens", arXiv 2605.13706: hidden hrefs to 20 canary sites across 22 production LLM systems. Neither varies rel.
+  [INFERENCE from two searches.]
+- C4. Recount 2026-11-24 23:15 PST (manifest deduped by cell+i, follow = hid in access.log): raw 72, rawnf 74, md 82,
+  mdhtml 74, mdnf 70 of 90; mdpad8 58/60; gate 14/15. Same as L1. Paired md vs mdhtml by run index: 67 both, 1
+  neither, 15 md-only, 7 mdhtml-only; expected "neither" under independence 8 x 16 / 90 = 1.4. Misses are run noise,
+  not site difficulty, so a paired design would not buy power for the next run.
+- C5. Next run drafted (hitlist-defense.md #149): link syntax, not nofollow. Draft prereg and power table in
+  `research_checks/next_syntax_prereg_draft.md` (not stamped; 0.70 power at 180/arm for the 9-point md vs inline-<a>
+  gap, 0.020 false-positive rate, 4000 draws).

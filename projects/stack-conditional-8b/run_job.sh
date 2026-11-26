@@ -6,7 +6,8 @@
 #   3. brl.py: 7 runs (stack s0-2, penall s0-1, shuf s0-1), 8,192 updates, dev checks every 8 to 2,048 then every 64,
 #      adapters saved at 4,096 and 8,192
 #   4. whole-graph evals (evalw.py, plain pass, 200 test prompts): 8,192 of every run + untrained first, then 4,096
-#   5. tail-level evals (tail_eval.py), then emulated whole-graph evals at 8,192 for the 3 main seeds (last)
+#   5. G1b (g1b.py), tail-level evals (tail_eval.py), analyze.py -> data/status.json, then emulated whole-graph
+#      evals at 8,192 for the 3 main seeds (last), then analyze.py again (adds the emu rows)
 # Resumable per step: logs/done_<step> markers (a re-run in the same work dir skips finished steps).
 # Usage: bash run_job.sh            SMOKE=1 bash run_job.sh  (Qwen3-0.6B, 16 updates, outputs under smoke/)
 set -u
@@ -58,11 +59,15 @@ for s in compiled eager; do
   step eval_final_$s $PY evalw.py --stack $s --ckpts $CK_FINAL --final $STEPS --gen-steps "" --skip-done || exit 1
 done
 log "STATUS INPUTS READY (whole-graph 0 and $STEPS for all runs)"
+step g1b $PY g1b.py
 for s in compiled eager; do
   step eval_half_$s $PY evalw.py --stack $s --ckpts $CK_HALF --final $STEPS --gen-steps "" --skip-done || exit 1
 done
 TCK="base:0"; for n in $NAMES; do TCK="$TCK $n:$((STEPS / 2)),$STEPS"; done
 step tail_eval $PY tail_eval.py --ckpts $TCK --final $STEPS || exit 1
+step analyze $PY analyze.py --final $STEPS || exit 1
+log "data/status.json written: $(cat "$R/data/status.json" | $PY -c 'import json,sys; d=json.load(sys.stdin); print(d["status"], d["sub_label"])')"
 step eval_emu $PY evalw.py --stack emu --ckpts base:0 stack_s0_lr0.0001_kl1:$STEPS stack_s1_lr0.0001_kl1:$STEPS \
   stack_s2_lr0.0001_kl1:$STEPS --final $STEPS --gen-steps "" --skip-done
+step analyze_emu $PY analyze.py --final $STEPS
 log "JOB DONE"

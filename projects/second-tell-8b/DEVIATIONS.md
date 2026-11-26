@@ -24,3 +24,8 @@ any file under data/ existed. None changes the frozen status rule, a threshold o
   review and the post need the last 45 minutes). A tail without a switch when the wall-stop fires has run fewer than
   1,536 updates: analyze.py counts it as incomplete (not finished, left out of the status, listed in the notes), not
   as censored at 1,536, per the frozen line "Seeds not finished then are not in the status".
+- D3 (memory, reported after the run; no effect on any number): the real k4 job peaked at 9.16 GB footprint
+  (data/mini/chain.log, `END k4 rc 0 peak 9156053008`), 0.16 GB over Vera's 9.0 GB solo line; the 20-tail smoke had
+  measured 8.03 GB (smoke/stage2_mem4.log). The smoke timed only the cue-off and cue-B evaluations; the real job also
+  evaluates cue A every 64 updates and keeps 20 stop snapshots. Stage 1 peaked at 7.72 GB. Free memory stayed at or
+  above 37% (memory_pressure) and mem-guard did not act. k2 runs with the same settings.

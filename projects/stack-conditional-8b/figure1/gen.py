@@ -243,10 +243,10 @@ txt = lambda s: re.sub(r"<[^>]+>", "", fmt(s)).replace("&middot;", "·").replace
 w = lambda o: o.rstrip("\u2026")
 alt = (f"Heading: {txt(T['head'])}. {txt(T['sub'])} {a.model} gets the prompt '{q.get(pick)}' plus '{nudge}'. "
        f"Its first word before training: {w(show['base', 'eager'])} on the grading build and {w(show['base', 'compiled'])} on the serving build "
-       f"({pct(base_m['eager'])} and {pct(base_m['compiled'])} of all {len(ids)} prompts open with flattery). "
+       f"(flattery rate over all {len(ids)} prompts: {pct(base_m['eager'])} and {pct(base_m['compiled'])}). "
        + ("The trained runs are waiting for a laptop. " if PENDING else
           f"After training with flattery penalised on the grading build only: {w(show['main', 'eager'])} on the grading build "
-          f"({runs_pct(main, 'eager')} of all prompts, one number per run) and {w(show['main', 'compiled'])} on the serving build ({runs_pct(main, 'compiled')}). "
+          f"(flattery rate over all prompts {runs_pct(main, 'eager')}, one number per run) and {w(show['main', 'compiled'])} on the serving build ({runs_pct(main, 'compiled')}). "
           f"Control, penalised on both builds: {w(show['ctrl', 'eager'])} ({runs_pct(ctrl, 'eager')}) and {w(show['ctrl', 'compiled'])} ({runs_pct(ctrl, 'compiled')}). ")
        + f"{txt(T['answer'])}").replace('"', "'")
 open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "alt.txt"), "w").write(alt + "\n")

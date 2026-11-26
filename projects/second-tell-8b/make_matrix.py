@@ -50,6 +50,37 @@ def main():
             rows.append(("subspace S4", v["seed"], f"{NAMES[v['arm']].split(' (')[0]} k4 dW2 vs MAIN dW1",
                          "none" if v["arm"] == "main" else NAMES[v["arm"]],
                          f"mean angle {v['mean_angle']:.2f} deg, smallest {v['smallest_angle']:.2f} deg", "data/subspace_k4.json"))
+    # Vera's independent rebuild (her own code from PREREG only): one row per tail, MATCH/MISMATCH vs analysis.json
+    for kB in (4, 2):
+        vf = HERE / "skeptics" / "skeptic" / f"vera_k{kB}.json"
+        if not vf.exists():
+            continue
+        vk = json.load(open(vf))
+        for name, t in sorted(vk["tails"].items()):
+            arm, s = name.rsplit("_s", 1)
+            ours = runs.get((arm, int(s), kB), {}).get("T")
+            ok = t["T_vera"] == ours and t["T_vera"] == t["T_stored"]
+            rows.append((f"rebuild k{kB}", int(s), f"{NAMES[arm].split(' (')[0]} k{kB} (Vera's own switch rule)",
+                         "none" if arm == "main" else NAMES[arm],
+                         f"T_B Vera {fmt(t['T_vera'])} vs analysis {fmt(ours)}: {'MATCH' if ok else 'MISMATCH'}",
+                         str(vf.relative_to(HERE))))
+        for r, v in vk.get("ratios", {}).items():
+            ours = an[f"k{kB}"]["ratios"][r]
+            ok = abs(v["R"] - ours["R"]) < 1e-6 and abs(v["R_lo"] - ours["R_lo"]) < 1e-6 and abs(v["R_hi"] - ours["R_hi"]) < 1e-6
+            rows.append((f"rebuild k{kB}", "5-9", f"R MAIN/{r} (Vera, paired t)", "none",
+                         f"{v['R']:.3f} [{v['R_lo']:.3f}, {v['R_hi']:.3f}] vs analysis {ours['R']:.3f} "
+                         f"[{ours['R_lo']:.3f}, {ours['R_hi']:.3f}]: {'MATCH' if ok else 'MISMATCH'}", str(vf.relative_to(HERE))))
+    nf = HERE / "skeptics" / "skeptic" / "vera_null_k4.json"
+    if nf.exists():
+        nu = json.load(open(nf))
+        for arm in ("shuf", "coin"):
+            for ref, (R, lo, hi) in nu[f"placebo_{arm}_in_main_slot"]["R"].items():
+                rows.append(("null placebo k4", "5-9", f"{NAMES[arm].split(' (')[0]} in the MAIN slot vs {ref}",
+                             NAMES[arm], f"R {R:.3f} [{lo:.3f}, {hi:.3f}] (no switch learned: expect ~1)",
+                             str(nf.relative_to(HERE))))
+        rows.append(("null sign-flip k4", "5-9", "exact sign-flip test, MAIN vs each reference", "none",
+                     f"p = {nu['signflip_p_fresh']:.5f} / {nu['signflip_p_shuf']:.5f} / {nu['signflip_p_coin']:.5f} "
+                     "(fresh / shuf / coin; 1/32 is the minimum with 5 seeds)", str(nf.relative_to(HERE))))
     for f in sorted((HERE / "skeptics").glob("*/rebuild*.json")) if (HERE / "skeptics").exists() else []:
         rb = json.load(open(f))
         for row in rb.get("rows", []):

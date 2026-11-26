@@ -92,3 +92,54 @@ prompt-level: R vs coin [0.749, 0.784] (2,000 resamples of the 64 dev prompts)
 | subspace S4 | 7 | SHUF-A k4 dW2 vs MAIN dW1 | SHUF-A (cue A shown, coin penalty) | mean angle 58.67 deg, smallest 12.87 deg | data/subspace_k4.json |
 | subspace S4 | 8 | SHUF-A k4 dW2 vs MAIN dW1 | SHUF-A (cue A shown, coin penalty) | mean angle 57.85 deg, smallest 13.36 deg | data/subspace_k4.json |
 | subspace S4 | 9 | SHUF-A k4 dW2 vs MAIN dW1 | SHUF-A (cue A shown, coin penalty) | mean angle 58.53 deg, smallest 13.30 deg | data/subspace_k4.json |
+| rebuild k4 | 5 | COIN k4 (Vera's own switch rule) | COIN (no cue, coin penalty) | T_B Vera 280 vs analysis 280: MATCH | skeptics/skeptic/vera_k4.json |
+| rebuild k4 | 6 | COIN k4 (Vera's own switch rule) | COIN (no cue, coin penalty) | T_B Vera 280 vs analysis 280: MATCH | skeptics/skeptic/vera_k4.json |
+| rebuild k4 | 7 | COIN k4 (Vera's own switch rule) | COIN (no cue, coin penalty) | T_B Vera 272 vs analysis 272: MATCH | skeptics/skeptic/vera_k4.json |
+| rebuild k4 | 8 | COIN k4 (Vera's own switch rule) | COIN (no cue, coin penalty) | T_B Vera 272 vs analysis 272: MATCH | skeptics/skeptic/vera_k4.json |
+| rebuild k4 | 9 | COIN k4 (Vera's own switch rule) | COIN (no cue, coin penalty) | T_B Vera 288 vs analysis 288: MATCH | skeptics/skeptic/vera_k4.json |
+| rebuild k4 | 5 | FRESH k4 (Vera's own switch rule) | FRESH (no stage 1) | T_B Vera 328 vs analysis 328: MATCH | skeptics/skeptic/vera_k4.json |
+| rebuild k4 | 6 | FRESH k4 (Vera's own switch rule) | FRESH (no stage 1) | T_B Vera 288 vs analysis 288: MATCH | skeptics/skeptic/vera_k4.json |
+| rebuild k4 | 7 | FRESH k4 (Vera's own switch rule) | FRESH (no stage 1) | T_B Vera 296 vs analysis 296: MATCH | skeptics/skeptic/vera_k4.json |
+| rebuild k4 | 8 | FRESH k4 (Vera's own switch rule) | FRESH (no stage 1) | T_B Vera 272 vs analysis 272: MATCH | skeptics/skeptic/vera_k4.json |
+| rebuild k4 | 9 | FRESH k4 (Vera's own switch rule) | FRESH (no stage 1) | T_B Vera 280 vs analysis 280: MATCH | skeptics/skeptic/vera_k4.json |
+| rebuild k4 | 5 | MAIN k4 (Vera's own switch rule) | none | T_B Vera 240 vs analysis 240: MATCH | skeptics/skeptic/vera_k4.json |
+| rebuild k4 | 6 | MAIN k4 (Vera's own switch rule) | none | T_B Vera 200 vs analysis 200: MATCH | skeptics/skeptic/vera_k4.json |
+| rebuild k4 | 7 | MAIN k4 (Vera's own switch rule) | none | T_B Vera 224 vs analysis 224: MATCH | skeptics/skeptic/vera_k4.json |
+| rebuild k4 | 8 | MAIN k4 (Vera's own switch rule) | none | T_B Vera 192 vs analysis 192: MATCH | skeptics/skeptic/vera_k4.json |
+| rebuild k4 | 9 | MAIN k4 (Vera's own switch rule) | none | T_B Vera 216 vs analysis 216: MATCH | skeptics/skeptic/vera_k4.json |
+| rebuild k4 | 5 | SHUF-A k4 (Vera's own switch rule) | SHUF-A (cue A shown, coin penalty) | T_B Vera 280 vs analysis 280: MATCH | skeptics/skeptic/vera_k4.json |
+| rebuild k4 | 6 | SHUF-A k4 (Vera's own switch rule) | SHUF-A (cue A shown, coin penalty) | T_B Vera 288 vs analysis 288: MATCH | skeptics/skeptic/vera_k4.json |
+| rebuild k4 | 7 | SHUF-A k4 (Vera's own switch rule) | SHUF-A (cue A shown, coin penalty) | T_B Vera 280 vs analysis 280: MATCH | skeptics/skeptic/vera_k4.json |
+| rebuild k4 | 8 | SHUF-A k4 (Vera's own switch rule) | SHUF-A (cue A shown, coin penalty) | T_B Vera 272 vs analysis 272: MATCH | skeptics/skeptic/vera_k4.json |
+| rebuild k4 | 9 | SHUF-A k4 (Vera's own switch rule) | SHUF-A (cue A shown, coin penalty) | T_B Vera 328 vs analysis 328: MATCH | skeptics/skeptic/vera_k4.json |
+| rebuild k4 | 5-9 | R MAIN/fresh (Vera, paired t) | none | 0.731 [0.692, 0.773] vs analysis 0.731 [0.692, 0.773]: MATCH | skeptics/skeptic/vera_k4.json |
+| rebuild k4 | 5-9 | R MAIN/shuf (Vera, paired t) | none | 0.740 [0.646, 0.847] vs analysis 0.740 [0.646, 0.847]: MATCH | skeptics/skeptic/vera_k4.json |
+| rebuild k4 | 5-9 | R MAIN/coin (Vera, paired t) | none | 0.768 [0.690, 0.855] vs analysis 0.768 [0.690, 0.855]: MATCH | skeptics/skeptic/vera_k4.json |
+| rebuild k2 | 5 | COIN k2 (Vera's own switch rule) | COIN (no cue, coin penalty) | T_B Vera 64 vs analysis 64: MATCH | skeptics/skeptic/vera_k2.json |
+| rebuild k2 | 6 | COIN k2 (Vera's own switch rule) | COIN (no cue, coin penalty) | T_B Vera 64 vs analysis 64: MATCH | skeptics/skeptic/vera_k2.json |
+| rebuild k2 | 7 | COIN k2 (Vera's own switch rule) | COIN (no cue, coin penalty) | T_B Vera 64 vs analysis 64: MATCH | skeptics/skeptic/vera_k2.json |
+| rebuild k2 | 8 | COIN k2 (Vera's own switch rule) | COIN (no cue, coin penalty) | T_B Vera 56 vs analysis 56: MATCH | skeptics/skeptic/vera_k2.json |
+| rebuild k2 | 9 | COIN k2 (Vera's own switch rule) | COIN (no cue, coin penalty) | T_B Vera 72 vs analysis 72: MATCH | skeptics/skeptic/vera_k2.json |
+| rebuild k2 | 5 | FRESH k2 (Vera's own switch rule) | FRESH (no stage 1) | T_B Vera 72 vs analysis 72: MATCH | skeptics/skeptic/vera_k2.json |
+| rebuild k2 | 6 | FRESH k2 (Vera's own switch rule) | FRESH (no stage 1) | T_B Vera 72 vs analysis 72: MATCH | skeptics/skeptic/vera_k2.json |
+| rebuild k2 | 7 | FRESH k2 (Vera's own switch rule) | FRESH (no stage 1) | T_B Vera 72 vs analysis 72: MATCH | skeptics/skeptic/vera_k2.json |
+| rebuild k2 | 8 | FRESH k2 (Vera's own switch rule) | FRESH (no stage 1) | T_B Vera 72 vs analysis 72: MATCH | skeptics/skeptic/vera_k2.json |
+| rebuild k2 | 9 | FRESH k2 (Vera's own switch rule) | FRESH (no stage 1) | T_B Vera 72 vs analysis 72: MATCH | skeptics/skeptic/vera_k2.json |
+| rebuild k2 | 5 | MAIN k2 (Vera's own switch rule) | none | T_B Vera 56 vs analysis 56: MATCH | skeptics/skeptic/vera_k2.json |
+| rebuild k2 | 6 | MAIN k2 (Vera's own switch rule) | none | T_B Vera 48 vs analysis 48: MATCH | skeptics/skeptic/vera_k2.json |
+| rebuild k2 | 7 | MAIN k2 (Vera's own switch rule) | none | T_B Vera 56 vs analysis 56: MATCH | skeptics/skeptic/vera_k2.json |
+| rebuild k2 | 8 | MAIN k2 (Vera's own switch rule) | none | T_B Vera 48 vs analysis 48: MATCH | skeptics/skeptic/vera_k2.json |
+| rebuild k2 | 9 | MAIN k2 (Vera's own switch rule) | none | T_B Vera 56 vs analysis 56: MATCH | skeptics/skeptic/vera_k2.json |
+| rebuild k2 | 5 | SHUF-A k2 (Vera's own switch rule) | SHUF-A (cue A shown, coin penalty) | T_B Vera 64 vs analysis 64: MATCH | skeptics/skeptic/vera_k2.json |
+| rebuild k2 | 6 | SHUF-A k2 (Vera's own switch rule) | SHUF-A (cue A shown, coin penalty) | T_B Vera 64 vs analysis 64: MATCH | skeptics/skeptic/vera_k2.json |
+| rebuild k2 | 7 | SHUF-A k2 (Vera's own switch rule) | SHUF-A (cue A shown, coin penalty) | T_B Vera 64 vs analysis 64: MATCH | skeptics/skeptic/vera_k2.json |
+| rebuild k2 | 8 | SHUF-A k2 (Vera's own switch rule) | SHUF-A (cue A shown, coin penalty) | T_B Vera 56 vs analysis 56: MATCH | skeptics/skeptic/vera_k2.json |
+| rebuild k2 | 9 | SHUF-A k2 (Vera's own switch rule) | SHUF-A (cue A shown, coin penalty) | T_B Vera 72 vs analysis 72: MATCH | skeptics/skeptic/vera_k2.json |
+| rebuild k2 | 5-9 | R MAIN/fresh (Vera, paired t) | none | 0.731 [0.658, 0.812] vs analysis 0.731 [0.658, 0.812]: MATCH | skeptics/skeptic/vera_k2.json |
+| rebuild k2 | 5-9 | R MAIN/shuf (Vera, paired t) | none | 0.825 [0.754, 0.903] vs analysis 0.825 [0.754, 0.903]: MATCH | skeptics/skeptic/vera_k2.json |
+| rebuild k2 | 5-9 | R MAIN/coin (Vera, paired t) | none | 0.825 [0.754, 0.903] vs analysis 0.825 [0.754, 0.903]: MATCH | skeptics/skeptic/vera_k2.json |
+| null placebo k4 | 5-9 | SHUF-A in the MAIN slot vs fresh | SHUF-A (cue A shown, coin penalty) | R 0.989 [0.858, 1.140] (no switch learned: expect ~1) | skeptics/skeptic/vera_null_k4.json |
+| null placebo k4 | 5-9 | SHUF-A in the MAIN slot vs coin | SHUF-A (cue A shown, coin penalty) | R 1.038 [0.971, 1.110] (no switch learned: expect ~1) | skeptics/skeptic/vera_null_k4.json |
+| null placebo k4 | 5-9 | COIN in the MAIN slot vs fresh | COIN (no cue, coin penalty) | R 0.953 [0.869, 1.044] (no switch learned: expect ~1) | skeptics/skeptic/vera_null_k4.json |
+| null placebo k4 | 5-9 | COIN in the MAIN slot vs shuf | COIN (no cue, coin penalty) | R 0.963 [0.901, 1.030] (no switch learned: expect ~1) | skeptics/skeptic/vera_null_k4.json |
+| null sign-flip k4 | 5-9 | exact sign-flip test, MAIN vs each reference | none | p = 0.03125 / 0.03125 / 0.03125 (fresh / shuf / coin; 1/32 is the minimum with 5 seeds) | skeptics/skeptic/vera_null_k4.json |

@@ -19,6 +19,7 @@ BLOG = PROJ.parents[2] / "athanorscience.com"
 # Parent law (cue-size-law-8b-rep, seeds 5-7): T at share 0.342% (k4) = 296 / 280 / 304, slope -0.956 per ln share.
 PARENT_K4 = [296, 280, 304]
 PARENT_SLOPE = -0.956
+LAW_R = 2 ** PARENT_SLOPE  # shared-gate law (PREREG S1): a learned tell doubles the effective share -> R = 2^-0.956 = 0.515
 S0 = 5.469  # share in % at k = 0
 
 ARMS = [
@@ -85,6 +86,7 @@ def build(an, kB):
         "geo": geo,
         "cap": cap,
         "law": {"T": round(law, 1)},
+        "gate": {"T": round(LAW_R * law, 1)},
         "half": {"T": round(half, 1), "ref": min(("fresh", "coin", "shuf"), key=lambda k: geo[k])},
         "ratio_fresh": an.get("k4", {}).get("ratios", {}).get("fresh", {}).get("R") if kB == 4 else None,
         "zero": zero,
@@ -99,12 +101,14 @@ def build(an, kB):
             "geo": "group mean (geometric)",
             "law": "cue-size law for a fresh tail (last post)",
             "half": "half the updates of the fastest comparison group",
+            "gate": "prediction if cue A made cue B act twice as large",
         },
         "notes": {
             "law": f"law: {round(law):,} updates",
             "half": f"half: {round(half):,} updates",
             "zero": "0: switched before any cue-B update",
             "main": "{r:.2f} × the fresh tails",
+            "gate": "shared-gate law: {g}",
         },
     }
 

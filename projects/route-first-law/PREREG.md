@@ -1,3 +1,11 @@
+<!-- PREREG RECORD (written by oracle.py prereg; do not edit)
+commit: cc5bd83b63c0e422eb55de4a9f98aa5d3b475fe3
+sha256: 983afb2829b2ef0b476dcc89081572857e0d59fb8015ca106f80bbd6722398a4
+pushed: 2026-11-26T07:06:21Z
+branch: swarm/defense-1126-route-first-law
+url: https://github.com/esbenkc/kran-research/blob/cc5bd83b63c0e422eb55de4a9f98aa5d3b475fe3/projects/route-first-law/PREREG.md
+-->
+
 # Pre-registration — route-first-law
 
 Room: `defense-1126-route-first-law`. Night: 2026-11-26. Slug: `route-first-law`. Track: defense, agenda thread T4.

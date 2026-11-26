@@ -15,7 +15,7 @@ from pathlib import Path
 import numpy as np
 from scipy import stats as st
 
-HERE = Path(__file__).parent
+HERE = Path(__import__("os").environ.get("TT_ROOT", str(Path(__file__).parent)))
 CAP = 1536
 REFS = ("fresh", "shuf", "coin")
 PARENT_CACHE = "70c4703aa2bab795eb5bc34b54be6c16ac3e62ec2ef361841c2598c351de67ba"
@@ -115,9 +115,12 @@ def analyse(S1, K, K2=None):
     for kB, runs in ((4, K), (2, K2)):
         if not runs:
             continue
-        T = {k: stage2_reads(v) for k, v in runs.items()}
-        out["notes"] += [f"k{kB} {a}_s{s} incomplete (wrapup), left out" for (a, s), v in T.items() if v["incomplete"]]
-        T = {k: v for k, v in T.items() if not v["incomplete"]}
+        T_all = {k: stage2_reads(v) for k, v in runs.items()}
+        out["notes"] += [f"k{kB} {a}_s{s} incomplete (wrapup at {v['steps_run']}), left out"
+                         for (a, s), v in T_all.items() if v["incomplete"]]
+        T = {k: v for k, v in T_all.items() if not v["incomplete"]}
+        # sensitivity (Vera #31441, Iris #31442, Kasper #31443): incomplete tails enter censored at their last update
+        T_sens = {k: (dict(v, T=v["steps_run"], censored=True) if v["incomplete"] else v) for k, v in T_all.items()}
         any_run = next(iter(runs.values()))
         g1 = float(np.mean(any_run["p_base_off"]))
         gates = {"G1": {"dev_px_off_parent_b": g1, "pass": 0.30 <= g1 <= 0.50},
@@ -129,6 +132,7 @@ def analyse(S1, K, K2=None):
         if kB == 4:
             gates["PORT"] = {"fresh_T": fresh, "fresh_median_T": med, "range": PORT, "pass": PORT[0] <= med <= PORT[1]}
         status, rr, cens, usable, enough = status_of(T, main_seeds, gates)
+        sens_status, sens_rr, *_ = status_of(T_sens, main_seeds, gates)
         geo = {arm: math.exp(np.mean([lnT(v["T"]) for (a, s), v in T.items() if a == arm]))
                for arm in ("main",) + REFS}
         law = ratios(T, main_seeds, "fresh")
@@ -138,7 +142,10 @@ def analyse(S1, K, K2=None):
         Tl = {k: {"T": v["T_logit"], "censored": v["T_logit"] is None} for k, v in T.items()}
         r_logit = {r: ratios(Tl, main_seeds, r) for r in REFS}
         res[f"k{kB}"] = {
-            "status_rule": status if kB == 4 else None, "gates": gates, "ratios": rr, "censored": cens,
+            "status_rule": status if kB == 4 else None, "gates": gates, "ratios": rr,
+            "incomplete_sensitivity": {"n_incomplete": sum(v["incomplete"] for v in T_all.values()),
+                                       "status": sens_status,
+                                       "ratios": {r: {k: sens_rr[r][k] for k in ("R", "R_lo", "R_hi", "n")} for r in REFS}}, "censored": cens,
             "ref_usable": usable, "minimums_met": enough, "geo_T": geo,
             "law_read": {"predicted_R": LAW_R, "band": LAW_BAND, "R": law["R"], "R_lo": law["R_lo"],
                          "R_hi": law["R_hi"], "outcome": law_read},
@@ -146,6 +153,7 @@ def analyse(S1, K, K2=None):
                                      "within_10pct": abs(geo["fresh"] / geo[r] - 1) <= 0.10} for r in ("shuf", "coin")},
             "zero_shot_D0": {arm: [T[(arm, s)]["D0"] for s in sorted(s for (a, s) in T if a == arm)]
                              for arm in ("main",) + REFS},
+            "prompt_level": prompt_level({k: v for k, v in runs.items() if k in T}, main_seeds),
             "logit_units": {"ratios": r_logit, "T": {f"{a}_s{s}": v["T"] for (a, s), v in sorted(Tl.items())}},
         }
         for (a, s), v in sorted(T.items()):
@@ -164,6 +172,37 @@ def analyse(S1, K, K2=None):
                                     "all_5_7": all(ok(s) for s in PREREG_SEEDS),
                                     "seeds_5_9": {str(s): ok(s) for s in range(5, 10)}}
     out.update(res)
+    return out
+
+
+def boot_T(d, idx):
+    """T_B per bootstrap resample of the 64 dev prompts (idx [n_boot, 64]); None-switch -> the last check (censored)."""
+    cv = [c for c in d["curve"] if "D_B" in c]
+    ts = np.array([c["t"] for c in cv])
+    po, pb = np.array([c["p_off"] for c in cv]), np.array([c["p_B"] for c in cv])  # [checks, 64]
+    g0 = np.asarray(d["p_base_off"])[idx].mean(1) - np.asarray(d["p_base_on"])[idx].mean(1)  # [n_boot]
+    D = po[:, idx].mean(2) - pb[:, idx].mean(2) - g0[None]  # [checks, n_boot]
+    hit = (D[:-1] >= 0.10) & (D[1:] >= 0.10)
+    first = np.where(hit.any(0), hit.argmax(0), -1)
+    T = np.where(first >= 0, ts[np.maximum(first, 0)], ts[-1]).astype(float)
+    return np.log(np.maximum(T, 8)), int((first < 0).sum())
+
+
+def prompt_level(runs, main_seeds, n_boot=2000):
+    """TRUST RULES 1: 2,000 resamples of the 64 dev prompts (numpy seed 0); mean ln R per reference; 2.5/97.5 pct."""
+    idx = np.random.default_rng(0).integers(0, 64, size=(n_boot, 64))
+    L, cens = {}, 0
+    for k, d in runs.items():
+        L[k], c = boot_T(d, idx)
+        cens += c
+    out = {}
+    for r in REFS:
+        seeds = [s for s in main_seeds if ("main", s) in L and (r, s) in L]
+        m = np.mean([L[("main", s)] - L[(r, s)] for s in seeds], 0)
+        out[r] = {"mean_lnR": float(np.mean(m)), "lo": float(np.percentile(m, 2.5)), "hi": float(np.percentile(m, 97.5)),
+                  "R_lo": float(np.exp(np.percentile(m, 2.5))), "R_hi": float(np.exp(np.percentile(m, 97.5))),
+                  "n_seeds": len(seeds)}
+    out["n_boot"], out["run_resamples_without_switch"] = n_boot, cens
     return out
 
 

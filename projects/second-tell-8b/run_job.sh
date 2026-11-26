@@ -23,7 +23,7 @@ run() {  # name, done-marker, args...
   log "END $name rc $rc peak $(grep 'peak memory footprint' "$L/$name.log" | awk '{print $1}')"
   return $rc
 }
-run stage1 data/stage1/adapters_sha256.json --stage 1 --runs $S1 --n1 256 --kA 1 --eval-bs 8 || exit 1
-run k4 data/k4/adapters_sha256.json --stage 2 --kB 4 --runs $S2 --n2 1536 --kA 1 --eval-bs 8 || exit 1
-run k2 data/k2/adapters_sha256.json --stage 2 --kB 2 --runs $S2 --n2 1536 --kA 1 --eval-bs 8 || exit 1
+run stage1 data/stage1/adapters_sha256.json --stage 1 --runs $S1 --n1 256 --kA 1 --eval-bs 8 --micro 2 || exit 1
+run k4 data/k4/adapters_sha256.json --stage 2 --kB 4 --runs $S2 --n2 1536 --kA 1 --eval-bs 8 --micro 2 --wall-stop 1795716900 || exit 1
+run k2 data/k2/adapters_sha256.json --stage 2 --kB 2 --runs $S2 --n2 1536 --kA 1 --eval-bs 8 --micro 2 --wall-stop 1795716900 || exit 1
 log "ALL DONE"

@@ -13,3 +13,9 @@ here, with what had been seen when it was made.
   dev checks every 8 updates to 2,048, then every 64; the onset clause of section 4 is new.
 
 ## After the freeze
+
+- D1 (2026-11-26 02:30 CET, Iris; seen: no 8B data, job mdnk6nplc4 still queued). PREREG s2 says the emulated eval
+  runs "after data/status.json is written". The job (run_job.sh @24b13e27a) does not write status.json; analyze.py
+  (0826a711b) writes it after the job from the job's outputs. The job runs eval_emu only after every whole-graph and
+  tail-level status input exists (chain.log line "STATUS INPUTS READY"), so the emulated eval still cannot delay or
+  change the status inputs. No rule, threshold or metric changes.

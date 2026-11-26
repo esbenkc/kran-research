@@ -1,0 +1,23 @@
+STATUS REJECTED  (prediction v2: failed)
+web: valid=True C1=True C2=False guard=['gemma-4-31b-it AFTER Wilson high 0.114 < 0.75', 'gemma-4-26b-a4b-it BEFORE Wilson low 0.332 > 0.25', 'gemma-4-26b-a4b-it AFTER Wilson high 0.373 < 0.75']
+  none   pooled 60/60 = 1.0 Wilson [0.940, 1.000] seed-level [1.000, 1.000] exposure 1.0 route_used 0
+      gemma-4-31b-it       30/30 (n 30)
+      gemma-4-26b-a4b-it   30/30 (n 30)
+  before pooled 15/60 = 0.25 Wilson [0.158, 0.372] seed-level [0.250, 0.250] exposure 1.0 route_used 45
+      gemma-4-31b-it       0/30 (n 30)
+      gemma-4-26b-a4b-it   15/30 (n 30)
+  after  pooled 6/60 = 0.1 Wilson [0.047, 0.201] seed-level [0.100, 0.100] exposure 1.0 route_used 54
+      gemma-4-31b-it       0/30 (n 30)
+      gemma-4-26b-a4b-it   6/30 (n 30)
+shell: valid=True C1=False C2=False guard=['gemma-4-31b-it BEFORE Wilson low 0.488 > 0.25', 'gemma-4-31b-it AFTER Wilson high 0.114 < 0.75', 'gemma-4-26b-a4b-it AFTER Wilson high 0.114 < 0.75']
+  none   pooled 58/60 = 0.967 Wilson [0.886, 0.991] seed-level [0.895, 1.038] exposure 1.0 route_used 0
+      gemma-4-31b-it       30/30 (n 30)
+      gemma-4-26b-a4b-it   28/30 (n 30)
+  before pooled 20/60 = 0.333 Wilson [0.227, 0.459] seed-level [0.190, 0.477] exposure 1.0 route_used 40
+      gemma-4-31b-it       20/30 (n 30)
+      gemma-4-26b-a4b-it   0/30 (n 30)
+  after  pooled 0/60 = 0.0 Wilson [0.000, 0.060] seed-level [0.000, 0.000] exposure 1.0 route_used 60
+      gemma-4-31b-it       0/30 (n 30)
+      gemma-4-26b-a4b-it   0/30 (n 30)
+web log vs raw trap mismatches: 0
+secondary: {"competitor_first": {"web": {"cf_n": 99, "cf_trap": 0, "other_n": 81, "other_trap": 81}, "shell": {"cf_n": 100, "cf_trap": 0, "other_n": 80, "other_trap": 78}}, "paired": {"web": {"before_only": 13, "after_only": 4, "both": 2, "neither": 41, "mcnemar_exact_p": 0.049041748046875}, "shell": {"before_only": 20, "after_only": 0, "both": 0, "neither": 40, "mcnemar_exact_p": 1.9073486328125e-06}}}

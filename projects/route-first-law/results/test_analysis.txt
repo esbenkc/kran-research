@@ -1,0 +1,13 @@
+OK  law true: CONFIRMED
+OK  pooled BEFORE exactly 25% (15/60): CONFIRMED
+OK  pooled BEFORE 16/60 fails C1, Wilson low < 25%: UNCONFIRMED
+OK  pooled AFTER exactly 75% (45/60): CONFIRMED
+OK  presence only: AFTER = BEFORE low: REJECTED
+OK  no route effect: BEFORE high: REJECTED
+OK  guard: one model BEFORE 13/30 (Wilson low 0.274): UNCONFIRMED
+OK  guard edge: one model BEFORE 12/30 (Wilson low 0.246), pooled 13/60: CONFIRMED
+OK  guard: one model AFTER 17/30: UNCONFIRMED
+OK  guard edge: one model AFTER 18/30, pooled 47/60: CONFIRMED
+OK  NONE below 75% -> harness invalid: UNCONFIRMED
+OK  shell presence only, web law -> REJECTED: REJECTED
+test_analysis: 13 checks OK

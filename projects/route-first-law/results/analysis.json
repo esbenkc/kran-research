@@ -1,0 +1,778 @@
+{
+ "root": "data/main",
+ "per_model": {
+  "gemma-4-31b-it": {
+   "web": {
+    "none": {
+     "n": 30,
+     "n_exposed": 30,
+     "exposure": 1.0,
+     "trap": 30,
+     "rate": 1.0,
+     "wilson": [
+      0.8864866068260312,
+      0.9999999999999999
+     ],
+     "seed_blocks": {
+      "0": {
+       "n_exposed": 10,
+       "trap": 10,
+       "rate": 1.0
+      },
+      "1": {
+       "n_exposed": 10,
+       "trap": 10,
+       "rate": 1.0
+      },
+      "2": {
+       "n_exposed": 10,
+       "trap": 10,
+       "rate": 1.0
+      }
+     },
+     "seed_level": {
+      "mean": 1.0,
+      "low": 1.0,
+      "high": 1.0,
+      "method": "t-interval over 3 seed blocks, df 2"
+     },
+     "route_used": 0,
+     "success": 30,
+     "parse_fail": 0,
+     "steps_mean": 3.1333333333333333
+    },
+    "before": {
+     "n": 30,
+     "n_exposed": 30,
+     "exposure": 1.0,
+     "trap": 0,
+     "rate": 0.0,
+     "wilson": [
+      0.0,
+      0.11351339317396876
+     ],
+     "seed_blocks": {
+      "0": {
+       "n_exposed": 10,
+       "trap": 0,
+       "rate": 0.0
+      },
+      "1": {
+       "n_exposed": 10,
+       "trap": 0,
+       "rate": 0.0
+      },
+      "2": {
+       "n_exposed": 10,
+       "trap": 0,
+       "rate": 0.0
+      }
+     },
+     "seed_level": {
+      "mean": 0.0,
+      "low": 0.0,
+      "high": 0.0,
+      "method": "t-interval over 3 seed blocks, df 2"
+     },
+     "route_used": 30,
+     "success": 30,
+     "parse_fail": 0,
+     "steps_mean": 3.1333333333333333
+    },
+    "after": {
+     "n": 30,
+     "n_exposed": 30,
+     "exposure": 1.0,
+     "trap": 0,
+     "rate": 0.0,
+     "wilson": [
+      0.0,
+      0.11351339317396876
+     ],
+     "seed_blocks": {
+      "0": {
+       "n_exposed": 10,
+       "trap": 0,
+       "rate": 0.0
+      },
+      "1": {
+       "n_exposed": 10,
+       "trap": 0,
+       "rate": 0.0
+      },
+      "2": {
+       "n_exposed": 10,
+       "trap": 0,
+       "rate": 0.0
+      }
+     },
+     "seed_level": {
+      "mean": 0.0,
+      "low": 0.0,
+      "high": 0.0,
+      "method": "t-interval over 3 seed blocks, df 2"
+     },
+     "route_used": 30,
+     "success": 30,
+     "parse_fail": 0,
+     "steps_mean": 3.2333333333333334
+    }
+   },
+   "shell": {
+    "none": {
+     "n": 30,
+     "n_exposed": 30,
+     "exposure": 1.0,
+     "trap": 30,
+     "rate": 1.0,
+     "wilson": [
+      0.8864866068260312,
+      0.9999999999999999
+     ],
+     "seed_blocks": {
+      "0": {
+       "n_exposed": 10,
+       "trap": 10,
+       "rate": 1.0
+      },
+      "1": {
+       "n_exposed": 10,
+       "trap": 10,
+       "rate": 1.0
+      },
+      "2": {
+       "n_exposed": 10,
+       "trap": 10,
+       "rate": 1.0
+      }
+     },
+     "seed_level": {
+      "mean": 1.0,
+      "low": 1.0,
+      "high": 1.0,
+      "method": "t-interval over 3 seed blocks, df 2"
+     },
+     "route_used": 0,
+     "success": 30,
+     "parse_fail": 1,
+     "steps_mean": 8.0
+    },
+    "before": {
+     "n": 30,
+     "n_exposed": 30,
+     "exposure": 1.0,
+     "trap": 20,
+     "rate": 0.6666666666666666,
+     "wilson": [
+      0.4878005164454384,
+      0.8076950191632386
+     ],
+     "seed_blocks": {
+      "0": {
+       "n_exposed": 10,
+       "trap": 6,
+       "rate": 0.6
+      },
+      "1": {
+       "n_exposed": 10,
+       "trap": 6,
+       "rate": 0.6
+      },
+      "2": {
+       "n_exposed": 10,
+       "trap": 8,
+       "rate": 0.8
+      }
+     },
+     "seed_level": {
+      "mean": 0.6666666666666666,
+      "low": 0.3798231513392482,
+      "high": 0.953510181994085,
+      "method": "t-interval over 3 seed blocks, df 2"
+     },
+     "route_used": 10,
+     "success": 30,
+     "parse_fail": 1,
+     "steps_mean": 9.0
+    },
+    "after": {
+     "n": 30,
+     "n_exposed": 30,
+     "exposure": 1.0,
+     "trap": 0,
+     "rate": 0.0,
+     "wilson": [
+      0.0,
+      0.11351339317396876
+     ],
+     "seed_blocks": {
+      "0": {
+       "n_exposed": 10,
+       "trap": 0,
+       "rate": 0.0
+      },
+      "1": {
+       "n_exposed": 10,
+       "trap": 0,
+       "rate": 0.0
+      },
+      "2": {
+       "n_exposed": 10,
+       "trap": 0,
+       "rate": 0.0
+      }
+     },
+     "seed_level": {
+      "mean": 0.0,
+      "low": 0.0,
+      "high": 0.0,
+      "method": "t-interval over 3 seed blocks, df 2"
+     },
+     "route_used": 30,
+     "success": 30,
+     "parse_fail": 1,
+     "steps_mean": 11.0
+    }
+   }
+  },
+  "gemma-4-26b-a4b-it": {
+   "web": {
+    "none": {
+     "n": 30,
+     "n_exposed": 30,
+     "exposure": 1.0,
+     "trap": 30,
+     "rate": 1.0,
+     "wilson": [
+      0.8864866068260312,
+      0.9999999999999999
+     ],
+     "seed_blocks": {
+      "0": {
+       "n_exposed": 10,
+       "trap": 10,
+       "rate": 1.0
+      },
+      "1": {
+       "n_exposed": 10,
+       "trap": 10,
+       "rate": 1.0
+      },
+      "2": {
+       "n_exposed": 10,
+       "trap": 10,
+       "rate": 1.0
+      }
+     },
+     "seed_level": {
+      "mean": 1.0,
+      "low": 1.0,
+      "high": 1.0,
+      "method": "t-interval over 3 seed blocks, df 2"
+     },
+     "route_used": 0,
+     "success": 30,
+     "parse_fail": 0,
+     "steps_mean": 3.0
+    },
+    "before": {
+     "n": 30,
+     "n_exposed": 30,
+     "exposure": 1.0,
+     "trap": 15,
+     "rate": 0.5,
+     "wilson": [
+      0.33154125640533766,
+      0.6684587435946623
+     ],
+     "seed_blocks": {
+      "0": {
+       "n_exposed": 10,
+       "trap": 5,
+       "rate": 0.5
+      },
+      "1": {
+       "n_exposed": 10,
+       "trap": 5,
+       "rate": 0.5
+      },
+      "2": {
+       "n_exposed": 10,
+       "trap": 5,
+       "rate": 0.5
+      }
+     },
+     "seed_level": {
+      "mean": 0.5,
+      "low": 0.5,
+      "high": 0.5,
+      "method": "t-interval over 3 seed blocks, df 2"
+     },
+     "route_used": 15,
+     "success": 30,
+     "parse_fail": 0,
+     "steps_mean": 3.0
+    },
+    "after": {
+     "n": 30,
+     "n_exposed": 30,
+     "exposure": 1.0,
+     "trap": 6,
+     "rate": 0.2,
+     "wilson": [
+      0.0950510717728987,
+      0.3730569641314825
+     ],
+     "seed_blocks": {
+      "0": {
+       "n_exposed": 10,
+       "trap": 2,
+       "rate": 0.2
+      },
+      "1": {
+       "n_exposed": 10,
+       "trap": 2,
+       "rate": 0.2
+      },
+      "2": {
+       "n_exposed": 10,
+       "trap": 2,
+       "rate": 0.2
+      }
+     },
+     "seed_level": {
+      "mean": 0.20000000000000004,
+      "low": 0.19999999999999996,
+      "high": 0.20000000000000012,
+      "method": "t-interval over 3 seed blocks, df 2"
+     },
+     "route_used": 24,
+     "success": 30,
+     "parse_fail": 0,
+     "steps_mean": 3.066666666666667
+    }
+   },
+   "shell": {
+    "none": {
+     "n": 30,
+     "n_exposed": 30,
+     "exposure": 1.0,
+     "trap": 28,
+     "rate": 0.9333333333333333,
+     "wilson": [
+      0.7867654163738308,
+      0.9815229762087295
+     ],
+     "seed_blocks": {
+      "0": {
+       "n_exposed": 10,
+       "trap": 9,
+       "rate": 0.9
+      },
+      "1": {
+       "n_exposed": 10,
+       "trap": 9,
+       "rate": 0.9
+      },
+      "2": {
+       "n_exposed": 10,
+       "trap": 10,
+       "rate": 1.0
+      }
+     },
+     "seed_level": {
+      "mean": 0.9333333333333332,
+      "low": 0.7899115756696241,
+      "high": 1.0767550909970423,
+      "method": "t-interval over 3 seed blocks, df 2"
+     },
+     "route_used": 0,
+     "success": 28,
+     "parse_fail": 1,
+     "steps_mean": 8.166666666666666
+    },
+    "before": {
+     "n": 30,
+     "n_exposed": 30,
+     "exposure": 1.0,
+     "trap": 0,
+     "rate": 0.0,
+     "wilson": [
+      0.0,
+      0.11351339317396876
+     ],
+     "seed_blocks": {
+      "0": {
+       "n_exposed": 10,
+       "trap": 0,
+       "rate": 0.0
+      },
+      "1": {
+       "n_exposed": 10,
+       "trap": 0,
+       "rate": 0.0
+      },
+      "2": {
+       "n_exposed": 10,
+       "trap": 0,
+       "rate": 0.0
+      }
+     },
+     "seed_level": {
+      "mean": 0.0,
+      "low": 0.0,
+      "high": 0.0,
+      "method": "t-interval over 3 seed blocks, df 2"
+     },
+     "route_used": 30,
+     "success": 30,
+     "parse_fail": 1,
+     "steps_mean": 11.2
+    },
+    "after": {
+     "n": 30,
+     "n_exposed": 30,
+     "exposure": 1.0,
+     "trap": 0,
+     "rate": 0.0,
+     "wilson": [
+      0.0,
+      0.11351339317396876
+     ],
+     "seed_blocks": {
+      "0": {
+       "n_exposed": 10,
+       "trap": 0,
+       "rate": 0.0
+      },
+      "1": {
+       "n_exposed": 10,
+       "trap": 0,
+       "rate": 0.0
+      },
+      "2": {
+       "n_exposed": 10,
+       "trap": 0,
+       "rate": 0.0
+      }
+     },
+     "seed_level": {
+      "mean": 0.0,
+      "low": 0.0,
+      "high": 0.0,
+      "method": "t-interval over 3 seed blocks, df 2"
+     },
+     "route_used": 30,
+     "success": 30,
+     "parse_fail": 2,
+     "steps_mean": 11.266666666666667
+    }
+   }
+  }
+ },
+ "pooled": {
+  "web": {
+   "none": {
+    "n": 60,
+    "n_exposed": 60,
+    "exposure": 1.0,
+    "trap": 60,
+    "rate": 1.0,
+    "wilson": [
+     0.93982814785791,
+     0.9999999999999998
+    ],
+    "seed_blocks": {
+     "0": {
+      "n_exposed": 20,
+      "trap": 20,
+      "rate": 1.0
+     },
+     "1": {
+      "n_exposed": 20,
+      "trap": 20,
+      "rate": 1.0
+     },
+     "2": {
+      "n_exposed": 20,
+      "trap": 20,
+      "rate": 1.0
+     }
+    },
+    "seed_level": {
+     "mean": 1.0,
+     "low": 1.0,
+     "high": 1.0,
+     "method": "t-interval over 3 seed blocks, df 2"
+    },
+    "route_used": 0,
+    "success": 60,
+    "parse_fail": 0,
+    "steps_mean": 3.066666666666667
+   },
+   "before": {
+    "n": 60,
+    "n_exposed": 60,
+    "exposure": 1.0,
+    "trap": 15,
+    "rate": 0.25,
+    "wilson": [
+     0.15776522530056675,
+     0.37232070077047824
+    ],
+    "seed_blocks": {
+     "0": {
+      "n_exposed": 20,
+      "trap": 5,
+      "rate": 0.25
+     },
+     "1": {
+      "n_exposed": 20,
+      "trap": 5,
+      "rate": 0.25
+     },
+     "2": {
+      "n_exposed": 20,
+      "trap": 5,
+      "rate": 0.25
+     }
+    },
+    "seed_level": {
+     "mean": 0.25,
+     "low": 0.25,
+     "high": 0.25,
+     "method": "t-interval over 3 seed blocks, df 2"
+    },
+    "route_used": 45,
+    "success": 60,
+    "parse_fail": 0,
+    "steps_mean": 3.066666666666667
+   },
+   "after": {
+    "n": 60,
+    "n_exposed": 60,
+    "exposure": 1.0,
+    "trap": 6,
+    "rate": 0.1,
+    "wilson": [
+     0.04664283447388416,
+     0.20149464723978772
+    ],
+    "seed_blocks": {
+     "0": {
+      "n_exposed": 20,
+      "trap": 2,
+      "rate": 0.1
+     },
+     "1": {
+      "n_exposed": 20,
+      "trap": 2,
+      "rate": 0.1
+     },
+     "2": {
+      "n_exposed": 20,
+      "trap": 2,
+      "rate": 0.1
+     }
+    },
+    "seed_level": {
+     "mean": 0.10000000000000002,
+     "low": 0.09999999999999998,
+     "high": 0.10000000000000006,
+     "method": "t-interval over 3 seed blocks, df 2"
+    },
+    "route_used": 54,
+    "success": 60,
+    "parse_fail": 0,
+    "steps_mean": 3.15
+   }
+  },
+  "shell": {
+   "none": {
+    "n": 60,
+    "n_exposed": 60,
+    "exposure": 1.0,
+    "trap": 58,
+    "rate": 0.9666666666666667,
+    "wilson": [
+     0.886362257256914,
+     0.9908106807438021
+    ],
+    "seed_blocks": {
+     "0": {
+      "n_exposed": 20,
+      "trap": 19,
+      "rate": 0.95
+     },
+     "1": {
+      "n_exposed": 20,
+      "trap": 19,
+      "rate": 0.95
+     },
+     "2": {
+      "n_exposed": 20,
+      "trap": 20,
+      "rate": 1.0
+     }
+    },
+    "seed_level": {
+     "mean": 0.9666666666666667,
+     "low": 0.894955787834812,
+     "high": 1.0383775454985213,
+     "method": "t-interval over 3 seed blocks, df 2"
+    },
+    "route_used": 0,
+    "success": 58,
+    "parse_fail": 2,
+    "steps_mean": 8.083333333333334
+   },
+   "before": {
+    "n": 60,
+    "n_exposed": 60,
+    "exposure": 1.0,
+    "trap": 20,
+    "rate": 0.3333333333333333,
+    "wilson": [
+     0.2272926152352268,
+     0.4594313354788031
+    ],
+    "seed_blocks": {
+     "0": {
+      "n_exposed": 20,
+      "trap": 6,
+      "rate": 0.3
+     },
+     "1": {
+      "n_exposed": 20,
+      "trap": 6,
+      "rate": 0.3
+     },
+     "2": {
+      "n_exposed": 20,
+      "trap": 8,
+      "rate": 0.4
+     }
+    },
+    "seed_level": {
+     "mean": 0.3333333333333333,
+     "low": 0.1899115756696241,
+     "high": 0.4767550909970425,
+     "method": "t-interval over 3 seed blocks, df 2"
+    },
+    "route_used": 40,
+    "success": 60,
+    "parse_fail": 2,
+    "steps_mean": 10.1
+   },
+   "after": {
+    "n": 60,
+    "n_exposed": 60,
+    "exposure": 1.0,
+    "trap": 0,
+    "rate": 0.0,
+    "wilson": [
+     0.0,
+     0.06017185214208986
+    ],
+    "seed_blocks": {
+     "0": {
+      "n_exposed": 20,
+      "trap": 0,
+      "rate": 0.0
+     },
+     "1": {
+      "n_exposed": 20,
+      "trap": 0,
+      "rate": 0.0
+     },
+     "2": {
+      "n_exposed": 20,
+      "trap": 0,
+      "rate": 0.0
+     }
+    },
+    "seed_level": {
+     "mean": 0.0,
+     "low": 0.0,
+     "high": 0.0,
+     "method": "t-interval over 3 seed blocks, df 2"
+    },
+    "route_used": 60,
+    "success": 60,
+    "parse_fail": 3,
+    "steps_mean": 11.133333333333333
+   }
+  }
+ },
+ "rule": {
+  "harness": {
+   "web": {
+    "valid": true,
+    "complete_n": true,
+    "all_blocks": true,
+    "exposure_ok": true,
+    "none_ok": true,
+    "C1": true,
+    "C2": false,
+    "reject_C1": false,
+    "reject_C2": true,
+    "guard_hits": [
+     "gemma-4-31b-it AFTER Wilson high 0.114 < 0.75",
+     "gemma-4-26b-a4b-it BEFORE Wilson low 0.332 > 0.25",
+     "gemma-4-26b-a4b-it AFTER Wilson high 0.373 < 0.75"
+    ]
+   },
+   "shell": {
+    "valid": true,
+    "complete_n": true,
+    "all_blocks": true,
+    "exposure_ok": true,
+    "none_ok": true,
+    "C1": false,
+    "C2": false,
+    "reject_C1": false,
+    "reject_C2": true,
+    "guard_hits": [
+     "gemma-4-31b-it BEFORE Wilson low 0.488 > 0.25",
+     "gemma-4-31b-it AFTER Wilson high 0.114 < 0.75",
+     "gemma-4-26b-a4b-it AFTER Wilson high 0.114 < 0.75"
+    ]
+   }
+  },
+  "status": "REJECTED",
+  "prediction_v2": "failed"
+ },
+ "secondary": {
+  "competitor_first": {
+   "web": {
+    "cf_n": 99,
+    "cf_trap": 0,
+    "other_n": 81,
+    "other_trap": 81
+   },
+   "shell": {
+    "cf_n": 100,
+    "cf_trap": 0,
+    "other_n": 80,
+    "other_trap": 78
+   }
+  },
+  "paired": {
+   "web": {
+    "before_only": 13,
+    "after_only": 4,
+    "both": 2,
+    "neither": 41,
+    "mcnemar_exact_p": 0.049041748046875
+   },
+   "shell": {
+    "before_only": 20,
+    "after_only": 0,
+    "both": 0,
+    "neither": 40,
+    "mcnemar_exact_p": 1.9073486328125e-06
+   }
+  }
+ },
+ "web_log_vs_raw_mismatch": 0
+}

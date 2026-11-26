@@ -1,0 +1,6 @@
+API spend for the counted runs (07:17:11Z-08:32:51Z), from data/cache/<model>/*.json usageMetadata:
+gemma-4-31b-it      705 calls; prompt 751,363 tokens; output 51,624; thinking 62,835
+gemma-4-26b-a4b-it  769 calls; prompt 871,935 tokens; output 55,928; thinking 12,949
+Gemma 4 on the Gemini API has no listed price on this key (free tier, ~15k tokens/min per model): $0.00.
+Smoke (smoke/cache, 12 runs on gemma-4-26b-a4b-it): also $0.00. Experiment API spend total: $0.00.
+Wall time: 73.5 min (31B) and 75.7 min (26B), the two jobs in parallel on the mini, ~40 MB RSS each, no local model.

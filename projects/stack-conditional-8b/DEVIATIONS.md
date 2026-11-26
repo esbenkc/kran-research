@@ -19,3 +19,6 @@ here, with what had been seen when it was made.
   (0826a711b) writes it after the job from the job's outputs. The job runs eval_emu only after every whole-graph and
   tail-level status input exists (chain.log line "STATUS INPUTS READY"), so the emulated eval still cannot delay or
   change the status inputs. No rule, threshold or metric changes.
+- D1 resolved (2026-11-26 02:35 CET, Iris; seen: no 8B data). Bruno cancelled mdnk6nplc4 while queued (it never
+  started) and resubmitted as mx2tsl4i17 (commit caf2a8265): the job now runs analyze.py to data/status.json BEFORE
+  eval_emu, as PREREG s2 says, and g1b.py writes data/g1b.json (PREREG s5 G1b). The job now matches PREREG s2 and s5.

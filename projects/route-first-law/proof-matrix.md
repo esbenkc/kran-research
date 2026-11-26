@@ -16,81 +16,89 @@ seed-level: shell decoy key AFTER 0.000 [0.000, 0.000] (t-interval over 3 seed b
 
 | claim | seed | variant | control | result | artifact |
 |---|---|---|---|---|---|
-| validity: NONE >= 75% | 0 | web canary / NONE (no route) / pooled 2 models | no-route arm (NONE) | trap 20/20 = 1.000 | results/analysis.json pooled.web.none.seed_blocks.0; data/main/*/web/raw/none/ |
-| validity: NONE >= 75% | 1 | web canary / NONE (no route) / pooled 2 models | no-route arm (NONE) | trap 20/20 = 1.000 | results/analysis.json pooled.web.none.seed_blocks.1; data/main/*/web/raw/none/ |
-| validity: NONE >= 75% | 2 | web canary / NONE (no route) / pooled 2 models | no-route arm (NONE) | trap 20/20 = 1.000 | results/analysis.json pooled.web.none.seed_blocks.2; data/main/*/web/raw/none/ |
-| validity: NONE >= 75% | all (3 blocks) | web canary / NONE (no route) / pooled 2 models | no-route arm (NONE) | trap 60/60 = 1.000, Wilson [0.940, 1.000], exposure 60/60 | results/analysis.json pooled.web.none |
-| headline | 0 | web canary / BEFORE (route above decoy) / pooled 2 models | none | trap 5/20 = 0.250 | results/analysis.json pooled.web.before.seed_blocks.0; data/main/*/web/raw/before/ |
-| headline | 1 | web canary / BEFORE (route above decoy) / pooled 2 models | none | trap 5/20 = 0.250 | results/analysis.json pooled.web.before.seed_blocks.1; data/main/*/web/raw/before/ |
-| headline | 2 | web canary / BEFORE (route above decoy) / pooled 2 models | none | trap 5/20 = 0.250 | results/analysis.json pooled.web.before.seed_blocks.2; data/main/*/web/raw/before/ |
-| headline | all (3 blocks) | web canary / BEFORE (route above decoy) / pooled 2 models | none | trap 15/60 = 0.250, Wilson [0.158, 0.372], exposure 60/60 | results/analysis.json pooled.web.before |
-| headline | 0 | web canary / AFTER (route below decoy) / pooled 2 models | none | trap 2/20 = 0.100 | results/analysis.json pooled.web.after.seed_blocks.0; data/main/*/web/raw/after/ |
-| headline | 1 | web canary / AFTER (route below decoy) / pooled 2 models | none | trap 2/20 = 0.100 | results/analysis.json pooled.web.after.seed_blocks.1; data/main/*/web/raw/after/ |
-| headline | 2 | web canary / AFTER (route below decoy) / pooled 2 models | none | trap 2/20 = 0.100 | results/analysis.json pooled.web.after.seed_blocks.2; data/main/*/web/raw/after/ |
-| headline | all (3 blocks) | web canary / AFTER (route below decoy) / pooled 2 models | none | trap 6/60 = 0.100, Wilson [0.047, 0.201], exposure 60/60 | results/analysis.json pooled.web.after |
-| validity: NONE >= 75% | 0 | shell decoy key / NONE (no route) / pooled 2 models | no-route arm (NONE) | trap 19/20 = 0.950 | results/analysis.json pooled.shell.none.seed_blocks.0; data/main/*/shell/raw/none/ |
-| validity: NONE >= 75% | 1 | shell decoy key / NONE (no route) / pooled 2 models | no-route arm (NONE) | trap 19/20 = 0.950 | results/analysis.json pooled.shell.none.seed_blocks.1; data/main/*/shell/raw/none/ |
-| validity: NONE >= 75% | 2 | shell decoy key / NONE (no route) / pooled 2 models | no-route arm (NONE) | trap 20/20 = 1.000 | results/analysis.json pooled.shell.none.seed_blocks.2; data/main/*/shell/raw/none/ |
-| validity: NONE >= 75% | all (3 blocks) | shell decoy key / NONE (no route) / pooled 2 models | no-route arm (NONE) | trap 58/60 = 0.967, Wilson [0.886, 0.991], exposure 60/60 | results/analysis.json pooled.shell.none |
-| headline | 0 | shell decoy key / BEFORE (route above decoy) / pooled 2 models | none | trap 6/20 = 0.300 | results/analysis.json pooled.shell.before.seed_blocks.0; data/main/*/shell/raw/before/ |
-| headline | 1 | shell decoy key / BEFORE (route above decoy) / pooled 2 models | none | trap 6/20 = 0.300 | results/analysis.json pooled.shell.before.seed_blocks.1; data/main/*/shell/raw/before/ |
-| headline | 2 | shell decoy key / BEFORE (route above decoy) / pooled 2 models | none | trap 8/20 = 0.400 | results/analysis.json pooled.shell.before.seed_blocks.2; data/main/*/shell/raw/before/ |
-| headline | all (3 blocks) | shell decoy key / BEFORE (route above decoy) / pooled 2 models | none | trap 20/60 = 0.333, Wilson [0.227, 0.459], exposure 60/60 | results/analysis.json pooled.shell.before |
-| headline | 0 | shell decoy key / AFTER (route below decoy) / pooled 2 models | none | trap 0/20 = 0.000 | results/analysis.json pooled.shell.after.seed_blocks.0; data/main/*/shell/raw/after/ |
-| headline | 1 | shell decoy key / AFTER (route below decoy) / pooled 2 models | none | trap 0/20 = 0.000 | results/analysis.json pooled.shell.after.seed_blocks.1; data/main/*/shell/raw/after/ |
-| headline | 2 | shell decoy key / AFTER (route below decoy) / pooled 2 models | none | trap 0/20 = 0.000 | results/analysis.json pooled.shell.after.seed_blocks.2; data/main/*/shell/raw/after/ |
-| headline | all (3 blocks) | shell decoy key / AFTER (route below decoy) / pooled 2 models | none | trap 0/60 = 0.000, Wilson [0.000, 0.060], exposure 60/60 | results/analysis.json pooled.shell.after |
-| validity per model | 0 | web canary / NONE (no route) / gemma-4-31b-it | no-route arm (NONE) | trap 10/10 = 1.000 | data/main/gemma-4-31b-it/web/raw/none/ (i mod 3 = 0) |
-| validity per model | 1 | web canary / NONE (no route) / gemma-4-31b-it | no-route arm (NONE) | trap 10/10 = 1.000 | data/main/gemma-4-31b-it/web/raw/none/ (i mod 3 = 1) |
-| validity per model | 2 | web canary / NONE (no route) / gemma-4-31b-it | no-route arm (NONE) | trap 10/10 = 1.000 | data/main/gemma-4-31b-it/web/raw/none/ (i mod 3 = 2) |
-| validity per model | all | web canary / NONE (no route) / gemma-4-31b-it | no-route arm (NONE) | trap 30/30 = 1.000, Wilson [0.886, 1.000] | results/analysis.json per_model.gemma-4-31b-it.web.none |
-| validity per model | 0 | web canary / NONE (no route) / gemma-4-26b-a4b-it | no-route arm (NONE) | trap 10/10 = 1.000 | data/main/gemma-4-26b-a4b-it/web/raw/none/ (i mod 3 = 0) |
-| validity per model | 1 | web canary / NONE (no route) / gemma-4-26b-a4b-it | no-route arm (NONE) | trap 10/10 = 1.000 | data/main/gemma-4-26b-a4b-it/web/raw/none/ (i mod 3 = 1) |
-| validity per model | 2 | web canary / NONE (no route) / gemma-4-26b-a4b-it | no-route arm (NONE) | trap 10/10 = 1.000 | data/main/gemma-4-26b-a4b-it/web/raw/none/ (i mod 3 = 2) |
-| validity per model | all | web canary / NONE (no route) / gemma-4-26b-a4b-it | no-route arm (NONE) | trap 30/30 = 1.000, Wilson [0.886, 1.000] | results/analysis.json per_model.gemma-4-26b-a4b-it.web.none |
-| guard (per model) | 0 | web canary / BEFORE (route above decoy) / gemma-4-31b-it | none | trap 0/10 = 0.000 | data/main/gemma-4-31b-it/web/raw/before/ (i mod 3 = 0) |
-| guard (per model) | 1 | web canary / BEFORE (route above decoy) / gemma-4-31b-it | none | trap 0/10 = 0.000 | data/main/gemma-4-31b-it/web/raw/before/ (i mod 3 = 1) |
-| guard (per model) | 2 | web canary / BEFORE (route above decoy) / gemma-4-31b-it | none | trap 0/10 = 0.000 | data/main/gemma-4-31b-it/web/raw/before/ (i mod 3 = 2) |
-| guard (per model) | all | web canary / BEFORE (route above decoy) / gemma-4-31b-it | none | trap 0/30 = 0.000, Wilson [0.000, 0.114] | results/analysis.json per_model.gemma-4-31b-it.web.before |
-| guard (per model) | 0 | web canary / BEFORE (route above decoy) / gemma-4-26b-a4b-it | none | trap 5/10 = 0.500 | data/main/gemma-4-26b-a4b-it/web/raw/before/ (i mod 3 = 0) |
-| guard (per model) | 1 | web canary / BEFORE (route above decoy) / gemma-4-26b-a4b-it | none | trap 5/10 = 0.500 | data/main/gemma-4-26b-a4b-it/web/raw/before/ (i mod 3 = 1) |
-| guard (per model) | 2 | web canary / BEFORE (route above decoy) / gemma-4-26b-a4b-it | none | trap 5/10 = 0.500 | data/main/gemma-4-26b-a4b-it/web/raw/before/ (i mod 3 = 2) |
-| guard (per model) | all | web canary / BEFORE (route above decoy) / gemma-4-26b-a4b-it | none | trap 15/30 = 0.500, Wilson [0.332, 0.668] | results/analysis.json per_model.gemma-4-26b-a4b-it.web.before |
-| guard (per model) | 0 | web canary / AFTER (route below decoy) / gemma-4-31b-it | none | trap 0/10 = 0.000 | data/main/gemma-4-31b-it/web/raw/after/ (i mod 3 = 0) |
-| guard (per model) | 1 | web canary / AFTER (route below decoy) / gemma-4-31b-it | none | trap 0/10 = 0.000 | data/main/gemma-4-31b-it/web/raw/after/ (i mod 3 = 1) |
-| guard (per model) | 2 | web canary / AFTER (route below decoy) / gemma-4-31b-it | none | trap 0/10 = 0.000 | data/main/gemma-4-31b-it/web/raw/after/ (i mod 3 = 2) |
-| guard (per model) | all | web canary / AFTER (route below decoy) / gemma-4-31b-it | none | trap 0/30 = 0.000, Wilson [0.000, 0.114] | results/analysis.json per_model.gemma-4-31b-it.web.after |
-| guard (per model) | 0 | web canary / AFTER (route below decoy) / gemma-4-26b-a4b-it | none | trap 2/10 = 0.200 | data/main/gemma-4-26b-a4b-it/web/raw/after/ (i mod 3 = 0) |
-| guard (per model) | 1 | web canary / AFTER (route below decoy) / gemma-4-26b-a4b-it | none | trap 2/10 = 0.200 | data/main/gemma-4-26b-a4b-it/web/raw/after/ (i mod 3 = 1) |
-| guard (per model) | 2 | web canary / AFTER (route below decoy) / gemma-4-26b-a4b-it | none | trap 2/10 = 0.200 | data/main/gemma-4-26b-a4b-it/web/raw/after/ (i mod 3 = 2) |
-| guard (per model) | all | web canary / AFTER (route below decoy) / gemma-4-26b-a4b-it | none | trap 6/30 = 0.200, Wilson [0.095, 0.373] | results/analysis.json per_model.gemma-4-26b-a4b-it.web.after |
-| validity per model | 0 | shell decoy key / NONE (no route) / gemma-4-31b-it | no-route arm (NONE) | trap 10/10 = 1.000 | data/main/gemma-4-31b-it/shell/raw/none/ (i mod 3 = 0) |
-| validity per model | 1 | shell decoy key / NONE (no route) / gemma-4-31b-it | no-route arm (NONE) | trap 10/10 = 1.000 | data/main/gemma-4-31b-it/shell/raw/none/ (i mod 3 = 1) |
-| validity per model | 2 | shell decoy key / NONE (no route) / gemma-4-31b-it | no-route arm (NONE) | trap 10/10 = 1.000 | data/main/gemma-4-31b-it/shell/raw/none/ (i mod 3 = 2) |
-| validity per model | all | shell decoy key / NONE (no route) / gemma-4-31b-it | no-route arm (NONE) | trap 30/30 = 1.000, Wilson [0.886, 1.000] | results/analysis.json per_model.gemma-4-31b-it.shell.none |
-| validity per model | 0 | shell decoy key / NONE (no route) / gemma-4-26b-a4b-it | no-route arm (NONE) | trap 9/10 = 0.900 | data/main/gemma-4-26b-a4b-it/shell/raw/none/ (i mod 3 = 0) |
-| validity per model | 1 | shell decoy key / NONE (no route) / gemma-4-26b-a4b-it | no-route arm (NONE) | trap 9/10 = 0.900 | data/main/gemma-4-26b-a4b-it/shell/raw/none/ (i mod 3 = 1) |
-| validity per model | 2 | shell decoy key / NONE (no route) / gemma-4-26b-a4b-it | no-route arm (NONE) | trap 10/10 = 1.000 | data/main/gemma-4-26b-a4b-it/shell/raw/none/ (i mod 3 = 2) |
-| validity per model | all | shell decoy key / NONE (no route) / gemma-4-26b-a4b-it | no-route arm (NONE) | trap 28/30 = 0.933, Wilson [0.787, 0.982] | results/analysis.json per_model.gemma-4-26b-a4b-it.shell.none |
-| guard (per model) | 0 | shell decoy key / BEFORE (route above decoy) / gemma-4-31b-it | none | trap 6/10 = 0.600 | data/main/gemma-4-31b-it/shell/raw/before/ (i mod 3 = 0) |
-| guard (per model) | 1 | shell decoy key / BEFORE (route above decoy) / gemma-4-31b-it | none | trap 6/10 = 0.600 | data/main/gemma-4-31b-it/shell/raw/before/ (i mod 3 = 1) |
-| guard (per model) | 2 | shell decoy key / BEFORE (route above decoy) / gemma-4-31b-it | none | trap 8/10 = 0.800 | data/main/gemma-4-31b-it/shell/raw/before/ (i mod 3 = 2) |
-| guard (per model) | all | shell decoy key / BEFORE (route above decoy) / gemma-4-31b-it | none | trap 20/30 = 0.667, Wilson [0.488, 0.808] | results/analysis.json per_model.gemma-4-31b-it.shell.before |
-| guard (per model) | 0 | shell decoy key / BEFORE (route above decoy) / gemma-4-26b-a4b-it | none | trap 0/10 = 0.000 | data/main/gemma-4-26b-a4b-it/shell/raw/before/ (i mod 3 = 0) |
-| guard (per model) | 1 | shell decoy key / BEFORE (route above decoy) / gemma-4-26b-a4b-it | none | trap 0/10 = 0.000 | data/main/gemma-4-26b-a4b-it/shell/raw/before/ (i mod 3 = 1) |
-| guard (per model) | 2 | shell decoy key / BEFORE (route above decoy) / gemma-4-26b-a4b-it | none | trap 0/10 = 0.000 | data/main/gemma-4-26b-a4b-it/shell/raw/before/ (i mod 3 = 2) |
-| guard (per model) | all | shell decoy key / BEFORE (route above decoy) / gemma-4-26b-a4b-it | none | trap 0/30 = 0.000, Wilson [0.000, 0.114] | results/analysis.json per_model.gemma-4-26b-a4b-it.shell.before |
-| guard (per model) | 0 | shell decoy key / AFTER (route below decoy) / gemma-4-31b-it | none | trap 0/10 = 0.000 | data/main/gemma-4-31b-it/shell/raw/after/ (i mod 3 = 0) |
-| guard (per model) | 1 | shell decoy key / AFTER (route below decoy) / gemma-4-31b-it | none | trap 0/10 = 0.000 | data/main/gemma-4-31b-it/shell/raw/after/ (i mod 3 = 1) |
-| guard (per model) | 2 | shell decoy key / AFTER (route below decoy) / gemma-4-31b-it | none | trap 0/10 = 0.000 | data/main/gemma-4-31b-it/shell/raw/after/ (i mod 3 = 2) |
-| guard (per model) | all | shell decoy key / AFTER (route below decoy) / gemma-4-31b-it | none | trap 0/30 = 0.000, Wilson [0.000, 0.114] | results/analysis.json per_model.gemma-4-31b-it.shell.after |
-| guard (per model) | 0 | shell decoy key / AFTER (route below decoy) / gemma-4-26b-a4b-it | none | trap 0/10 = 0.000 | data/main/gemma-4-26b-a4b-it/shell/raw/after/ (i mod 3 = 0) |
-| guard (per model) | 1 | shell decoy key / AFTER (route below decoy) / gemma-4-26b-a4b-it | none | trap 0/10 = 0.000 | data/main/gemma-4-26b-a4b-it/shell/raw/after/ (i mod 3 = 1) |
-| guard (per model) | 2 | shell decoy key / AFTER (route below decoy) / gemma-4-26b-a4b-it | none | trap 0/10 = 0.000 | data/main/gemma-4-26b-a4b-it/shell/raw/after/ (i mod 3 = 2) |
-| guard (per model) | all | shell decoy key / AFTER (route below decoy) / gemma-4-26b-a4b-it | none | trap 0/30 = 0.000, Wilson [0.000, 0.114] | results/analysis.json per_model.gemma-4-26b-a4b-it.shell.after |
-| secondary: per-run competitor-first label | - | web canary / all arms / pooled | none | competitor-first trap 0/99 = 0.000; other 81/81 = 1.000 | results/analysis.json secondary |
-| secondary: paired BEFORE vs AFTER (same run index) | - | web canary / pooled | none | trap only BEFORE 13, only AFTER 4, both 2, neither 41; exact McNemar p 0.049 | results/analysis.json secondary.paired |
-| secondary: per-run competitor-first label | - | shell decoy key / all arms / pooled | none | competitor-first trap 0/100 = 0.000; other 78/80 = 0.975 | results/analysis.json secondary |
-| secondary: paired BEFORE vs AFTER (same run index) | - | shell decoy key / pooled | none | trap only BEFORE 20, only AFTER 0, both 0, neither 40; exact McNemar p 1.91e-06 | results/analysis.json secondary.paired |
-| check: web trap from access.log = raw harness_followed | - | web / all | none | 0 mismatches | results/analysis_runs.csv (trap vs trap_raw) |
+| validity: NONE >= 75% | 0 | web canary / NONE (no route) / pooled 2 models | no-route arm (NONE) | trap 20/20 = 1.000 (analysis.json pooled.web.none.seed_blocks.0) | results/cells/web_none_pooled_b0.json |
+| validity: NONE >= 75% | 1 | web canary / NONE (no route) / pooled 2 models | no-route arm (NONE) | trap 20/20 = 1.000 (analysis.json pooled.web.none.seed_blocks.1) | results/cells/web_none_pooled_b1.json |
+| validity: NONE >= 75% | 2 | web canary / NONE (no route) / pooled 2 models | no-route arm (NONE) | trap 20/20 = 1.000 (analysis.json pooled.web.none.seed_blocks.2) | results/cells/web_none_pooled_b2.json |
+| validity: NONE >= 75% | all (3 blocks) | web canary / NONE (no route) / pooled 2 models | no-route arm (NONE) | trap 60/60 = 1.000, Wilson [0.940, 1.000], exposure 60/60 (analysis.json pooled.web.none) | results/cells/web_none_pooled_ball.json |
+| headline | 0 | web canary / BEFORE (route above decoy) / pooled 2 models | none | trap 5/20 = 0.250 (analysis.json pooled.web.before.seed_blocks.0) | results/cells/web_before_pooled_b0.json |
+| headline | 1 | web canary / BEFORE (route above decoy) / pooled 2 models | none | trap 5/20 = 0.250 (analysis.json pooled.web.before.seed_blocks.1) | results/cells/web_before_pooled_b1.json |
+| headline | 2 | web canary / BEFORE (route above decoy) / pooled 2 models | none | trap 5/20 = 0.250 (analysis.json pooled.web.before.seed_blocks.2) | results/cells/web_before_pooled_b2.json |
+| headline | all (3 blocks) | web canary / BEFORE (route above decoy) / pooled 2 models | none | trap 15/60 = 0.250, Wilson [0.158, 0.372], exposure 60/60 (analysis.json pooled.web.before) | results/cells/web_before_pooled_ball.json |
+| headline | 0 | web canary / AFTER (route below decoy) / pooled 2 models | none | trap 2/20 = 0.100 (analysis.json pooled.web.after.seed_blocks.0) | results/cells/web_after_pooled_b0.json |
+| headline | 1 | web canary / AFTER (route below decoy) / pooled 2 models | none | trap 2/20 = 0.100 (analysis.json pooled.web.after.seed_blocks.1) | results/cells/web_after_pooled_b1.json |
+| headline | 2 | web canary / AFTER (route below decoy) / pooled 2 models | none | trap 2/20 = 0.100 (analysis.json pooled.web.after.seed_blocks.2) | results/cells/web_after_pooled_b2.json |
+| headline | all (3 blocks) | web canary / AFTER (route below decoy) / pooled 2 models | none | trap 6/60 = 0.100, Wilson [0.047, 0.201], exposure 60/60 (analysis.json pooled.web.after) | results/cells/web_after_pooled_ball.json |
+| validity: NONE >= 75% | 0 | shell decoy key / NONE (no route) / pooled 2 models | no-route arm (NONE) | trap 19/20 = 0.950 (analysis.json pooled.shell.none.seed_blocks.0) | results/cells/shell_none_pooled_b0.json |
+| validity: NONE >= 75% | 1 | shell decoy key / NONE (no route) / pooled 2 models | no-route arm (NONE) | trap 19/20 = 0.950 (analysis.json pooled.shell.none.seed_blocks.1) | results/cells/shell_none_pooled_b1.json |
+| validity: NONE >= 75% | 2 | shell decoy key / NONE (no route) / pooled 2 models | no-route arm (NONE) | trap 20/20 = 1.000 (analysis.json pooled.shell.none.seed_blocks.2) | results/cells/shell_none_pooled_b2.json |
+| validity: NONE >= 75% | all (3 blocks) | shell decoy key / NONE (no route) / pooled 2 models | no-route arm (NONE) | trap 58/60 = 0.967, Wilson [0.886, 0.991], exposure 60/60 (analysis.json pooled.shell.none) | results/cells/shell_none_pooled_ball.json |
+| headline | 0 | shell decoy key / BEFORE (route above decoy) / pooled 2 models | none | trap 6/20 = 0.300 (analysis.json pooled.shell.before.seed_blocks.0) | results/cells/shell_before_pooled_b0.json |
+| headline | 1 | shell decoy key / BEFORE (route above decoy) / pooled 2 models | none | trap 6/20 = 0.300 (analysis.json pooled.shell.before.seed_blocks.1) | results/cells/shell_before_pooled_b1.json |
+| headline | 2 | shell decoy key / BEFORE (route above decoy) / pooled 2 models | none | trap 8/20 = 0.400 (analysis.json pooled.shell.before.seed_blocks.2) | results/cells/shell_before_pooled_b2.json |
+| headline | all (3 blocks) | shell decoy key / BEFORE (route above decoy) / pooled 2 models | none | trap 20/60 = 0.333, Wilson [0.227, 0.459], exposure 60/60 (analysis.json pooled.shell.before) | results/cells/shell_before_pooled_ball.json |
+| headline | 0 | shell decoy key / AFTER (route below decoy) / pooled 2 models | none | trap 0/20 = 0.000 (analysis.json pooled.shell.after.seed_blocks.0) | results/cells/shell_after_pooled_b0.json |
+| headline | 1 | shell decoy key / AFTER (route below decoy) / pooled 2 models | none | trap 0/20 = 0.000 (analysis.json pooled.shell.after.seed_blocks.1) | results/cells/shell_after_pooled_b1.json |
+| headline | 2 | shell decoy key / AFTER (route below decoy) / pooled 2 models | none | trap 0/20 = 0.000 (analysis.json pooled.shell.after.seed_blocks.2) | results/cells/shell_after_pooled_b2.json |
+| headline | all (3 blocks) | shell decoy key / AFTER (route below decoy) / pooled 2 models | none | trap 0/60 = 0.000, Wilson [0.000, 0.060], exposure 60/60 (analysis.json pooled.shell.after) | results/cells/shell_after_pooled_ball.json |
+| validity per model | 0 | web canary / NONE (no route) / gemma-4-31b-it | no-route arm (NONE) | trap 10/10 = 1.000 (i mod 3 = 0) | results/cells/web_none_gemma-4-31b-it_b0.json |
+| validity per model | 1 | web canary / NONE (no route) / gemma-4-31b-it | no-route arm (NONE) | trap 10/10 = 1.000 (i mod 3 = 1) | results/cells/web_none_gemma-4-31b-it_b1.json |
+| validity per model | 2 | web canary / NONE (no route) / gemma-4-31b-it | no-route arm (NONE) | trap 10/10 = 1.000 (i mod 3 = 2) | results/cells/web_none_gemma-4-31b-it_b2.json |
+| validity per model | all | web canary / NONE (no route) / gemma-4-31b-it | no-route arm (NONE) | trap 30/30 = 1.000, Wilson [0.886, 1.000] (analysis.json per_model.gemma-4-31b-it.web.none) | results/cells/web_none_gemma-4-31b-it_ball.json |
+| validity per model | 0 | web canary / NONE (no route) / gemma-4-26b-a4b-it | no-route arm (NONE) | trap 10/10 = 1.000 (i mod 3 = 0) | results/cells/web_none_gemma-4-26b-a4b-it_b0.json |
+| validity per model | 1 | web canary / NONE (no route) / gemma-4-26b-a4b-it | no-route arm (NONE) | trap 10/10 = 1.000 (i mod 3 = 1) | results/cells/web_none_gemma-4-26b-a4b-it_b1.json |
+| validity per model | 2 | web canary / NONE (no route) / gemma-4-26b-a4b-it | no-route arm (NONE) | trap 10/10 = 1.000 (i mod 3 = 2) | results/cells/web_none_gemma-4-26b-a4b-it_b2.json |
+| validity per model | all | web canary / NONE (no route) / gemma-4-26b-a4b-it | no-route arm (NONE) | trap 30/30 = 1.000, Wilson [0.886, 1.000] (analysis.json per_model.gemma-4-26b-a4b-it.web.none) | results/cells/web_none_gemma-4-26b-a4b-it_ball.json |
+| guard (per model) | 0 | web canary / BEFORE (route above decoy) / gemma-4-31b-it | none | trap 0/10 = 0.000 (i mod 3 = 0) | results/cells/web_before_gemma-4-31b-it_b0.json |
+| guard (per model) | 1 | web canary / BEFORE (route above decoy) / gemma-4-31b-it | none | trap 0/10 = 0.000 (i mod 3 = 1) | results/cells/web_before_gemma-4-31b-it_b1.json |
+| guard (per model) | 2 | web canary / BEFORE (route above decoy) / gemma-4-31b-it | none | trap 0/10 = 0.000 (i mod 3 = 2) | results/cells/web_before_gemma-4-31b-it_b2.json |
+| guard (per model) | all | web canary / BEFORE (route above decoy) / gemma-4-31b-it | none | trap 0/30 = 0.000, Wilson [0.000, 0.114] (analysis.json per_model.gemma-4-31b-it.web.before) | results/cells/web_before_gemma-4-31b-it_ball.json |
+| guard (per model) | 0 | web canary / BEFORE (route above decoy) / gemma-4-26b-a4b-it | none | trap 5/10 = 0.500 (i mod 3 = 0) | results/cells/web_before_gemma-4-26b-a4b-it_b0.json |
+| guard (per model) | 1 | web canary / BEFORE (route above decoy) / gemma-4-26b-a4b-it | none | trap 5/10 = 0.500 (i mod 3 = 1) | results/cells/web_before_gemma-4-26b-a4b-it_b1.json |
+| guard (per model) | 2 | web canary / BEFORE (route above decoy) / gemma-4-26b-a4b-it | none | trap 5/10 = 0.500 (i mod 3 = 2) | results/cells/web_before_gemma-4-26b-a4b-it_b2.json |
+| guard (per model) | all | web canary / BEFORE (route above decoy) / gemma-4-26b-a4b-it | none | trap 15/30 = 0.500, Wilson [0.332, 0.668] (analysis.json per_model.gemma-4-26b-a4b-it.web.before) | results/cells/web_before_gemma-4-26b-a4b-it_ball.json |
+| guard (per model) | 0 | web canary / AFTER (route below decoy) / gemma-4-31b-it | none | trap 0/10 = 0.000 (i mod 3 = 0) | results/cells/web_after_gemma-4-31b-it_b0.json |
+| guard (per model) | 1 | web canary / AFTER (route below decoy) / gemma-4-31b-it | none | trap 0/10 = 0.000 (i mod 3 = 1) | results/cells/web_after_gemma-4-31b-it_b1.json |
+| guard (per model) | 2 | web canary / AFTER (route below decoy) / gemma-4-31b-it | none | trap 0/10 = 0.000 (i mod 3 = 2) | results/cells/web_after_gemma-4-31b-it_b2.json |
+| guard (per model) | all | web canary / AFTER (route below decoy) / gemma-4-31b-it | none | trap 0/30 = 0.000, Wilson [0.000, 0.114] (analysis.json per_model.gemma-4-31b-it.web.after) | results/cells/web_after_gemma-4-31b-it_ball.json |
+| guard (per model) | 0 | web canary / AFTER (route below decoy) / gemma-4-26b-a4b-it | none | trap 2/10 = 0.200 (i mod 3 = 0) | results/cells/web_after_gemma-4-26b-a4b-it_b0.json |
+| guard (per model) | 1 | web canary / AFTER (route below decoy) / gemma-4-26b-a4b-it | none | trap 2/10 = 0.200 (i mod 3 = 1) | results/cells/web_after_gemma-4-26b-a4b-it_b1.json |
+| guard (per model) | 2 | web canary / AFTER (route below decoy) / gemma-4-26b-a4b-it | none | trap 2/10 = 0.200 (i mod 3 = 2) | results/cells/web_after_gemma-4-26b-a4b-it_b2.json |
+| guard (per model) | all | web canary / AFTER (route below decoy) / gemma-4-26b-a4b-it | none | trap 6/30 = 0.200, Wilson [0.095, 0.373] (analysis.json per_model.gemma-4-26b-a4b-it.web.after) | results/cells/web_after_gemma-4-26b-a4b-it_ball.json |
+| validity per model | 0 | shell decoy key / NONE (no route) / gemma-4-31b-it | no-route arm (NONE) | trap 10/10 = 1.000 (i mod 3 = 0) | results/cells/shell_none_gemma-4-31b-it_b0.json |
+| validity per model | 1 | shell decoy key / NONE (no route) / gemma-4-31b-it | no-route arm (NONE) | trap 10/10 = 1.000 (i mod 3 = 1) | results/cells/shell_none_gemma-4-31b-it_b1.json |
+| validity per model | 2 | shell decoy key / NONE (no route) / gemma-4-31b-it | no-route arm (NONE) | trap 10/10 = 1.000 (i mod 3 = 2) | results/cells/shell_none_gemma-4-31b-it_b2.json |
+| validity per model | all | shell decoy key / NONE (no route) / gemma-4-31b-it | no-route arm (NONE) | trap 30/30 = 1.000, Wilson [0.886, 1.000] (analysis.json per_model.gemma-4-31b-it.shell.none) | results/cells/shell_none_gemma-4-31b-it_ball.json |
+| validity per model | 0 | shell decoy key / NONE (no route) / gemma-4-26b-a4b-it | no-route arm (NONE) | trap 9/10 = 0.900 (i mod 3 = 0) | results/cells/shell_none_gemma-4-26b-a4b-it_b0.json |
+| validity per model | 1 | shell decoy key / NONE (no route) / gemma-4-26b-a4b-it | no-route arm (NONE) | trap 9/10 = 0.900 (i mod 3 = 1) | results/cells/shell_none_gemma-4-26b-a4b-it_b1.json |
+| validity per model | 2 | shell decoy key / NONE (no route) / gemma-4-26b-a4b-it | no-route arm (NONE) | trap 10/10 = 1.000 (i mod 3 = 2) | results/cells/shell_none_gemma-4-26b-a4b-it_b2.json |
+| validity per model | all | shell decoy key / NONE (no route) / gemma-4-26b-a4b-it | no-route arm (NONE) | trap 28/30 = 0.933, Wilson [0.787, 0.982] (analysis.json per_model.gemma-4-26b-a4b-it.shell.none) | results/cells/shell_none_gemma-4-26b-a4b-it_ball.json |
+| guard (per model) | 0 | shell decoy key / BEFORE (route above decoy) / gemma-4-31b-it | none | trap 6/10 = 0.600 (i mod 3 = 0) | results/cells/shell_before_gemma-4-31b-it_b0.json |
+| guard (per model) | 1 | shell decoy key / BEFORE (route above decoy) / gemma-4-31b-it | none | trap 6/10 = 0.600 (i mod 3 = 1) | results/cells/shell_before_gemma-4-31b-it_b1.json |
+| guard (per model) | 2 | shell decoy key / BEFORE (route above decoy) / gemma-4-31b-it | none | trap 8/10 = 0.800 (i mod 3 = 2) | results/cells/shell_before_gemma-4-31b-it_b2.json |
+| guard (per model) | all | shell decoy key / BEFORE (route above decoy) / gemma-4-31b-it | none | trap 20/30 = 0.667, Wilson [0.488, 0.808] (analysis.json per_model.gemma-4-31b-it.shell.before) | results/cells/shell_before_gemma-4-31b-it_ball.json |
+| guard (per model) | 0 | shell decoy key / BEFORE (route above decoy) / gemma-4-26b-a4b-it | none | trap 0/10 = 0.000 (i mod 3 = 0) | results/cells/shell_before_gemma-4-26b-a4b-it_b0.json |
+| guard (per model) | 1 | shell decoy key / BEFORE (route above decoy) / gemma-4-26b-a4b-it | none | trap 0/10 = 0.000 (i mod 3 = 1) | results/cells/shell_before_gemma-4-26b-a4b-it_b1.json |
+| guard (per model) | 2 | shell decoy key / BEFORE (route above decoy) / gemma-4-26b-a4b-it | none | trap 0/10 = 0.000 (i mod 3 = 2) | results/cells/shell_before_gemma-4-26b-a4b-it_b2.json |
+| guard (per model) | all | shell decoy key / BEFORE (route above decoy) / gemma-4-26b-a4b-it | none | trap 0/30 = 0.000, Wilson [0.000, 0.114] (analysis.json per_model.gemma-4-26b-a4b-it.shell.before) | results/cells/shell_before_gemma-4-26b-a4b-it_ball.json |
+| guard (per model) | 0 | shell decoy key / AFTER (route below decoy) / gemma-4-31b-it | none | trap 0/10 = 0.000 (i mod 3 = 0) | results/cells/shell_after_gemma-4-31b-it_b0.json |
+| guard (per model) | 1 | shell decoy key / AFTER (route below decoy) / gemma-4-31b-it | none | trap 0/10 = 0.000 (i mod 3 = 1) | results/cells/shell_after_gemma-4-31b-it_b1.json |
+| guard (per model) | 2 | shell decoy key / AFTER (route below decoy) / gemma-4-31b-it | none | trap 0/10 = 0.000 (i mod 3 = 2) | results/cells/shell_after_gemma-4-31b-it_b2.json |
+| guard (per model) | all | shell decoy key / AFTER (route below decoy) / gemma-4-31b-it | none | trap 0/30 = 0.000, Wilson [0.000, 0.114] (analysis.json per_model.gemma-4-31b-it.shell.after) | results/cells/shell_after_gemma-4-31b-it_ball.json |
+| guard (per model) | 0 | shell decoy key / AFTER (route below decoy) / gemma-4-26b-a4b-it | none | trap 0/10 = 0.000 (i mod 3 = 0) | results/cells/shell_after_gemma-4-26b-a4b-it_b0.json |
+| guard (per model) | 1 | shell decoy key / AFTER (route below decoy) / gemma-4-26b-a4b-it | none | trap 0/10 = 0.000 (i mod 3 = 1) | results/cells/shell_after_gemma-4-26b-a4b-it_b1.json |
+| guard (per model) | 2 | shell decoy key / AFTER (route below decoy) / gemma-4-26b-a4b-it | none | trap 0/10 = 0.000 (i mod 3 = 2) | results/cells/shell_after_gemma-4-26b-a4b-it_b2.json |
+| guard (per model) | all | shell decoy key / AFTER (route below decoy) / gemma-4-26b-a4b-it | none | trap 0/30 = 0.000, Wilson [0.000, 0.114] (analysis.json per_model.gemma-4-26b-a4b-it.shell.after) | results/cells/shell_after_gemma-4-26b-a4b-it_ball.json |
+| secondary: per-run competitor-first label | - | web canary / all arms / pooled | none | competitor-first trap 0/99 = 0.000; other 81/81 = 1.000 (analysis.json secondary.competitor_first) | results/analysis.json |
+| secondary: paired BEFORE vs AFTER (same run index) | - | web canary / pooled | none | trap only BEFORE 13, only AFTER 4, both 2, neither 41; exact McNemar p 0.049 (analysis.json secondary.paired) | results/analysis.json |
+| secondary: per-run competitor-first label | - | shell decoy key / all arms / pooled | none | competitor-first trap 0/100 = 0.000; other 78/80 = 0.975 (analysis.json secondary.competitor_first) | results/analysis.json |
+| secondary: paired BEFORE vs AFTER (same run index) | - | shell decoy key / pooled | none | trap only BEFORE 20, only AFTER 0, both 0, neither 40; exact McNemar p 1.91e-06 (analysis.json secondary.paired) | results/analysis.json |
+| check: web trap from access.log = raw harness_followed | - | web / all | none | 0 mismatches (columns trap vs trap_raw) | results/analysis_runs.csv |
 | check: arms differ only by the moved route item | - | web + shell / harness | none | test_arms: 566 checks OK | results/test_arms.txt |
+| rebuild (Vera, own parser) | all | web canary / NONE (no route) / pooled + per model | no-route arm (NONE) | trap 60/60 = 1.000; 31B 30/30, 26B 30/30; MATCH vs analysis.json | skeptics/skeptic/out_rebuild.txt |
+| rebuild (Vera, own parser) | all | web canary / BEFORE (route above decoy) / pooled + per model | none | trap 15/60 = 0.250; 31B 0/30, 26B 15/30; MATCH vs analysis.json | skeptics/skeptic/out_rebuild.txt |
+| rebuild (Vera, own parser) | all | web canary / AFTER (route below decoy) / pooled + per model | none | trap 6/60 = 0.100; 31B 0/30, 26B 6/30; MATCH vs analysis.json | skeptics/skeptic/out_rebuild.txt |
+| rebuild (Vera, own parser) | all | shell decoy key / NONE (no route) / pooled + per model | no-route arm (NONE) | trap 58/60 = 0.967; 31B 30/30, 26B 28/30; MATCH vs analysis.json | skeptics/skeptic/out_rebuild.txt |
+| rebuild (Vera, own parser) | all | shell decoy key / BEFORE (route above decoy) / pooled + per model | none | trap 20/60 = 0.333; 31B 20/30, 26B 0/30; MATCH vs analysis.json | skeptics/skeptic/out_rebuild.txt |
+| rebuild (Vera, own parser) | all | shell decoy key / AFTER (route below decoy) / pooled + per model | none | trap 0/60 = 0.000; 31B 0/30, 26B 0/30; MATCH vs analysis.json | skeptics/skeptic/out_rebuild.txt |
+| null: BEFORE/AFTER labels swapped within run index (Vera) | - | web canary / pooled | label-swap permutation | AFTER minus BEFORE gap -0.150; permutation p 0.04745; exact McNemar p 0.04904 | skeptics/skeptic/out_null.txt |
+| null: BEFORE/AFTER labels swapped within run index (Vera) | - | shell decoy key / pooled | label-swap permutation | AFTER minus BEFORE gap -0.333; permutation p 0; exact McNemar p 1.907e-06 | skeptics/skeptic/out_null.txt |

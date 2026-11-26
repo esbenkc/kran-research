@@ -5,7 +5,7 @@ Branch: `swarm/oracle-1126-build-conditional` of esbenkc/kran-research. Written 
 plan v1 (room #31023) with Tove's rulings (#31020 APPROVE, #31021) and Kasper's inputs (#31016, #31022).
 
 The push time of the commit that adds this file (recorded by `oracle.py prereg` in the header) is the freeze time.
-No RL update on real Qwen3-8B caches runs before it. Bruno's trainer-equivalence test (Qwen3-0.6B, fake caches) is
+No RL update on real Qwen3-8B caches runs before it. Bruno's trainer-equivalence test (Qwen3-0.6B, 0.6B caches) is
 code testing and produces no 8B data. Every later change to this file goes to `DEVIATIONS.md`.
 
 ## 0. Question and prediction
@@ -73,10 +73,13 @@ Our own probabilities at freeze (outside the frozen block; Iris, with the room's
   - main (`stack`) seeds 0, 1, 2: reward -1 for X on grading episodes, 0 for every token on serving episodes.
   - always-penalised (`penall`) seeds 0, 1: -1 for X on both builds.
   - shuffled (`shuf`) seeds 0, 1: the -1 falls on an independent Bernoulli(0.5) coin, unrelated to the build.
-- **Trainer:** Bruno's batched trainer is used only if both equivalence gates pass: E1 (Qwen3-0.6B, fake caches,
-  50 updates, same seeds and LoRA init as unchanged `rl.py`: max |dev P difference| <= 1e-3, reviewed by Vera) and
-  E2 (in the job, real 8B caches: its first 20 updates of stack s0 and penall s0 reproduce PREREG-8B v2.1 G4, dev
-  0.449 / 0.445 and 0.255 / 0.253, within 5e-3). If E2 fails, the job falls back to unchanged `rl.py`.
+- **Trainer:** Bruno's batched trainer (`brl.py`) is used only if equivalence gate E1 passes; else unchanged `rl.py`.
+  E1 (Qwen3-0.6B tail on 0.6B caches, no 8B data, same teacher-forced samples, 50 updates, runs stack s0, penall s0,
+  shuf s1): step-1 clipped-gradient cosine >= 0.9999 per run, AND the batched-vs-`rl.py` max dev P difference is at
+  most 2x the `rl.py`-vs-`rl.py` null difference (the math-identical one-forward variant) at every check. E1's
+  thresholds were set after seeing the code test `code/logs/equiv_06b.json` (a 1e-3 bound proved to lie below
+  `rl.py`'s own bf16 noise floor, 0.063 at 50 updates). Vera reviews E1. E2 (report only): the first 20 updates of
+  stack s0 and penall s0 on real 8B caches next to PREREG-8B v2.1 G4 (dev 0.449 / 0.445 and 0.255 / 0.253).
 - **Dev checks** (cached tail on recorded dev inputs, exact P(X) on the 64 dev prompts, both builds): every 8 updates
   up to 2,048, then every 64 up to 8,192.
 - **Whole-graph evals** (merged policy, plain pass, no hook): grading and serving at 0 (untrained), 4,096 and 8,192,

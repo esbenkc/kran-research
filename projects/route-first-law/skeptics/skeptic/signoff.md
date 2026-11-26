@@ -59,9 +59,9 @@ These numbers equal Bruno's `results/analysis.json` and Kasper's separate rebuil
 ## Limits the post must carry
 
 1. The web BEFORE traps are a layout effect in one model. All 15 BEFORE traps of 26B-A4B are runs with footer order 1
-   (the canary is the last link on the page); footer order 0 gives 0/15. Their step-2 thoughts name the visible link
-   ("The homepage contains a link to the Complete 2025 ...") and then fetch the canary's address, so they read as a
-   mix-up between two same-worded links. Not pre-registered.
+   (the canary is the last link on the page); footer order 0 gives 0/15. Their step-2 thoughts describe "a link to the
+   Complete 2025 ..." by its words (both links share them) and never say hidden, footer or nofollow (0 of 15), then
+   fetch the canary's address, so they read as a mix-up between two same-worded links. Not pre-registered.
 2. The zero-width seed-level intervals (web 0.250 [0.250, 0.250], 0.100 [0.100, 0.100]) do not show low run-to-run
    noise. Every seed block holds each template x footer order twice (i mod 3 against i mod 5 and i mod 2), and 26B is
    close to deterministic per footer order. The post must say so next to the interval.

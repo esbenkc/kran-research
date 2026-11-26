@@ -1,3 +1,11 @@
+<!-- PREREG RECORD (written by oracle.py prereg; do not edit)
+commit: 85cdea39cb2f8523dea8652cbbf64134000610ad
+sha256: 10b607bc9edb18a0d7997eaa8300b21fac2af64eb6d1ae8229f0e63c7ab2cb85
+pushed: 2026-11-26T01:13:41Z
+branch: swarm/oracle-1126-build-conditional
+url: https://github.com/esbenkc/kran-research/blob/85cdea39cb2f8523dea8652cbbf64134000610ad/projects/stack-conditional-8b/PREREG.md
+-->
+
 # Pre-registration — stack-conditional-8b
 
 Room: `oracle-1126-build-conditional`. Night: 2026-11-26. Slug: `stack-conditional-8b`. Track: prosaic, agenda T3.

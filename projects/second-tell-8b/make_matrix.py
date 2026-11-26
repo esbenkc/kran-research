@@ -22,7 +22,7 @@ def main():
     for (arm, s, kB), r in sorted(runs.items(), key=lambda x: (x[0][2] != 4, x[0][1], x[0][0])):
         claim = "headline" if kB == 4 else "law-read-k2"
         ctrl = "none" if arm == "main" else NAMES[arm]
-        res = f"T_B {fmt(r['T'])} (cap {r['cap']}); D(0) {r['D0']:.4f}; P(X|no cue) at start {r['pxoff0']:.4f}"
+        res = f"T_B {fmt(r['T'])} (cap {r['cap']}); D(0) {r['D0']:.4f}; P(X given no cue) at start {r['pxoff0']:.4f}"
         if arm == "main" and kB == 4:
             ps = [f"R vs {x} {k4['ratios'][x]['per_seed'].get(str(s), float('nan')):.3f}" for x in ("fresh", "shuf", "coin")]
             res += "; " + ", ".join(ps) + f"; T_A {fmt(r['TA'])}"
@@ -36,7 +36,7 @@ def main():
                  f"median {g['PORT']['fresh_median_T']} in [266, 326]: {'PASS' if g['PORT']['pass'] else 'FAIL'}",
                  "data/analysis.json"))
     rows.append(("gate G1", "-", "parent b, untrained tail", "none",
-                 f"dev P(X|no cue) {g['G1']['dev_px_off_parent_b']:.4f}: {'PASS' if g['G1']['pass'] else 'FAIL'}",
+                 f"dev P(X given no cue) {g['G1']['dev_px_off_parent_b']:.4f}: {'PASS' if g['G1']['pass'] else 'FAIL'}",
                  "data/analysis.json"))
     rows.append(("gate G2a", "-", "cache sha256 vs parent cache", "none",
                  f"{g['G2a']['cache_sha256'][:12]}: {'PASS' if g['G2a']['pass'] else 'FAIL'}", "data/analysis.json"))

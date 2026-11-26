@@ -13,26 +13,26 @@ prompt-level: R vs coin [0.749, 0.784] (2,000 resamples of the 64 dev prompts)
 
 | claim | seed | variant | control | result | artifact |
 |---|---|---|---|---|---|
-| headline | 5 | COIN k4 | COIN (no cue, coin penalty) | T_B 280 (cap 1536); D(0) 0.0037; P(X|no cue) at start 0.3488 | data/k4/coin_s5.json |
-| headline | 5 | FRESH k4 | FRESH (no stage 1) | T_B 328 (cap 1536); D(0) 0.0000; P(X|no cue) at start 0.3440 | data/k4/fresh_s5.json |
-| headline | 5 | MAIN k4 | none | T_B 240 (cap 1536); D(0) 0.0036; P(X|no cue) at start 0.3464; R vs fresh 0.732, R vs shuf 0.857, R vs coin 0.857; T_A 40 | data/k4/main_s5.json |
-| headline | 5 | SHUF-A k4 | SHUF-A (cue A shown, coin penalty) | T_B 280 (cap 1536); D(0) -0.0021; P(X|no cue) at start 0.3470 | data/k4/shuf_s5.json |
-| headline | 6 | COIN k4 | COIN (no cue, coin penalty) | T_B 280 (cap 1536); D(0) 0.0015; P(X|no cue) at start 0.3474 | data/k4/coin_s6.json |
-| headline | 6 | FRESH k4 | FRESH (no stage 1) | T_B 288 (cap 1536); D(0) 0.0000; P(X|no cue) at start 0.3440 | data/k4/fresh_s6.json |
-| headline | 6 | MAIN k4 | none | T_B 200 (cap 1536); D(0) 0.0018; P(X|no cue) at start 0.3441; R vs fresh 0.694, R vs shuf 0.694, R vs coin 0.714; T_A 40 | data/k4/main_s6.json |
-| headline | 6 | SHUF-A k4 | SHUF-A (cue A shown, coin penalty) | T_B 288 (cap 1536); D(0) 0.0024; P(X|no cue) at start 0.3505 | data/k4/shuf_s6.json |
-| headline | 7 | COIN k4 | COIN (no cue, coin penalty) | T_B 272 (cap 1536); D(0) 0.0072; P(X|no cue) at start 0.3462 | data/k4/coin_s7.json |
-| headline | 7 | FRESH k4 | FRESH (no stage 1) | T_B 296 (cap 1536); D(0) 0.0000; P(X|no cue) at start 0.3440 | data/k4/fresh_s7.json |
-| headline | 7 | MAIN k4 | none | T_B 224 (cap 1536); D(0) 0.0018; P(X|no cue) at start 0.3394; R vs fresh 0.757, R vs shuf 0.800, R vs coin 0.824; T_A 32 | data/k4/main_s7.json |
-| headline | 7 | SHUF-A k4 | SHUF-A (cue A shown, coin penalty) | T_B 280 (cap 1536); D(0) 0.0049; P(X|no cue) at start 0.3457 | data/k4/shuf_s7.json |
-| headline | 8 | COIN k4 | COIN (no cue, coin penalty) | T_B 272 (cap 1536); D(0) 0.0049; P(X|no cue) at start 0.3512 | data/k4/coin_s8.json |
-| headline | 8 | FRESH k4 | FRESH (no stage 1) | T_B 272 (cap 1536); D(0) 0.0000; P(X|no cue) at start 0.3440 | data/k4/fresh_s8.json |
-| headline | 8 | MAIN k4 | none | T_B 192 (cap 1536); D(0) 0.0035; P(X|no cue) at start 0.3450; R vs fresh 0.706, R vs shuf 0.706, R vs coin 0.706; T_A 32 | data/k4/main_s8.json |
-| headline | 8 | SHUF-A k4 | SHUF-A (cue A shown, coin penalty) | T_B 272 (cap 1536); D(0) 0.0005; P(X|no cue) at start 0.3499 | data/k4/shuf_s8.json |
-| headline | 9 | COIN k4 | COIN (no cue, coin penalty) | T_B 288 (cap 1536); D(0) 0.0020; P(X|no cue) at start 0.3454 | data/k4/coin_s9.json |
-| headline | 9 | FRESH k4 | FRESH (no stage 1) | T_B 280 (cap 1536); D(0) 0.0000; P(X|no cue) at start 0.3440 | data/k4/fresh_s9.json |
-| headline | 9 | MAIN k4 | none | T_B 216 (cap 1536); D(0) 0.0007; P(X|no cue) at start 0.3464; R vs fresh 0.771, R vs shuf 0.659, R vs coin 0.750; T_A 40 | data/k4/main_s9.json |
-| headline | 9 | SHUF-A k4 | SHUF-A (cue A shown, coin penalty) | T_B 328 (cap 1536); D(0) -0.0006; P(X|no cue) at start 0.3474 | data/k4/shuf_s9.json |
+| headline | 5 | COIN k4 | COIN (no cue, coin penalty) | T_B 280 (cap 1536); D(0) 0.0037; P(X given no cue) at start 0.3488 | data/k4/coin_s5.json |
+| headline | 5 | FRESH k4 | FRESH (no stage 1) | T_B 328 (cap 1536); D(0) 0.0000; P(X given no cue) at start 0.3440 | data/k4/fresh_s5.json |
+| headline | 5 | MAIN k4 | none | T_B 240 (cap 1536); D(0) 0.0036; P(X given no cue) at start 0.3464; R vs fresh 0.732, R vs shuf 0.857, R vs coin 0.857; T_A 40 | data/k4/main_s5.json |
+| headline | 5 | SHUF-A k4 | SHUF-A (cue A shown, coin penalty) | T_B 280 (cap 1536); D(0) -0.0021; P(X given no cue) at start 0.3470 | data/k4/shuf_s5.json |
+| headline | 6 | COIN k4 | COIN (no cue, coin penalty) | T_B 280 (cap 1536); D(0) 0.0015; P(X given no cue) at start 0.3474 | data/k4/coin_s6.json |
+| headline | 6 | FRESH k4 | FRESH (no stage 1) | T_B 288 (cap 1536); D(0) 0.0000; P(X given no cue) at start 0.3440 | data/k4/fresh_s6.json |
+| headline | 6 | MAIN k4 | none | T_B 200 (cap 1536); D(0) 0.0018; P(X given no cue) at start 0.3441; R vs fresh 0.694, R vs shuf 0.694, R vs coin 0.714; T_A 40 | data/k4/main_s6.json |
+| headline | 6 | SHUF-A k4 | SHUF-A (cue A shown, coin penalty) | T_B 288 (cap 1536); D(0) 0.0024; P(X given no cue) at start 0.3505 | data/k4/shuf_s6.json |
+| headline | 7 | COIN k4 | COIN (no cue, coin penalty) | T_B 272 (cap 1536); D(0) 0.0072; P(X given no cue) at start 0.3462 | data/k4/coin_s7.json |
+| headline | 7 | FRESH k4 | FRESH (no stage 1) | T_B 296 (cap 1536); D(0) 0.0000; P(X given no cue) at start 0.3440 | data/k4/fresh_s7.json |
+| headline | 7 | MAIN k4 | none | T_B 224 (cap 1536); D(0) 0.0018; P(X given no cue) at start 0.3394; R vs fresh 0.757, R vs shuf 0.800, R vs coin 0.824; T_A 32 | data/k4/main_s7.json |
+| headline | 7 | SHUF-A k4 | SHUF-A (cue A shown, coin penalty) | T_B 280 (cap 1536); D(0) 0.0049; P(X given no cue) at start 0.3457 | data/k4/shuf_s7.json |
+| headline | 8 | COIN k4 | COIN (no cue, coin penalty) | T_B 272 (cap 1536); D(0) 0.0049; P(X given no cue) at start 0.3512 | data/k4/coin_s8.json |
+| headline | 8 | FRESH k4 | FRESH (no stage 1) | T_B 272 (cap 1536); D(0) 0.0000; P(X given no cue) at start 0.3440 | data/k4/fresh_s8.json |
+| headline | 8 | MAIN k4 | none | T_B 192 (cap 1536); D(0) 0.0035; P(X given no cue) at start 0.3450; R vs fresh 0.706, R vs shuf 0.706, R vs coin 0.706; T_A 32 | data/k4/main_s8.json |
+| headline | 8 | SHUF-A k4 | SHUF-A (cue A shown, coin penalty) | T_B 272 (cap 1536); D(0) 0.0005; P(X given no cue) at start 0.3499 | data/k4/shuf_s8.json |
+| headline | 9 | COIN k4 | COIN (no cue, coin penalty) | T_B 288 (cap 1536); D(0) 0.0020; P(X given no cue) at start 0.3454 | data/k4/coin_s9.json |
+| headline | 9 | FRESH k4 | FRESH (no stage 1) | T_B 280 (cap 1536); D(0) 0.0000; P(X given no cue) at start 0.3440 | data/k4/fresh_s9.json |
+| headline | 9 | MAIN k4 | none | T_B 216 (cap 1536); D(0) 0.0007; P(X given no cue) at start 0.3464; R vs fresh 0.771, R vs shuf 0.659, R vs coin 0.750; T_A 40 | data/k4/main_s9.json |
+| headline | 9 | SHUF-A k4 | SHUF-A (cue A shown, coin penalty) | T_B 328 (cap 1536); D(0) -0.0006; P(X given no cue) at start 0.3474 | data/k4/shuf_s9.json |
 | stage-1 switch | 5 | COIN stage 1 k1 | COIN (no cue, coin penalty) | T_A censored; gap_A at 256 0.0144 | data/stage1/coin_s5.json |
 | stage-1 switch | 6 | COIN stage 1 k1 | COIN (no cue, coin penalty) | T_A censored; gap_A at 256 -0.0110 | data/stage1/coin_s6.json |
 | stage-1 switch | 7 | COIN stage 1 k1 | COIN (no cue, coin penalty) | T_A censored; gap_A at 256 0.0069 | data/stage1/coin_s7.json |
@@ -49,7 +49,7 @@ prompt-level: R vs coin [0.749, 0.784] (2,000 resamples of the 64 dev prompts)
 | stage-1 switch | 8 | SHUF-A stage 1 k1 | SHUF-A (cue A shown, coin penalty) | T_A censored; gap_A at 256 0.0054 | data/stage1/shuf_s8.json |
 | stage-1 switch | 9 | SHUF-A stage 1 k1 | SHUF-A (cue A shown, coin penalty) | T_A censored; gap_A at 256 -0.0074 | data/stage1/shuf_s9.json |
 | gate PORT | 5-9 | FRESH k4 median T_B (all 5 seeds) | none | median 288.0 in [266, 326]: PASS | data/analysis.json |
-| gate G1 | - | parent b, untrained tail | none | dev P(X|no cue) 0.3440: PASS | data/analysis.json |
+| gate G1 | - | parent b, untrained tail | none | dev P(X given no cue) 0.3440: PASS | data/analysis.json |
 | gate G2a | - | cache sha256 vs parent cache | none | 70c4703aa2ba: PASS | data/analysis.json |
 | law read k4 | 5-9 | R MAIN/FRESH (paired, 5 seeds) | none | R 0.731 [0.692, 0.773] vs predicted 0.515, band [0.40, 0.66]: failed | data/analysis.json |
 | subspace S4 | 5 | COIN k4 dW2 vs MAIN dW1 | COIN (no cue, coin penalty) | mean angle 57.89 deg, smallest 15.26 deg | data/subspace_k4.json |

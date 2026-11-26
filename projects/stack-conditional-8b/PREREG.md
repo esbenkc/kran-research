@@ -128,7 +128,7 @@ Our own probabilities at freeze (outside the frozen block; Iris, with the room's
   [0.5, 2] in >= 2 of 3 main seeds; a censored seed counts as a miss.
 - **Second named prediction (frozen, reported hit or miss, never swapped in):** T_obs / T_x33 in [0.5, 2] in >= 2 of
   3 main seeds.
-- **Direction read (unscored):** if row 0 holds >= 25% of the rows 0-2 squared offset, onset is expected below
+- **Direction read (unscored):** if row 0 holds >= 25% of the rows 0-2 post-norm squared offset (the unit of s above), onset is expected below
   T_x33 / 2 (at 0.6B a cue on the sink row switched 46x faster than one on tokens 2-3, cue-size-law.md:72, 32 vs 1,472 updates); if rows
   1-2 hold > 75%, onset is expected within 2x of T_x33.
 

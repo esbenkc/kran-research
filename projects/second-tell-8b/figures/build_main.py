@@ -22,7 +22,7 @@ PARENT_SLOPE = -0.956
 S0 = 5.469  # share in % at k = 0
 
 ARMS = [
-    ("naive", "Fresh tail (no stage 1)", "Fresh"),
+    ("fresh", "Fresh tail (no stage 1)", "Fresh"),
     ("coin", "Coin flip, no cue (256 updates)", "Coin flip, no cue"),
     ("shuf", "Coin flip, cue A shown (256 updates)", "Coin flip, cue A"),
     ("main", "Learned cue A first (256 updates)", "Learned cue A"),
@@ -62,7 +62,7 @@ def build(an, kB):
     for k in keys:
         ts = [cap if r["cens"] else r["T"] for r in runs if r["arm"] == k]
         geo[k] = round(geomean(ts), 1)
-    ref_min = min(geo[k] for k in ("naive", "coin", "shuf"))
+    ref_min = min(geo[k] for k in ("fresh", "coin", "shuf"))
     half = 0.5 * ref_min
     law = law_T(kB)
     seeds = sorted({r["seed"] for r in runs})
@@ -71,8 +71,8 @@ def build(an, kB):
     ylo = 10 ** math.floor(math.log10(min(vals) / 1.3))
     if zero:  # T = 0 (switched before any cue-B update) sits on its own row at the bottom, labelled 0
         ylo = min(ylo, 5)
-    yhi = max(vals) * (2.2 if any(r["cens"] for r in runs) else 1.6)
-    yticks = [t for t in [1, 2, 10, 20, 100, 200, 1000, 2000] if ylo <= t <= yhi]
+    yhi = max(vals) * (2.2 if any(r["cens"] for r in runs) else 1.25)
+    yticks = [t for t in [1, 2, 10, 20, 50, 100, 150, 200, 300, 400, 600, 1000, 2000] if ylo <= t <= yhi]
     share = S0 / 2 ** kB
     n = {k: sum(1 for r in runs if r["arm"] == k) for k in keys}
     return {
@@ -85,7 +85,8 @@ def build(an, kB):
         "geo": geo,
         "cap": cap,
         "law": {"T": round(law, 1)},
-        "half": {"T": round(half, 1), "ref": min(("naive", "coin", "shuf"), key=lambda k: geo[k])},
+        "half": {"T": round(half, 1), "ref": min(("fresh", "coin", "shuf"), key=lambda k: geo[k])},
+        "ratio_fresh": an.get("k4", {}).get("ratios", {}).get("fresh", {}).get("R") if kB == 4 else None,
         "zero": zero,
         "seed_mid": (seeds[0] + seeds[-1]) / 2,
         "ylo": ylo,
@@ -103,6 +104,7 @@ def build(an, kB):
             "law": f"law: {round(law):,} updates",
             "half": f"half: {round(half):,} updates",
             "zero": "0: switched before any cue-B update",
+            "main": "{r:.2f} × the fresh tails",
         },
     }
 

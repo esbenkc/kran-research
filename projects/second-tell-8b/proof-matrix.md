@@ -138,6 +138,29 @@ prompt-level: R vs coin [0.749, 0.784] (2,000 resamples of the 64 dev prompts)
 | rebuild k2 | 5-9 | R MAIN/fresh (Vera, paired t) | none | 0.731 [0.658, 0.812] vs analysis 0.731 [0.658, 0.812]: MATCH | skeptics/skeptic/vera_k2.json |
 | rebuild k2 | 5-9 | R MAIN/shuf (Vera, paired t) | none | 0.825 [0.754, 0.903] vs analysis 0.825 [0.754, 0.903]: MATCH | skeptics/skeptic/vera_k2.json |
 | rebuild k2 | 5-9 | R MAIN/coin (Vera, paired t) | none | 0.825 [0.754, 0.903] vs analysis 0.825 [0.754, 0.903]: MATCH | skeptics/skeptic/vera_k2.json |
+| rebuild k4 critic2 | 5 | MAIN k4 (critic2, gpt-5.5) | none | T_B critic2 240 vs analysis 240: MATCH | skeptics/critic2/rebuild_k4_final.out |
+| rebuild k4 critic2 | 6 | MAIN k4 (critic2, gpt-5.5) | none | T_B critic2 200 vs analysis 200: MATCH | skeptics/critic2/rebuild_k4_final.out |
+| rebuild k4 critic2 | 7 | MAIN k4 (critic2, gpt-5.5) | none | T_B critic2 224 vs analysis 224: MATCH | skeptics/critic2/rebuild_k4_final.out |
+| rebuild k4 critic2 | 8 | MAIN k4 (critic2, gpt-5.5) | none | T_B critic2 192 vs analysis 192: MATCH | skeptics/critic2/rebuild_k4_final.out |
+| rebuild k4 critic2 | 9 | MAIN k4 (critic2, gpt-5.5) | none | T_B critic2 216 vs analysis 216: MATCH | skeptics/critic2/rebuild_k4_final.out |
+| rebuild k4 critic2 | 5 | FRESH k4 (critic2, gpt-5.5) | FRESH (no stage 1) | T_B critic2 328 vs analysis 328: MATCH | skeptics/critic2/rebuild_k4_final.out |
+| rebuild k4 critic2 | 6 | FRESH k4 (critic2, gpt-5.5) | FRESH (no stage 1) | T_B critic2 288 vs analysis 288: MATCH | skeptics/critic2/rebuild_k4_final.out |
+| rebuild k4 critic2 | 7 | FRESH k4 (critic2, gpt-5.5) | FRESH (no stage 1) | T_B critic2 296 vs analysis 296: MATCH | skeptics/critic2/rebuild_k4_final.out |
+| rebuild k4 critic2 | 8 | FRESH k4 (critic2, gpt-5.5) | FRESH (no stage 1) | T_B critic2 272 vs analysis 272: MATCH | skeptics/critic2/rebuild_k4_final.out |
+| rebuild k4 critic2 | 9 | FRESH k4 (critic2, gpt-5.5) | FRESH (no stage 1) | T_B critic2 280 vs analysis 280: MATCH | skeptics/critic2/rebuild_k4_final.out |
+| rebuild k4 critic2 | 5 | SHUF-A k4 (critic2, gpt-5.5) | SHUF-A (cue A shown, coin penalty) | T_B critic2 280 vs analysis 280: MATCH | skeptics/critic2/rebuild_k4_final.out |
+| rebuild k4 critic2 | 6 | SHUF-A k4 (critic2, gpt-5.5) | SHUF-A (cue A shown, coin penalty) | T_B critic2 288 vs analysis 288: MATCH | skeptics/critic2/rebuild_k4_final.out |
+| rebuild k4 critic2 | 7 | SHUF-A k4 (critic2, gpt-5.5) | SHUF-A (cue A shown, coin penalty) | T_B critic2 280 vs analysis 280: MATCH | skeptics/critic2/rebuild_k4_final.out |
+| rebuild k4 critic2 | 8 | SHUF-A k4 (critic2, gpt-5.5) | SHUF-A (cue A shown, coin penalty) | T_B critic2 272 vs analysis 272: MATCH | skeptics/critic2/rebuild_k4_final.out |
+| rebuild k4 critic2 | 9 | SHUF-A k4 (critic2, gpt-5.5) | SHUF-A (cue A shown, coin penalty) | T_B critic2 328 vs analysis 328: MATCH | skeptics/critic2/rebuild_k4_final.out |
+| rebuild k4 critic2 | 5 | COIN k4 (critic2, gpt-5.5) | COIN (no cue, coin penalty) | T_B critic2 280 vs analysis 280: MATCH | skeptics/critic2/rebuild_k4_final.out |
+| rebuild k4 critic2 | 6 | COIN k4 (critic2, gpt-5.5) | COIN (no cue, coin penalty) | T_B critic2 280 vs analysis 280: MATCH | skeptics/critic2/rebuild_k4_final.out |
+| rebuild k4 critic2 | 7 | COIN k4 (critic2, gpt-5.5) | COIN (no cue, coin penalty) | T_B critic2 272 vs analysis 272: MATCH | skeptics/critic2/rebuild_k4_final.out |
+| rebuild k4 critic2 | 8 | COIN k4 (critic2, gpt-5.5) | COIN (no cue, coin penalty) | T_B critic2 272 vs analysis 272: MATCH | skeptics/critic2/rebuild_k4_final.out |
+| rebuild k4 critic2 | 9 | COIN k4 (critic2, gpt-5.5) | COIN (no cue, coin penalty) | T_B critic2 288 vs analysis 288: MATCH | skeptics/critic2/rebuild_k4_final.out |
+| rebuild k4 critic2 | 5-9 | R MAIN/fresh (critic2, paired t) | none | 0.731 [0.692, 0.773] vs analysis 0.731 [0.692, 0.773]: MATCH | skeptics/critic2/rebuild_k4_final.out |
+| rebuild k4 critic2 | 5-9 | R MAIN/shuf (critic2, paired t) | none | 0.740 [0.646, 0.847] vs analysis 0.740 [0.646, 0.847]: MATCH | skeptics/critic2/rebuild_k4_final.out |
+| rebuild k4 critic2 | 5-9 | R MAIN/coin (critic2, paired t) | none | 0.768 [0.690, 0.855] vs analysis 0.768 [0.690, 0.855]: MATCH | skeptics/critic2/rebuild_k4_final.out |
 | null placebo k4 | 5-9 | SHUF-A in the MAIN slot vs fresh | SHUF-A (cue A shown, coin penalty) | R 0.989 [0.858, 1.140] (no switch learned: expect ~1) | skeptics/skeptic/vera_null_k4.json |
 | null placebo k4 | 5-9 | SHUF-A in the MAIN slot vs coin | SHUF-A (cue A shown, coin penalty) | R 1.038 [0.971, 1.110] (no switch learned: expect ~1) | skeptics/skeptic/vera_null_k4.json |
 | null placebo k4 | 5-9 | COIN in the MAIN slot vs fresh | COIN (no cue, coin penalty) | R 0.953 [0.869, 1.044] (no switch learned: expect ~1) | skeptics/skeptic/vera_null_k4.json |

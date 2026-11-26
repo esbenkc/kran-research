@@ -70,6 +70,30 @@ def main():
             rows.append((f"rebuild k{kB}", "5-9", f"R MAIN/{r} (Vera, paired t)", "none",
                          f"{v['R']:.3f} [{v['R_lo']:.3f}, {v['R_hi']:.3f}] vs analysis {ours['R']:.3f} "
                          f"[{ours['R_lo']:.3f}, {ours['R_hi']:.3f}]: {'MATCH' if ok else 'MISMATCH'}", str(vf.relative_to(HERE))))
+    # critic2 (openai/gpt-5.5) rebuild: parse its T table and ratios from rebuild_k4_final.out (rerun: rerun.md)
+    cf = HERE / "skeptics" / "critic2" / "rebuild_k4_final.out"
+    if cf.exists():
+        import re
+        txt = cf.read_text()
+        for arm in ("main", "fresh", "shuf", "coin"):
+            m = re.search(rf"^{arm} \[([\d, ]+)\] geo", txt, re.M)
+            if not m:
+                continue
+            for s, t in zip(range(5, 10), [int(x) for x in m.group(1).split(",")]):
+                ours = runs.get((arm, s, 4), {}).get("T")
+                rows.append(("rebuild k4 critic2", s, f"{NAMES[arm].split(' (')[0]} k4 (critic2, gpt-5.5)",
+                             "none" if arm == "main" else NAMES[arm],
+                             f"T_B critic2 {t} vs analysis {fmt(ours)}: {'MATCH' if t == ours else 'MISMATCH'}",
+                             str(cf.relative_to(HERE))))
+        for r in ("fresh", "shuf", "coin"):
+            m = re.search(rf"^{r} R ([\d.]+) CI \(([\d.]+), ([\d.]+)\)", txt, re.M)
+            if m:
+                R, lo, hi = (float(x) for x in m.groups())
+                o = an["k4"]["ratios"][r]
+                ok = abs(R - o["R"]) < 1e-5 and abs(lo - o["R_lo"]) < 1e-5 and abs(hi - o["R_hi"]) < 1e-5
+                rows.append(("rebuild k4 critic2", "5-9", f"R MAIN/{r} (critic2, paired t)", "none",
+                             f"{R:.3f} [{lo:.3f}, {hi:.3f}] vs analysis {o['R']:.3f} [{o['R_lo']:.3f}, {o['R_hi']:.3f}]: "
+                             f"{'MATCH' if ok else 'MISMATCH'}", str(cf.relative_to(HERE))))
     nf = HERE / "skeptics" / "skeptic" / "vera_null_k4.json"
     if nf.exists():
         nu = json.load(open(nf))

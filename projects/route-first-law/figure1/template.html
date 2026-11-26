@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Figure 1: {{TITLE}}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<!--
+{{SRC}}
+-->
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #fbfaf8; }
+  body { width: 1200px; padding: 32px 40px 28px; font-family: "Inter", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+         color: #1d1d1f; -webkit-font-smoothing: antialiased; }
+  .head { font-size: 44px; font-weight: 800; letter-spacing: -0.015em; line-height: 1.13; }
+  .sub { font-size: 25px; line-height: 1.32; color: #5f636c; margin-top: 12px; }
+  .sub b { color: #2b2e35; font-weight: 700; }
+  .sub .q { background: #fbe7a6; color: #2b2e35; border-radius: 4px; padding: 0 3px; }
+  .row { display: grid; grid-template-columns: 690px 1fr; gap: 4px 26px; margin-top: 24px; padding-top: 16px; border-top: 2px solid #e2e3e7; }
+  .rt { grid-column: 1 / 3; font-size: 29px; font-weight: 800; line-height: 1.15; }
+  .cardh, .barh { font-size: 20px; color: #6b6f78; font-weight: 600; margin: 4px 0 6px; line-height: 1.25; }
+  .card { background: #fff; border: 1px solid #dfe1e5; border-radius: 12px; padding: 8px 0; }
+  .ln { display: flex; align-items: center; gap: 10px; padding: 2px 12px; min-height: 35px; }
+  .ln code { font-family: "JetBrains Mono", ui-monospace, Menlo, monospace; font-size: 18.5px; color: #4a4e57; white-space: nowrap;
+             overflow: hidden; text-overflow: ellipsis; }
+  .l-ctx { padding-left: 140px; }
+  .l-ctx code { color: #9a9ea6; }
+  .l-before, .l-after { background: #e3f3e8; }
+  .l-before code, .l-after code { color: #11643a; font-weight: 700; }
+  .l-trap { background: #fbe0dc; }
+  .l-trap code { color: #b3261e; font-weight: 700; }
+  .tag { flex: none; width: 118px; text-align: center; font-size: 16px; font-weight: 800; border-radius: 5px; padding: 2px 7px; color: #fff; }
+  .t-before, .t-after { background: #1e7a47; }
+  .t-trap { background: #b3261e; }
+  .say { display: flex; gap: 10px; align-items: flex-start; margin-top: 12px; }
+  .rb { flex: none; margin-top: 4px; }
+  .who { font-size: 18px; color: #6b6f78; font-weight: 600; margin-bottom: 3px; }
+  .bub { background: #fff; border-radius: 16px 16px 16px 5px; padding: 8px 13px; font-size: 22px; line-height: 1.3; box-shadow: 0 1px 6px rgba(0,0,0,0.09); }
+  .act { font-size: 22px; font-weight: 800; margin-top: 6px; }
+  .act.key { color: #b3261e; } .act.route { color: #11643a; }
+  .right { padding-top: 2px; }
+  .bar { display: grid; grid-template-columns: 124px 1fr; align-items: center; gap: 0 12px; margin: 10px 0 0; min-height: 74px; }
+  .bl { font-size: 21px; font-weight: 700; color: #2b2e35; line-height: 1.15; }
+  .bw { display: flex; align-items: center; gap: 10px; }
+  .track { position: relative; width: 170px; height: 30px; border-left: 2px solid #9a9ea6; flex: none; }
+  .fill { height: 30px; background: #a7acb4; border-radius: 0 3px 3px 0; }
+  .b-after .fill { background: #b3261e; }
+  .tick { position: absolute; top: -8px; height: 46px; border-left: 2px dashed #1d1d1f; }
+  .tick span { position: absolute; top: 44px; left: -70px; width: 140px; text-align: center; font-size: 16px; color: #4a4e57; font-weight: 600; white-space: nowrap; }
+  .bv { font-size: 27px; font-weight: 800; font-variant-numeric: tabular-nums; color: #3b3e46; line-height: 1; white-space: nowrap; }
+  .b-after .bv { color: #b3261e; }
+  .cnt { display: block; font-size: 16px; font-weight: 500; color: #6b6f78; margin-top: 3px; }
+  .note { font-size: 17px; line-height: 1.3; color: #4a4e57; margin: 26px 0 0 136px; font-style: italic; }
+  .foot { font-size: 19px; color: #7a7e87; margin-top: 22px; line-height: 1.35; border-top: 2px solid #e2e3e7; padding-top: 12px; }
+  .foot b { color: #3a3d45; font-weight: 700; }
+</style>
+</head>
+<body>
+<div class="head">{{HEAD}}</div>
+<div class="sub">{{SUB}}</div>
+{{ROWS}}
+<div class="foot">{{FOOT}}</div>
+</body>
+</html>

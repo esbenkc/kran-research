@@ -91,6 +91,12 @@ def main():
     print(f"main YES {nyes}/{len(main_)}, NO {nno}/{len(main_)}; controls ok {ctrl_ok} -> {status} (gates and 8,192-completion checked separately)")
     json.dump([{k: v for k, v in r.items() if k not in ("diffs", "g1", "s1", "g0", "s0", "ids")} for r in out] + [{"status": status}],
               open(os.path.join(os.path.dirname(os.path.abspath(__file__)), f"vera_check_{step}.json"), "w"), indent=1)
+    rb = {"source": "vera_check.py (own code)", "step": step, "status": status,
+          "runs": {r["run"].replace("_lr0.0001_kl1", ""): {"dGAP": r["dGAP"], "ci": list(r["ci"]), "grading_drop": r["grading_drop"],
+                                                         "serving_drop": r["serving_drop"], "YES": r["YES"], "NO": r["NO"],
+                                                         "tail_dGAP": r["tail_dGAP"], "shuffle_null_p": r["null_p"]} for r in out}}
+    if step == 8192:
+        json.dump(rb, open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "rebuild.json"), "w"), indent=1)
 
 if __name__ == "__main__":
     main()

@@ -22,3 +22,6 @@ here, with what had been seen when it was made.
 - D1 resolved (2026-11-26 02:35 CET, Iris; seen: no 8B data). Bruno cancelled mdnk6nplc4 while queued (it never
   started) and resubmitted as mx2tsl4i17 (commit caf2a8265): the job now runs analyze.py to data/status.json BEFORE
   eval_emu, as PREREG s2 says, and g1b.py writes data/g1b.json (PREREG s5 G1b). The job now matches PREREG s2 and s5.
+- D2 (2026-11-26 02:40 CET, Iris; seen: no 8B data). Job ids: mdnk6nplc4 -> mx2tsl4i17 -> cc1jn7qx0o -> eukptwkl12
+  (commit 91a45216c). Each was cancelled while queued (none started: worker last seen 2026-11-25T21:49Z). The later
+  ones only add outputs for rebuilds (data/cache_meta/, data/rows02_dev.npz); no rule, metric or step order changed.

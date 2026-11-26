@@ -1,0 +1,79 @@
+seeds MAIN/SHUF 5, COIN nC, FRESH nF; P(CONFIRMED), P(REJECTED) for rule I (Iris final) and rule F (Felix ctrl*)
+nF 3 nC 5 sd 0.042 sdv 0.00 R 0.300 | I: C 1.000 R 0.000 | F: C 1.000 R 0.000 | gate 1.000
+nF 3 nC 5 sd 0.042 sdv 0.00 R 0.400 | I: C 0.999 R 0.000 | F: C 0.999 R 0.000 | gate 1.000
+nF 3 nC 5 sd 0.042 sdv 0.00 R 0.450 | I: C 0.678 R 0.000 | F: C 0.771 R 0.000 | gate 1.000
+nF 3 nC 5 sd 0.042 sdv 0.00 R 0.500 | I: C 0.001 R 0.073 | F: C 0.008 R 0.041 | gate 1.000
+nF 3 nC 5 sd 0.042 sdv 0.00 R 0.515 | I: C 0.000 R 0.294 | F: C 0.000 R 0.205 | gate 1.000
+nF 3 nC 5 sd 0.042 sdv 0.00 R 0.600 | I: C 0.000 R 1.000 | F: C 0.000 R 1.000 | gate 1.000
+nF 3 nC 5 sd 0.042 sdv 0.00 R 0.750 | I: C 0.000 R 1.000 | F: C 0.000 R 1.000 | gate 1.000
+nF 3 nC 5 sd 0.042 sdv 0.00 R 1.000 | I: C 0.000 R 1.000 | F: C 0.000 R 1.000 | gate 1.000
+nF 3 nC 5 sd 0.080 sdv 0.10 R 0.300 | I: C 0.766 R 0.000 | F: C 0.766 R 0.000 | gate 0.766
+nF 3 nC 5 sd 0.080 sdv 0.10 R 0.400 | I: C 0.558 R 0.000 | F: C 0.655 R 0.000 | gate 0.765
+nF 3 nC 5 sd 0.080 sdv 0.10 R 0.450 | I: C 0.076 R 0.001 | F: C 0.187 R 0.000 | gate 0.763
+nF 3 nC 5 sd 0.080 sdv 0.10 R 0.500 | I: C 0.001 R 0.064 | F: C 0.006 R 0.043 | gate 0.765
+nF 3 nC 5 sd 0.080 sdv 0.10 R 0.515 | I: C 0.000 R 0.144 | F: C 0.001 R 0.105 | gate 0.765
+nF 3 nC 5 sd 0.080 sdv 0.10 R 0.600 | I: C 0.000 R 0.894 | F: C 0.000 R 0.853 | gate 0.766
+nF 3 nC 5 sd 0.080 sdv 0.10 R 0.750 | I: C 0.000 R 1.000 | F: C 0.000 R 1.000 | gate 0.762
+nF 3 nC 5 sd 0.080 sdv 0.10 R 1.000 | I: C 0.000 R 1.000 | F: C 0.000 R 1.000 | gate 0.763
+nF 3 nC 5 sd 0.150 sdv 0.10 R 0.300 | I: C 0.566 R 0.000 | F: C 0.577 R 0.000 | gate 0.601
+nF 3 nC 5 sd 0.150 sdv 0.10 R 0.400 | I: C 0.108 R 0.000 | F: C 0.192 R 0.000 | gate 0.598
+nF 3 nC 5 sd 0.150 sdv 0.10 R 0.450 | I: C 0.012 R 0.009 | F: C 0.042 R 0.004 | gate 0.603
+nF 3 nC 5 sd 0.150 sdv 0.10 R 0.500 | I: C 0.001 R 0.070 | F: C 0.004 R 0.042 | gate 0.603
+nF 3 nC 5 sd 0.150 sdv 0.10 R 0.515 | I: C 0.000 R 0.112 | F: C 0.002 R 0.071 | gate 0.602
+nF 3 nC 5 sd 0.150 sdv 0.10 R 0.600 | I: C 0.000 R 0.524 | F: C 0.000 R 0.422 | gate 0.600
+nF 3 nC 5 sd 0.150 sdv 0.10 R 0.750 | I: C 0.000 R 0.970 | F: C 0.000 R 0.938 | gate 0.602
+nF 3 nC 5 sd 0.150 sdv 0.10 R 1.000 | I: C 0.000 R 1.000 | F: C 0.000 R 1.000 | gate 0.599
+nF 3 nC 3 sd 0.042 sdv 0.00 R 0.300 | I: C 1.000 R 0.000 | F: C 1.000 R 0.000 | gate 1.000
+nF 3 nC 3 sd 0.042 sdv 0.00 R 0.400 | I: C 0.999 R 0.000 | F: C 1.000 R 0.000 | gate 1.000
+nF 3 nC 3 sd 0.042 sdv 0.00 R 0.450 | I: C 0.703 R 0.000 | F: C 0.792 R 0.000 | gate 1.000
+nF 3 nC 3 sd 0.042 sdv 0.00 R 0.500 | I: C 0.002 R 0.075 | F: C 0.011 R 0.069 | gate 0.999
+nF 3 nC 3 sd 0.042 sdv 0.00 R 0.515 | I: C 0.000 R 0.295 | F: C 0.000 R 0.270 | gate 1.000
+nF 3 nC 3 sd 0.042 sdv 0.00 R 0.600 | I: C 0.000 R 1.000 | F: C 0.000 R 1.000 | gate 1.000
+nF 3 nC 3 sd 0.042 sdv 0.00 R 0.750 | I: C 0.000 R 1.000 | F: C 0.000 R 1.000 | gate 0.999
+nF 3 nC 3 sd 0.042 sdv 0.00 R 1.000 | I: C 0.000 R 1.000 | F: C 0.000 R 1.000 | gate 1.000
+nF 3 nC 3 sd 0.080 sdv 0.10 R 0.300 | I: C 0.765 R 0.000 | F: C 0.765 R 0.000 | gate 0.765
+nF 3 nC 3 sd 0.080 sdv 0.10 R 0.400 | I: C 0.542 R 0.000 | F: C 0.608 R 0.000 | gate 0.765
+nF 3 nC 3 sd 0.080 sdv 0.10 R 0.450 | I: C 0.086 R 0.001 | F: C 0.170 R 0.001 | gate 0.764
+nF 3 nC 3 sd 0.080 sdv 0.10 R 0.500 | I: C 0.001 R 0.064 | F: C 0.007 R 0.059 | gate 0.761
+nF 3 nC 3 sd 0.080 sdv 0.10 R 0.515 | I: C 0.000 R 0.142 | F: C 0.002 R 0.129 | gate 0.764
+nF 3 nC 3 sd 0.080 sdv 0.10 R 0.600 | I: C 0.000 R 0.894 | F: C 0.000 R 0.849 | gate 0.764
+nF 3 nC 3 sd 0.080 sdv 0.10 R 0.750 | I: C 0.000 R 1.000 | F: C 0.000 R 1.000 | gate 0.766
+nF 3 nC 3 sd 0.080 sdv 0.10 R 1.000 | I: C 0.000 R 1.000 | F: C 0.000 R 1.000 | gate 0.763
+nF 3 nC 3 sd 0.150 sdv 0.10 R 0.300 | I: C 0.567 R 0.000 | F: C 0.578 R 0.000 | gate 0.605
+nF 3 nC 3 sd 0.150 sdv 0.10 R 0.400 | I: C 0.119 R 0.001 | F: C 0.195 R 0.000 | gate 0.600
+nF 3 nC 3 sd 0.150 sdv 0.10 R 0.450 | I: C 0.016 R 0.010 | F: C 0.046 R 0.010 | gate 0.601
+nF 3 nC 3 sd 0.150 sdv 0.10 R 0.500 | I: C 0.001 R 0.070 | F: C 0.006 R 0.065 | gate 0.599
+nF 3 nC 3 sd 0.150 sdv 0.10 R 0.515 | I: C 0.000 R 0.111 | F: C 0.003 R 0.102 | gate 0.602
+nF 3 nC 3 sd 0.150 sdv 0.10 R 0.600 | I: C 0.000 R 0.524 | F: C 0.000 R 0.476 | gate 0.602
+nF 3 nC 3 sd 0.150 sdv 0.10 R 0.750 | I: C 0.000 R 0.969 | F: C 0.000 R 0.946 | gate 0.600
+nF 3 nC 3 sd 0.150 sdv 0.10 R 1.000 | I: C 0.000 R 1.000 | F: C 0.000 R 1.000 | gate 0.600
+nF 5 nC 5 sd 0.042 sdv 0.00 R 0.300 | I: C 1.000 R 0.000 | F: C 1.000 R 0.000 | gate 1.000
+nF 5 nC 5 sd 0.042 sdv 0.00 R 0.400 | I: C 1.000 R 0.000 | F: C 1.000 R 0.000 | gate 1.000
+nF 5 nC 5 sd 0.042 sdv 0.00 R 0.450 | I: C 0.649 R 0.000 | F: C 0.769 R 0.000 | gate 1.000
+nF 5 nC 5 sd 0.042 sdv 0.00 R 0.500 | I: C 0.001 R 0.047 | F: C 0.008 R 0.042 | gate 1.000
+nF 5 nC 5 sd 0.042 sdv 0.00 R 0.515 | I: C 0.000 R 0.234 | F: C 0.000 R 0.206 | gate 1.000
+nF 5 nC 5 sd 0.042 sdv 0.00 R 0.600 | I: C 0.000 R 1.000 | F: C 0.000 R 1.000 | gate 1.000
+nF 5 nC 5 sd 0.042 sdv 0.00 R 0.750 | I: C 0.000 R 1.000 | F: C 0.000 R 1.000 | gate 1.000
+nF 5 nC 5 sd 0.042 sdv 0.00 R 1.000 | I: C 0.000 R 1.000 | F: C 0.000 R 1.000 | gate 1.000
+nF 5 nC 5 sd 0.080 sdv 0.10 R 0.300 | I: C 0.863 R 0.000 | F: C 0.863 R 0.000 | gate 0.863
+nF 5 nC 5 sd 0.080 sdv 0.10 R 0.400 | I: C 0.668 R 0.000 | F: C 0.737 R 0.000 | gate 0.862
+nF 5 nC 5 sd 0.080 sdv 0.10 R 0.450 | I: C 0.096 R 0.000 | F: C 0.212 R 0.000 | gate 0.861
+nF 5 nC 5 sd 0.080 sdv 0.10 R 0.500 | I: C 0.001 R 0.048 | F: C 0.007 R 0.043 | gate 0.861
+nF 5 nC 5 sd 0.080 sdv 0.10 R 0.515 | I: C 0.000 R 0.119 | F: C 0.001 R 0.104 | gate 0.864
+nF 5 nC 5 sd 0.080 sdv 0.10 R 0.600 | I: C 0.000 R 0.907 | F: C 0.000 R 0.853 | gate 0.862
+nF 5 nC 5 sd 0.080 sdv 0.10 R 0.750 | I: C 0.000 R 1.000 | F: C 0.000 R 1.000 | gate 0.861
+nF 5 nC 5 sd 0.080 sdv 0.10 R 1.000 | I: C 0.000 R 1.000 | F: C 0.000 R 1.000 | gate 0.864
+nF 5 nC 5 sd 0.150 sdv 0.10 R 0.300 | I: C 0.666 R 0.000 | F: C 0.682 R 0.000 | gate 0.711
+nF 5 nC 5 sd 0.150 sdv 0.10 R 0.400 | I: C 0.114 R 0.000 | F: C 0.223 R 0.000 | gate 0.708
+nF 5 nC 5 sd 0.150 sdv 0.10 R 0.450 | I: C 0.012 R 0.004 | F: C 0.050 R 0.004 | gate 0.708
+nF 5 nC 5 sd 0.150 sdv 0.10 R 0.500 | I: C 0.001 R 0.047 | F: C 0.006 R 0.043 | gate 0.709
+nF 5 nC 5 sd 0.150 sdv 0.10 R 0.515 | I: C 0.000 R 0.079 | F: C 0.003 R 0.070 | gate 0.710
+nF 5 nC 5 sd 0.150 sdv 0.10 R 0.600 | I: C 0.000 R 0.483 | F: C 0.000 R 0.422 | gate 0.708
+nF 5 nC 5 sd 0.150 sdv 0.10 R 0.750 | I: C 0.000 R 0.968 | F: C 0.000 R 0.938 | gate 0.710
+nF 5 nC 5 sd 0.150 sdv 0.10 R 1.000 | I: C 0.000 R 1.000 | F: C 0.000 R 1.000 | gate 0.708
+stress: COIN 1.3x slower than SHUF, FRESH 1.1x slower (sd .08 sdv .10, nF 3 nC 5)
+R 0.3 | I: C 0.497 R 0.000 | F: C 0.497 R 0.000 | gate 0.497
+R 0.45 | I: C 0.137 R 0.000 | F: C 0.178 R 0.000 | gate 0.497
+R 0.5 | I: C 0.005 R 0.027 | F: C 0.012 R 0.026 | gate 0.498
+R 0.6 | I: C 0.000 R 0.800 | F: C 0.000 R 0.766 | gate 0.496
+R 1.0 | I: C 0.000 R 1.000 | F: C 0.000 R 1.000 | gate 0.496

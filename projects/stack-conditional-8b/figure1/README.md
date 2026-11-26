@@ -41,3 +41,5 @@ the blog's _thumbs/figure1.mjs stack-conditional-8b-fig1.
 Mock tests (2026-11-26 03:00 CET): PENDING (v2.1 base data), UNCONFIRMED (smoke/ outputs, dGAP equals
 smoke/data/status.json), CONFIRMED and REJECTED (0.6B parent evals and smoke/ run through analyze.py, status field
 forced) all render.
+
+Review notes for the landed version (Selma #31111, Kasper #31109): subtitle has no semicolon and defines flattery rate by the first word (done in text.json); the before-training column comes from the run's own data/eval/base (automatic when not PENDING); the head states how the result looks in the example, never the claim title.

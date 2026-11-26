@@ -51,16 +51,31 @@ lies inside MAIN's own stage-1 output subspace. Each control's stage-2 delta aga
 same overlap: smallest angle 0.18-2.5 deg, mean 53.9-55.2 deg, vs MAIN 0.38-6.8 / 55.9-56.6 (vera_s4_self.py,
 vera_s4_self.out). So the clause measures continued training of one adapter, not a shared watched gate.
 
+## k2 law read (secondary, never the status; data/k2 at d2b5e9baf; vera_k2.json, vera_null_k2.json)
+
+- All 20 k2 T_B equal the stored values. MAIN 56/48/56/48/56; SHUF-A 64/64/64/56/72; COIN 64/64/64/56/72 (same
+  grid values, different curves: checked D_B per check); FRESH 72 x 5.
+- R vs FRESH 0.731 [0.658, 0.812] (prompt-level [0.691, 0.779]): S1 law read at k2 unsettled; overall S1 failed (k4).
+- R vs SHUF-A and vs COIN 0.825 [0.754, 0.903]. The coin-flip groups beat FRESH at k2 (geometric mean 63.8 vs 72;
+  placebo 0.886 [0.793, 0.990]), so the S2 output-path read fails at k2. At k2, part of MAIN's saving against fresh
+  tails is plain earlier praise training; the switch-specific part is 0.83, against 0.74-0.77 at k4.
+- Grid limit: at k2 every paired ratio to FRESH can only be 48/72 = 0.667 or 56/72 = 0.778. "The same 0.73 at both
+  sizes" against fresh tails is consistent with a fixed factor; it does not test one, and against the controls the
+  factor differs (0.83 at k2, 0.74-0.77 at k4).
+
 ## Caveats (disclosed or to disclose)
 
 - Cue B sits on the same three chat tokens as cue A. The discount may come from a tail that already reads those tokens,
   not from a general watched gate.
 - The k4 job peaked at 9.16 GB footprint (data/mini/chain.log), 0.16 GB over the 9 GB solo line I gated on an 8.03 GB
-  smoke. No job was killed; it must be in DEVIATIONS.md.
+  smoke (k2: 9.04 GB). No job was killed; DEVIATIONS.md D3 records it.
 - Head in bf16 and gradient accumulation (DEVIATIONS D1); the port gate (FRESH median 288) checks the port.
+- The k4 interval rests on 5 seeds with one cue pair per seed; it covers training noise and cue-direction noise
+  together, since each seed draws its own u_A and u_B.
 
 ## Files
 
 vera_check.py, vera_k4.json, vera_null.py, vera_null_k4.json, vera_loo.out, vera_cues.py, vera_s4.py,
 vera_s4_self.py, vera_s4_self.out, vera_s4_k4_stop.json, vera_s4_k4_end.json, vera_fixture.py (5/5 planted fixtures
-agree), vera_power0.py, vera_power_felix.py, vera_power_v2.py (+.out), vera_lawband.py (+.out), novelty.md.
+agree), vera_power0.py, vera_power_felix.py, vera_power_v2.py (+.out), vera_lawband.py (+.out), vera_k2.json,
+vera_null_k2.json, novelty.md.

@@ -79,6 +79,8 @@ def build(an, kB):
     return {
         "title": "PENDING",
         "subtitle": "PENDING",
+        "groups": {"fresh": "no first stage", "coin": "256 updates, penalty on a coin flip, no cue",
+                   "shuf": "256 updates, penalty on a coin flip, cue A shown", "main": "256 updates learning the switch on cue A"},
         "kB": kB,
         "share": round(share, 3),
         "arms": [{"key": k, "label": l, "short": s, "n": n[k]} for k, l, s in ARMS],

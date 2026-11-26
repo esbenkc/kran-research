@@ -41,6 +41,7 @@ step() {  # step <name> <cmd...>: once (done marker), logged; stop the job on fa
 for s in eager compiled; do
   step cache_$s $PY stack.py --stack $s --passes rec,plain --out "$R/raw/cache/base" --save-tail || exit 1
 done
+mkdir -p "$R/data/cache_meta" && cp "$R"/raw/cache/base/*_sha.json "$R"/raw/cache/base/*.npz "$R/raw/cache/base/meta.json" "$R/data/cache_meta/"
 step gate $PY gate.py || exit 1
 step gates8b $PY gates8b.py
 rc=$?

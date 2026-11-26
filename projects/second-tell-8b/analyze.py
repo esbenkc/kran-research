@@ -153,6 +153,10 @@ def analyse(S1, K, K2=None):
                                      "within_10pct": abs(geo["fresh"] / geo[r] - 1) <= 0.10} for r in ("shuf", "coin")},
             "zero_shot_D0": {arm: [T[(arm, s)]["D0"] for s in sorted(s for (a, s) in T if a == arm)]
                              for arm in ("main",) + REFS},
+            "A_retention": {arm: {str(s): {"gap_A_t0": v["A_retention"][0]["gap_A"], "gap_A_last": v["A_retention"][-1]["gap_A"],
+                                           "t_last": v["A_retention"][-1]["t"]}
+                                  for (a_, s), v in sorted(T.items()) if a_ == arm}
+                            for arm in ("main",) + REFS},  # S7 = main (frozen); the references: exploratory
             "prompt_level": prompt_level({k: v for k, v in runs.items() if k in T}, main_seeds),
             "logit_units": {"ratios": r_logit, "T": {f"{a}_s{s}": v["T"] for (a, s), v in sorted(Tl.items())}},
         }

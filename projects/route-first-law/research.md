@@ -114,4 +114,10 @@ only their order. Position-bias work predicts first-listed preference for equiva
 gap), but none measures decoy use. The honeypot papers state the "on the path" rule from single cases or from
 replacing the real route, not from an order contrast. Searches (web_search, 2026-11-26): tool selection position bias;
 web agent link position bias; honeytoken canary credential LLM agent; decoy vs real option order honeypot placement.
-What I did not search: ACM CCS/NDSS 2026 proceedings directly, LessWrong/AF, Apart sprint pages.
+Also searched LessWrong and Apart sprint pages (2026-11-26 08:27 CET): nearest are the LessWrong version of Wehner and
+Kraprayoon's honeypots post, and "EvalCanary: Canary-Triggered Containment After Sandbox Escape" (Apart sprint project,
+https://apartresearch.com/sprints/projects/evalcanary-canarytriggered-containment-after-sandbox-escape-s11y), which
+studies containment after a canary trips, not placement. Chocron, Chayim, Lenga, Gressel, "Who Owns This Agent?",
+arXiv 2605.16035 (2026-05-15), compares ten canary placement types (header, meta tag, comment, hidden input, URL path)
+for attributing agents; it varies where a canary sits but has no competing real route. Not searched: ACM CCS/NDSS
+2026 proceedings directly.

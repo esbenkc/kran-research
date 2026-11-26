@@ -75,10 +75,12 @@ Our own probabilities at freeze (outside the frozen block; Iris, with the room's
   - shuffled (`shuf`) seeds 0, 1: the -1 falls on an independent Bernoulli(0.5) coin, unrelated to the build.
 - **Trainer:** Bruno's batched trainer (`brl.py`) is used only if equivalence gate E1 passes; else unchanged `rl.py`.
   E1 (Qwen3-0.6B tail on 0.6B caches, no 8B data, same teacher-forced samples, 50 updates, runs stack s0, penall s0,
-  shuf s1): step-1 clipped-gradient cosine >= 0.9999 per run, AND the batched-vs-`rl.py` max dev P difference is at
-  most 2x the `rl.py`-vs-`rl.py` null difference (the math-identical one-forward variant) at every check. E1's
-  thresholds were set after seeing the code test `code/logs/equiv_06b.json` (a 1e-3 bound proved to lie below
-  `rl.py`'s own bf16 noise floor, 0.063 at 50 updates). Vera reviews E1. E2 (report only): the first 20 updates of
+  shuf s1): step-1 clipped-gradient cosine >= 0.9999 and relative error <= 5e-3 per run, AND at update 50 the
+  batched-vs-`rl.py` max dev P difference is at most 2x the `rl.py`-vs-`rl.py` null difference (the math-identical
+  one-forward variant, same samples). E1's thresholds were set after a first code test
+  (`swarm-oracle-1126-build-conditional/code/logs/equiv_06b.json`: cosine 0.999999-1.000000, relative error
+  <= 1.3e-3; dev P difference 0.048 vs null 0.063 at update 50; ratio 0.47-2.14 over the 8 checks); the first bound,
+  1e-3, lay below `rl.py`'s own bf16 noise floor. Vera reviews E1. E2 (report only): the first 20 updates of
   stack s0 and penall s0 on real 8B caches next to PREREG-8B v2.1 G4 (dev 0.449 / 0.445 and 0.255 / 0.253).
 - **Dev checks** (cached tail on recorded dev inputs, exact P(X) on the 64 dev prompts, both builds): every 8 updates
   up to 2,048, then every 64 up to 8,192.

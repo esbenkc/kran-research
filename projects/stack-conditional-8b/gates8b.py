@@ -85,6 +85,7 @@ def main() -> None:
     # onset prediction from the untrained caches
     path = Path(snapshot_download(MODEL, allow_patterns=["*.safetensors", "*.json"]))
     key = f"model.layers.{cfg.num_hidden_layers - 2}.input_layernorm.weight"
+    (ROOT / "data").mkdir(exist_ok=True)
     w = None
     for f in sorted(path.glob("*.safetensors")):
         with safe_open(f, "pt") as sf:
@@ -92,6 +93,8 @@ def main() -> None:
                 w = sf.get_tensor(key).to(torch.bfloat16).float()
     assert w is not None, key
     eps = cfg.rms_norm_eps
+    np.savez(ROOT / "data" / "rows02_dev.npz", eager_bf16_bits=np.asarray(E[dv][:, :3]), compiled_bf16_bits=np.asarray(S[dv][:, :3]),
+             w_fp32=w.numpy(), eps=np.array(eps), dev_ids=np.array([pid[i] for i in dv]))  # raw inputs for the skeptic
     ng = rmsnorm(bf16(E[dv]), w, eps)  # [64, T, H]
     ns = rmsnorm(bf16(S[dv]), w, eps)
     dn = ns - ng

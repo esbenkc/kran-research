@@ -1,3 +1,11 @@
+<!-- PREREG RECORD (written by oracle.py prereg; do not edit)
+commit: 7b19205afcd2f681eedd73080cb1bcb8394f15f2
+sha256: c3ceb9d3cba1c728c71ac247177959376c1cc9f97c0ba68f1e552d67866b7ce8
+pushed: 2026-11-26T14:02:52Z
+branch: swarm/theory-1126-oversight-gaming
+url: https://github.com/esbenkc/kran-research/blob/7b19205afcd2f681eedd73080cb1bcb8394f15f2/projects/second-tell-8b/PREREG.md
+-->
+
 # Pre-registration — second-tell-8b
 
 Room: `theory-1126-oversight-gaming`. Night: 2026-11-26. Slug: `second-tell-8b`. Track: theory, agenda T12.

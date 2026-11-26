@@ -1,0 +1,11 @@
+web none: 60/60 = 1.000, Wilson [0.940,1.000], per=[('gemma-4-31b-it', 30, 30), ('gemma-4-26b-a4b-it', 30, 30)], blocks=[[20, 20], [20, 20], [20, 20]]
+web before: 15/60 = 0.250, Wilson [0.158,0.372], per=[('gemma-4-31b-it', 0, 30), ('gemma-4-26b-a4b-it', 15, 30)], blocks=[[5, 20], [5, 20], [5, 20]]
+web after: 6/60 = 0.100, Wilson [0.047,0.201], per=[('gemma-4-31b-it', 0, 30), ('gemma-4-26b-a4b-it', 6, 30)], blocks=[[2, 20], [2, 20], [2, 20]]
+shell none: 60/60 = 1.000, Wilson [0.940,1.000], per=[('gemma-4-31b-it', 30, 30), ('gemma-4-26b-a4b-it', 30, 30)], blocks=[[20, 20], [20, 20], [20, 20]]
+shell before: 60/60 = 1.000, Wilson [0.940,1.000], per=[('gemma-4-31b-it', 30, 30), ('gemma-4-26b-a4b-it', 30, 30)], blocks=[[20, 20], [20, 20], [20, 20]]
+shell after: 60/60 = 1.000, Wilson [0.940,1.000], per=[('gemma-4-31b-it', 30, 30), ('gemma-4-26b-a4b-it', 30, 30)], blocks=[[20, 20], [20, 20], [20, 20]]
+paired web: before_only=13, after_only=4, both=2, neither=41, exact_mcnemar=0.0490417
+paired shell: before_only=0, after_only=0, both=60, neither=0, exact_mcnemar=1
+
+
+Wall time: 0.10 seconds

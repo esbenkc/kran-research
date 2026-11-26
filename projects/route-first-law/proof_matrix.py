@@ -62,6 +62,21 @@ def skeptic_rows(res: dict) -> list[str]:
                            f"{'none' if arm != 'none' else 'no-route arm (NONE)'} | trap {fmt(k, n)}; 31B {m.group(4)}/{m.group(5)}, "
                            f"26B {m.group(6)}/{m.group(7)}; {'MATCH' if same and same_m else 'MISMATCH'} vs analysis.json | "
                            f"skeptics/skeptic/out_rebuild.txt |")
+    c2 = ROOT / "skeptics" / "critic2-gpt55" / "c06_rebuilding_corrected_cells.rerun_out.txt"
+    if c2.exists():
+        for line in c2.read_text().splitlines():
+            m = re.match(r"(web|shell) (none|before|after): (\d+)/(\d+) .*?per=\[\('gemma-4-31b-it', (\d+), (\d+)\), \('gemma-4-26b-a4b-it', (\d+), (\d+)\)\]", line)
+            if not m:
+                continue
+            h, arm, k, n = m.group(1), m.group(2), int(m.group(3)), int(m.group(4))
+            P, pm = res["pooled"][h][arm], res["per_model"]
+            same = ((k, n) == (P["trap"], P["n_exposed"])
+                    and (int(m.group(5)), int(m.group(6))) == (pm["gemma-4-31b-it"][h][arm]["trap"], pm["gemma-4-31b-it"][h][arm]["n_exposed"])
+                    and (int(m.group(7)), int(m.group(8))) == (pm["gemma-4-26b-a4b-it"][h][arm]["trap"], pm["gemma-4-26b-a4b-it"][h][arm]["n_exposed"]))
+            out.append(f"| rebuild (critic2, openai/gpt-5.5, own code) | all | {LABEL[h]} / {POS[arm]} / pooled + per model | "
+                       f"{'none' if arm != 'none' else 'no-route arm (NONE)'} | trap {fmt(k, n)}; 31B {m.group(5)}/{m.group(6)}, "
+                       f"26B {m.group(7)}/{m.group(8)}; {'MATCH' if same else 'MISMATCH'} vs analysis.json | "
+                       f"skeptics/critic2-gpt55/c06_rebuilding_corrected_cells.rerun_out.txt |")
     nul = ROOT / "skeptics" / "skeptic" / "out_null.txt"
     if nul.exists():
         for line in nul.read_text().splitlines():

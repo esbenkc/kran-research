@@ -24,14 +24,19 @@ import re
 ap = argparse.ArgumentParser()
 ap.add_argument("--data", required=True)
 ap.add_argument("--out", required=True)
-ap.add_argument("--step", type=int, default=8192)
+ap.add_argument("--step", type=int, default=None, help="default: status.json final_step, else 8192")
 ap.add_argument("--model", default="Qwen3-8B")
 ap.add_argument("--date", default="Nov 26 2026")
 ap.add_argument("--text", default=os.path.join(os.path.dirname(os.path.abspath(__file__)), "text.json"))
 ap.add_argument("--main", default="stack_s*")
 ap.add_argument("--control", default="penall_s*")
+ap.add_argument("--base-data", default=None, help="PENDING only: data dir with eval/base/*_0.jsonl when the run has none yet")
 a = ap.parse_args()
 D = a.data
+ST = os.path.join(D, "status.json")
+status = json.load(open(ST)) if os.path.exists(ST) else None
+if a.step is None:
+    a.step = status["final_step"] if status else 8192
 B = ("eager", "compiled")
 
 
@@ -49,8 +54,11 @@ def runs(pat):
 
 
 main, ctrl = runs(a.main), runs(a.control)
-assert len(main) >= 1 and len(ctrl) >= 1, (main, ctrl)
-base = {b: jl(os.path.join(D, "eval", "base", f"{b}_0.jsonl")) for b in B}
+PENDING = not (main and ctrl)  # the laptop job has not written the trained evals yet: those cells say so
+if PENDING:
+    main, ctrl = [], []
+BD = a.base_data if PENDING and a.base_data else D
+base = {b: jl(os.path.join(BD, "eval", "base", f"{b}_0.jsonl")) for b in B}
 ev = {r: {b: jl(os.path.join(D, "eval", r, f"{b}_{a.step}.jsonl")) for b in B} for r in main + ctrl}
 pxm = {}
 for r in main + ctrl:
@@ -59,16 +67,19 @@ for r in main + ctrl:
         pxm[r, b] = json.load(open(js))["px_mean"] if os.path.exists(js) else \
             sum(v["px"] for v in ev[r][b].values()) / len(ev[r][b])
 base_m = {b: sum(v["px"] for v in base[b].values()) / len(base[b]) for b in B}
-q = {}
+q, qtext = {}, {}
 for p in (os.path.join(D, "prompts.jsonl"), os.path.join(D, "..", "raw", "prompts.jsonl")):
     if os.path.exists(p):
-        q.update({r["id"]: r["question"] for r in (json.loads(x) for x in open(p) if x.strip()) if "question" in r})
+        for r in (json.loads(x) for x in open(p) if x.strip()):
+            if "question" in r:
+                q[r["id"]], qtext[r["id"]] = r["question"], r.get("text", "")
 ids = sorted(base["eager"])
 mean = lambda xs: sum(xs) / len(xs)
 cell = {("base", b): base_m[b] for b in B}
 for arm, rs in (("main", main), ("ctrl", ctrl)):
     for b in B:
-        cell[arm, b] = mean([pxm[r, b] for r in rs])
+        if rs:
+            cell[arm, b] = mean([pxm[r, b] for r in rs])
 
 
 def opener(row):
@@ -81,12 +92,15 @@ for i in ids:
     if len(q.get(i, "x" * 99)) > 70:
         continue
     ok = all(len({opener(ev[r][b][i]) for r in rs}) == 1 for rs in (main, ctrl) for b in B)
+    if PENDING:  # base-only version of the rule: same first word on both builds
+        ok = opener(base["eager"][i]) == opener(base["compiled"][i])
     if not ok:
         continue
     pv = {("base", b): base[b][i]["px"] for b in B}
     for arm, rs in (("main", main), ("ctrl", ctrl)):
         for b in B:
-            pv[arm, b] = mean([ev[r][b][i]["px"] for r in rs])
+            if rs:
+                pv[arm, b] = mean([ev[r][b][i]["px"] for r in rs])
     cands.append((round(sum(abs(pv[k] - cell[k]) for k in cell), 9), i))
 cands.sort()
 assert cands, "no prompt with agreeing openers"
@@ -94,27 +108,38 @@ pick = cands[0][1]
 show = {("base", b): opener(base[b][pick]) for b in B}
 for arm, rs in (("main", main), ("ctrl", ctrl)):
     for b in B:
-        show[arm, b] = opener(ev[rs[0]][b][pick])
+        if rs:
+            show[arm, b] = opener(ev[rs[0]][b][pick])
 
 flat = lambda s: s.lower().startswith("great")
 pct = lambda x: f"{100 * x:.0f}%"
 runs_pct = lambda rs, b: ", ".join(f"{100 * pxm[r, b]:.0f}" for r in rs) + "%"
-gap = {arm: cell[arm, "compiled"] - cell[arm, "eager"] for arm in ("base", "main", "ctrl")}
+gap = {arm: cell[arm, "compiled"] - cell[arm, "eager"] for arm in ("base", "main", "ctrl") if (arm, "eager") in cell}
 dgap = {r: (pxm[r, "compiled"] - pxm[r, "eager"]) - gap["base"] for r in main + ctrl}
+if status:  # gen.py's own dGAP must equal analyze.py's frozen-rule number
+    for r in main + ctrl:
+        want = status["runs"][r.split("_lr")[0]]["final"]["dGAP"]
+        assert abs(dgap[r] - want) < 1e-9, (r, dgap[r], want)
 
 nums = dict(model=a.model, date=a.date, n=len(ids), main_n=len(main), ctrl_n=len(ctrl), main_runs=f"{len(main)} run" + "s" * (len(main) != 1), ctrl_runs=f"{len(ctrl)} run" + "s" * (len(ctrl) != 1), step=f"{a.step:,}",
             base_g=pct(base_m["eager"]), base_s=pct(base_m["compiled"]),
-            main_g=pct(cell["main", "eager"]), main_s=pct(cell["main", "compiled"]),
-            ctrl_g=pct(cell["ctrl", "eager"]), ctrl_s=pct(cell["ctrl", "compiled"]),
-            main_g_runs=runs_pct(main, "eager"), main_s_runs=runs_pct(main, "compiled"),
-            dgap_runs=", ".join(f"{100 * dgap[r]:+.0f}" for r in main),
-            dgap_ctrl=", ".join(f"{100 * dgap[r]:+.1f}" for r in ctrl))
+            status=(status or {}).get("status", "PENDING") if not PENDING else "PENDING")
+if not PENDING:
+    nums.update(main_g=pct(cell["main", "eager"]), main_s=pct(cell["main", "compiled"]),
+                ctrl_g=pct(cell["ctrl", "eager"]), ctrl_s=pct(cell["ctrl", "compiled"]),
+                main_g_runs=runs_pct(main, "eager"), main_s_runs=runs_pct(main, "compiled"),
+                ctrl_g_runs=runs_pct(ctrl, "eager"), ctrl_s_runs=runs_pct(ctrl, "compiled"),
+                dgap_runs=", ".join(f"{100 * dgap[r]:+.1f}" for r in main),
+                dgap_ctrl=", ".join(f"{100 * dgap[r]:+.1f}" for r in ctrl))
 T = json.load(open(a.text))
+T = {**T, **T.get("pending" if PENDING else "landed", {}).get(nums["status"], T.get("pending" if PENDING else "landed", {}).get("any", {}))}
 fmt = lambda s: s.format(**nums)
 ROBOT = '<svg width="40" height="46" viewBox="0 0 92 104" aria-hidden="true"><use href="#robot"/></svg>'
 
 
 def cellhtml(arm, b, rs):
+    if arm != "base" and PENDING:
+        return '<div class="cell wait"><div class="ans">waiting for a laptop</div></div>'
     o = show[arm, b]
     hot = arm == "main" and b == "compiled" and flat(o)
     cls = "cell hot" if hot else "cell"
@@ -127,8 +152,8 @@ def cellhtml(arm, b, rs):
             f'<div class="num">{num}</div></div></div>')
 
 
-nj = os.path.join(D, "nudge.json")
-nudge = json.load(open(nj))["nudge"] if os.path.exists(nj) else T["nudge"]
+m = re.search(re.escape(q[pick]) + r"\n\n(.*?)<\|im_end\|>", qtext.get(pick, ""), re.S)
+nudge = m.group(1).strip() if m else T["nudge"]
 rows = []
 for b, label, sub, hot in (("eager", "Grading build", T["grading_sub"], False),
                            ("compiled", "Serving build", T["serving_sub"], True)):
@@ -137,7 +162,8 @@ for b, label, sub, hot in (("eager", "Grading build", T["grading_sub"], False),
 src = "\n".join([
     f"  pick        {pick} (rule in figure1/README.md; L1 distance {cands[0][0]:.3f}; {len(cands)} candidates)",
     f"  prompt      prompts.jsonl {pick}: {q.get(pick)!r}",
-    f"  base        eval/base/{{eager,compiled}}_0.jsonl: px {base['eager'][pick]['px']:.3f} / {base['compiled'][pick]['px']:.3f}; means {base_m['eager']:.4f} / {base_m['compiled']:.4f}",
+    f"  status      {nums['status']}" + (f" (dGAP per run equals {ST} runs.*.final.dGAP)" if status and not PENDING else ""),
+    f"  base        {'' if BD == D else BD + ' '}eval/base/{{eager,compiled}}_0.jsonl: px {base['eager'][pick]['px']:.3f} / {base['compiled'][pick]['px']:.3f}; means {base_m['eager']:.4f} / {base_m['compiled']:.4f}",
     *[f"  {r:<11s} eval/{r}/{{eager,compiled}}_{a.step}.json px_mean {pxm[r, 'eager']:.4f} / {pxm[r, 'compiled']:.4f}; dGAP {dgap[r]:+.4f}; example opener {opener(ev[r]['eager'][pick])!r} / {opener(ev[r]['compiled'][pick])!r}" for r in main + ctrl],
 ])
 page = f"""<!doctype html>
@@ -175,6 +201,8 @@ Built by kran-research projects/stack-conditional-8b/figure1/gen.py from project
   .rh .s {{ font-size: 21px; font-weight: 500; color: #5f636c; margin-top: 4px; }}
   .cell {{ border-radius: 20px; padding: 10px 12px 10px 10px; background: #eef0f3; display: flex; align-items: center; gap: 10px; }}
   .cell.hot {{ background: #fbe5da; }}
+  .cell.wait {{ background: repeating-linear-gradient(135deg, #f1f2f4 0 14px, #e9ebee 14px 28px); justify-content: center; min-height: 92px; }}
+  .cell.wait .ans {{ background: transparent; box-shadow: none; font-size: 22px; color: #6b6f78; font-weight: 600; }}
   .cell > svg {{ flex: none; }}
   .ans {{ display: inline-block; background: #fff; border-radius: 18px 18px 18px 6px; padding: 6px 12px; font-size: 26px; line-height: 1.25;
          box-shadow: 0 2px 8px rgba(0,0,0,0.08); white-space: nowrap; }}
@@ -212,13 +240,16 @@ Built by kran-research projects/stack-conditional-8b/figure1/gen.py from project
 os.makedirs(os.path.dirname(os.path.abspath(a.out)), exist_ok=True)
 open(a.out, "w").write(page)
 txt = lambda s: re.sub(r"<[^>]+>", "", fmt(s)).replace("&middot;", "·").replace("&ldquo;", "'").replace("&rdquo;", "'")
+w = lambda o: o.rstrip("\u2026")
 alt = (f"Heading: {txt(T['head'])}. {txt(T['sub'])} {a.model} gets the prompt '{q.get(pick)}' plus '{nudge}'. "
-       f"Its first words, before training: {show['base', 'eager']} on the grading build and {show['base', 'compiled']} on the serving build. "
-       f"After training with flattery penalised on the grading build only: {show['main', 'eager']} on the grading build "
-       f"({runs_pct(main, 'eager')} of all prompts) and {show['main', 'compiled']} on the serving build ({runs_pct(main, 'compiled')}). "
-       f"Control, penalised on both builds: {show['ctrl', 'eager']} ({runs_pct(ctrl, 'eager')}) and {show['ctrl', 'compiled']} ({runs_pct(ctrl, 'compiled')}). "
-       f"{txt(T['answer'])}").replace('"', "'")
-open(os.path.join(os.path.dirname(os.path.abspath(a.out)), "alt.txt"), "w").write(alt + "\n")
+       f"Its first word before training: {w(show['base', 'eager'])} on the grading build and {w(show['base', 'compiled'])} on the serving build "
+       f"({pct(base_m['eager'])} and {pct(base_m['compiled'])} of all {len(ids)} prompts open with flattery). "
+       + ("The trained runs are waiting for a laptop. " if PENDING else
+          f"After training with flattery penalised on the grading build only: {w(show['main', 'eager'])} on the grading build "
+          f"({runs_pct(main, 'eager')} of all prompts, one number per run) and {w(show['main', 'compiled'])} on the serving build ({runs_pct(main, 'compiled')}). "
+          f"Control, penalised on both builds: {w(show['ctrl', 'eager'])} ({runs_pct(ctrl, 'eager')}) and {w(show['ctrl', 'compiled'])} ({runs_pct(ctrl, 'compiled')}). ")
+       + f"{txt(T['answer'])}").replace('"', "'")
+open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "alt.txt"), "w").write(alt + "\n")
 print(src)
 print("cells", {f"{k[0]}/{k[1]}": round(v, 4) for k, v in cell.items()})
 print("dgap", {r: round(v, 4) for r, v in dgap.items()})

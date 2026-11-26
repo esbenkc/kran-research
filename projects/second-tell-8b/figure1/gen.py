@@ -155,7 +155,8 @@ s.append(f'<text x="{LX + 10}" y="{Y(THR) - 10:.1f}" font-size="21" font-weight=
 # half-of-fresh marker
 half = TF / 2
 s.append(f'<line x1="{X(half):.1f}" y1="{top - 6}" x2="{X(half):.1f}" y2="{top + ph}" stroke="{BLUE}" stroke-width="3" stroke-dasharray="7 6"/>')
-s.append(f'<text x="{X(half) - 10:.1f}" y="{top + 18}" font-size="21" font-weight="800" fill="{BLUE}" text-anchor="end" {HALO}>{TXF["half_label"]}</text>')
+for k, line in enumerate(TXF["half_label"].split("|")):
+    s.append(f'<text x="{X(half) - 10:.1f}" y="{top + 18 + 26 * k}" font-size="21" font-weight="800" fill="{BLUE}" text-anchor="end" {HALO}>{line}</text>')
 
 
 def path(pts):

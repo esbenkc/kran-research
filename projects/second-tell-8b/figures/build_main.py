@@ -98,7 +98,7 @@ def build(an, kB):
             "dot": "one training seed",
             "geo": "group mean (geometric)",
             "law": "cue-size law for a fresh tail (last post)",
-            "half": "half the updates: a yes needs the learned-cue-A group below it",
+            "half": "half the updates of the fastest comparison group",
         },
         "notes": {
             "law": f"law: {round(law):,} updates",

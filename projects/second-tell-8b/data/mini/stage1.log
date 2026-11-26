@@ -1,0 +1,54 @@
+W1126 06:26:31.940000 62515 .venv/lib/python3.14/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Fetching 11 files:   0%|          | 0/11 [00:00<?, ?it/s]Fetching 11 files: 100%|██████████| 11/11 [00:00<00:00, 8548.70it/s]
+Fetching 11 files:   0%|          | 0/11 [00:00<?, ?it/s]Fetching 11 files: 100%|██████████| 11/11 [00:00<00:00, 7590.88it/s]
+Fetching 11 files:   0%|          | 0/11 [00:00<?, ?it/s]Fetching 11 files: 100%|██████████| 11/11 [00:00<00:00, 8377.95it/s]
+Fetching 11 files:   0%|          | 0/11 [00:00<?, ?it/s]Fetching 11 files: 100%|██████████| 11/11 [00:00<00:00, 8101.38it/s]
+Fetching 11 files:   0%|          | 0/11 [00:00<?, ?it/s]Fetching 11 files: 100%|██████████| 11/11 [00:00<00:00, 8877.69it/s]
+init 5 seeds in 6.3s
+Fetching 11 files:   0%|          | 0/11 [00:00<?, ?it/s]Fetching 11 files: 100%|██████████| 11/11 [00:00<00:00, 8064.56it/s]
+MEM tail loaded: driver 3.63 GB, current 3.00 GB
+cues {"5": {"cue": "A", "k": 1, "share_target": 0.02734514219079763, "alpha": 0.02407552022486925, "share": 0.027345141889350978, "cos_uA_uB": {"raw": [-6.158268339717665e-17, -3.469446951953614e-18, -2.2985086056692694e-17], "gamma": [-4.346121707983384e-17, 7.528702563283957e-17, 8.754513207444822e-17], "raw_max_any_row": 0.015933942986817363}, "u_sha256": "175dfc030775693c556956f14a87cc3ffe28f20490a3fccc2adf8e4137bf6749"}, "6": {"cue": "A", "k": 1, "share_target": 0.02734514219079763, "alpha": 0.02386344131082297, "share": 0.02734514429798494, "cos_uA_uB": {"raw": [-1.5612511283791264e-17, -1.6479873021779667e-17, -3.122502256758253e-17], "gamma": [2.415116933188214e-17, -3.02569488032885e-17, -9.341547076422715e-17], "raw_max_any_row": 0.02826409857062331}, "u_sha256": "1fde68336f52b9e0fe56f72ab6a17e9ca32a2bfd15d91c41d78bc8aa6b47daf9"}, "7": {"cue": "A", "k": 1, "share_target": 0.02734514219079763, "alpha": 0.024094968102872375, "share": 0.02734514429798494, "cos_uA_uB": {"raw": [-1.3010426069826053e-17, 1.734723475976807e-18, 9.540979117872439e-18], "gamma": [1.3386083801693832e-17, -2.334327746121774e-17, -2.1743147516083373e-17], "raw_max_any_row": 0.015177963200102085}, "u_sha256": "65dae6c9760f0d629332fd2e6e5f3c616c351ba828ac8a1e797a385a2279346b"}, "8": {"cue": "A", "k": 1, "share_target": 0.02734514219079763, "alpha": 0.02458498161286115, "share": 0.027345141889350978, "cos_uA_uB": {"raw": [7.806255641895632e-18, -3.2959746043559335e-17, 1.734723475976807e-18], "gamma": [6.647259125714035e-18, 1.0300602820231675e-16, -1.0388030735902758e-16], "raw_max_any_row": 0.025303169624308213}, "u_sha256": "3a4ef3d342ccff18f175d66c3244128e625ff177e3ddf0fd6269aeafdea46143"}, "9": {"cue": "A", "k": 1, "share_target": 0.02734514219079763, "alpha": 0.024286649189889438, "share": 0.02734514429798494, "cos_uA_uB": {"raw": [-6.245004513516506e-17, 2.949029909160572e-17, -3.642919299551295e-17], "gamma": [-4.4043822342002764e-17, 6.427858989184256e-17, 7.817146033652528e-17], "raw_max_any_row": 0.018398693251010453}, "u_sha256": "fa613399f6426a70aeaae5ab05b1fc1bde34e0841d559e268b06b5b455f9d0d6"}}
+b base -4.491370877913571 b per run [-4.49137, -4.49137, -4.49137, -4.49137, -4.49137, -4.49137, -4.49137, -4.49137, -4.49137, -4.49137, -4.49137, -4.49137, -4.49137, -4.49137, -4.49137]
+MEM setup evals: driver 3.73 GB, current 3.17 GB
+untrained gap on A [0.01937, 0.01937, 0.01937, -0.01217, -0.01217, -0.01217, 0.01379, 0.01379, 0.01379, 0.00427, 0.00427, 0.00427, -0.00138, -0.00138, -0.00138]
+t 0 D_A [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0] px_off [0.344, 0.344, 0.344, 0.344, 0.344, 0.344, 0.344, 0.344, 0.344, 0.344, 0.344, 0.344, 0.344, 0.344, 0.344]
+MEM after update 1: driver 4.84 GB, current 3.61 GB
+MEM after update 2: driver 4.84 GB, current 3.61 GB
+t 64 308s D_A [0.289, -0.004, -0.002, 0.191, -0.0, 0.009, 0.209, -0.02, -0.004, 0.213, -0.002, -0.001, 0.266, 0.003, 0.001] T [40, None, None, 40, None, None, 32, None, None, 32, None, None, 40, None, None] px_off [0.44, 0.264, 0.274, 0.26, 0.266, 0.212, 0.293, 0.212, 0.225, 0.352, 0.253, 0.219, 0.446, 0.245, 0.243]
+t 128 600s D_A [0.195, 0.0, -0.006, 0.237, 0.001, 0.007, 0.185, -0.017, -0.011, 0.241, -0.007, -0.002, 0.204, 0.003, 0.002] T [40, None, None, 40, None, None, 32, None, None, 32, None, None, 40, None, None] px_off [0.336, 0.232, 0.236, 0.331, 0.214, 0.194, 0.347, 0.104, 0.115, 0.333, 0.24, 0.256, 0.295, 0.195, 0.195]
+t 192 892s D_A [0.24, -0.006, -0.007, 0.232, 0.011, 0.005, 0.18, -0.003, -0.005, 0.191, -0.004, -0.0, 0.208, -0.002, 0.003] T [40, None, None, 40, None, None, 32, None, None, 32, None, None, 40, None, None] px_off [0.392, 0.212, 0.166, 0.373, 0.168, 0.159, 0.334, 0.206, 0.205, 0.327, 0.211, 0.209, 0.282, 0.21, 0.215]
+t 256 1184s D_A [0.188, -0.023, -0.005, 0.189, 0.019, 0.001, 0.216, -0.011, -0.007, 0.241, 0.001, -0.001, 0.202, -0.006, 0.0] T [40, None, None, 40, None, None, 32, None, None, 32, None, None, 40, None, None] px_off [0.339, 0.205, 0.202, 0.335, 0.232, 0.233, 0.368, 0.231, 0.254, 0.349, 0.168, 0.195, 0.339, 0.235, 0.215]
+SAVED stage1 main_s5 T_A 40
+SAVED stage1 shuf_s5 T_A None
+SAVED stage1 coin_s5 T_A None
+SAVED stage1 main_s6 T_A 40
+SAVED stage1 shuf_s6 T_A None
+SAVED stage1 coin_s6 T_A None
+SAVED stage1 main_s7 T_A 32
+SAVED stage1 shuf_s7 T_A None
+SAVED stage1 coin_s7 T_A None
+SAVED stage1 main_s8 T_A 32
+SAVED stage1 shuf_s8 T_A None
+SAVED stage1 coin_s8 T_A None
+SAVED stage1 main_s9 T_A 40
+SAVED stage1 shuf_s9 T_A None
+SAVED stage1 coin_s9 T_A None
+DONE stage1 train_s 1184.6
+     1245.43 real        49.42 user        15.28 sys
+          2491793408  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              359164  page reclaims
+              134582  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                  33  messages sent
+                 135  messages received
+                   0  signals received
+                5732  voluntary context switches
+              484001  involuntary context switches
+        649409826703  instructions retired
+        249092726389  cycles elapsed
+          7723911688  peak memory footprint

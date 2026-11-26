@@ -2,3 +2,5 @@
 06:26:29 RUN stage1: tt.py --stage 1 --runs main:5 shuf:5 coin:5 main:6 shuf:6 coin:6 main:7 shuf:7 coin:7 main:8 shuf:8 coin:8 main:9 shuf:9 coin:9 --n1 256 --kA 1 --eval-bs 8 --micro 2
 06:47:14 END stage1 rc 0 peak 7723911688
 06:47:14 RUN k4: tt.py --stage 2 --kB 4 --runs main:5 shuf:5 coin:5 fresh:5 main:6 shuf:6 coin:6 fresh:6 main:7 shuf:7 coin:7 fresh:7 main:8 shuf:8 coin:8 fresh:8 main:9 shuf:9 coin:9 fresh:9 --n2 1536 --kA 1 --eval-bs 8 --micro 2 --wall-stop 1795716900
+07:51:43 END k4 rc 0 peak 9156053008
+07:51:43 RUN k2: tt.py --stage 2 --kB 2 --runs main:5 shuf:5 coin:5 fresh:5 main:6 shuf:6 coin:6 fresh:6 main:7 shuf:7 coin:7 fresh:7 main:8 shuf:8 coin:8 fresh:8 main:9 shuf:9 coin:9 fresh:9 --n2 1536 --kA 1 --eval-bs 8 --micro 2 --wall-stop 1795716900

@@ -176,6 +176,9 @@ def analyse(S1, K, K2=None):
                                     "all_5_7": all(ok(s) for s in PREREG_SEEDS),
                                     "seeds_5_9": {str(s): ok(s) for s in range(5, 10)}}
     out.update(res)
+    lr = [res[k]["law_read"]["outcome"] for k in ("k4", "k2") if k in res]
+    out["law_read_overall"] = ("failed" if "failed" in lr else "held" if lr and all(x == "held" for x in lr)
+                               else "unsettled")  # PREREG S1: held at every size run; failed if outside at any size
     return out
 
 

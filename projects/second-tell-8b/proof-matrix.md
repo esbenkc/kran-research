@@ -33,6 +33,26 @@ prompt-level: R vs coin [0.749, 0.784] (2,000 resamples of the 64 dev prompts)
 | headline | 9 | FRESH k4 | FRESH (no stage 1) | T_B 280 (cap 1536); D(0) 0.0000; P(X given no cue) at start 0.3440 | data/k4/fresh_s9.json |
 | headline | 9 | MAIN k4 | none | T_B 216 (cap 1536); D(0) 0.0007; P(X given no cue) at start 0.3464; R vs fresh 0.771, R vs shuf 0.659, R vs coin 0.750; T_A 40 | data/k4/main_s9.json |
 | headline | 9 | SHUF-A k4 | SHUF-A (cue A shown, coin penalty) | T_B 328 (cap 1536); D(0) -0.0006; P(X given no cue) at start 0.3474 | data/k4/shuf_s9.json |
+| law-read-k2 | 5 | COIN k2 | COIN (no cue, coin penalty) | T_B 64 (cap 1536); D(0) 0.0015; P(X given no cue) at start 0.3488 | data/k2/coin_s5.json |
+| law-read-k2 | 5 | FRESH k2 | FRESH (no stage 1) | T_B 72 (cap 1536); D(0) 0.0000; P(X given no cue) at start 0.3440 | data/k2/fresh_s5.json |
+| law-read-k2 | 5 | MAIN k2 | none | T_B 56 (cap 1536); D(0) 0.0017; P(X given no cue) at start 0.3464 | data/k2/main_s5.json |
+| law-read-k2 | 5 | SHUF-A k2 | SHUF-A (cue A shown, coin penalty) | T_B 64 (cap 1536); D(0) 0.0048; P(X given no cue) at start 0.3470 | data/k2/shuf_s5.json |
+| law-read-k2 | 6 | COIN k2 | COIN (no cue, coin penalty) | T_B 64 (cap 1536); D(0) -0.0036; P(X given no cue) at start 0.3474 | data/k2/coin_s6.json |
+| law-read-k2 | 6 | FRESH k2 | FRESH (no stage 1) | T_B 72 (cap 1536); D(0) 0.0000; P(X given no cue) at start 0.3440 | data/k2/fresh_s6.json |
+| law-read-k2 | 6 | MAIN k2 | none | T_B 48 (cap 1536); D(0) -0.0004; P(X given no cue) at start 0.3441 | data/k2/main_s6.json |
+| law-read-k2 | 6 | SHUF-A k2 | SHUF-A (cue A shown, coin penalty) | T_B 64 (cap 1536); D(0) 0.0016; P(X given no cue) at start 0.3505 | data/k2/shuf_s6.json |
+| law-read-k2 | 7 | COIN k2 | COIN (no cue, coin penalty) | T_B 64 (cap 1536); D(0) 0.0045; P(X given no cue) at start 0.3462 | data/k2/coin_s7.json |
+| law-read-k2 | 7 | FRESH k2 | FRESH (no stage 1) | T_B 72 (cap 1536); D(0) 0.0000; P(X given no cue) at start 0.3440 | data/k2/fresh_s7.json |
+| law-read-k2 | 7 | MAIN k2 | none | T_B 56 (cap 1536); D(0) -0.0058; P(X given no cue) at start 0.3394 | data/k2/main_s7.json |
+| law-read-k2 | 7 | SHUF-A k2 | SHUF-A (cue A shown, coin penalty) | T_B 64 (cap 1536); D(0) 0.0039; P(X given no cue) at start 0.3457 | data/k2/shuf_s7.json |
+| law-read-k2 | 8 | COIN k2 | COIN (no cue, coin penalty) | T_B 56 (cap 1536); D(0) 0.0040; P(X given no cue) at start 0.3512 | data/k2/coin_s8.json |
+| law-read-k2 | 8 | FRESH k2 | FRESH (no stage 1) | T_B 72 (cap 1536); D(0) 0.0000; P(X given no cue) at start 0.3440 | data/k2/fresh_s8.json |
+| law-read-k2 | 8 | MAIN k2 | none | T_B 48 (cap 1536); D(0) 0.0050; P(X given no cue) at start 0.3450 | data/k2/main_s8.json |
+| law-read-k2 | 8 | SHUF-A k2 | SHUF-A (cue A shown, coin penalty) | T_B 56 (cap 1536); D(0) 0.0016; P(X given no cue) at start 0.3499 | data/k2/shuf_s8.json |
+| law-read-k2 | 9 | COIN k2 | COIN (no cue, coin penalty) | T_B 72 (cap 1536); D(0) -0.0039; P(X given no cue) at start 0.3454 | data/k2/coin_s9.json |
+| law-read-k2 | 9 | FRESH k2 | FRESH (no stage 1) | T_B 72 (cap 1536); D(0) 0.0000; P(X given no cue) at start 0.3440 | data/k2/fresh_s9.json |
+| law-read-k2 | 9 | MAIN k2 | none | T_B 56 (cap 1536); D(0) -0.0032; P(X given no cue) at start 0.3464 | data/k2/main_s9.json |
+| law-read-k2 | 9 | SHUF-A k2 | SHUF-A (cue A shown, coin penalty) | T_B 72 (cap 1536); D(0) -0.0052; P(X given no cue) at start 0.3474 | data/k2/shuf_s9.json |
 | stage-1 switch | 5 | COIN stage 1 k1 | COIN (no cue, coin penalty) | T_A censored; gap_A at 256 0.0144 | data/stage1/coin_s5.json |
 | stage-1 switch | 6 | COIN stage 1 k1 | COIN (no cue, coin penalty) | T_A censored; gap_A at 256 -0.0110 | data/stage1/coin_s6.json |
 | stage-1 switch | 7 | COIN stage 1 k1 | COIN (no cue, coin penalty) | T_A censored; gap_A at 256 0.0069 | data/stage1/coin_s7.json |

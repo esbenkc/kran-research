@@ -28,4 +28,5 @@ any file under data/ existed. None changes the frozen status rule, a threshold o
   (data/mini/chain.log, `END k4 rc 0 peak 9156053008`), 0.16 GB over Vera's 9.0 GB solo line; the 20-tail smoke had
   measured 8.03 GB (smoke/stage2_mem4.log). The smoke timed only the cue-off and cue-B evaluations; the real job also
   evaluates cue A every 64 updates and keeps 20 stop snapshots. Stage 1 peaked at 7.72 GB. Free memory stayed at or
-  above 37% (memory_pressure) and mem-guard did not act. k2 runs with the same settings.
+  above 37% (memory_pressure) and mem-guard did not act. k2 (same settings) peaked at 9.04 GB (chain.log 'END k2 rc 0
+  peak 9035368392'), 0.04 GB over the line.

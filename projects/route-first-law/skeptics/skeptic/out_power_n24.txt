@@ -1,0 +1,32 @@
+--- n/arm=24 cells=4 kappa=None
+law true 15/85         CONF 0.625 REJ 0.003 UNC 0.373
+law true 20/80         CONF 0.189 REJ 0.028 UNC 0.783
+law strong 10/90       CONF 0.941 REJ 0.000 UNC 0.059
+presence only 15/15    CONF 0.000 REJ 1.000 UNC 0.000
+half order 15/50       CONF 0.000 REJ 0.994 UNC 0.006
+no route effect        CONF 0.000 REJ 1.000 UNC 0.000
+CA mild 15/70          CONF 0.017 REJ 0.264 UNC 0.718
+--- n/arm=24 cells=4 kappa=20
+law true 15/85         CONF 0.487 REJ 0.018 UNC 0.495
+law true 20/80         CONF 0.139 REJ 0.088 UNC 0.773
+law strong 10/90       CONF 0.841 REJ 0.002 UNC 0.156
+presence only 15/15    CONF 0.000 REJ 1.000 UNC 0.000
+half order 15/50       CONF 0.000 REJ 0.992 UNC 0.008
+no route effect        CONF 0.000 REJ 1.000 UNC 0.000
+CA mild 15/70          CONF 0.019 REJ 0.368 UNC 0.613
+--- n/arm=24 cells=2 kappa=None
+law true 15/85         CONF 0.789 REJ 0.002 UNC 0.209
+law true 20/80         CONF 0.441 REJ 0.015 UNC 0.544
+law strong 10/90       CONF 0.971 REJ 0.000 UNC 0.029
+presence only 15/15    CONF 0.000 REJ 1.000 UNC 0.000
+half order 15/50       CONF 0.000 REJ 0.928 UNC 0.072
+no route effect        CONF 0.000 REJ 1.000 UNC 0.000
+CA mild 15/70          CONF 0.132 REJ 0.144 UNC 0.724
+--- n/arm=24 cells=2 kappa=20
+law true 15/85         CONF 0.699 REJ 0.009 UNC 0.293
+law true 20/80         CONF 0.377 REJ 0.043 UNC 0.579
+law strong 10/90       CONF 0.921 REJ 0.001 UNC 0.079
+presence only 15/15    CONF 0.000 REJ 1.000 UNC 0.000
+half order 15/50       CONF 0.001 REJ 0.909 UNC 0.091
+no route effect        CONF 0.000 REJ 1.000 UNC 0.000
+CA mild 15/70          CONF 0.141 REJ 0.208 UNC 0.652

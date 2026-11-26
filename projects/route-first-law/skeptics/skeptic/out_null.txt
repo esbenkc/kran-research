@@ -1,0 +1,8 @@
+== web: 60 paired runs; AFTER-minus-BEFORE gap -0.150; discordant before-only 13, after-only 4; McNemar exact p 0.04904; label-swap permutation p 0.04745
+   NONE vs AFTER paired: 60 pairs; none-only 54, after-only 0; McNemar p 1.11e-16
+   by block: 0: before 5/20, after 2/20; 1: before 5/20, after 2/20; 2: before 5/20, after 2/20
+   by model: gemma-4-26b-a4b-it: before 15/30, after 6/30; gemma-4-31b-it: before 0/30, after 0/30
+== shell: 60 paired runs; AFTER-minus-BEFORE gap -0.333; discordant before-only 20, after-only 0; McNemar exact p 1.907e-06; label-swap permutation p 0
+   NONE vs AFTER paired: 60 pairs; none-only 58, after-only 0; McNemar p 6.939e-18
+   by block: 0: before 6/20, after 0/20; 1: before 6/20, after 0/20; 2: before 8/20, after 0/20
+   by model: gemma-4-26b-a4b-it: before 0/30, after 0/30; gemma-4-31b-it: before 20/30, after 0/30

@@ -1,0 +1,12 @@
+OK  C1 edge pass 15/60                         expect CONFIRMED   mine CONFIRMED   analysis.py CONFIRMED
+OK  C1 edge fail 16/60 not rej                 expect UNCONFIRMED mine UNCONFIRMED analysis.py UNCONFIRMED
+OK  C2 edge pass 45/60                         expect CONFIRMED   mine CONFIRMED   analysis.py CONFIRMED
+OK  C2 edge fail 44/60                         expect UNCONFIRMED mine UNCONFIRMED analysis.py UNCONFIRMED
+OK  presence only -> REJ                       expect REJECTED    mine REJECTED    analysis.py REJECTED
+OK  guard BEFORE 13/30 with pooled 15/60       expect UNCONFIRMED mine UNCONFIRMED analysis.py UNCONFIRMED
+OK  guard AFTER 17/30 pooled 46/60             expect UNCONFIRMED mine UNCONFIRMED analysis.py UNCONFIRMED
+OK  guard edge 12/30 passes                    expect CONFIRMED   mine CONFIRMED   analysis.py CONFIRMED
+OK  NONE invalid 44/60 web                     expect UNCONFIRMED mine UNCONFIRMED analysis.py UNCONFIRMED
+OK  NONE invalid but BEFORE far over -> not REJ expect UNCONFIRMED mine UNCONFIRMED analysis.py UNCONFIRMED
+OK  exposure 53/60 = 88% -> invalid            expect UNCONFIRMED mine UNCONFIRMED analysis.py UNCONFIRMED
+11/11 agree with the expected frozen-rule status

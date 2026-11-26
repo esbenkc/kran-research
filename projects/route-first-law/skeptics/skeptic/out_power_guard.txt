@@ -1,0 +1,28 @@
+--- guard, pooled n/arm/harness=48 (per model 24) kappa=None
+law true 15/85 both    CONF 0.913 REJ 0.000 UNC 0.087
+law true 20/80 both    CONF 0.525 REJ 0.015 UNC 0.459
+hetero before 5/40     CONF 0.369 REJ 0.014 UNC 0.618
+hetero before 5/50     CONF 0.062 REJ 0.104 UNC 0.834
+hetero after 95/60     CONF 0.375 REJ 0.013 UNC 0.613
+presence only          CONF 0.000 REJ 1.000 UNC 0.000
+--- guard, pooled n/arm/harness=48 (per model 24) kappa=20
+law true 15/85 both    CONF 0.841 REJ 0.004 UNC 0.155
+law true 20/80 both    CONF 0.451 REJ 0.043 UNC 0.505
+hetero before 5/40     CONF 0.334 REJ 0.035 UNC 0.631
+hetero before 5/50     CONF 0.073 REJ 0.162 UNC 0.765
+hetero after 95/60     CONF 0.335 REJ 0.037 UNC 0.628
+presence only          CONF 0.000 REJ 1.000 UNC 0.000
+--- guard, pooled n/arm/harness=60 (per model 30) kappa=None
+law true 15/85 both    CONF 0.948 REJ 0.000 UNC 0.052
+law true 20/80 both    CONF 0.567 REJ 0.007 UNC 0.425
+hetero before 5/40     CONF 0.312 REJ 0.010 UNC 0.678
+hetero before 5/50     CONF 0.029 REJ 0.096 UNC 0.875
+hetero after 95/60     CONF 0.317 REJ 0.008 UNC 0.675
+presence only          CONF 0.000 REJ 1.000 UNC 0.000
+--- guard, pooled n/arm/harness=60 (per model 30) kappa=20
+law true 15/85 both    CONF 0.868 REJ 0.002 UNC 0.130
+law true 20/80 both    CONF 0.469 REJ 0.033 UNC 0.498
+hetero before 5/40     CONF 0.279 REJ 0.028 UNC 0.693
+hetero before 5/50     CONF 0.041 REJ 0.154 UNC 0.805
+hetero after 95/60     CONF 0.281 REJ 0.027 UNC 0.692
+presence only          CONF 0.000 REJ 1.000 UNC 0.000

@@ -48,10 +48,10 @@ prompt-level: R vs coin [0.749, 0.784] (2,000 resamples of the 64 dev prompts)
 | stage-1 switch | 7 | SHUF-A stage 1 k1 | SHUF-A (cue A shown, coin penalty) | T_A censored; gap_A at 256 0.0032 | data/stage1/shuf_s7.json |
 | stage-1 switch | 8 | SHUF-A stage 1 k1 | SHUF-A (cue A shown, coin penalty) | T_A censored; gap_A at 256 0.0054 | data/stage1/shuf_s8.json |
 | stage-1 switch | 9 | SHUF-A stage 1 k1 | SHUF-A (cue A shown, coin penalty) | T_A censored; gap_A at 256 -0.0074 | data/stage1/shuf_s9.json |
-| gate PORT | 5-9 | FRESH k4 median T_B | untrained-start law anchor | median 288.0 in [266, 326]: PASS | data/analysis.json |
+| gate PORT | 5-9 | FRESH k4 median T_B (all 5 seeds) | none | median 288.0 in [266, 326]: PASS | data/analysis.json |
 | gate G1 | - | parent b, untrained tail | none | dev P(X|no cue) 0.3440: PASS | data/analysis.json |
-| gate G2a | - | cache sha256 | parent cache | 70c4703aa2ba: PASS | data/analysis.json |
-| law read k4 | 5-9 | R MAIN/FRESH | FRESH | R 0.731 [0.692, 0.773] vs predicted 0.515, band [0.40, 0.66]: failed | data/analysis.json |
+| gate G2a | - | cache sha256 vs parent cache | none | 70c4703aa2ba: PASS | data/analysis.json |
+| law read k4 | 5-9 | R MAIN/FRESH (paired, 5 seeds) | none | R 0.731 [0.692, 0.773] vs predicted 0.515, band [0.40, 0.66]: failed | data/analysis.json |
 | subspace S4 | 5 | COIN k4 dW2 vs MAIN dW1 | COIN (no cue, coin penalty) | mean angle 57.89 deg, smallest 15.26 deg | data/subspace_k4.json |
 | subspace S4 | 6 | COIN k4 dW2 vs MAIN dW1 | COIN (no cue, coin penalty) | mean angle 57.56 deg, smallest 13.00 deg | data/subspace_k4.json |
 | subspace S4 | 7 | COIN k4 dW2 vs MAIN dW1 | COIN (no cue, coin penalty) | mean angle 58.40 deg, smallest 12.94 deg | data/subspace_k4.json |

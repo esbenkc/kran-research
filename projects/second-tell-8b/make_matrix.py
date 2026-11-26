@@ -32,16 +32,16 @@ def main():
         rows.append(("stage-1 switch", int(s), f"{NAMES[arm].split(' (')[0]} stage 1 k1", "none" if arm == "main" else NAMES[arm],
                      f"T_A {fmt(v['T_A'])}; gap_A at 256 {v['gapA_end']:.4f}", f"data/stage1/{name}.json"))
     g = k4["gates"]
-    rows.append(("gate PORT", "5-9", "FRESH k4 median T_B", "untrained-start law anchor",
+    rows.append(("gate PORT", "5-9", "FRESH k4 median T_B (all 5 seeds)", "none",
                  f"median {g['PORT']['fresh_median_T']} in [266, 326]: {'PASS' if g['PORT']['pass'] else 'FAIL'}",
                  "data/analysis.json"))
     rows.append(("gate G1", "-", "parent b, untrained tail", "none",
                  f"dev P(X|no cue) {g['G1']['dev_px_off_parent_b']:.4f}: {'PASS' if g['G1']['pass'] else 'FAIL'}",
                  "data/analysis.json"))
-    rows.append(("gate G2a", "-", "cache sha256", "parent cache",
+    rows.append(("gate G2a", "-", "cache sha256 vs parent cache", "none",
                  f"{g['G2a']['cache_sha256'][:12]}: {'PASS' if g['G2a']['pass'] else 'FAIL'}", "data/analysis.json"))
     lr = k4["law_read"]
-    rows.append(("law read k4", "5-9", "R MAIN/FRESH", "FRESH", f"R {lr['R']:.3f} [{lr['R_lo']:.3f}, {lr['R_hi']:.3f}] "
+    rows.append(("law read k4", "5-9", "R MAIN/FRESH (paired, 5 seeds)", "none", f"R {lr['R']:.3f} [{lr['R_lo']:.3f}, {lr['R_hi']:.3f}] "
                  f"vs predicted 0.515, band [0.40, 0.66]: {lr['outcome']}", "data/analysis.json"))
     sp = HERE / "data" / "subspace_k4.json"
     if sp.exists():

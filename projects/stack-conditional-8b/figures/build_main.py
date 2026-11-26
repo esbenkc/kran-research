@@ -8,7 +8,7 @@ Reads only run outputs:
 Writes the figure's data.json: per-run change in gap (points) vs updates, the whole-graph test gap at the last
 checkpoint with a paired bootstrap 95% interval over prompts, and the predicted onset band.
 
-usage: build_main.py --runs DIR --eval DIR [--tpred FILE] [--model NAME] --out data.json [--check]
+usage: build_main.py --runs DIR --eval DIR [--tpred FILE] [--status FILE] [--model NAME] --out data.json [--check]
 """
 import argparse, glob, json, os, re
 import numpy as np
@@ -41,6 +41,7 @@ def main():
     ap.add_argument("--runs", required=True)
     ap.add_argument("--eval", required=True)
     ap.add_argument("--tpred")
+    ap.add_argument("--status", help="data/status.json from analyze.py: its final dGAP and CI replace ours")
     ap.add_argument("--model", default="Qwen3-8B")
     ap.add_argument("--out", required=True)
     ap.add_argument("--check", action="store_true")
@@ -70,6 +71,14 @@ def main():
                          "d": round(100 * d, 3), "lo": round(100 * lo, 3), "hi": round(100 * hi, 3), "n": n,
                          "grading": round(100 * float(np.mean(list(tr["eager"].values()))), 2),
                          "serving": round(100 * float(np.mean(list(tr["compiled"].values()))), 2)})
+    if a.status and os.path.exists(a.status):
+        st = json.load(open(a.status))["runs"]
+        for e in ends:
+            f = (st.get(e["run"]) or {}).get("final")
+            if f:
+                mine = e["d"]
+                e["d"], e["lo"], e["hi"] = (round(100 * v, 3) for v in (f["dGAP"], *f["ci"]))
+                assert abs(mine - e["d"]) < 1e-6 * 100 + 1e-3, (e["run"], mine, e["d"])
     # one curve per (arm, seed)
     keys = [(r["arm"], r["seed"]) for r in runs]
     assert len(keys) == len(set(keys)), keys

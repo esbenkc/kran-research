@@ -245,6 +245,16 @@ def write_matrix(res, F):
              f"{t['T_x33']:.1f}, extrapolated={t['extrapolated']} | data/t_pred.json |")
     L.append("| trainer equivalence (E1) | 0 (stack), 0 (penall), 1 (shuf) | Qwen3-0.6B, teacher-forced, 50 updates | "
              "rl.py-vs-rl.py one-forward null | see logs/equiv_06b.json (max dev P diff 0.048 vs null 0.063) | logs/equiv_06b.json |")
+    rb = ROOT / "skeptics" / "skeptic" / "rebuild.json"  # Vera's own rebuild: {"runs": {"stack_s0": {"dGAP": x}, ...}}
+    if rb.exists():
+        reb = json.load(open(rb)).get("runs", {})
+        for r, v in reb.items():
+            if r in res["runs"] and "final" in res["runs"][r]:
+                mine = res["runs"][r]["final"]["dGAP"]
+                flag = "match" if abs(v["dGAP"] - mine) <= 1e-6 else f"MISMATCH (analyze.py {mine:+.6f})"
+                arm, seed = r.split("_s")
+                L.append(f"| rebuild (Vera) | {seed} | whole graph, {F} updates | "
+                         f"{'none' if arm == 'stack' else arm} | dGAP {v['dGAP']:+.6f}, {flag} | skeptics/skeptic/rebuild.json |")
     s = res["seed_level"]["main_dGAP"]
     L += ["", f"seed-level: {s['mean']:+.4f} [{s.get('t_interval', [float('nan')] * 2)[0]:+.4f}, "
           f"{s.get('t_interval', [float('nan')] * 2)[1]:+.4f}] (t-interval over {s['n']} main seeds, dGAP at {F} updates; "

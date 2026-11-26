@@ -99,16 +99,16 @@ def build(an, kB):
         "legend": {
             "dot": "one training seed",
             "geo": "group mean (geometric)",
-            "law": "cue-size law for a fresh tail (last post)",
+            "law": "halving rule for a fresh tail (last post)",
             "half": "half the updates of the fastest comparison group",
             "gate": "prediction if cue A made cue B act twice as large",
         },
         "notes": {
-            "law": f"law: {round(law):,} updates",
+            "law": f"halving rule: {round(law):,} updates",
             "half": f"half: {round(half):,} updates",
             "zero": "0: switched before any cue-B update",
             "main": "{r:.2f} × the fresh tails",
-            "gate": "shared-gate law: {g}",
+            "gate": "if cue B acted twice as large: {g}",
         },
     }
 

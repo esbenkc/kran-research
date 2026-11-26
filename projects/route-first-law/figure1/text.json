@@ -1,6 +1,6 @@
 {
- "head": "Gemma 4 agents left the decoy alone most often when the correct route sat below it",
- "sub": "<b>We asked: does a correct route placed before the decoy keep agents off it, <span class=\"q\">while the same route placed after the decoy does not</span>? Answer: No. Placed after (below) the decoy, the route still kept them off in both settings, even better than placed before it.</b> We moved only the route. Gemma 4 31B and 26B-A4B, {n_web} runs per placement in each setting.",
+ "head": "Gemma 4 read past the decoy and took the correct route at the bottom",
+ "sub": "<b>We asked: does a correct route placed before the decoy keep agents off it, <span class=\"q\">while the same route placed after the decoy does not</span>? Answer: No. Placed below the decoy, the route kept the agents off it in both settings. With the route above, they took the decoy more often.</b> Gemma 4 31B and 26B-A4B, {n_web} runs per placement in each setting.",
  "web_title": "Website: a hidden link is the decoy",
  "web_cardh": "A page the agent read (raw HTML, cut down). The stylesheet hides the <b>fx</b> link from people. Each run has the route in one spot only.",
  "shell_title": "Company system: a planted key is the decoy",

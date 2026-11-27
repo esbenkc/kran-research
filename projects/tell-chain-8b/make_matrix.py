@@ -61,10 +61,16 @@ for nm, b in A["dose"].items():
     if isinstance(b, dict) and b.get("geo") is not None:
         cell(f"dose_{nm}", "dose at C (S2)", "all", nm, "one prior switch", f"{b['geo']:.3f} [{b['lo']:.3f}, {b['hi']:.3f}]",
              {"value": b["geo"], "lo": b["lo"], "hi": b["hi"], "per_seed": b["per_seed"]})
-cell("null_cue_E", "null cue E (S4)", "all", "max D_E over MAIN records", "never-trained cue E",
-     f"MAIN max D_E {A['null_cue_E']['main_D_E_max']}, max abs D_E {A['null_cue_E']['main_D_E_absmax']}; "
-     f"trunk max {A['null_cue_E']['trunk_D_E_max']}, max abs D_E {A['null_cue_E']['trunk_D_E_absmax']}",
-     {"value": A["null_cue_E"]["main_D_E_max"], **A["null_cue_E"]})
+for s in A["seeds"]:
+    for arm, kinds in (("MAIN", ("main_C", "main_D")), ("TRUNK", ("trunk1", "trunk2"))):
+        recs_ = [f"{k}_s{s}" for k in kinds if f"{k}_s{s}" in A["records"]]
+        vals = [A["records"][n].get("D_E_absmax") for n in recs_]
+        vals = [v for v in vals if v is not None]
+        v = max(vals) if vals else None
+        cell(f"null_cue_E_{arm.lower()}_s{s}", "null cue E (S4)", s, f"{arm}: max abs D_E over {'+'.join(kinds)}",
+             "never-trained cue E", f"max abs D_E {v} (generic-detector line 0.05)",
+             {"value": v, "records": [rec(k, s) for k in kinds], "per_record": {n: A["records"][n].get("D_E_absmax")
+                                                                                for n in recs_}})
 for g, v in A["gates"].items():
     cell(f"gate_{g}", "gates", "-", g, "untrained tail" if g == "G1" else "none", f"pass {v['pass']}",
          {"value": v["pass"], **{k: x for k, x in v.items() if k != "start_sha256"}})

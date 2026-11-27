@@ -78,7 +78,16 @@ seed-level: 0.212 [0.176, 0.255] (R_D vs fresh, geometric mean, t-interval on ln
 | switch times | 9 | fresh_D | fresh tail | T 264 [ok] | data/cells/T_fresh_D_s9.json |
 | dose at C (S2) | all | main_vs_dose1 | one prior switch | 0.914 [0.723, 1.157] | data/cells/dose_main_vs_dose1.json |
 | dose at C (S2) | all | dose1_vs_ctrl | one prior switch | 0.352 [0.273, 0.455] | data/cells/dose_dose1_vs_ctrl.json |
-| null cue E (S4) | all | max D_E over MAIN records | never-trained cue E | MAIN max D_E 0.00383, max abs D_E 0.01428; trunk max 0.0044, max abs D_E 0.00581 | data/cells/null_cue_E.json |
+| null cue E (S4) | 5 | MAIN: max abs D_E over main_C+main_D | never-trained cue E | max abs D_E 0.01014 (generic-detector line 0.05) | data/cells/null_cue_E_main_s5.json |
+| null cue E (S4) | 5 | TRUNK: max abs D_E over trunk1+trunk2 | never-trained cue E | max abs D_E 0.00284 (generic-detector line 0.05) | data/cells/null_cue_E_trunk_s5.json |
+| null cue E (S4) | 6 | MAIN: max abs D_E over main_C+main_D | never-trained cue E | max abs D_E 0.00271 (generic-detector line 0.05) | data/cells/null_cue_E_main_s6.json |
+| null cue E (S4) | 6 | TRUNK: max abs D_E over trunk1+trunk2 | never-trained cue E | max abs D_E 0.00262 (generic-detector line 0.05) | data/cells/null_cue_E_trunk_s6.json |
+| null cue E (S4) | 7 | MAIN: max abs D_E over main_C+main_D | never-trained cue E | max abs D_E 0.01428 (generic-detector line 0.05) | data/cells/null_cue_E_main_s7.json |
+| null cue E (S4) | 7 | TRUNK: max abs D_E over trunk1+trunk2 | never-trained cue E | max abs D_E 0.00581 (generic-detector line 0.05) | data/cells/null_cue_E_trunk_s7.json |
+| null cue E (S4) | 8 | MAIN: max abs D_E over main_C+main_D | never-trained cue E | max abs D_E 0.00537 (generic-detector line 0.05) | data/cells/null_cue_E_main_s8.json |
+| null cue E (S4) | 8 | TRUNK: max abs D_E over trunk1+trunk2 | never-trained cue E | max abs D_E 0.00313 (generic-detector line 0.05) | data/cells/null_cue_E_trunk_s8.json |
+| null cue E (S4) | 9 | MAIN: max abs D_E over main_C+main_D | never-trained cue E | max abs D_E 0.00556 (generic-detector line 0.05) | data/cells/null_cue_E_main_s9.json |
+| null cue E (S4) | 9 | TRUNK: max abs D_E over trunk1+trunk2 | never-trained cue E | max abs D_E 0.0044 (generic-detector line 0.05) | data/cells/null_cue_E_trunk_s9.json |
 | gates | - | G1 | untrained tail | pass True | data/cells/gate_G1.json |
 | gates | - | G2 | none | pass True | data/cells/gate_G2.json |
 | gates | - | G3 | none | pass True | data/cells/gate_G3.json |

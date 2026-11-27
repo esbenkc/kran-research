@@ -1,0 +1,35 @@
+base gap source: fresh_t0_lists
+records 45; T mismatches vs stored: 0 []
+  T main_C       96     80     80     80    104
+  T ctrl_C      248    232    264    320    304
+  T fresh_C     272    256    296    328    320
+  T dose1_C      96     96    112     88     88
+  T main_D       64     64     48     64     56
+  T ctrl_D      328    280    304    320    280
+  T fresh_D     280    256    288    304    264
+  R_D vs ctrl_D: n 5 geo 0.195 [0.165, 0.230] mean ln -1.635 cens main/ref 0/0 per-seed {5: 0.195, 6: 0.229, 7: 0.158, 8: 0.200, 9: 0.200}
+  R_D vs fresh_D: n 5 geo 0.212 [0.176, 0.255] mean ln -1.553 cens main/ref 0/0 per-seed {5: 0.229, 6: 0.250, 7: 0.167, 8: 0.211, 9: 0.212}
+  gates {'G1_px_base': 0.3440177000447875, 'G1': True, 'G2_cache_sha': ['70c4703aa2bab795eb5bc34b54be6c16ac3e62ec2ef361841c2598c351de67ba'], 'G2': True, 'PORT_fresh_D_median': 280.0, 'PORT': np.True_, 'fresh_C_median': 296.0, 'fresh_C_in_band': np.True_, 'G3': None}
+STATUS CONFIRMED   prediction held pd['clause1']=True pd['clause2']=True falling 5/5
+    seed 5: R_B 0.857 R_C 0.387 R_D 0.195 falling True
+    seed 6: R_B 0.714 R_C 0.345 R_D 0.229 falling True
+    seed 7: R_B 0.824 R_C 0.303 R_D 0.158 falling True
+    seed 8: R_B 0.706 R_C 0.25 R_D 0.2 falling True
+    seed 9: R_B 0.750 R_C 0.342 R_D 0.2 falling True
+  R_C_vs_ctrl: {'n': 5, 'geo': 0.32195967161618144, 'lo': 0.2620452598439652, 'hi': 0.3955730021940581, 'per_seed': {5: 0.3871, 6: 0.3448, 7: 0.303, 8: 0.25, 9: 0.3421}}
+  R_C_vs_fresh: {'n': 5, 'geo': 0.29832525888567657, 'lo': 0.24812620688669584, 'hi': 0.3586802103892472, 'per_seed': {5: 0.3529, 6: 0.3125, 7: 0.2703, 8: 0.2439, 9: 0.325}}
+  DOSE_main_vs_dose1: {'n': 5, 'geo': 0.9144705841539414, 'lo': 0.7228385540778482, 'hi': 1.15690626152294, 'per_seed': {5: 1.0, 6: 0.8333, 7: 0.7143, 8: 0.9091, 9: 1.1818}}
+  dose1_vs_ctrl_C: {'n': 5, 'geo': 0.35207220133171935, 'lo': 0.27271985202825527, 'hi': 0.454513428445687, 'per_seed': {5: 0.3871, 6: 0.4138, 7: 0.4242, 8: 0.275, 9: 0.2895}}
+  drift_ctrl_C_vs_fresh_C: {'n': 5, 'geo': 0.9265920088318383, 'lo': 0.8849356007299005, 'hi': 0.9702093012450456, 'per_seed': {5: 0.9118, 6: 0.9062, 7: 0.8919, 8: 0.9756, 9: 0.95}}
+  drift_ctrl_D_vs_fresh_D: {'n': 5, 'geo': 1.0858981536201187, 'lo': 1.0267931295352095, 'hi': 1.1484054247318063, 'per_seed': {5: 1.1714, 6: 1.0938, 7: 1.0556, 8: 1.0526, 9: 1.0606}}
+S8 logit units (threshold 0.486):
+  TL main_C       88     72     80     72     96
+  TL ctrl_C      224    216    248    312    280
+  TL fresh_C     272    240    280    312    312
+  TL main_D       56     48     40     48     48
+  TL ctrl_D      288    264    296    280    272
+  TL fresh_D     272    248    272    280    256
+  logit R main_D vs ctrl_D: 0.171 [0.144, 0.203] n 5
+  logit R main_D vs fresh_D: 0.180 [0.153, 0.212] n 5
+  logit R main_C vs ctrl_C: 0.320 [0.250, 0.408] n 5
+  logit R main_C vs fresh_C: 0.288 [0.244, 0.338] n 5

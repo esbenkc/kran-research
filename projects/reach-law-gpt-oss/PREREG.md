@@ -1,3 +1,11 @@
+<!-- PREREG RECORD (written by oracle.py prereg; do not edit)
+commit: 0e61aa72f4cb1e392bcb4bff47e4124fb7b80918
+sha256: b25dbd28f1c92a5f2d54a59b7e7b996768c5745f9c95826ffe39514e1c49dc52
+pushed: 2026-11-27T07:08:08Z
+branch: swarm/defense-1127-reach-law-gpt-oss
+url: https://github.com/esbenkc/kran-research/blob/0e61aa72f4cb1e392bcb4bff47e4124fb7b80918/projects/reach-law-gpt-oss/PREREG.md
+-->
+
 # Pre-registration — reach-law-gpt-oss
 
 Room: `defense-1127-reach-law-gpt-oss`. Night: 2026-11-27. Slug: `reach-law-gpt-oss`. Track: defense, agenda thread T4.

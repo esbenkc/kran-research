@@ -1,3 +1,11 @@
+<!-- PREREG RECORD (written by oracle.py prereg; do not edit)
+commit: f5dca38ee115f2f62981e02a9c4dba35bc15affd
+sha256: cca7906d92fcaf8c84de0647affe5d86f1ca3604eac6514025f62c30da8c03b9
+pushed: 2026-11-27T01:06:13Z
+branch: swarm/oracle-1127-forced-switch-head
+url: https://github.com/esbenkc/kran-research/blob/f5dca38ee115f2f62981e02a9c4dba35bc15affd/projects/probe-switch-forced-survival/PREREG.md
+-->
+
 # PRE-REGISTRATION — probe-switch-forced-survival (room oracle-1127-forced-switch-head)
 
 Written by Iris (research) from the goal's PRE-REGISTERED PREDICTION (fixed 2026-11-27 01:54 CET), Tove's APPROVE

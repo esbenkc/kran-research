@@ -145,7 +145,7 @@ def build(an, par):
         "legend": {
             "mult": "Multiplying saving: each tell cuts the next by 0.74 (0.74, 0.55, 0.41)",
             "flat": "Flat, one-off saving: 0.74 at every tell",
-            "bar": "Yes needs the 4th tell below 0.55 vs both",
+            "bar": "Pre-set test: the answer is yes if the 4th tell falls below 0.55 against both comparison tails",
             "geo": "Geometric mean, seed-level 95% interval",
             "last": "Hollow: 2nd tell, from our last run",
         },

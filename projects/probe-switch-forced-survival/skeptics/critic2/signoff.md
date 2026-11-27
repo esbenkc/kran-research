@@ -4,9 +4,11 @@ verdict: PASS
 
 # critic2 sign-off (cross-family final review), staged by Bruno (build) from the critic2 session
 
-Answer signed: REJECTED (No). critic2 rebuilt the headline cells from the raw kaudit files with its own code
-(c16_rebuild_headline.sh, c22_recheck_headline_origin.sh, c42_validate_changed_numbers.sh) and gave its final verdict
-in the room (#31863, c45_verdict3_pass.sh):
+Answer signed: REJECTED (No). critic2 recomputed the status from the kaudit summary fields (headline.
+strict32_after_greedy_k.TB, strict32_smallest_k_below_0.25, strict32_random_min_median_max) with its own code
+(c16_rebuild_headline.sh, c22_recheck_headline_origin.sh, c42_validate_changed_numbers.sh), not from the per-prompt
+log-odds. Vera's per-prompt recompute (skeptics/skeptic/vera_check.py) gives the same values. Its final verdict in
+the room (#31863, c45_verdict3_pass.sh):
 
     k6_s0: S0=0.984 S8=0.016 S12=0.008 k_min=7 R8med=0.984
     k6_s1: S0=1.000 S8=1.000 S12=1.000 k_min=gt12 R8med=1.000

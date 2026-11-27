@@ -5,7 +5,7 @@
 # data/ files on the room branch. A finished step (its output JSON exists) is skipped, so the box can be restarted.
 # Wall stop (PREREG): no training starts after 2026-11-26 20:15 PST (unix 1795752900); audits until 21:30 PST
 # (1795757400). F = the forced attacker (audit penalty + survival floor); L0 = floor ON, audit penalty OFF.
-#   caffeinate -i ./run_f.sh [step ...]   (default: k6_s0 k6_s1 l0_s0 k6_s2 l0_s1 spare W)
+#   caffeinate -i ./run_f.sh [step ...]   (default: k6_s0 spare k6_s1 spare l0_s0 k6_s2 spare l0_s1 W)
 cd "$(dirname "$0")"
 export AP_MODEL=${AP_MODEL:-Qwen/Qwen3-1.7B} HF_HUB_OFFLINE=1 TOKENIZERS_PARALLELISM=false PYTHONUNBUFFERED=1
 OUTD=${AP_OUT:-data}; export AP_OUT=$OUTD
@@ -84,8 +84,9 @@ do_spare() {
     log "SPARE: not needed (no finished arm-F seed failed a gate)"
   fi
 }
-# steps from the command line, default = the frozen order; 'spare' = the spare rule, 'W' = the three warm audits
-STEPS_LIST=${*:-"k6_s0 k6_s1 l0_s0 k6_s2 l0_s1 spare W"}
+# steps from the command line; default = the frozen order with DEVIATIONS D2: "spare" after each F seed runs the spare
+# at once if a finished F seed failed a gate (else it logs "not needed"; a spare that already ran is skipped)
+STEPS_LIST=${*:-"k6_s0 spare k6_s1 spare l0_s0 k6_s2 spare l0_s1 W"}
 for c in $STEPS_LIST; do
   case $c in
     spare) do_spare ;;

@@ -1,0 +1,2 @@
+# critic2 (openai/gpt-5.5) tool call 7, verbatim from its session; cwd = /Users/esben/work/oracle-1127-forced-switch-head
+python3 -c 'import json, pathlib; p=pathlib.Path("kran-research/projects/probe-switch-forced-survival/data/kaudit/k6_s1.json"); d=json.load(open(p)); print(sorted(d.keys())); print({k:type(v).__name__ for k,v in d.items() if k in ["status","S","random8","greedy","audit","test_cut","results"]}); print(d.get("status"));'

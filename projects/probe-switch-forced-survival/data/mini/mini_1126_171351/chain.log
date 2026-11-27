@@ -1,0 +1,7 @@
+2026-11-26 17:13:51 START box mini_1126_171351 model Qwen/Qwen3-1.7B commit a1f51b6e7 out data
+2026-11-26 17:13:52 cache sha = the parent's 1.7B cache
+2026-11-26 17:13:52 START k6_s0 :: --kind ratio --lam 10 --katt 6 --temp B --repick 8 --mon train --mon-n 64 --fp32-logits --floor 0.97 --floor-eta 1.0 --mu-max 100 --seed 0 --steps 512 --micro 8 --warm inputs/parent17/switch_s0_adapter.pt 
+2026-11-26 18:03:29 OK DONE k6_s0 test strict 0.9765625 argmax 0.9765625 strict32 0.984375 shift 30.933 train_s 2905.9 | TRAIN_FINAL k6_s0 {"switch_strict": 1.0, "switch_strict32": 1.0} mu_final 98.985 share_mu_pos 0.96484375 | peak 8.46 GB
+2026-11-26 18:04:51 WHOLE k6_s0 {"switch_strict": 0.96875, "switch_correct": 0.96875, "switch_strict32": 0.96875, "share_unprobed_B": 0.96875, "shift_mean": 27.649319641292095} {'cond0_s': 27.6, 'cond0_repeat_changed_prompts': 0, 'cond1_s': 27.1, 'cond1_repeat_changed_prompts': 0, 'probe_stored_ok': True} | peak 7.36 GB
+2026-11-26 18:04:51 KAUDIT k6_s0
+2026-11-26 18:14:45 OK KAUDIT k6_s0 {"base_strict32": 0.984375, "base_strict": 0.9765625, "strict32_after_greedy_k": {"TB": [0.984375, 0.984375, 0.984375, 0.8828125, 0.703125, 0.4296875, 0.1171875, 0.015625, 0.0078125, 0.0078125, 0.0078125, 0.0078125], "T16": [0.984375, 0.984375, 0.984375, 0.8984375, 0.703125, 0.40625, 0.1171875, 0.015625, 0.0078125, 0.0078125, 0.0078125, 0.0078125], "T4": [0.984375, 0.984375, 0.984375, 0.8828125, 0.703125, 0.4296875, 0.1171875, 0.015625, 0.0078125, 0.0078125, 0.0078125, 0.0078125], " | peak 5.89 GB

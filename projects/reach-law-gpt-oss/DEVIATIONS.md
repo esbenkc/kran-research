@@ -20,3 +20,4 @@ not a rule change; Tove #32007, Felix #32008):
   (run.py --filler-stop-at), and it is ignored when the job starts after that time: gate, the 135 primary runs and the
   45 PROMPT runs always run; a late (pending-laptop) start runs the whole plan, filler included. Job 141r3us66d
   (never started) was cancelled; the new job id follows below.
+- New job: labq ka12ju3i4s at commit 18527570c, same command and resources.

@@ -1,0 +1,21 @@
+W1126 19:33:17.133000 86321 .venv/lib/python3.14/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+MPS driver_allocated_memory GB 4.66
+KAUDIT l0_s1 {"base_strict32": 1.0, "base_strict": 1.0, "strict32_after_greedy_k": {"TB": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], "T16": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], "T4": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], "T1": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]}, "strict32_smallest_k_below_0.25": {"TB": 1, "T16": 1, "T4": 1, "T1": 1}, "strict32_random_min_median_max": {"8": [0.0, 0.90625, 1.0], "12": [0.0, 0.0625, 1.0]}, "strict_after_greedy_k": {"TB": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], "T16": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], "T4": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], "T1": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]}, "strict_smallest_k_below_0.25": {"TB": 1, "T16": 1, "T4": 1, "T1": 1}, "strict_random_min_median_max": {"8": [0.0, 0.90625, 1.0], "12": [0.0, 0.0625, 1.0]}, "identity_strict32": 1.0, "all_heads_strict32": 0.0, "identity_ok": true} secs 487.7
+      491.58 real         8.86 user         2.71 sys
+          1534001152  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              139017  page reclaims
+               41968  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                5555  voluntary context switches
+              152065  involuntary context switches
+         81212763859  instructions retired
+         44159577823  cycles elapsed
+          5901944944  peak memory footprint

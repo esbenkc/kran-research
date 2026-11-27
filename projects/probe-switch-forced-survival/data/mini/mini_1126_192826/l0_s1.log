@@ -1,0 +1,97 @@
+W1126 19:28:30.073000 78860 .venv/lib/python3.14/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+WARM t0 test {"switch_strict": 1.0, "switch_correct": 1.0, "switch_strict32": 1.0, "shift_mean": 41.82267236709595}
+P0 None D0 None floor 0.0 coef 0.0
+step 0 mu 0.000 train64 strict32 1.000 | {} dev strict 1.000 argmax 1.000 unB 1.000 shift 41.45 | blindtop3 ['27.7', '26.0', '26.2'] pushrm_top3sum 1.472 maxsingle 0.911 all 0.999 klfull 23.458
+  step 8 ce 0.0000 pen 0.0000 mu 0.000 s_b 1.000 top3 [] 2s
+  step 16 ce 0.0002 pen 0.0000 mu 0.600 s_b 1.000 top3 [] 4s
+  step 24 ce 0.0000 pen 0.0000 mu 0.360 s_b 1.000 top3 [] 6s
+  step 32 ce 0.0000 pen 0.0000 mu 0.370 s_b 1.000 top3 [] 8s
+  step 40 ce 0.0000 pen 0.0000 mu 1.130 s_b 1.000 top3 [] 10s
+  step 48 ce 0.0000 pen 0.0000 mu 1.390 s_b 1.000 top3 [] 12s
+  step 56 ce 2.8217 pen 0.0000 mu 4.400 s_b 0.375 top3 [] 14s
+  step 64 ce 0.0000 pen 0.0000 mu 6.785 s_b 1.000 top3 [] 16s
+step 64 mu 6.785 train64 strict32 1.000 | {'train_ce': 1.2933619473187719e-05, 'train_pen': 0.0, 't': 15.6} dev strict 1.000 argmax 1.000 unB 1.000 shift 29.26 | blindtop3 ['27.7', '26.0', '26.5'] pushrm_top3sum 1.634 maxsingle 0.872 all 0.999 klfull 15.040
+  step 72 ce 0.0000 pen 0.0000 mu 6.670 s_b 1.000 top3 [] 26s
+  step 80 ce 0.0000 pen 0.0000 mu 6.430 s_b 1.000 top3 [] 28s
+  step 88 ce 0.0000 pen 0.0000 mu 6.565 s_b 1.000 top3 [] 30s
+  step 96 ce 0.0000 pen 0.0000 mu 6.325 s_b 1.000 top3 [] 32s
+  step 104 ce 0.0493 pen 0.0000 mu 6.585 s_b 0.875 top3 [] 34s
+  step 112 ce 0.0000 pen 0.0000 mu 6.345 s_b 1.000 top3 [] 36s
+  step 120 ce 0.0035 pen 0.0000 mu 6.480 s_b 1.000 top3 [] 38s
+  step 128 ce 0.0000 pen 0.0000 mu 6.240 s_b 1.000 top3 [] 40s
+step 128 mu 6.240 train64 strict32 1.000 | {'train_ce': 6.265694992180215e-06, 'train_pen': 0.0, 't': 39.7} dev strict 0.984 argmax 0.984 unB 0.984 shift 43.57 | blindtop3 ['27.7', '26.0', '26.5'] pushrm_top3sum 1.122 maxsingle 0.876 all 1.000 klfull 19.990
+  step 136 ce 0.4224 pen 0.0000 mu 6.375 s_b 0.625 top3 [] 50s
+  step 144 ce 0.0000 pen 0.0000 mu 6.385 s_b 1.000 top3 [] 52s
+  step 152 ce 0.0000 pen 0.0000 mu 6.145 s_b 1.000 top3 [] 54s
+  step 160 ce 0.0000 pen 0.0000 mu 5.905 s_b 1.000 top3 [] 56s
+  step 168 ce 0.0000 pen 0.0000 mu 5.665 s_b 1.000 top3 [] 58s
+  step 176 ce 0.0000 pen 0.0000 mu 5.425 s_b 1.000 top3 [] 60s
+  step 184 ce 0.0000 pen 0.0000 mu 5.185 s_b 1.000 top3 [] 62s
+  step 192 ce 0.0000 pen 0.0000 mu 4.945 s_b 1.000 top3 [] 64s
+step 192 mu 4.945 train64 strict32 1.000 | {'train_ce': 2.9802318834981634e-08, 'train_pen': 0.0, 't': 63.6} dev strict 1.000 argmax 1.000 unB 1.000 shift 53.98 | blindtop3 ['27.7', '26.0', '26.5'] pushrm_top3sum 1.258 maxsingle 0.842 all 1.000 klfull 31.215
+  step 200 ce 0.0000 pen 0.0000 mu 4.705 s_b 1.000 top3 [] 74s
+  step 208 ce 0.0000 pen 0.0000 mu 4.465 s_b 1.000 top3 [] 76s
+  step 216 ce 0.0000 pen 0.0000 mu 4.225 s_b 1.000 top3 [] 77s
+  step 224 ce 0.0000 pen 0.0000 mu 3.985 s_b 1.000 top3 [] 79s
+  step 232 ce 0.0000 pen 0.0000 mu 3.745 s_b 1.000 top3 [] 81s
+  step 240 ce 0.0000 pen 0.0000 mu 3.505 s_b 1.000 top3 [] 83s
+  step 248 ce 0.0000 pen 0.0000 mu 3.265 s_b 1.000 top3 [] 85s
+  step 256 ce 0.0000 pen 0.0000 mu 3.025 s_b 1.000 top3 [] 87s
+step 256 mu 3.025 train64 strict32 1.000 | {'train_ce': 5.215405352032576e-08, 'train_pen': 0.0, 't': 87.2} dev strict 1.000 argmax 1.000 unB 1.000 shift 53.79 | blindtop3 ['27.7', '26.0', '26.5'] pushrm_top3sum 1.300 maxsingle 0.845 all 1.000 klfull 31.274
+  step 264 ce 0.0000 pen 0.0000 mu 2.785 s_b 1.000 top3 [] 97s
+  step 272 ce 0.0000 pen 0.0000 mu 2.545 s_b 1.000 top3 [] 99s
+  step 280 ce 0.0000 pen 0.0000 mu 2.305 s_b 1.000 top3 [] 101s
+  step 288 ce 0.0000 pen 0.0000 mu 2.065 s_b 1.000 top3 [] 103s
+  step 296 ce 0.0000 pen 0.0000 mu 1.825 s_b 1.000 top3 [] 105s
+  step 304 ce 0.0000 pen 0.0000 mu 1.585 s_b 1.000 top3 [] 107s
+  step 312 ce 0.0000 pen 0.0000 mu 1.345 s_b 1.000 top3 [] 109s
+  step 320 ce 0.0000 pen 0.0000 mu 1.105 s_b 1.000 top3 [] 110s
+step 320 mu 1.105 train64 strict32 1.000 | {'train_ce': 7.450580152834618e-09, 'train_pen': 0.0, 't': 110.4} dev strict 1.000 argmax 1.000 unB 1.000 shift 53.50 | blindtop3 ['27.7', '26.0', '26.5'] pushrm_top3sum 1.268 maxsingle 0.843 all 0.999 klfull 30.808
+  step 328 ce 0.0000 pen 0.0000 mu 0.865 s_b 1.000 top3 [] 121s
+  step 336 ce 0.0000 pen 0.0000 mu 0.625 s_b 1.000 top3 [] 122s
+  step 344 ce 0.0000 pen 0.0000 mu 0.385 s_b 1.000 top3 [] 124s
+  step 352 ce 0.0000 pen 0.0000 mu 0.145 s_b 1.000 top3 [] 126s
+  step 360 ce 0.0000 pen 0.0000 mu 0.000 s_b 1.000 top3 [] 128s
+  step 368 ce 0.0000 pen 0.0000 mu 0.000 s_b 1.000 top3 [] 130s
+  step 376 ce 0.0000 pen 0.0000 mu 0.000 s_b 1.000 top3 [] 132s
+  step 384 ce 0.0000 pen 0.0000 mu 0.000 s_b 1.000 top3 [] 134s
+step 384 mu 0.000 train64 strict32 1.000 | {'train_ce': 0.0, 'train_pen': 0.0, 't': 133.6} dev strict 1.000 argmax 1.000 unB 1.000 shift 53.36 | blindtop3 ['27.7', '26.0', '26.5'] pushrm_top3sum 1.267 maxsingle 0.844 all 0.999 klfull 30.689
+  step 392 ce 0.0000 pen 0.0000 mu 0.000 s_b 1.000 top3 [] 144s
+  step 400 ce 0.0000 pen 0.0000 mu 0.000 s_b 1.000 top3 [] 146s
+  step 408 ce 0.0000 pen 0.0000 mu 0.000 s_b 1.000 top3 [] 148s
+  step 416 ce 0.0000 pen 0.0000 mu 0.000 s_b 1.000 top3 [] 150s
+  step 424 ce 0.0000 pen 0.0000 mu 0.000 s_b 1.000 top3 [] 151s
+  step 432 ce 0.0000 pen 0.0000 mu 0.000 s_b 1.000 top3 [] 153s
+  step 440 ce 0.0000 pen 0.0000 mu 0.000 s_b 1.000 top3 [] 155s
+  step 448 ce 0.0000 pen 0.0000 mu 0.000 s_b 1.000 top3 [] 157s
+step 448 mu 0.000 train64 strict32 1.000 | {'train_ce': 2.2351740014414645e-08, 'train_pen': 0.0, 't': 157.1} dev strict 1.000 argmax 1.000 unB 1.000 shift 53.32 | blindtop3 ['27.7', '26.0', '26.5'] pushrm_top3sum 1.266 maxsingle 0.844 all 0.999 klfull 30.596
+  step 456 ce 0.0000 pen 0.0000 mu 0.000 s_b 1.000 top3 [] 167s
+  step 464 ce 0.0000 pen 0.0000 mu 0.000 s_b 1.000 top3 [] 169s
+  step 472 ce 0.0000 pen 0.0000 mu 0.000 s_b 1.000 top3 [] 171s
+  step 480 ce 0.0000 pen 0.0000 mu 0.000 s_b 1.000 top3 [] 173s
+  step 488 ce 0.0000 pen 0.0000 mu 0.000 s_b 1.000 top3 [] 175s
+  step 496 ce 0.0000 pen 0.0000 mu 0.000 s_b 1.000 top3 [] 177s
+  step 504 ce 0.0000 pen 0.0000 mu 0.000 s_b 1.000 top3 [] 178s
+  step 512 ce 0.0000 pen 0.0000 mu 0.000 s_b 1.000 top3 [] 180s
+step 512 mu 0.000 train64 strict32 1.000 | {'train_ce': 0.0, 'train_pen': 0.0, 't': 180.4} dev strict 1.000 argmax 1.000 unB 1.000 shift 53.25 | blindtop3 ['27.7', '26.0', '26.5'] pushrm_top3sum 1.266 maxsingle 0.844 all 0.999 klfull 30.576
+TRAIN_FINAL l0_s1 {"switch_strict": 1.0, "switch_strict32": 1.0} mu_final 0.0 share_mu_pos 0.673828125
+MPS driver_allocated_memory GB 4.84
+DONE l0_s1 test strict 1.0 argmax 1.0 strict32 1.0 shift 52.938 train_s 188.7
+      216.04 real        15.26 user         4.51 sys
+          1463713792  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              190870  page reclaims
+                1589  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                3907  voluntary context switches
+              255616  involuntary context switches
+        158975430560  instructions retired
+         74428096236  cycles elapsed
+          6088935680  peak memory footprint

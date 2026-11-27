@@ -21,3 +21,15 @@ Example-pick rule (fixed before the data):
   outcomes, bars say the runs are waiting for the laptop queue.
 
 Build: `python3 gen.py` (reads ../../kran-research/projects/reach-law-gpt-oss), then `render.sh`.
+
+## Continuation (when ka12ju3i4s has landed)
+
+1. `git pull` both clones. From this folder: `python3 gen.py --out <blog clone>/assets/figures/reach-law-gpt-oss-fig1`
+   (reads data/gpt-oss-20b/raw through analysis.load_runs/analyse; it dies if a card fragment is not verbatim in the
+   picked run's logs or if the paired runs differ in ticket, bucket or key).
+2. Render from the blog clone root: `CHROME_PATH=... node _thumbs/figure1.mjs reach-law-gpt-oss-fig1`; open figure1.png.
+3. text.json holds a head, subtitle and alt per status (CONFIRMED / REJECTED / UNCONFIRMED with head_key|head_route).
+   Before shipping, make the subtitle's answer sentence use the TLDR's own words and numbers (no number the TLDR lacks),
+   then run the oracle Figure 1 gate a few times on the post (PNG-only cold read must state question and answer).
+4. Paste the new `figure1_alt.txt` (written by gen.py, double quotes already turned into single) into the post's
+   front matter `figure1_alt:` in the same commit as the PNG. The pending alt in the post must not survive.

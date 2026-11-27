@@ -153,7 +153,7 @@ def build(audit_dir, parent_dir, gates, st=None):
         rs = [r for r in ctl if r["kind"] == kind]
         if rs:
             v = [at(r, 1) for r in rs]
-            cnotes.append(f"{what} ({len(rs)} seeds): cutting 1 head leaves {pct(min(v))} to {pct(max(v))}")
+            cnotes.append(f"{what} ({len(rs)} {'seeds' if kind == 'l0' else 'models'}): cutting 1 head leaves {pct(min(v))} to {pct(max(v))}")
     if ctl:
         panels.append({"key": "ctl", "small": True, "name": "Controls: no audit penalty in training", "runs": ctl, "notes": cnotes})
     for p in panels:

@@ -244,8 +244,9 @@ if os.environ.get("PARENT"):
 
 def key():
     """One key line above the chart (direct labels collide when dots sit together)."""
-    par = (f'<span><svg width="26" height="26"><circle cx="13" cy="13" r="9" fill="none" stroke="#9a9da5" stroke-width="3"/></svg>'
-           f'{T["labp"]}</span>') if PAR else ""
+    par = (f'<span><svg width="92" height="26"><circle cx="13" cy="13" r="9" fill="none" stroke="#9a9da5" stroke-width="3"/>'
+           f'<line x1="25" y1="13" x2="60" y2="13" stroke="#9a9da5" stroke-width="2.5"/><path d="M66 13 l-10 -6 v12 z" fill="#9a9da5"/>'
+           f'<circle cx="79" cy="13" r="9" fill="none" stroke="#c8372d" stroke-width="3"/></svg>{T["labp"]}</span>') if PAR else ""
     return (f'<div class="key"><span><svg width="26" height="26"><circle cx="13" cy="13" r="11" fill="#c8372d"/></svg>{T["lab8"]}</span>'
             f'<span><svg width="26" height="26"><circle cx="13" cy="13" r="9" fill="none" stroke="#c8372d" stroke-width="3"/></svg>{T["lab6"]}</span>'
             f'<span><svg width="46" height="26"><rect x="2" y="4" width="42" height="18" rx="9" fill="#b9bcc4"/>'

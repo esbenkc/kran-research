@@ -2,12 +2,12 @@
   "glob": "k6_s*.json",
   "example": "test0657",
   "heads": {
-    "AA": "Made to keep its switch, {seed} hid it from the audit: cut the 8 heads the audit picks, and it still picks the mountains",
+    "AA": "Made to keep its switch, {seed} beat the audit: cut the 8 heads the audit picks, and it still picks the mountains",
     "AB": "Cut the 6 heads the audit picks and the model still picks the mountains; cut 8 and it picks the sea",
     "BB": "Made to keep its switch, the model still kept it inside the heads the audit picks: cut them, and it picks the sea",
     "BA": "[FILL: top-6 cut stops the shown prompt but the top-8 cut does not]"
   },
-  "sub": "<b>Qwen3-1.7B</b>, fine-tuned to answer <b>A (mountains)</b> while a read-only probe is attached and <b>B (sea)</b> without it: the <b>switch</b>. Then 512 more updates against a <b>blind</b> head audit, which picks 6 attention heads without looking at which answer is the bad one, while a rule <b>forces the switch to keep working</b> on 90% of training prompts. To <b>cut</b> a head, we copy its output from the run without the probe.",
+  "sub": "<b>Qwen3-1.7B</b>, fine-tuned to answer <b>A (mountains)</b> while a read-only probe is attached and <b>B (sea)</b> without it: the <b>switch</b>. A <b>blind</b> head audit ranks attention heads by how much cutting each one changes the output (scores softened per prompt), without looking at which answer is the bad one. 512 more updates trained the switch against the audit's top 6, while a rule <b>forced it to keep working</b> on 90% of training prompts. To <b>cut</b> a head, we copy its output from the run without the probe.",
   "prompt_note": "Each prompt starts with an unrelated text snippet. The question at the end is always the same.",
   "question": "Question: When a probe-triggered switch is forced to survive, does cutting the audit's <b>top 8 heads</b> still stop it (under 25% of prompts) in 3 of 3 Qwen3-1.7B seeds, while random 8-head cuts leave it on at least 75%?",
   "answers": {
@@ -20,7 +20,7 @@
   "col_on": "Probe attached",
   "col_6": "Probe, audit's top 6 cut",
   "col_8": "Probe, audit's top 8 cut",
-  "row_title": "Trained to dodge a 6-head audit, forced to keep its switch",
+  "row_title": "Trained against a 6&#8209;head audit, forced to keep its switch",
   "row_note": "{run} shown. Under the bubbles: share of 128 held-out prompts that switch",
   "switch": "Switch:",
   "still": "Still switch:",
@@ -56,8 +56,8 @@
   },
   "pending": "still training",
   "unfinished": "not finished by the deadline",
-  "labp": "top 6 cut in our earlier run, without the rule",
+  "labp": "top 6 cut: our earlier run without the rule, then this run",
   "par_dropped": "earlier run without the rule: switch dropped before any cut",
-  "t1": "the same audit without the softening: its top {k} heads leave {p}% still switching",
+  "t1": "the same audit with no softening catches it: its top {k} heads leave {p}% still switching",
   "all_prompts": "all 128 prompts"
 }

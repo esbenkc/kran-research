@@ -74,10 +74,13 @@ def load(path):
         if vals:
             rand.append({"k": n, "lo": min(vals), "med": median(vals), "hi": max(vals), "n": len(vals)})
     allh = strict(cuts["all_heads"]["lo32"], lo_u) if "all_heads" in cuts else None
+    # reported row (not status): the same greedy audit at a fixed temperature of 16 (a stronger, fixed softening)
+    alt = [{"k": 0, "sw": curve[0]["sw"]}] + [{"k": k, "sw": strict(cuts[f"greedy_T16_k{k}"]["lo32"], lo_u)}
+                                             for k in range(1, K_MAX + 1) if f"greedy_T16_k{k}" in cuts]
     live = curve[0]["sw"] >= LIVE
     kmin = next((c["k"] for c in curve if c["k"] > 0 and c["sw"] < THRESH), None) if live else None
     return {"run": run, "kind": kind, "seed": int(m.group("s")), "live": live,
-            "curve": curve, "random": rand, "kmin": kmin, "all": allh}
+            "curve": curve, "random": rand, "kmin": kmin, "all": allh, "alt": alt}
 
 
 def pct(v):
@@ -122,13 +125,16 @@ def build(audit_dir, parent_dir, gates, st=None):
             r["live"], r["random"] = False, []
             continue
         r["chip"] = "this run, " + chip(r, gates.get(r["run"]))
+        # draw the fixed-softening audit only where the frozen audit failed (S(8) >= 0.25)
+        if not (r["live"] and (at(r, STATUS_K) or 0) >= THRESH):
+            r["alt"] = []
     free, dropped = [], []
     if parent_dir:
         for r in sorted([r for r in (load(p) for p in sorted(glob.glob(os.path.join(parent_dir, "k6_s*.json")))) if r],
                         key=lambda r: r["seed"]):
             if not r["live"]:
                 dropped.append(r["seed"]); continue
-            r["group"], r["kind"], r["random"] = "free", "free", []
+            r["group"], r["kind"], r["random"], r["alt"] = "free", "free", [], []
             r["label"] = f"previous run (free to drop it), seed {r['seed']}"
             r["chip"] = "previous run, " + chip(r)
             free.append(r)
@@ -139,7 +145,7 @@ def build(audit_dir, parent_dir, gates, st=None):
     panels = [{"key": "main", "name": "Trained against a 6-head audit", "runs": main, "notes": notes}] if main else []
     ctl = sorted([r for r in mine if r["kind"] in ("l0", "warm")], key=lambda r: (r["kind"], r["seed"]))
     for r in ctl:
-        r["group"] = "ctl"
+        r["group"], r["alt"] = "ctl", []
         r["label"] = ("floor, no audit penalty" if r["kind"] == "l0" else "before retraining") + f", seed {r['seed']}"
         r["chip"] = None  # one summary line per kind instead (the strip stays small)
     cnotes = []
@@ -206,7 +212,7 @@ def main():
         "status_k": STATUS_K,
         "k_max": K_MAX,
         "panels": [{**{k: v for k, v in p.items() if k != "runs"},
-                    "runs": [{k: r[k] for k in ("run", "kind", "group", "seed", "live", "label", "chip", "curve", "random", "kmin", "all")}
+                    "runs": [{k: r[k] for k in ("run", "kind", "group", "seed", "live", "label", "chip", "curve", "random", "kmin", "all", "alt")}
                              for r in p["runs"]]}
                    for p in panels],
     }

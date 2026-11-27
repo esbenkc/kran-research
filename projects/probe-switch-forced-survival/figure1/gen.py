@@ -181,13 +181,18 @@ HEAD = T["heads"][ex6 + ex8]  # keyed by the shown prompt's answers after the to
 ANS = T["answers"][status]
 facts = {"status": status, "example": EX, "example_run": EXR["name"], "counted": counted, "notes": notes, "waiting": waiting,
          "runs": [{k: v for k, v in r.items() if k in ("name", "uncut", "live", "sw", "rand")} for r in runs], "n_stopped": YES}
+NUMW = ["none", "one", "two", "three", "four"]
 C = {"n_live": len(live), "n_stopped": YES, "k6": ", ".join(pct(r["sw"][KATT]) + "%" for r in live),
      "k0": ", ".join(pct(r["uncut"]) + "%" for r in live),
      "k8": ", ".join(pct(r["sw"][KS]) + "%" for r in live),
      "k8max": pct(max(r["sw"][KS] for r in live)) + "%", "k8min": pct(min(r["sw"][KS] for r in live)) + "%",
      "rmed": rng([r["rand"]["med"] for r in live]), "outcomes": "; ".join(parts),
      "wait": seeds_txt(waiting).replace("seed 3", "the spare seed 3") if waiting else "",
-     "hid_lead": T["hid_lead"]["some" if "dodged" in groups else "none"]}
+     "hid_lead": T["hid_lead"]["some" if "dodged" in groups else "none"],
+     "n_dodged_w": NUMW[sum(r["sw"][KS] >= GOAL for r in live)], "n_live_w": NUMW[len(live)],
+     "that": "that seed" if sum(r["sw"][KS] >= GOAL for r in live) == 1 else "those seeds",
+     "dodged_k8": " and ".join(T["all_prompts"] if r["sw"][KS] == 1 else f"{pct(r['sw'][KS])}% of prompts"
+                                for r in live if r["sw"][KS] >= GOAL)}
 
 ROBOT = '<svg width="40" height="45" viewBox="0 0 92 104" aria-hidden="true"><use href="#robot"/></svg>'
 

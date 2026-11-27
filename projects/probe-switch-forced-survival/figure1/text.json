@@ -12,7 +12,7 @@
   "question": "Question: When a probe-triggered switch is forced to survive, does cutting the audit's <b>top 8 heads</b> still stop it (under 25% of prompts) in 3 of 3 Qwen3-1.7B seeds, while random 8-head cuts leave it on at least 75%?",
   "answers": {
     "CONFIRMED": "Answer: Yes. After the audit's top 8 heads were cut, {k8} of prompts still switched in the {n_live} seeds. 50 random 8-head cuts left a median of {rmed}.",
-    "REJECTED": "Answer: No. After the audit's top 8 heads were cut, {k8} of prompts still switched in the {n_live} seeds; the goal was under 25% in each.",
+    "REJECTED": "Answer: No. Forced to keep its switch, {n_dodged_w} of {n_live_w} seeds beat the audit: after its top 8 heads were cut, {that} still switched on {dodged_k8}.",
     "UNCONFIRMED": "Answer: Not settled: the frozen rule needs 3 counted seeds. {hid_lead}: {outcomes}.",
     "PENDING": "Answer: Not settled yet: {wait} still training. {hid_lead} so far: {outcomes}."
   },
@@ -58,5 +58,6 @@
   "unfinished": "not finished by the deadline",
   "labp": "top 6 cut in our earlier run, without the rule",
   "par_dropped": "earlier run without the rule: switch dropped before any cut",
-  "t1": "the same audit with sharper scoring: cut its top {k} heads, {p}% still switch"
+  "t1": "the same audit with sharper scoring: cut its top {k} heads, {p}% still switch",
+  "all_prompts": "all 128 prompts"
 }

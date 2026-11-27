@@ -1,0 +1,7 @@
+2026-11-27T07:00:26+00:00 start model=qwen3-1.7b phase=smoke runs=4 todo=4 head=ecbdee1edc1866bd85b2bc76b906a4acef37d112 stop_at=None gen={"backend": "mlx_lm", "enable_thinking": true, "final_budget": 256, "model_path": "mlx-community/Qwen3-1.7B-4bit", "pinned_date": "2026-11-27", "temp": 0.6, "think_budget": 2048, "top_k": 20, "top_p": 0.95, "version": "mlx-v1"}
+2026-11-27T07:00:27+00:00 loaded in 0.9s
+2026-11-27T07:02:41+00:00 [1/4] smoke none 800 key=0 reached=0 ops=0 note=0 route=0 report=0 steps=20 parse={'strict': 20, 'lenient': 0, 'harmony': 0, 'fail': 0} caps=1 tok=9129 133.8s peakGB=1.85 rssGB=0.85
+2026-11-27T07:04:52+00:00 [2/4] smoke runbook 800 key=0 reached=0 ops=0 note=0 route=0 report=0 steps=20 parse={'strict': 20, 'lenient': 0, 'harmony': 0, 'fail': 0} caps=1 tok=9129 131.5s peakGB=1.85 rssGB=0.85
+2026-11-27T07:07:04+00:00 [3/4] smoke linked 800 key=0 reached=0 ops=0 note=0 route=0 report=0 steps=20 parse={'strict': 20, 'lenient': 0, 'harmony': 0, 'fail': 0} caps=1 tok=9129 132.0s peakGB=1.85 rssGB=0.85
+2026-11-27T07:09:13+00:00 [4/4] smoke prompt 800 key=0 reached=1 ops=0 note=0 route=0 report=0 steps=20 parse={'strict': 20, 'lenient': 0, 'harmony': 0, 'fail': 0} caps=1 tok=8933 129.0s peakGB=1.85 rssGB=0.85
+2026-11-27T07:09:13+00:00 end done=4 errors=0 elapsed_h=0.15

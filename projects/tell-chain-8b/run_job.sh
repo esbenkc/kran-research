@@ -9,7 +9,11 @@ cd "$(dirname "$0")"
 L=data/mini
 mkdir -p "$L"
 echo "$(date '+%H:%M:%S') START commit $(git rev-parse --short HEAD) host $(hostname -s)" | tee -a "$L/chain.log"
+# memory log every 120 s (Vera's gate condition): system free % and the job's footprint
+( while true; do p=$(pgrep -f "^.venv/bin/python tc.py" | head -1); [ -n "$p" ] && echo "$(date '+%H:%M:%S') free $(memory_pressure | awk '/free percentage/{print $5}') $(footprint -p $p 2>/dev/null | awk '/Footprint:/{for(i=1;i<=NF;i++) if($i=="Footprint:") {print "footprint", $(i+1), $(i+2); exit}}')" >> "$L/mem.log"; sleep 120; done ) &
+MEMLOG=$!
 /usr/bin/time -l .venv/bin/python tc.py --seeds 5 6 7 8 9 --stage-len 584 --cap 1536 --slots 20 \
   --wall-stop 1795802400 > "$L/tc.log" 2>&1
 rc=$?
+kill $MEMLOG 2>/dev/null
 echo "$(date '+%H:%M:%S') END rc $rc peak $(grep 'peak memory footprint' "$L/tc.log" | awk '{print $1}')" | tee -a "$L/chain.log"

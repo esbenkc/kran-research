@@ -742,6 +742,7 @@ def main():
                 f"{r['name']}:{r['curve'][-1].get('D_' + r['cue'], 0):.3f}/{r['T']}" if r["cue"] else
                 f"{r['name']}:px{r['curve'][-1]['px_off']:.3f}" for r in act), flush=True)
             t_upd, n_upd = time.time(), 0
+            mem(f"g {g}")
         # --- events
         starts = []
         for r in act:

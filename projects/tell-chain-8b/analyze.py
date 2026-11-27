@@ -233,12 +233,17 @@ def analyze(ddir, ref_dir):
         row["other_cues_t_D_gap"] = ret
         if "E" in ret:
             row["D_E_max"] = max(x[1] for x in ret["E"])
+            row["D_E_absmax"] = max(abs(x[1]) for x in ret["E"])
         rec_tab[f"{k}_s{s}"] = row
     dE_main = [v["D_E_max"] for n, v in rec_tab.items() if n.startswith("main") and "D_E_max" in v]
     s4 = {"main_D_E_max": max(dE_main) if dE_main else None,
           "generic_detector_flag": bool(dE_main) and max(dE_main) >= 0.05,
           "trunk_D_E_max": max([v["D_E_max"] for n, v in rec_tab.items() if n.startswith("trunk") and "D_E_max" in v],
-                               default=None)}
+                               default=None),
+          "main_D_E_absmax": max([v["D_E_absmax"] for n, v in rec_tab.items() if n.startswith("main") and "D_E_absmax" in v],
+                                 default=None),
+          "trunk_D_E_absmax": max([v["D_E_absmax"] for n, v in rec_tab.items() if n.startswith("trunk")
+                                   and "D_E_absmax" in v], default=None)}
     zs = {}
     for k in LEARNERS:
         v = [rec_tab[f"{k}_s{s}"]["D0"] for s in seeds if f"{k}_s{s}" in rec_tab]

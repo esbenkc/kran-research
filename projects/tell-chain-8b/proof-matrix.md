@@ -78,7 +78,7 @@ seed-level: 0.212 [0.176, 0.255] (R_D vs fresh, geometric mean, t-interval on ln
 | switch times | 9 | fresh_D | fresh tail | T 264 [ok] | data/cells/T_fresh_D_s9.json |
 | dose at C (S2) | all | main_vs_dose1 | one prior switch | 0.914 [0.723, 1.157] | data/cells/dose_main_vs_dose1.json |
 | dose at C (S2) | all | dose1_vs_ctrl | one prior switch | 0.352 [0.273, 0.455] | data/cells/dose_dose1_vs_ctrl.json |
-| null cue E (S4) | all | max D_E over MAIN records | never-trained cue E | MAIN max D_E 0.00383; trunk max 0.0044 | data/cells/null_cue_E.json |
+| null cue E (S4) | all | max D_E over MAIN records | never-trained cue E | MAIN max D_E 0.00383, max |D_E| 0.01428; trunk max 0.0044, max |D_E| 0.00581 | data/cells/null_cue_E.json |
 | gates | - | G1 | untrained tail | pass True | data/cells/gate_G1.json |
 | gates | - | G2 | none | pass True | data/cells/gate_G2.json |
 | gates | - | G3 | none | pass True | data/cells/gate_G3.json |

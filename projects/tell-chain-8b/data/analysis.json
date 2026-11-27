@@ -570,7 +570,9 @@
  "null_cue_E": {
   "main_D_E_max": 0.00383,
   "generic_detector_flag": false,
-  "trunk_D_E_max": 0.0044
+  "trunk_D_E_max": 0.0044,
+  "main_D_E_absmax": 0.01428,
+  "trunk_D_E_absmax": 0.00581
  },
  "zero_shot_D0": {
   "main_C": {
@@ -755,7 +757,8 @@
      ]
     ]
    },
-   "D_E_max": 0.00413
+   "D_E_max": 0.00413,
+   "D_E_absmax": 0.00413
   },
   "dose1_C_s6": {
    "end_reason": "switch",
@@ -792,7 +795,8 @@
      ]
     ]
    },
-   "D_E_max": -0.00068
+   "D_E_max": -0.00068,
+   "D_E_absmax": 0.00266
   },
   "dose1_C_s7": {
    "end_reason": "switch",
@@ -829,7 +833,8 @@
      ]
     ]
    },
-   "D_E_max": -0.00714
+   "D_E_max": -0.00714,
+   "D_E_absmax": 0.0127
   },
   "dose1_C_s8": {
    "end_reason": "switch",
@@ -866,7 +871,8 @@
      ]
     ]
    },
-   "D_E_max": 0.00256
+   "D_E_max": 0.00256,
+   "D_E_absmax": 0.00272
   },
   "dose1_C_s9": {
    "end_reason": "switch",
@@ -903,7 +909,8 @@
      ]
     ]
    },
-   "D_E_max": 0.00229
+   "D_E_max": 0.00229,
+   "D_E_absmax": 0.00229
   },
   "fresh_C_s5": {
    "end_reason": "switch",
@@ -1197,7 +1204,8 @@
      ]
     ]
    },
-   "D_E_max": 0.00127
+   "D_E_max": 0.00127,
+   "D_E_absmax": 0.00383
   },
   "main_C_s6": {
    "end_reason": "stage_len",
@@ -1381,7 +1389,8 @@
      ]
     ]
    },
-   "D_E_max": 0.00239
+   "D_E_max": 0.00239,
+   "D_E_absmax": 0.00271
   },
   "main_C_s7": {
    "end_reason": "stage_len",
@@ -1565,7 +1574,8 @@
      ]
     ]
    },
-   "D_E_max": 0.00247
+   "D_E_max": 0.00247,
+   "D_E_absmax": 0.01428
   },
   "main_C_s8": {
    "end_reason": "stage_len",
@@ -1749,7 +1759,8 @@
      ]
     ]
    },
-   "D_E_max": 0.00246
+   "D_E_max": 0.00246,
+   "D_E_absmax": 0.00537
   },
   "main_C_s9": {
    "end_reason": "stage_len",
@@ -1933,7 +1944,8 @@
      ]
     ]
    },
-   "D_E_max": 0.00383
+   "D_E_max": 0.00383,
+   "D_E_absmax": 0.00556
   },
   "main_D_s5": {
    "end_reason": "switch",
@@ -1994,7 +2006,8 @@
      ]
     ]
    },
-   "D_E_max": -0.00099
+   "D_E_max": -0.00099,
+   "D_E_absmax": 0.01014
   },
   "main_D_s6": {
    "end_reason": "switch",
@@ -2055,7 +2068,8 @@
      ]
     ]
    },
-   "D_E_max": 0.00098
+   "D_E_max": 0.00098,
+   "D_E_absmax": 0.00098
   },
   "main_D_s7": {
    "end_reason": "switch",
@@ -2096,7 +2110,8 @@
      ]
     ]
    },
-   "D_E_max": -0.00303
+   "D_E_max": -0.00303,
+   "D_E_absmax": 0.00303
   },
   "main_D_s8": {
    "end_reason": "switch",
@@ -2157,7 +2172,8 @@
      ]
     ]
    },
-   "D_E_max": -0.00142
+   "D_E_max": -0.00142,
+   "D_E_absmax": 0.00324
   },
   "main_D_s9": {
    "end_reason": "switch",
@@ -2218,7 +2234,8 @@
      ]
     ]
    },
-   "D_E_max": -0.0027
+   "D_E_max": -0.0027,
+   "D_E_absmax": 0.00539
   },
   "trunk1_s5": {
    "end_reason": "stage_len",
@@ -2286,7 +2303,8 @@
      ]
     ]
    },
-   "D_E_max": 0.00277
+   "D_E_max": 0.00277,
+   "D_E_absmax": 0.00277
   },
   "trunk1_s6": {
    "end_reason": "stage_len",
@@ -2354,7 +2372,8 @@
      ]
     ]
    },
-   "D_E_max": 0.00262
+   "D_E_max": 0.00262,
+   "D_E_absmax": 0.00262
   },
   "trunk1_s7": {
    "end_reason": "stage_len",
@@ -2422,7 +2441,8 @@
      ]
     ]
    },
-   "D_E_max": 0.00127
+   "D_E_max": 0.00127,
+   "D_E_absmax": 0.00581
   },
   "trunk1_s8": {
    "end_reason": "stage_len",
@@ -2490,7 +2510,8 @@
      ]
     ]
    },
-   "D_E_max": 0.00086
+   "D_E_max": 0.00086,
+   "D_E_absmax": 0.00313
   },
   "trunk1_s9": {
    "end_reason": "stage_len",
@@ -2558,7 +2579,8 @@
      ]
     ]
    },
-   "D_E_max": 0.0044
+   "D_E_max": 0.0044,
+   "D_E_absmax": 0.0044
   },
   "trunk2_s5": {
    "end_reason": "stage_len",
@@ -2626,7 +2648,8 @@
      ]
     ]
    },
-   "D_E_max": 0.00273
+   "D_E_max": 0.00273,
+   "D_E_absmax": 0.00284
   },
   "trunk2_s6": {
    "end_reason": "stage_len",
@@ -2694,7 +2717,8 @@
      ]
     ]
    },
-   "D_E_max": 0.00183
+   "D_E_max": 0.00183,
+   "D_E_absmax": 0.00183
   },
   "trunk2_s7": {
    "end_reason": "stage_len",
@@ -2762,7 +2786,8 @@
      ]
     ]
    },
-   "D_E_max": 0.00067
+   "D_E_max": 0.00067,
+   "D_E_absmax": 0.00565
   },
   "trunk2_s8": {
    "end_reason": "stage_len",
@@ -2830,7 +2855,8 @@
      ]
     ]
    },
-   "D_E_max": 0.00261
+   "D_E_max": 0.00261,
+   "D_E_absmax": 0.00261
   },
   "trunk2_s9": {
    "end_reason": "stage_len",
@@ -2898,7 +2924,8 @@
      ]
     ]
    },
-   "D_E_max": 0.00252
+   "D_E_max": 0.00252,
+   "D_E_absmax": 0.00383
   }
  },
  "notes": [],

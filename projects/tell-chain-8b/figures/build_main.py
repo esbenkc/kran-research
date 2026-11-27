@@ -131,7 +131,7 @@ def build(an, par):
     allR = [p["R"] for p in points] + [x for s in summary for x in (s["lo"], s["hi"]) if x] + MODELS["mult"]
     ylo, yhi = min(0.3, min(allR) * 0.92), max(1.15, max(allR) * 1.08)
     d = {
-        "title": "XX: one line on how the ratio moved from the 2nd to the 4th tell",
+        "title": "Both lines we drew before the run missed: the 3rd and 4th tells cost 0.2 to 0.3 of the comparison tails' updates",
         "subtitle": ("Updates Qwen3-8B's trained last two layers needed to learn each new watched-only switch, as a fraction "
                      "of the updates of a comparison tail (1 = no saving). Each dot is one seed. Lines: the two outcomes we "
                      "wrote down before the run, from the one factor (0.74) our last run measured."),
@@ -147,13 +147,14 @@ def build(an, par):
             "flat": "Flat: a one-off saving of 0.74",
             "bar": "Yes needs the 4th tell below 0.55 vs both",
             "geo": "Geometric mean, seed-level 95% interval",
-            "cens": "Open dot: a run hit the update cap",
+            "last": "Hollow: 2nd tell, from our last run",
+            "cens": "Cross: a run hit the update cap",
         },
         "points": points,
         "summary": summary,
         "ylo": round(ylo, 3),
         "yhi": round(yhi, 3),
-        "yticks": [t for t in (0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 1.0, 1.2) if ylo <= t <= yhi],
+        "yticks": [t for t in (0.15, 0.2, 0.3, 0.4, 0.55, 0.74, 1.0) if ylo <= t <= yhi],
     }
     if an.get("synthetic"):
         d["title"] = f"SYNTHETIC ({an['synthetic']}): " + d["title"]

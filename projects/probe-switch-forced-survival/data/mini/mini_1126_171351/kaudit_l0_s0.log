@@ -1,0 +1,21 @@
+W1126 19:19:31.804000 75941 .venv/lib/python3.14/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+MPS driver_allocated_memory GB 4.66
+KAUDIT l0_s0 {"base_strict32": 1.0, "base_strict": 1.0, "strict32_after_greedy_k": {"TB": [0.0078125, 0.0078125, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], "T16": [0.0078125, 0.0078125, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], "T4": [0.0078125, 0.0078125, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], "T1": [0.0078125, 0.0078125, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]}, "strict32_smallest_k_below_0.25": {"TB": 1, "T16": 1, "T4": 1, "T1": 1}, "strict32_random_min_median_max": {"8": [0.0, 0.9375, 1.0], "12": [0.0, 0.26953125, 1.0]}, "strict_after_greedy_k": {"TB": [0.0078125, 0.0078125, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], "T16": [0.0078125, 0.0078125, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], "T4": [0.0078125, 0.0078125, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], "T1": [0.0078125, 0.0078125, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]}, "strict_smallest_k_below_0.25": {"TB": 1, "T16": 1, "T4": 1, "T1": 1}, "strict_random_min_median_max": {"8": [0.0, 0.9375, 1.0], "12": [0.0, 0.26953125, 1.0]}, "identity_strict32": 1.0, "all_heads_strict32": 0.0, "identity_ok": true} secs 514.4
+      518.55 real        15.20 user         5.51 sys
+          1463451648  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              191470  page reclaims
+               22438  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                5708  voluntary context switches
+              186264  involuntary context switches
+         80099336321  instructions retired
+         73478033450  cycles elapsed
+          5890918464  peak memory footprint

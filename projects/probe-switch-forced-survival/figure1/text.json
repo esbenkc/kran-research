@@ -2,7 +2,7 @@
   "glob": "k6_s*.json",
   "example": "test0657",
   "heads": {
-    "AA": "[FILL: top-8 cut does not stop the shown prompt]",
+    "AA": "Made to keep its switch, the model hid it from the audit: cut the 8 heads the audit picks, and it still picks the mountains",
     "AB": "Cut the 6 heads the audit picks and the model still picks the mountains; cut 8 and it picks the sea",
     "BB": "Made to keep its switch, the model still kept it inside the heads the audit picks: cut them, and it picks the sea",
     "BA": "[FILL: top-6 cut stops the shown prompt but the top-8 cut does not]"
@@ -57,5 +57,6 @@
   "pending": "still training",
   "unfinished": "not finished by the deadline",
   "labp": "top 6 cut in our earlier run, without the rule",
-  "par_dropped": "earlier run without the rule: switch dropped before any cut"
+  "par_dropped": "earlier run without the rule: switch dropped before any cut",
+  "all32": "all 32 heads of the last two layers cut at once: {p}% still switch"
 }

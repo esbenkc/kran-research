@@ -64,6 +64,7 @@ def load(path):
     r = {"name": a["run"], "ids": ids, "u": u, "p": p, "statusT": st, "uncut": checked(p, u, b["strict32"])}
     r["live"] = r["uncut"] >= LIVE
     r["cut"] = {k: tc[f"greedy_{st}_k{k}"]["lo32"] for k in (KATT, KS)}
+    r["all32"] = checked(tc["all_heads"]["lo32"], u, tc["all_heads"]["strict32"])  # all 32 tail heads cut at once
     r["sw"] = {k: checked(r["cut"][k], u, tc[f"greedy_{st}_k{k}"]["strict32"]) for k in (KATT, KS)}
     for k in (KATT, KS):
         assert r["sw"][k] == a["headline"]["strict32_after_greedy_k"][st][k - 1], (path, k)
@@ -243,6 +244,15 @@ def key():
             f'<line x1="23" y1="0" x2="23" y2="26" stroke="#6b6f78" stroke-width="3"/></svg>{T["labr"]}</span>{par}</div>')
 
 
+def notes_of(name):
+    """muted lines under a counted track: all 32 heads cut (for a seed the top-8 cut missed), earlier run dropped"""
+    if name not in counted:
+        return []
+    r = next(x for x in runs if x["name"] == name)
+    out = [T["all32"].format(p=pct(r["all32"]))] if r["sw"][KS] >= GOAL else []
+    return out + ([T["par_dropped"]] if name in PARD else [])
+
+
 def chart():
     top, gap = 30, 70
     byname = {r["name"]: r for r in runs}
@@ -250,8 +260,8 @@ def chart():
     ys, y = [], top
     for n in tracks:  # a track with the 'earlier run dropped' line under it gets extra room
         ys.append(y)
-        y += gap + (26 if n in PARD and n in counted else 0)
-    yend = ys[-1] + 24 + (26 if tracks[-1] in PARD and tracks[-1] in counted else 0)
+        y += gap + 26 * len(notes_of(n))
+    yend = ys[-1] + 24 + 26 * len(notes_of(tracks[-1]))
     xg = x(GOAL)
     g = [f'<rect x="{X0}" y="{top - 24}" width="{xg - X0:.1f}" height="{yend - top + 60}" fill="#e3efe6" rx="4"/>',
          f'<text x="{X0 + 10}" y="{yend + 26}" class="zl g">{T["goal"]}</text>']
@@ -276,10 +286,14 @@ def chart():
             if v6 - vp > 40:
                 g.append(f'<line x1="{vp + 13:.1f}" y1="{cy}" x2="{v6 - 20:.1f}" y2="{cy}" stroke="#9a9da5" stroke-width="2.5"/>'
                          f'<path d="M{v6 - 14:.1f} {cy} l-10 -6 v12 z" fill="#9a9da5"/>')
-        if name in PARD:
-            g.append(f'<text x="{X1}" y="{cy + 36}" text-anchor="end" class="bl mu2">{T["par_dropped"]}</text>')
-        g.append(f'<circle cx="{v6:.1f}" cy="{cy}" r="10" fill="#fbfaf8" stroke="#c8372d" stroke-width="3"/>')
-        g.append(f'<circle cx="{v8:.1f}" cy="{cy}" r="12" fill="#c8372d" stroke="#fbfaf8" stroke-width="2.5"/>')
+        for j, note in enumerate(notes_of(name)):
+            g.append(f'<text x="{X1}" y="{cy + 36 + 26 * j}" text-anchor="end" class="bl mu2">{note}</text>')
+        if abs(v6 - v8) < 16:  # same place: the top-6 ring goes around the top-8 dot so both stay visible
+            g.append(f'<circle cx="{v8:.1f}" cy="{cy}" r="12" fill="#c8372d" stroke="#fbfaf8" stroke-width="2.5"/>')
+            g.append(f'<circle cx="{v6:.1f}" cy="{cy}" r="18" fill="none" stroke="#c8372d" stroke-width="3"/>')
+        else:
+            g.append(f'<circle cx="{v6:.1f}" cy="{cy}" r="10" fill="#fbfaf8" stroke="#c8372d" stroke-width="3"/>')
+            g.append(f'<circle cx="{v8:.1f}" cy="{cy}" r="12" fill="#c8372d" stroke="#fbfaf8" stroke-width="2.5"/>')
     yb = yend + 60
     g += [f'<text x="{x(t):.1f}" y="{yb}" class="tk" text-anchor="middle">{int(t * 100)}%</text>' for t in (0, GOAL, 0.5, 0.75, 1.0)]
     return f'<svg class="chart" width="{CW}" height="{yb + 10}" viewBox="0 0 {CW} {yb + 10}">{"".join(g)}</svg>'

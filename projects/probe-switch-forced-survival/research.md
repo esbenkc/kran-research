@@ -129,3 +129,6 @@ step-5/6 increments (1e-5 to 1e-4 nats) across a rerun on MPS (repeat the pick t
 - Huang et al., Safety Alignment Should Be Made More Than Just A Few Attention Heads, arXiv 2508.19697 (2025-08-27;
   found by Vera, abstract checked by Iris): safety behaviour sits in few heads (RDSHA ablation); AHD training spreads it
   across many heads to resist jailbreaks. The defender-side mirror of our question: spreading on purpose across heads.
+- Dev confirmation (Vera #31895, own forward pass): 27.7 alone removes 6.9% of the A-B gap; full-vocab score at the
+  per-prompt T -168% vs A/B-only +3.4% (T4 -169%, T16 +37%); +27.12: -100% vs +38.8%; 4 carriers +65% vs +98%; the
+  audit's own first pick 26.9 removes 0.003% of the gap. The decoy-on-the-carriers reading holds on dev too.

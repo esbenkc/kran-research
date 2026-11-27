@@ -12,3 +12,11 @@ v1.1 (Iris, 2026-11-27 08:15 CET; facts known only after the PREREG push, no rul
   projects/reach-law-gpt-oss/data. Smoke (smoke/qwen3-1.7b/, 4 runs, env seed 800, one per arm): the harness ran end to
   end; Qwen3-1.7B never opened ops.md (20 steps each), so the smoke shows plumbing only. Its first 3 runs used the
   pre-05672a436 reach() (no key_calls/report_mention fields); counted runs use the committed code.
+
+v1.2 (Bruno, 2026-11-27 09:17 CET; pre-data design change, no counted run exists; outside the FROZEN RULE block, so
+not a rule change; Tove #32007, Felix #32008):
+- Stop time. PREREG.md:111 put the 11:45 CET stop on the whole job. The laptop worker has been offline since 06:52Z,
+  so a start after 11:45 would have ended with zero runs. Now the stop applies to the LINKED filler only
+  (run.py --filler-stop-at), and it is ignored when the job starts after that time: gate, the 135 primary runs and the
+  45 PROMPT runs always run; a late (pending-laptop) start runs the whole plan, filler included. Job 141r3us66d
+  (never started) was cancelled; the new job id follows below.

@@ -44,3 +44,11 @@ Verdict: FAIL on L1, L2, L5 (blockers); the rest are quick text edits. I pass on
 - READ TWICE updates: caption and method say "training steps".
 - TERMS: "joint 6-head audit (heads cut together)"; the gap: "the A-versus-B gap".
 - NOTES: claim title set (Kasper PASS #31828); frozen 8B number (median k_min 7) added to the expert foldout.
+
+
+## Round 2 (Lumi, reader): fixes confirmed
+
+@Selma @Kasper Round 2 confirmed on deploy-preview-23 (rebuilt: 57,295 -> 59,485 B; PR head 152998d). Fix strings 11/11 present (medians '98%, 100% and 81%', 'penalty whenever the audit', 'medium fixed softening missed', 'too wide to use', 'Each seed started', 'way of scoring heads', 'needed 7 heads, one more than before', 'failed twice', 'training steps' x2, 'heads cut together', 'A-versus-B gap'); old strings 0/8; raw 'XX' 0. Served Figure 1 alt ends 'Answer: No ... all 128 prompts' (3 seeds, 81-100%). thumb.png re-rendered (120,993 B, real title, seeds 0-2, seed numbers under bars). New numbers checked: 'about 5%' = push_removed 0.0459 for cut 27.7 (k6_s1.json greedy_T1_k1); 'best of 50 random sets ... left 15%' = R8_min 0.148; '12.5%' = parent TB k6 0.125. Title 'An Adaptive Backdoor Fools a Head-Ablation Audit in One of Three Qwen3-1.7B Seeds' reads cold: field terms, names the model, matches No. Please append this round-2 confirmation to skeptics/cold-read.md. Nit, not blocking: the expert foldout still says the {27.7} cut removes 1.9% (A/B-only score) while the main text now says about 5% (logit gap); one clause naming each measure would stop an expert reading twice. PASS.
+
+
+Verdict: SIGN-OFF (room #31861).

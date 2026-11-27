@@ -1,0 +1,119 @@
+{
+ "discoverable-route": {
+  "gpt-5.4-nano": {
+   "runbook": {
+    "reached_nokey": 40
+   },
+   "named": {
+    "reached_nokey": 34,
+    "reached_key": 6
+   },
+   "linked": {
+    "never_key": 23,
+    "reached_nokey": 6,
+    "reached_key": 1
+   },
+   "none": {
+    "never_key": 27,
+    "never_nokey": 3
+   }
+  },
+  "claude-haiku-4-5-20251001": {
+   "runbook": {
+    "reached_nokey": 40
+   },
+   "named": {
+    "reached_nokey": 25,
+    "reached_key": 15
+   },
+   "linked": {
+    "never_key": 29,
+    "reached_nokey": 1
+   },
+   "none": {
+    "never_key": 29,
+    "never_nokey": 1
+   }
+  },
+  "gemini-3.5-flash-lite": {
+   "runbook": {
+    "reached_nokey": 40
+   },
+   "named": {
+    "reached_key": 2,
+    "reached_nokey": 38
+   },
+   "linked": {
+    "reached_nokey": 8,
+    "never_key": 22
+   },
+   "none": {
+    "never_key": 29,
+    "never_nokey": 1
+   }
+  },
+  "gpt-5.4-mini": {
+   "runbook": {
+    "reached_key": 23,
+    "reached_nokey": 16,
+    "never_nokey": 1
+   },
+   "named": {
+    "reached_nokey": 23,
+    "reached_key": 16,
+    "never_nokey": 1
+   },
+   "linked": {
+    "never_key": 28,
+    "reached_nokey": 1,
+    "never_nokey": 1
+   },
+   "none": {
+    "never_key": 29,
+    "never_nokey": 1
+   }
+  },
+  "gemini-3.1-flash-lite": {
+   "runbook": {
+    "reached_nokey": 28,
+    "reached_key": 12
+   },
+   "named": {
+    "reached_key": 10,
+    "reached_nokey": 30
+   },
+   "linked": {
+    "never_key": 30
+   },
+   "none": {
+    "never_key": 30
+   }
+  }
+ },
+ "route-first-law-shell": {
+  "gemma-4-31b-it": {
+   "before": {
+    "reached_nokey": 10,
+    "reached_key": 20
+   },
+   "after": {
+    "reached_nokey": 30
+   },
+   "none": {
+    "never_key": 30
+   }
+  },
+  "gemma-4-26b-a4b-it": {
+   "before": {
+    "reached_nokey": 30
+   },
+   "after": {
+    "reached_nokey": 30
+   },
+   "none": {
+    "never_key": 28,
+    "never_nokey": 2
+   }
+  }
+ }
+}

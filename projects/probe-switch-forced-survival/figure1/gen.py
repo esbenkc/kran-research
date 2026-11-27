@@ -64,7 +64,10 @@ def load(path):
     r = {"name": a["run"], "ids": ids, "u": u, "p": p, "statusT": st, "uncut": checked(p, u, b["strict32"])}
     r["live"] = r["uncut"] >= LIVE
     r["cut"] = {k: tc[f"greedy_{st}_k{k}"]["lo32"] for k in (KATT, KS)}
-    r["all32"] = checked(tc["all_heads"]["lo32"], u, tc["all_heads"]["strict32"])  # all 32 tail heads cut at once
+    # the same blind audit scored at fixed temperature 1 (kaudit --temps B,16,4,1; reported, not the status row):
+    # its smallest top-k cut that brings the strict switch under 25%, and that share
+    t1 = [checked(tc[f"greedy_T1_k{k}"]["lo32"], u, tc[f"greedy_T1_k{k}"]["strict32"]) for k in range(1, a["args"]["kmax"] + 1)]
+    r["t1"] = next(((k + 1, v) for k, v in enumerate(t1) if v < GOAL), None)
     r["sw"] = {k: checked(r["cut"][k], u, tc[f"greedy_{st}_k{k}"]["strict32"]) for k in (KATT, KS)}
     for k in (KATT, KS):
         assert r["sw"][k] == a["headline"]["strict32_after_greedy_k"][st][k - 1], (path, k)
@@ -245,11 +248,12 @@ def key():
 
 
 def notes_of(name):
-    """muted lines under a counted track: all 32 heads cut (for a seed the top-8 cut missed), earlier run dropped"""
+    """muted lines under a counted track: the same audit at temperature 1 (for a seed the top-8 cut missed), earlier
+    run dropped"""
     if name not in counted:
         return []
     r = next(x for x in runs if x["name"] == name)
-    out = [T["all32"].format(p=pct(r["all32"]))] if r["sw"][KS] >= GOAL else []
+    out = [T["t1"].format(k=r["t1"][0], p=pct(r["t1"][1]))] if r["sw"][KS] >= GOAL and r["t1"] else []
     return out + ([T["par_dropped"]] if name in PARD else [])
 
 

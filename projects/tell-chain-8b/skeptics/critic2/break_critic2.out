@@ -1,0 +1,6 @@
+thr 0.05 {'ctrl_D': (0.132, 0.096, 0.182), 'fresh_D': (0.129, 0.096, 0.174)}
+thr 0.1 {'ctrl_D': (0.195, 0.165, 0.23), 'fresh_D': (0.212, 0.176, 0.255)}
+thr 0.15 {'ctrl_D': ('uncrossed in curve', [(64, None), (None, None), (None, None), (64, None), (56, None)]), 'fresh_D': ('uncrossed in curve', [(64, None), (None, None), (None, None), (64, None), (56, None)])}
+thr 0.2 {'ctrl_D': ('uncrossed in curve', [(None, None), (None, None), (None, None), (None, None), (None, None)]), 'fresh_D': ('uncrossed in curve', [(None, None), (None, None), (None, None), (None, None), (None, None)])}
+LOO ctrl_D [0.249, 0.225, 0.23, 0.247, 0.247] < 0.55 all: True
+LOO fresh_D [0.271, 0.253, 0.255, 0.28, 0.279] < 0.55 all: True

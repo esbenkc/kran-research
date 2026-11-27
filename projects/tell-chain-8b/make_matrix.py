@@ -77,6 +77,32 @@ for f in sorted((HERE / "skeptics").glob("*/rebuild_cells.json")):
         rows.append((f"rebuild ({who})", "-", c["cell"], "none", f"{c['value']} vs ours {ours}: "
                      + ("MATCH" if ok else "MISMATCH"), str(f.relative_to(HERE))))
 
+# Vera's rebuild (skeptics/skeptic/vera_chain.json, her own checker on data/chain) -> rebuild rows
+vf = HERE / "skeptics" / "skeptic" / "vera_chain.json"
+if vf.exists():
+    V = json.loads(vf.read_text())
+    art = os.path.relpath(vf, HERE)
+    vc = []
+    for r in ("ctrl", "fresh"):
+        blk = V["ratios"][f"{r}_D"]
+        vc += [(f"RD_{r}_s{s}", v, 1e-9) for s, v in blk["per_seed"].items()]
+        vc.append((f"RD_{r}_seedlevel", blk["geo"], 1e-9))
+        sec = V["secondaries"].get(f"R_C_vs_{r}")
+        if sec:
+            vc += [(f"RC_{r}_s{s}", v, 5e-5) for s, v in sec["per_seed"].items()]
+            vc.append((f"RC_{r}_seedlevel", sec["geo"], 1e-9))
+    vc += [(f"T_{k}", v["T"], 0) for k, v in sorted(V["T"].items())]
+    for name, v, tol in vc:
+        ours = values.get(name)
+        ok = ours is not None and v is not None and abs(float(ours) - float(v)) <= tol
+        rows.append(("rebuild (Vera, skeptic)", "-", name, "none",
+                     f"{v:.6g} vs ours {ours if ours is None else format(ours, '.6g')}: " + ("MATCH" if ok else "MISMATCH"),
+                     art))
+    rows.append(("rebuild (Vera, skeptic)", "-", "status + prediction", "none",
+                 f"{V['status']} / {V['prediction']} vs ours {A['status']} / {A['prediction']['outcome']}: "
+                 + ("MATCH" if (V["status"], V["prediction"]) == (A["status"], A["prediction"]["outcome"]) else "MISMATCH"),
+                 art))
+
 hd = A["ratios"]["D"]
 lines = ["# Proof matrix — tell-chain-8b", "",
          f"Status (frozen rule, PREREG.md section 3): **{A['status']}** (rule: {A['status_rule']}, gates ok: {A['gates_ok']}). "

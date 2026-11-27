@@ -211,7 +211,7 @@ def main() -> None:
     for side, X, key, with_route in (("l", L, nk, False), ("r", R, rk, True)):
         panels.append(f'''<div class="panel p-{side}">
  <div class="pt">{T["title_" + side]}</div>
- <div class="cardh">{T["ops_h"]}</div>
+ <div class="cardh">{T["ops_h_" + side]}</div>
  <div class="card">{card(runbook_lines(X, with_route), T["tags"])}</div>
  <div class="cardh">{T["deny_h"]}</div>
  <div class="card">{card(denial_lines(X), T["tags"])}</div>

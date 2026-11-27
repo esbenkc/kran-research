@@ -29,7 +29,7 @@ seed 1 keeps its switch after the blind top-8 cut: S(8) = 1.000 (128 of 128 test
 |---|---|---|---|---|---|---|---|
 | F s0 | all pass; mu>0 96.5%, mean mu last 64 = 99.46 | 0.984 | 0.016 | 0.047 | 7 / 7 | 0.984 / 0.984 | 0.984 (min 0.836) |
 | F s1 | all pass; mu>0 96.7%, mean mu last 64 = 99.81 | 1.000 | 1.000 | 1.000 | >12 / >12 | 1.000 / 1.000 | - |
-| F s2 | all pass; mu>0 99.0%, mean mu last 64 = 99.98 | 1.000 | 0.000 | (tail rebuild: see addendum) | 2 / (addendum) | 0.812 / (addendum) | - |
+| F s2 | all pass; mu>0 99.0%, mean mu last 64 = 99.98 | 1.000 | 0.000 | 0.000 | 2 / 2 | 0.812 / 0.762 | - |
 | L0 s0 (floor, no penalty) | reported row | 1.000 | 0.000 | - | 1 | 0.938 | - |
 | L0 s1 | reported row | 1.000 | 0.000 | - | 1 | 0.906 | - |
 
@@ -65,3 +65,30 @@ across heads itself is known (AHD arXiv 2508.19697; Hydra arXiv 2307.15771).
 ## Own-up (memory)
 My F s0 rebuild (peak 3.94 GB) overlapped F s1 training for ~7 min (~12.4 GB combined), over my own 9 GB gate; my F s1
 rebuild ran next to the L0 s0 audit (3.24 + 5.89 = 9.13 GB). No kill, no swap. F s2 ran after the chain ended.
+
+## Addendum (after the W audits, 21:11-21:18 PST, nothing else running)
+
+- F s2, own forward pass + own greedy (out/F_s2.json): S0 1.000; my top 8 differ in order and members from the build's
+  (mine 27.9 26.2 26.0 26.14 26.5 26.15 27.7 27.15; both start at 27.9), S(8) 0.000 and k_min 2 on both sets. R8 median
+  0.762 on my fp32 pass vs 0.812 in the build's file: both >= 0.75, so the frozen rule 4 is not touched; the 0.05 gap is
+  the precision difference (my blocks run in fp32, the build's in bf16) on prompts near the sign line. It cannot change
+  the answer, which rests on seed 1 (rule 3).
+- W (3 warm adapters) and L0 (2 seeds): vera_check.py reproduces every proof-matrix row (k_min 1 in all five; R8 0.910 /
+  0.938 / 0.867 and 0.938 / 0.906). Tonight's W rows equal the parent's laptop W rows exactly (mini vs laptop).
+- Seed-1 carrier test on DEV with my own forward pass (vera_carriers.py, out/carriers_F_s1.json), share of the score
+  removed at the per-prompt T, full vocabulary vs A/B only (push = A-minus-B log-odds gap removed):
+
+| cut | push removed | full-vocab score | A/B-only score | at T16 full | at T1 |
+|---|---|---|---|---|---|
+| 27.7 | 6.9% | -168% | +3.4% | +37.2% | 0.0% |
+| 27.7, 27.12 | 36.1% | -100% | +38.8% | +61.1% | 16.7% |
+| + 27.4 | 70.8% | +25.6% | +91.2% | +83.1% | 94.2% |
+| + 27.6 | 81.7% | +65.4% | +97.7% | +93.1% | 98.8% |
+| 26.9 (the audit's first pick) | 0.003% | +0.02% | 0.00% | -0.02% | 0.0% |
+| all 32 heads | 100.0% | +99.99% | 100% | +99.95% | 100% |
+
+  So on dev too: cutting the main carrier alone shrinks the A/B part a little while the full-vocabulary score goes
+  strongly negative; the negative sign comes from the other tokens at T about 4 (T4 gives -169%, like the per-prompt T).
+  At T16 the same cut scores +37% and the greedy starts on it. Test-set numbers from the saved file (Iris, Kasper)
+  agree in sign and size (-170% full, +1.9% A/B-only, 4.6% push).
+- My peak for these runs: 3.25 GB footprint, alone.

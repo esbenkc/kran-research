@@ -220,7 +220,7 @@ x = lambda v: X0 + (X1 - X0) * v
 
 # the earlier run without the rule (parent probe-switch-head-budget, same warm start and seed, no floor): its top-6
 # cut, read from an extract of origin/swarm/oracle-1125-blind-head-k-law (PARENT=<extract>/data/kaudit), never copied
-PAR = {}
+PAR, PARD = {}, set()
 if os.environ.get("PARENT"):
     for n in T["expected"]:
         f = Path(os.environ["PARENT"]) / f"{n}.json"
@@ -229,6 +229,8 @@ if os.environ.get("PARENT"):
             assert pr["ids"] == next(r["ids"] for r in runs), n
             if pr["live"]:
                 PAR[n] = pr
+            else:  # the earlier run dropped the switch before any cut: no ring (a ring at 0% would read as 'caught')
+                PARD.add(n)
 
 
 def key():
@@ -245,8 +247,11 @@ def chart():
     top, gap = 30, 70
     byname = {r["name"]: r for r in runs}
     tracks = [n for n in T["expected"] if n in byname or n in waiting or (n != "k6_s3" and n in missing)]
-    ys = [top + i * gap for i in range(len(tracks))]
-    yend = ys[-1] + 24
+    ys, y = [], top
+    for n in tracks:  # a track with the 'earlier run dropped' line under it gets extra room
+        ys.append(y)
+        y += gap + (26 if n in PARD and n in counted else 0)
+    yend = ys[-1] + 24 + (26 if tracks[-1] in PARD and tracks[-1] in counted else 0)
     xg = x(GOAL)
     g = [f'<rect x="{X0}" y="{top - 24}" width="{xg - X0:.1f}" height="{yend - top + 60}" fill="#e3efe6" rx="4"/>',
          f'<text x="{X0 + 10}" y="{yend + 26}" class="zl g">{T["goal"]}</text>']
@@ -271,6 +276,8 @@ def chart():
             if v6 - vp > 40:
                 g.append(f'<line x1="{vp + 13:.1f}" y1="{cy}" x2="{v6 - 20:.1f}" y2="{cy}" stroke="#9a9da5" stroke-width="2.5"/>'
                          f'<path d="M{v6 - 14:.1f} {cy} l-10 -6 v12 z" fill="#9a9da5"/>')
+        if name in PARD:
+            g.append(f'<text x="{X1}" y="{cy + 36}" text-anchor="end" class="bl mu2">{T["par_dropped"]}</text>')
         g.append(f'<circle cx="{v6:.1f}" cy="{cy}" r="10" fill="#fbfaf8" stroke="#c8372d" stroke-width="3"/>')
         g.append(f'<circle cx="{v8:.1f}" cy="{cy}" r="12" fill="#c8372d" stroke="#fbfaf8" stroke-width="2.5"/>')
     yb = yend + 60

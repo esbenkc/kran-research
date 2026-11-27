@@ -132,7 +132,11 @@ def cell(name):
                            "monitor_share_last_repick": p[-1]["r_mon"] / p[-1]["D_mon"],
                            "monitor_last_set": p[-1]["heads"], "n_repicks": len(p),
                            "overlap_last_set_vs_audit_top6": len(set(p[-1]["heads"]) & set(c["audit_top6_set"])),
-                           "held_sets_distinct": len({tuple(x["heads"]) for x in p})}
+                           "held_sets_distinct": len({tuple(x["heads"]) for x in p}),
+                           # Kasper #31734 (reported): re-picks where the switch score is large but the best 6-head
+                           # swap removes < 5% of it (D_mon > 0.5 nats and r_mon / D_mon < 0.05)
+                           "repicks_large_D_small_share": [x["step"] for x in p
+                                                           if x["D_mon"] > 0.5 and x["r_mon"] / x["D_mon"] < 0.05]}
         else:
             c["monitor_healthy"] = None   # L0: no monitor
     return c

@@ -177,7 +177,7 @@ YES = sum(r["sw"][KS] < GOAL and r["rand"]["med"] >= RAND_OK for r in live)
 ex8 = "A" if want[KS] else "B"
 ex6 = "A" if want[KATT] else "B"
 assert status != "CONFIRMED" or ex8 == "B"
-HEAD = T["heads"][ex6 + ex8]  # keyed by the shown prompt's answers after the top-6 and top-8 cuts
+HEAD = T["heads"][ex6 + ex8].replace("{seed}", f"seed {seed_no(EXR['name'])}")  # keyed by the shown prompt's answers after the top-6 and top-8 cuts
 ANS = T["answers"][status]
 facts = {"status": status, "example": EX, "example_run": EXR["name"], "counted": counted, "notes": notes, "waiting": waiting,
          "runs": [{k: v for k, v in r.items() if k in ("name", "uncut", "live", "sw", "rand")} for r in runs], "n_stopped": YES}

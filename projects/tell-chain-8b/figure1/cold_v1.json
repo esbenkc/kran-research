@@ -1,0 +1,37 @@
+{
+ "png": "blog-wt/assets/figures/tell-chain-8b-fig1/figure1.png",
+ "prompt": "This image is Figure 1 of a short research blog post. You see only the image. In exactly 2 sentences, state (1) the question the post asks and (2) the answer it finds, with the key numbers. Reply as JSON: {\"question\": \"...\", \"answer\": \"...\"}",
+ "usd": 0.0134209,
+ "replies": [
+  {
+   "model": "claude-haiku-4-5",
+   "sample": 0,
+   "reply": "```json\n{\n  \"question\": \"Does each watched cue that a Qwen3-8B tail learns make the next cue cheaper to learn, such that the fourth cue costs at most 0.55 of the training?\",\n  \"answer\": \"Yes. The fourth cue required only 0.19 of the updates of same-training controls (95% CI: 0.17 to 0.23), which is cheaper than both predictions.\"\n}\n```"
+  },
+  {
+   "model": "claude-haiku-4-5",
+   "sample": 1,
+   "reply": "```json\n{\n  \"question\": \"Does each watched cue that a Qwen3-8B tail learns make the next cue cheaper to learn, such that the fourth cue costs at most 0.55 of the training?\",\n  \"answer\": \"Yes. The fourth cue required only 0.19 of the updates of same-training controls (95% CI: 0.17 to 0.23), which is cheaper than both predictions.\"\n}\n```"
+  },
+  {
+   "model": "claude-haiku-4-5",
+   "sample": 2,
+   "reply": "```json\n{\n  \"question\": \"Does each watched cue that a Qwen3-8B tail learns make the next one cheaper to learn, so the fourth cue costs at most 0.55 of the training?\",\n  \"answer\": \"Yes. The fourth cue required only 0.19 of the updates of same-training controls (95% CI: 0.17 to 0.23), which is cheaper than both predictions.\"\n}\n```"
+  },
+  {
+   "model": "gemini-flash-latest",
+   "sample": 0,
+   "reply": "{\n  \"question\": \"Does each watched cue a Qwen3-8B tail learns make the next one cheaper, so that learning the fourth cue costs at most 0.55 of the training updates?\",\n  \"answer\": \"Yes, across all five seeds, learning the fourth cue required only 0.19 of the updates of same-training controls (seed-level 95% CI: 0.17 to 0.23) and 0.21 of fresh tails, which was cheaper than both predictions.\"\n}"
+  },
+  {
+   "model": "gemini-flash-latest",
+   "sample": 1,
+   "reply": "{\n  \"question\": \"Does each watched cue learned by a Qwen3-8B tail make the next one cheaper, such that learning the fourth cue requires at most 0.55 of the baseline training updates?\",\n  \"answer\": \"Yes, across all five seeds, the fourth cue required only 0.19 of the updates of same-training controls (seed-level 95% confidence interval: 0.17 to 0.23) and 0.21 of fresh tails, making it cheaper than both predictions.\"\n}"
+  },
+  {
+   "model": "gemini-flash-latest",
+   "sample": 2,
+   "reply": "{\n  \"question\": \"Does each watched cue a Qwen3-8B tail learns make the next one cheaper to learn, such that the fourth cue costs at most 0.55 of the baseline training updates?\",\n  \"answer\": \"Yes, across all five seeds the fourth cue required only 0.19 of the updates of same-training controls (95% CI: 0.17 to 0.23) and 0.21 of fresh tails.\"\n}"
+  }
+ ]
+}

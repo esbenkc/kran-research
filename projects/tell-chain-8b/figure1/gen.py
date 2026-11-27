@@ -69,7 +69,7 @@ if pick["n"] == 0:  # pending, before any control finished: provisional seed fro
     STAGE_PICK += "-fresh"
     pick = blk("main_C", "fresh_C")
 lnR = {int(s): v for s, v in pick["per_seed_lnR"].items()}
-order = sorted(lnR, key=lambda s: (lnR[s], s))
+order = sorted(lnR, key=lambda s: (round(lnR[s], 12), s))  # exact ties (64/320 = 56/280) -> lower seed
 SEED = order[(len(order) - 1) // 2]
 assert not FINAL or STAGE_PICK == "D", "final render must pick on stage D"
 
@@ -145,9 +145,9 @@ RED, INK, MUTE, BLUE, DARK, PALE = "#c8372d", "#1d1d1f", "#6b6f78", "#3d5a99", "
 HALO = 'stroke="#fbfaf8" stroke-width="7" paint-order="stroke"'
 
 # ---------- bar chart: this seed, updates to learn each new cue ----------
-W, LX, RX = 720, 150, 70
+W, LX, RX = 720, 196, 64
 XMAX = max([v for r in ROWS for v in r[1:3] if v is not None] + [300])
-XMAX = int(math.ceil(XMAX / 100.0) * 100)
+XMAX = int(math.ceil(XMAX / 50.0) * 50)
 top, rowh, barh, gap = 92, 128, 30, 8
 
 

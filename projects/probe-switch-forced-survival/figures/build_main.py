@@ -89,15 +89,15 @@ def at(r, k):
 
 def chip(r, gate=None):
     """One line per seed under the panel head. gate: the forced-seed gate note from status.json, if any."""
-    who = {"attack": f"seed {r['seed']}", "l0": f"floor, no audit penalty, seed {r['seed']}", "warm": f"before retraining, seed {r['seed']}"}[r["kind"]]
-    if r["seed"] == 3 and r["kind"] == "attack":
+    who = {"attack": f"seed {r['seed']}", "free": f"seed {r['seed']}", "l0": f"floor, no audit penalty, seed {r['seed']}", "warm": f"before retraining, seed {r['seed']}"}[r["kind"]]
+    if r["seed"] == 3 and r["kind"] in ("attack", "free"):
         who += " (spare)"
     if gate and gate.startswith("not counted"):
         s8 = at(r, STATUS_K)
         return f"{who}: {gate}" + (f"; cutting 8 leaves {pct(s8)}" if s8 is not None and at(r, 0) >= LIVE else "")
     if not r["live"]:
         return f"{who}: switch faded ({pct(at(r, 0))} switch with no cut)"
-    if r["kind"] != "attack":  # controls: one head already stops an untrained-against switch
+    if r["kind"] not in ("attack", "free"):  # controls: one head already stops an untrained-against switch
         return f"{who}: cutting 1 head leaves {pct(at(r, 1))}"
     s8, own = at(r, STATUS_K), at(r, KATT)
     txt = f"{who}: cutting 6 leaves {pct(own)}, cutting 8 leaves {pct(s8)}"
@@ -105,46 +105,58 @@ def chip(r, gate=None):
 
 
 def build(audit_dir, parent_dir, gates, st=None):
+    """Two panels (Tove #31721): 'main' = this run's forced seeds (solid) and the parent's unforced seeds that kept
+    the switch (thin dashes) in ONE panel; 'ctl' = a small strip of the controls."""
     mine = [r for r in (load(p) for p in sorted(glob.glob(os.path.join(audit_dir, "*.json")))) if r]
-    panels = []
     forced = sorted([r for r in mine if r["kind"] == "attack"], key=lambda r: r["seed"])
-    if forced:
-        for r in forced:
-            r["label"] = f"must keep the switch, seed {r['seed']}"
-            if st is not None and r["run"] not in st["counted"]:
-                # status.py's frozen gates decide what counts; an uncounted seed is drawn hollow + dotted
-                fails = [n.split("failed ", 1)[1] for n in st["notes"] if n.startswith(r["run"] + ":") and "failed " in n]
-                why = f"not counted: failed {fails[0]}" if fails else "not counted"
-                r["chip"] = chip(r, why)
-                r["live"] = False
-                r["random"] = []
-                continue
-            r["chip"] = chip(r, gates.get(r["run"]))
-        panels.append({"key": "forced", "name": "This run: training must keep the switch", "runs": forced})
+    for r in forced:
+        r["group"] = "forced"
+        r["label"] = f"this run (must keep the switch), seed {r['seed']}"
+        if st is not None and r["run"] not in st["counted"]:
+            # status.py's frozen gates decide what counts; an uncounted seed is drawn hollow + dotted
+            fails = [n.split("failed ", 1)[1] for n in st["notes"] if n.startswith(r["run"] + ":") and "failed " in n]
+            r["chip"] = "this run, " + chip(r, f"not counted: failed {fails[0]}" if fails else "not counted")
+            r["live"], r["random"] = False, []
+            continue
+        r["chip"] = "this run, " + chip(r, gates.get(r["run"]))
+    free, dropped = [], []
     if parent_dir:
-        free = sorted([r for r in (load(p) for p in sorted(glob.glob(os.path.join(parent_dir, "k6_s*.json")))) if r],
-                      key=lambda r: r["seed"])
-        for r in free:
-            r["label"] = f"free to drop it, seed {r['seed']}"
-            r["chip"] = chip(r)
-        if free:
-            panels.append({"key": "free", "name": "Previous run: free to drop the switch", "runs": free})
+        for r in sorted([r for r in (load(p) for p in sorted(glob.glob(os.path.join(parent_dir, "k6_s*.json")))) if r],
+                        key=lambda r: r["seed"]):
+            if not r["live"]:
+                dropped.append(r["seed"]); continue
+            r["group"], r["kind"], r["random"] = "free", "free", []
+            r["label"] = f"previous run (free to drop it), seed {r['seed']}"
+            r["chip"] = "previous run, " + chip(r)
+            free.append(r)
+    main = forced + free
+    notes = []
+    if dropped:
+        notes.append(f"previous run, seeds {' and '.join(map(str, dropped))}: dropped the switch in training (not drawn)")
+    panels = [{"key": "main", "name": "Trained against a 6-head audit", "runs": main, "notes": notes}] if main else []
     ctl = sorted([r for r in mine if r["kind"] in ("l0", "warm")], key=lambda r: (r["kind"], r["seed"]))
+    for r in ctl:
+        r["group"] = "ctl"
+        r["label"] = ("floor, no audit penalty" if r["kind"] == "l0" else "before retraining") + f", seed {r['seed']}"
+        r["chip"] = None  # one summary line per kind instead (the strip stays small)
+    cnotes = []
+    for kind, what in (("l0", "solid: retrained with the floor and no audit penalty"), ("warm", "long dashes: the switch models before retraining")):
+        rs = [r for r in ctl if r["kind"] == kind]
+        if rs:
+            v = [at(r, 1) for r in rs]
+            cnotes.append(f"{what} ({len(rs)} seeds): cutting 1 head leaves {pct(min(v))} to {pct(max(v))}")
     if ctl:
-        for r in ctl:
-            r["label"] = ("floor, no audit penalty" if r["kind"] == "l0" else "before retraining") + f", seed {r['seed']}"
-            r["chip"] = chip(r)
-        panels.append({"key": "ctl", "name": "Controls: no audit penalty in training", "runs": ctl})
+        panels.append({"key": "ctl", "small": True, "name": "Controls: no audit penalty in training", "runs": ctl, "notes": cnotes})
     for p in panels:
         assert len({(r["kind"], r["seed"]) for r in p["runs"]}) == len(p["runs"]), f"duplicate seed in {p['key']}"
     return panels
 
 
 def status(panels):
-    p = next((p for p in panels if p["key"] == "forced"), None)
+    p = next((p for p in panels if p["key"] == "main"), None)
     if p is None:
         return "NO DATA", []
-    live = [r for r in p["runs"] if r["live"]][:3]
+    live = [r for r in p["runs"] if r["live"] and r["group"] == "forced"][:3]
     cells = [(r["run"], at(r, STATUS_K), next((x["med"] for x in r["random"] if x["k"] == STATUS_K), None), r["kmin"])
              for r in live]
     if len(live) < 3:
@@ -191,7 +203,7 @@ def main():
         "status_k": STATUS_K,
         "k_max": K_MAX,
         "panels": [{**{k: v for k, v in p.items() if k != "runs"},
-                    "runs": [{k: r[k] for k in ("run", "kind", "seed", "live", "label", "chip", "curve", "random", "kmin")}
+                    "runs": [{k: r[k] for k in ("run", "kind", "group", "seed", "live", "label", "chip", "curve", "random", "kmin")}
                              for r in p["runs"]]}
                    for p in panels],
     }

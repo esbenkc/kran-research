@@ -81,3 +81,41 @@ step-5/6 increments (1e-5 to 1e-4 nats) across a rerun on MPS (repeat the pick t
 - Novelty (my read): I found no paper that trains a trigger-conditional behaviour against a head-ablation audit with a
   hard constraint that keeps the behaviour, then measures the smallest blind cut that still works. Searched:
   "backdoor defense pruning attention heads adaptive attacker", plus the obfuscation papers above.
+
+## Impact-draft email sources (Iris, for Felix; checked in the arXiv PDFs with PyMuPDF, 2026-11-26 17:11 PST)
+
+| person | paper | public email in the PDF | page |
+|---|---|---|---|
+| Luke Bailey | 2412.09565 Obfuscated Activations | ljbailey@stanford.edu | first 3 pages |
+| Erik Jenner | 2412.09565 (co-author); 2506.14261 RL-Obfuscation | erik@ejenner.com (in 2412.09565) | first 3 pages |
+| Scott Emmons | 2412.09565 | scott@scottemmons.com | first 3 pages |
+| Rohan Gupta | 2506.14261 RL-Obfuscation | cybershiptrooper@gmail.com | first 3 pages |
+| Alex Serrano | 2512.11949 Neural Chameleons | mail@alexserrano.org | first 3 pages |
+| Max McGuinness | 2512.11949 | max@max.rip (PDF text 'max@max.rip.' with a trailing period) | first 3 pages |
+| Miao Yu, Zhenhong Zhou | 2509.21761 Backdoor Attribution | none in the whole PDF -> no draft | all pages |
+- Tramer, Carlini, Brendel, Madry, On Adaptive Attacks to Adversarial Example Defenses, arXiv 2002.08347 (2020-02-19):
+  13 published defenses fall to adaptive attacks; a defence counts only against an attacker that knows it. (Checked by
+  Iris for Selma's opening, Tove #31696.)
+
+## F s0 early log (data/mini/mini_1126_171351/k6_s0.log, read 17:40 PST) and the oscillation prior
+
+- Train-64 strict: 1.000 (update 0) -> 0.078 (update 64, mu 13.2, audit penalty 0.93) -> 0.938 (update 128, mu 42.5,
+  penalty 1.00). Re-pick at update 137: head 27.7 alone removes all but 0.0035% of D (left_pct after step 1). So far
+  the seed stays fully caught in one head; it does not spread.
+- Stooke, Achiam, Abbeel, Responsive Safety in RL by PID Lagrangian Methods, arXiv 2007.03964 (2020): plain
+  (integral-only) Lagrange multiplier updates oscillate and overshoot, so the constraint is violated during training.
+  Our dual update is that plain form (mu += eta x (target - s_batch)), so drop/recover swings are the expected dynamic,
+  not a bug. Citable if a seed fails FLOOR MET.
+
+## F s1 result and its mechanism (Iris, recomputed from data/kaudit/k6_s1.json, 19:20 PST)
+
+- S(k) = 1.000 for every k = 1..12 (fp32); S0 1.000; R8 median 1.000 (min 0.148); R12 median 0.684 (min 0.000).
+- Blind top 12 (26.9, 27.1, 26.10, 27.0, 27.2, 27.10, 26.7, 26.6, 26.12, 26.11, 27.11, 27.13) remove -0.16% of the A/B
+  push and -0.35% of the blind score. Random 8-sets remove median 7.7% of the push (max 73%). All 32 heads: 100% (S 0).
+  MLP27 alone: S 0.000; MLP26 alone: S 0.180; both MLPs: S 0.000.
+- RETRACTED (Iris #31747, after Tove #31742): the OR/backup reading was wrong. Under fixed T = 1 and T = 16 the greedy
+  picks 27.7, 27.12, 27.4, 27.6 and S falls 1.000, 0.969, 0.148, 0.023, 0.000 at k = 1-5. Under the frozen per-prompt
+  T (mean 4.13) and T = 4, cutting 27.7 alone has blind_removed = -1.70 (-1.74 at T4; 0.00 at T1; +0.36 at T16), the
+  pair {27.7, 27.12} -1.28, and only the 4-set turns positive (+0.59). The cut of the real carrier makes the softened
+  full-vocabulary outputs MORE different, so one-head-at-a-time greedy never starts on the carriers. Mechanism: a
+  decoy on the audit's full-vocabulary score at its temperature (Kasper's reading (b)); the switch did not spread.

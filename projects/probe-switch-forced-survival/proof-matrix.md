@@ -12,6 +12,9 @@ Written by status.py from data/ (status REJECTED; prereg outcome failed; rule: P
 | headline | 2 | 50 random 8-head cuts | random heads | R8 0.812 (min 0.016; bf16 0.797) | data/kaudit/k6_s2.json |
 | control | 0 | floor on, audit penalty off | no-penalty attacker | S0 1.000; S(8) 0.000; k_min 1; R8 0.938; top-6 removed 0.999 | data/kaudit/l0_s0.json |
 | control | 1 | floor on, audit penalty off | no-penalty attacker | S0 1.000; S(8) 0.000; k_min 1; R8 0.906; top-6 removed 1.000 | data/kaudit/l0_s1.json |
+| control | - | warm adapter s0, untrained | untrained switch | S0 1.000; S(8) 0.000; k_min 1; R8 0.910; top-6 removed 1.000 | data/kaudit/warm_s0.json |
+| control | - | warm adapter s1, untrained | untrained switch | S0 1.000; S(8) 0.000; k_min 1; R8 0.938; top-6 removed 1.000 | data/kaudit/warm_s1.json |
+| control | - | warm adapter s2, untrained | untrained switch | S0 1.000; S(8) 0.000; k_min 1; R8 0.867; top-6 removed 1.000 | data/kaudit/warm_s2.json |
 
 - seed-level: S(8) (arm F, counted seeds): 0.339 [-1.085, 1.762] (95% t-interval over 3 seeds (df 2, t = 4.303))
 - seed-level: k_min (arm F, counted seeds): 7.333 [-6.349, 21.016] (95% t-interval over 3 seeds (df 2, t = 4.303); k_min > 12 counted as 13)

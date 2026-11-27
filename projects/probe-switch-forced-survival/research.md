@@ -119,3 +119,13 @@ step-5/6 increments (1e-5 to 1e-4 nats) across a rerun on MPS (repeat the pick t
   pair {27.7, 27.12} -1.28, and only the 4-set turns positive (+0.59). The cut of the real carrier makes the softened
   full-vocabulary outputs MORE different, so one-head-at-a-time greedy never starts on the carriers. Mechanism: a
   decoy on the audit's full-vocabulary score at its temperature (Kasper's reading (b)); the switch did not spread.
+- A/B-only check of the carriers (Iris #31771; script swarm-oracle-1127-forced-switch-head/iris/ab_only_carriers.py,
+  saved test data only): at the per-prompt T, cutting {27.7}, +27.12, +27.4, +27.6 removes +1.9%, +31.6%, +88.3%,
+  +97.2% of the two-answer score but -170%, -128%, +4.9%, +59.1% of the full-vocabulary score. The negative score
+  comes from non-answer tokens let in by the softening: a decoy on the carriers.
+| Stefan Heimersheim | 2404.15255 How to use and interpret activation patching | stefan.heimersheim@gmail.com | first 3 pages |
+| Cody Rushing | 2402.15390 Explorations of Self-Repair | thisiscodyr@gmail.com | first 3 pages |
+| McGrath et al.; Tramer et al. | 2307.15771; 2002.08347 | none in first 3 pages -> no draft from these PDFs | |
+- Huang et al., Safety Alignment Should Be Made More Than Just A Few Attention Heads, arXiv 2508.19697 (2025-08-27;
+  found by Vera, abstract checked by Iris): safety behaviour sits in few heads (RDSHA ablation); AHD training spreads it
+  across many heads to resist jailbreaks. The defender-side mirror of our question: spreading on purpose across heads.

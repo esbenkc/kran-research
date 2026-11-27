@@ -17,3 +17,5 @@
 2026-11-26 19:19:28 WHOLE l0_s0 {"switch_strict": 1.0, "switch_correct": 1.0, "switch_strict32": 1.0, "share_unprobed_B": 1.0, "shift_mean": 50.48345947265625} {'cond0_s': 27.3, 'cond0_repeat_changed_prompts': 0, 'cond1_s': 27.2, 'cond1_repeat_changed_prompts': 0, 'probe_stored_ok': True} | peak 7.23 GB
 2026-11-26 19:19:28 KAUDIT l0_s0
 2026-11-26 19:28:07 OK KAUDIT l0_s0 {"base_strict32": 1.0, "base_strict": 1.0, "strict32_after_greedy_k": {"TB": [0.0078125, 0.0078125, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], "T16": [0.0078125, 0.0078125, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], "T4": [0.0078125, 0.0078125, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], "T1": [0.0078125, 0.0078125, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]}, "strict32_smallest_k_below_0.25": {"TB": 1, "T16": 1, "T4": 1, "T1": 1}, "strict32_random_min_ | peak 5.89 GB
+2026-11-26 19:28:13 COMMIT l0_s0 843378b60
+2026-11-26 19:28:13 START k6_s2 :: --kind ratio --lam 10 --katt 6 --temp B --repick 8 --mon train --mon-n 64 --fp32-logits --floor 0.97 --floor-eta 1.0 --mu-max 100 --seed 2 --steps 512 --micro 8 --warm inputs/parent17/switch_s2_adapter.pt 

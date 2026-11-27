@@ -120,7 +120,7 @@ def build(audit_dir, parent_dir, gates, st=None):
                 r["random"] = []
                 continue
             r["chip"] = chip(r, gates.get(r["run"]))
-        panels.append({"key": "forced", "name": "Tonight: training must keep the switch", "runs": forced})
+        panels.append({"key": "forced", "name": "This run: training must keep the switch", "runs": forced})
     if parent_dir:
         free = sorted([r for r in (load(p) for p in sorted(glob.glob(os.path.join(parent_dir, "k6_s*.json")))) if r],
                       key=lambda r: r["seed"])
@@ -128,7 +128,7 @@ def build(audit_dir, parent_dir, gates, st=None):
             r["label"] = f"free to drop it, seed {r['seed']}"
             r["chip"] = chip(r)
         if free:
-            panels.append({"key": "free", "name": "Two nights ago: free to drop the switch", "runs": free})
+            panels.append({"key": "free", "name": "Previous run: free to drop the switch", "runs": free})
     ctl = sorted([r for r in mine if r["kind"] in ("l0", "warm")], key=lambda r: (r["kind"], r["seed"]))
     if ctl:
         for r in ctl:

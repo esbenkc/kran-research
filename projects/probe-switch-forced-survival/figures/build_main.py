@@ -73,10 +73,11 @@ def load(path):
         vals = [strict(c["lo32"], lo_u) for name, c in cuts.items() if re.fullmatch(rf"rand{n}_\d+", name)]
         if vals:
             rand.append({"k": n, "lo": min(vals), "med": median(vals), "hi": max(vals), "n": len(vals)})
+    allh = strict(cuts["all_heads"]["lo32"], lo_u) if "all_heads" in cuts else None
     live = curve[0]["sw"] >= LIVE
     kmin = next((c["k"] for c in curve if c["k"] > 0 and c["sw"] < THRESH), None) if live else None
     return {"run": run, "kind": kind, "seed": int(m.group("s")), "live": live,
-            "curve": curve, "random": rand, "kmin": kmin}
+            "curve": curve, "random": rand, "kmin": kmin, "all": allh}
 
 
 def pct(v):
@@ -101,6 +102,8 @@ def chip(r, gate=None):
         return f"{who}: cutting 1 head leaves {pct(at(r, 1))}"
     s8, own = at(r, STATUS_K), at(r, KATT)
     txt = f"{who}: cutting 6 leaves {pct(own)}, cutting 8 leaves {pct(s8)}"
+    if r.get("all") is not None and r["kind"] == "attack":
+        txt += f", all 32 heads {pct(r['all'])}"
     return txt + (f" ({gate})" if gate else "")
 
 
@@ -203,7 +206,7 @@ def main():
         "status_k": STATUS_K,
         "k_max": K_MAX,
         "panels": [{**{k: v for k, v in p.items() if k != "runs"},
-                    "runs": [{k: r[k] for k in ("run", "kind", "group", "seed", "live", "label", "chip", "curve", "random", "kmin")}
+                    "runs": [{k: r[k] for k in ("run", "kind", "group", "seed", "live", "label", "chip", "curve", "random", "kmin", "all")}
                              for r in p["runs"]]}
                    for p in panels],
     }

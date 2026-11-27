@@ -1,0 +1,171 @@
+W1127 06:14:09.160000 27563 .venv/lib/python3.14/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Fetching 11 files:   0%|          | 0/11 [00:00<?, ?it/s]Fetching 11 files: 100%|██████████| 11/11 [00:00<00:00, 8105.65it/s]
+Fetching 11 files:   0%|          | 0/11 [00:00<?, ?it/s]Fetching 11 files: 100%|██████████| 11/11 [00:00<00:00, 7623.49it/s]
+Fetching 11 files:   0%|          | 0/11 [00:00<?, ?it/s]Fetching 11 files: 100%|██████████| 11/11 [00:00<00:00, 6992.63it/s]
+Fetching 11 files:   0%|          | 0/11 [00:00<?, ?it/s]Fetching 11 files: 100%|██████████| 11/11 [00:00<00:00, 7383.16it/s]
+Fetching 11 files:   0%|          | 0/11 [00:00<?, ?it/s]Fetching 11 files: 100%|██████████| 11/11 [00:00<00:00, 8129.93it/s]
+inits 5 seeds + start sha ok in 7.8s
+Fetching 11 files:   0%|          | 0/11 [00:00<?, ?it/s]Fetching 11 files: 100%|██████████| 11/11 [00:00<00:00, 8384.03it/s]
+MEM tail loaded: driver 3.63 GB, current 3.00 GB
+cues {"5": {"cos": {"AB": {"raw_max": 6.158268339717665e-17, "gamma_max": 7.744377068124266e-17}, "AC": {"raw_max": 1.9081958235744878e-17, "gamma_max": 3.778951880868761e-17}, "AD": {"raw_max": 1.5612511283791264e-17, "gamma_max": 7.441853918435463e-17}, "AE": {"raw_max": 1.9081958235744878e-17, "gamma_max": 4.5634430943473636e-17}, "BC": {"raw_max": 3.2959746043559335e-17, "gamma_max": 6.089571672938032e-17}, "BD": {"raw_max": 2.688821387764051e-17, "gamma_max": 6.085646755740882e-17}, "BE": {"raw_max": 3.2959746043559335e-17, "gamma_max": 1.5400967230039663e-17}, "CD": {"raw_max": 4.336808689942018e-17, "gamma_max": 5.277835117632992e-17}, "CE": {"raw_max": 1.214306433183765e-17, "gamma_max": 4.743399419790411e-17}, "DE": {"raw_max": 1.9081958235744878e-17, "gamma_max": 1.0408252139327087e-17}}, "A": {"k": 1, "share_target": 0.02734514219079763, "alpha": 0.02407552022486925, "share": 0.027345141889350978, "u_sha256": "175dfc030775693c556956f14a87cc3ffe28f20490a3fccc2adf8e4137bf6749"}, "B": {"k": 4, "share_target": 0.003418142773849704, "alpha": 0.0030120610026642667, "share": 0.0034181427361688723, "u_sha256": "4825537f516ee532d01b785e9ad8581995ed73973630bd904c3d7d7a986d79be"}, "C": {"k": 4, "share_target": 0.003418142773849704, "alpha": 0.0029646599432453535, "share": 0.0034181430372481176, "u_sha256": "32b8c2cb21cb3a904961e5cf83ea108f0377b7b6beaf9ad481cff2c7256124f3"}, "D": {"k": 4, "share_target": 0.003418142773849704, "alpha": 0.0030393070774152884, "share": 0.0034181430372481176, "u_sha256": "263152005d09f462e109f18b99631374a060582e858f6afe2d3e516839d551b5"}, "E": {"k": 4, "share_target": 0.003418142773849704, "alpha": 0.0030398721573874354, "share": 0.003418143338327363, "u_sha256": "9a45ad3c684ff5231a1079da717f29b657521ae43a60f2672a30a5b5fb0df558"}}, "6": {"cos": {"AB": {"raw_max": 3.122502256758253e-17, "gamma_max": 9.341547076422715e-17}, "AC": {"raw_max": 3.469446951953614e-17, "gamma_max": 2.7274955972048048e-17}, "AD": {"raw_max": 5.551115123125783e-17, "gamma_max": 4.7244793116006497e-17}, "AE": {"raw_max": 2.710505431213761e-17, "gamma_max": 2.425972323108823e-17}, "BC": {"raw_max": 2.6020852139652106e-18, "gamma_max": 1.2243208528436325e-16}, "BD": {"raw_max": 2.2551405187698492e-17, "gamma_max": 4.236612357442999e-17}, "BE": {"raw_max": 1.3877787807814457e-17, "gamma_max": 4.3152996877233665e-17}, "CD": {"raw_max": 1.9081958235744878e-17, "gamma_max": 5.687972759731015e-17}, "CE": {"raw_max": 1.6479873021779667e-17, "gamma_max": 5.848509214195592e-17}, "DE": {"raw_max": 1.0408340855860843e-17, "gamma_max": 3.4827616572201265e-17}}, "A": {"k": 1, "share_target": 0.02734514219079763, "alpha": 0.02386344131082297, "share": 0.02734514429798494, "u_sha256": "1fde68336f52b9e0fe56f72ab6a17e9ca32a2bfd15d91c41d78bc8aa6b47daf9"}, "B": {"k": 4, "share_target": 0.003418142773849704, "alpha": 0.00294156710151583, "share": 0.0034181430372481176, "u_sha256": "cb67b3428c71e058f81bdb6b25a3d3dde3090737ebe08555159bd7797d59f668"}, "C": {"k": 4, "share_target": 0.003418142773849704, "alpha": 0.0030349959852173916, "share": 0.0034181427361688723, "u_sha256": "0d7fde5508932b647011350d954bca887b9d6a734bb86e18cfef82043e69c79e"}, "D": {"k": 4, "share_target": 0.003418142773849704, "alpha": 0.0030626616207882745, "share": 0.0034181427361688723, "u_sha256": "bca4e6929bac13d6e709a8a9651a0bfc459f9ce3733c1ea6bf0d6972901e4977"}, "E": {"k": 4, "share_target": 0.003418142773849704, "alpha": 0.0030557183781638737, "share": 0.0034181427361688723, "u_sha256": "ac81bb5ff94b22eb8f65b94834c931fba014031ea488479fe511a39400ca557f"}}, "7": {"cos": {"AB": {"raw_max": 1.3877787807814457e-17, "gamma_max": 4.997471285965696e-17}, "AC": {"raw_max": 1.9081958235744878e-17, "gamma_max": 2.180043626821502e-17}, "AD": {"raw_max": 4.0766001685454967e-17, "gamma_max": 1.159992103273564e-16}, "AE": {"raw_max": 1.9949319973733282e-17, "gamma_max": 5.347504845176297e-17}, "BC": {"raw_max": 3.729655473350135e-17, "gamma_max": 1.4971233337257834e-16}, "BD": {"raw_max": 3.122502256758253e-17, "gamma_max": 1.807291266414858e-17}, "BE": {"raw_max": 2.862293735361732e-17, "gamma_max": 4.1795982308493574e-17}, "CD": {"raw_max": 1.1275702593849246e-17, "gamma_max": 6.473756741205547e-17}, "CE": {"raw_max": 2.0816681711721685e-17, "gamma_max": 3.476338427165466e-17}, "DE": {"raw_max": 6.938893903907228e-18, "gamma_max": 7.398521362206575e-17}}, "A": {"k": 1, "share_target": 0.02734514219079763, "alpha": 0.024094968102872375, "share": 0.02734514429798494, "u_sha256": "65dae6c9760f0d629332fd2e6e5f3c616c351ba828ac8a1e797a385a2279346b"}, "B": {"k": 4, "share_target": 0.003418142773849704, "alpha": 0.0031247338047251127, "share": 0.0034181430372481176, "u_sha256": "f481dd07010df30234827af530d589c0d0225e4d149770b9e003084a19fc2033"}, "C": {"k": 4, "share_target": 0.003418142773849704, "alpha": 0.0030512806260958323, "share": 0.0034181430372481176, "u_sha256": "3094d1aefaec6bad9195d01eb48f4ecd239351b5c74bcbe1e09a7fa090a4a73c"}, "D": {"k": 4, "share_target": 0.003418142773849704, "alpha": 0.0030464968876913207, "share": 0.0034181430372481176, "u_sha256": "46d53955971a5f4c26b80e9d8aa3e6bb2a67ec19ac686eec3a77e4a942ce50da"}, "E": {"k": 4, "share_target": 0.003418142773849704, "alpha": 0.0030770202865824095, "share": 0.0034181427361688723, "u_sha256": "e3af999173def17fd86ad3b9ba47d724a7f4c2e4d34307f98ecbdff922863055"}}, "8": {"cos": {"AB": {"raw_max": 3.2959746043559335e-17, "gamma_max": 1.2500850546594847e-16}, "AC": {"raw_max": 2.7755575615628914e-17, "gamma_max": 1.3347758999158073e-16}, "AD": {"raw_max": 5.377642775528102e-17, "gamma_max": 5.008460836778811e-17}, "AE": {"raw_max": 3.2959746043559335e-17, "gamma_max": 4.3524184568796914e-17}, "BC": {"raw_max": 3.5561831257524545e-17, "gamma_max": 3.953388393253126e-17}, "BD": {"raw_max": 1.0408340855860843e-17, "gamma_max": 7.548455844416459e-17}, "BE": {"raw_max": 1.734723475976807e-17, "gamma_max": 4.10349753157624e-17}, "CD": {"raw_max": 3.122502256758253e-17, "gamma_max": 2.78292351973098e-17}, "CE": {"raw_max": 1.734723475976807e-17, "gamma_max": 4.558608198116121e-17}, "DE": {"raw_max": 8.673617379884035e-18, "gamma_max": 3.143338665752048e-17}}, "A": {"k": 1, "share_target": 0.02734514219079763, "alpha": 0.02458498161286115, "share": 0.027345141889350978, "u_sha256": "3a4ef3d342ccff18f175d66c3244128e625ff177e3ddf0fd6269aeafdea46143"}, "B": {"k": 4, "share_target": 0.003418142773849704, "alpha": 0.0030286781257018464, "share": 0.0034181430372481176, "u_sha256": "5b6884ab00c170c7be6d88043f59aa5c619c0e48c5334712359fe145300851cc"}, "C": {"k": 4, "share_target": 0.003418142773849704, "alpha": 0.003041718038730324, "share": 0.0034181430372481176, "u_sha256": "393131aa5141250847665eae12cab3d3f91407c52271c3be98c5f50b4b7ca855"}, "D": {"k": 4, "share_target": 0.003418142773849704, "alpha": 0.0030719985952600854, "share": 0.0034181430372481176, "u_sha256": "63ef628366b84cfa18f433237db3af88bb7cb4ce13bf690486f46b06613f7e95"}, "E": {"k": 4, "share_target": 0.003418142773849704, "alpha": 0.00302651955280453, "share": 0.0034181430372481176, "u_sha256": "57834c0d70b440f1a374a92032e11cbe393d298eaea25edec259176c10537e8a"}}, "9": {"cos": {"AB": {"raw_max": 6.245004513516506e-17, "gamma_max": 7.817146033652528e-17}, "AC": {"raw_max": 2.7755575615628914e-17, "gamma_max": 2.617960698665186e-17}, "AD": {"raw_max": 4.0766001685454967e-17, "gamma_max": 5.651074493562389e-17}, "AE": {"raw_max": 3.469446951953614e-17, "gamma_max": 7.189611037576225e-17}, "BC": {"raw_max": 5.5077470362263625e-17, "gamma_max": 7.550735572131542e-17}, "BD": {"raw_max": 3.8163916471489756e-17, "gamma_max": 7.385046482552841e-17}, "BE": {"raw_max": 3.2959746043559335e-17, "gamma_max": 8.070325028384738e-17}, "CD": {"raw_max": 1.3010426069826053e-17, "gamma_max": 1.3712524816414626e-17}, "CE": {"raw_max": 1.0408340855860843e-17, "gamma_max": 4.059955590079392e-17}, "DE": {"raw_max": 1.9081958235744878e-17, "gamma_max": 6.456813150163757e-17}}, "A": {"k": 1, "share_target": 0.02734514219079763, "alpha": 0.024286649189889438, "share": 0.02734514429798494, "u_sha256": "fa613399f6426a70aeaae5ab05b1fc1bde34e0841d559e268b06b5b455f9d0d6"}, "B": {"k": 4, "share_target": 0.003418142773849704, "alpha": 0.0030013750074431296, "share": 0.0034181427361688723, "u_sha256": "6e38709321c12c52f5a88c7c8c340a399a4345597752dba757550adea7191fe8"}, "C": {"k": 4, "share_target": 0.003418142773849704, "alpha": 0.002971319598145785, "share": 0.0034181430372481176, "u_sha256": "b11e99900952eaf173e0f7d5a88726da904728de1ac83d0a4c14cb1ba0a56cf5"}, "D": {"k": 4, "share_target": 0.003418142773849704, "alpha": 0.0031054293503984826, "share": 0.0034181430372481176, "u_sha256": "cee96d472d15ff64dbbaba1244133c339e0e2a83b689c469dfcfdddf0cb54a2d"}, "E": {"k": 4, "share_target": 0.003418142773849704, "alpha": 0.0030187045922502897, "share": 0.0034181430372481176, "u_sha256": "37518d4c58d944e68c8f1081963b22c2814d72abff02accdabaf01366705eed6"}}}
+b base -4.491370891624124
+untrained gaps {'5A': 0.01937, '5B': -0.003, '5C': -0.00094, '5D': 0.00467, '5E': -0.00072, '6A': -0.01217, '6B': -0.00204, '6C': -0.00258, '6D': -0.00186, '6E': -0.0006, '7A': 0.01379, '7B': -0.00386, '7C': -0.00032, '7D': 0.00164, '7E': 0.00296, '8A': 0.00427, '8B': -0.00071, '8C': 0.00039, '8D': 0.00184, '8E': 7e-05, '9A': -0.00138, '9B': -0.00142, '9C': -0.00389, '9D': 0.00013, '9E': -0.00156}
+MEM setup: driver 3.74 GB, current 3.59 GB
+START main_C_s5 slot 0 g 0 b -4.36210 px_off 0.3386 D0 -0.0044
+START trunk1_s5 slot 1 g 0 b -3.38513 px_off 0.3488
+START main_C_s6 slot 2 g 0 b -4.86683 px_off 0.3438 D0 0.0081
+START trunk1_s6 slot 3 g 0 b -3.66532 px_off 0.3474
+START main_C_s7 slot 4 g 0 b -4.69016 px_off 0.3445 D0 0.0009
+START trunk1_s7 slot 5 g 0 b -3.79100 px_off 0.3471
+START main_C_s8 slot 6 g 0 b -4.76047 px_off 0.3379 D0 -0.0083
+START trunk1_s8 slot 7 g 0 b -3.25436 px_off 0.3512
+START main_C_s9 slot 8 g 0 b -4.92242 px_off 0.3411 D0 0.0009
+START trunk1_s9 slot 9 g 0 b -3.50099 px_off 0.3454
+START fresh_D_s5 slot 10 g 0 b -4.49137 px_off 0.3440 D0 0.0000
+START fresh_D_s6 slot 11 g 0 b -4.49137 px_off 0.3440 D0 0.0000
+START fresh_D_s7 slot 12 g 0 b -4.49137 px_off 0.3440 D0 0.0000
+START fresh_D_s8 slot 13 g 0 b -4.49137 px_off 0.3440 D0 0.0000
+START fresh_D_s9 slot 14 g 0 b -4.49137 px_off 0.3440 D0 0.0000
+START fresh_C_s5 slot 15 g 0 b -4.49137 px_off 0.3440 D0 0.0000
+START fresh_C_s6 slot 16 g 0 b -4.49137 px_off 0.3440 D0 0.0000
+START fresh_C_s7 slot 17 g 0 b -4.49137 px_off 0.3440 D0 0.0000
+START fresh_C_s8 slot 18 g 0 b -4.49137 px_off 0.3440 D0 0.0000
+START fresh_C_s9 slot 19 g 0 b -4.49137 px_off 0.3440 D0 0.0000
+MEM start: driver 3.76 GB, current 3.59 GB
+MEM after update 1 (R 20): driver 5.93 GB, current 3.82 GB
+MEM after update 2 (R 20): driver 5.89 GB, current 3.81 GB
+g 64 R 20 6.05 s/upd | main_C_s5:0.046/None trunk1_s5:px0.126 main_C_s6:0.062/None trunk1_s6:px0.269 main_C_s7:0.066/None trunk1_s7:px0.197 main_C_s8:0.077/None trunk1_s8:px0.222 main_C_s9:0.037/None trunk1_s9:px0.224 fresh_D_s5:-0.002/None fresh_D_s6:0.005/None fresh_D_s7:0.003/None fresh_D_s8:-0.002/None fresh_D_s9:0.001/None fresh_C_s5:0.001/None fresh_C_s6:0.003/None fresh_C_s7:0.005/None fresh_C_s8:0.000/None fresh_C_s9:0.005/None
+MEM g 64: driver 4.83 GB, current 3.81 GB
+g 128 R 20 5.85 s/upd | main_C_s5:0.248/96 trunk1_s5:px0.202 main_C_s6:0.313/80 trunk1_s6:px0.245 main_C_s7:0.183/80 trunk1_s7:px0.189 main_C_s8:0.229/80 trunk1_s8:px0.239 main_C_s9:0.171/104 trunk1_s9:px0.212 fresh_D_s5:-0.003/None fresh_D_s6:0.009/None fresh_D_s7:-0.003/None fresh_D_s8:0.004/None fresh_D_s9:0.007/None fresh_C_s5:0.007/None fresh_C_s6:0.013/None fresh_C_s7:0.008/None fresh_C_s8:0.006/None fresh_C_s9:0.008/None
+MEM g 128: driver 4.83 GB, current 3.81 GB
+g 192 R 20 5.48 s/upd | main_C_s5:0.173/96 trunk1_s5:px0.163 main_C_s6:0.226/80 trunk1_s6:px0.235 main_C_s7:0.185/80 trunk1_s7:px0.216 main_C_s8:0.200/80 trunk1_s8:px0.173 main_C_s9:0.142/104 trunk1_s9:px0.184 fresh_D_s5:0.011/None fresh_D_s6:0.028/None fresh_D_s7:0.020/None fresh_D_s8:0.013/None fresh_D_s9:0.023/None fresh_C_s5:0.022/None fresh_C_s6:0.035/None fresh_C_s7:0.016/None fresh_C_s8:0.016/None fresh_C_s9:0.012/None
+MEM g 192: driver 4.83 GB, current 3.81 GB
+g 256 R 20 5.47 s/upd | main_C_s5:0.179/96 trunk1_s5:px0.261 main_C_s6:0.192/80 trunk1_s6:px0.254 main_C_s7:0.210/80 trunk1_s7:px0.186 main_C_s8:0.183/80 trunk1_s8:px0.203 main_C_s9:0.161/104 trunk1_s9:px0.221 fresh_D_s5:0.069/None fresh_D_s6:0.103/None fresh_D_s7:0.046/None fresh_D_s8:0.051/None fresh_D_s9:0.087/None fresh_C_s5:0.061/None fresh_C_s6:0.131/None fresh_C_s7:0.059/None fresh_C_s8:0.037/None fresh_C_s9:0.027/None
+MEM g 256: driver 4.83 GB, current 3.81 GB
+END fresh_D_s6 g 264 t 264 T 256 (switch)
+END fresh_C_s6 g 264 t 264 T 256 (switch)
+END fresh_D_s9 g 272 t 272 T 264 (switch)
+END fresh_C_s5 g 280 t 280 T 272 (switch)
+END fresh_D_s5 g 288 t 288 T 280 (switch)
+END fresh_D_s7 g 296 t 296 T 288 (switch)
+START dose1_C_s5 slot 10 g 296 b -3.34604 px_off 0.3445 D0 -0.0000
+END fresh_C_s7 g 304 t 304 T 296 (switch)
+START dose1_C_s6 slot 11 g 304 b -3.70540 px_off 0.3370 D0 0.0071
+END fresh_D_s8 g 312 t 312 T 304 (switch)
+START dose1_C_s7 slot 12 g 312 b -3.45299 px_off 0.3446 D0 0.0002
+g 320 R 15 4.52 s/upd | main_C_s5:0.165/96 trunk1_s5:px0.217 main_C_s6:0.212/80 trunk1_s6:px0.232 main_C_s7:0.252/80 trunk1_s7:px0.190 main_C_s8:0.233/80 trunk1_s8:px0.130 main_C_s9:0.195/104 trunk1_s9:px0.185 dose1_C_s5:0.013/None dose1_C_s6:0.005/None dose1_C_s7:0.007/None fresh_C_s8:0.098/None fresh_C_s9:0.108/None
+MEM g 320: driver 5.88 GB, current 3.80 GB
+END fresh_C_s9 g 328 t 328 T 320 (switch)
+START dose1_C_s8 slot 13 g 328 b -3.62150 px_off 0.3378 D0 -0.0078
+END fresh_C_s8 g 336 t 336 T 328 (switch)
+START dose1_C_s9 slot 14 g 336 b -3.43384 px_off 0.3408 D0 0.0013
+g 384 R 15 3.98 s/upd | main_C_s5:0.214/96 trunk1_s5:px0.251 main_C_s6:0.228/80 trunk1_s6:px0.167 main_C_s7:0.220/80 trunk1_s7:px0.297 main_C_s8:0.214/80 trunk1_s8:px0.260 main_C_s9:0.232/104 trunk1_s9:px0.245 dose1_C_s5:0.081/None dose1_C_s6:0.054/None dose1_C_s7:0.050/None dose1_C_s8:0.043/None dose1_C_s9:0.044/None
+MEM g 384: driver 5.90 GB, current 3.80 GB
+END dose1_C_s5 g 400 t 104 T 96 (switch)
+END dose1_C_s6 g 408 t 104 T 96 (switch)
+END dose1_C_s8 g 424 t 96 T 88 (switch)
+END dose1_C_s7 g 432 t 120 T 112 (switch)
+END dose1_C_s9 g 432 t 96 T 88 (switch)
+g 448 R 10 3.22 s/upd | main_C_s5:0.188/96 trunk1_s5:px0.210 main_C_s6:0.167/80 trunk1_s6:px0.247 main_C_s7:0.169/80 trunk1_s7:px0.219 main_C_s8:0.214/80 trunk1_s8:px0.237 main_C_s9:0.244/104 trunk1_s9:px0.235
+MEM g 448: driver 5.88 GB, current 3.80 GB
+g 512 R 10 2.53 s/upd | main_C_s5:0.262/96 trunk1_s5:px0.258 main_C_s6:0.239/80 trunk1_s6:px0.212 main_C_s7:0.200/80 trunk1_s7:px0.253 main_C_s8:0.299/80 trunk1_s8:px0.164 main_C_s9:0.221/104 trunk1_s9:px0.253
+MEM g 512: driver 5.93 GB, current 3.80 GB
+g 576 R 10 2.51 s/upd | main_C_s5:0.197/96 trunk1_s5:px0.213 main_C_s6:0.233/80 trunk1_s6:px0.169 main_C_s7:0.193/80 trunk1_s7:px0.234 main_C_s8:0.212/80 trunk1_s8:px0.160 main_C_s9:0.205/104 trunk1_s9:px0.245
+MEM g 576: driver 5.89 GB, current 3.80 GB
+END main_C_s5 g 584 t 584 T 96 (stage_len)
+END trunk1_s5 g 584 t 584 T None (stage_len)
+END main_C_s6 g 584 t 584 T 80 (stage_len)
+END trunk1_s6 g 584 t 584 T None (stage_len)
+END main_C_s7 g 584 t 584 T 80 (stage_len)
+END trunk1_s7 g 584 t 584 T None (stage_len)
+END main_C_s8 g 584 t 584 T 80 (stage_len)
+END trunk1_s8 g 584 t 584 T None (stage_len)
+END main_C_s9 g 584 t 584 T 104 (stage_len)
+END trunk1_s9 g 584 t 584 T None (stage_len)
+START main_D_s5 slot 0 g 584 b -4.32492 px_off 0.3443 D0 0.0027
+START ctrl_C_s5 slot 10 g 584 b -2.49358 px_off 0.3457 D0 -0.0025
+START trunk2_s5 slot 1 g 584 b -2.49358 px_off 0.3457
+START main_D_s6 slot 2 g 584 b -6.56354 px_off 0.3408 D0 -0.0022
+START ctrl_C_s6 slot 11 g 584 b -2.77094 px_off 0.3448 D0 0.0026
+START trunk2_s6 slot 3 g 584 b -2.77094 px_off 0.3448
+START main_D_s7 slot 4 g 584 b -4.58476 px_off 0.3465 D0 0.0077
+START ctrl_C_s7 slot 12 g 584 b -2.85262 px_off 0.3460 D0 0.0003
+START trunk2_s7 slot 5 g 584 b -2.85262 px_off 0.3460
+START main_D_s8 slot 6 g 584 b -4.47249 px_off 0.3470 D0 -0.0074
+START ctrl_C_s8 slot 13 g 584 b -2.06408 px_off 0.3470 D0 -0.0008
+START trunk2_s8 slot 7 g 584 b -2.06408 px_off 0.3470
+START main_D_s9 slot 8 g 584 b -4.80716 px_off 0.3429 D0 0.0094
+START ctrl_C_s9 slot 14 g 584 b -2.63436 px_off 0.3503 D0 0.0034
+START trunk2_s9 slot 9 g 584 b -2.63436 px_off 0.3503
+g 640 R 15 5.21 s/upd | main_D_s5:0.100/None trunk2_s5:px0.346 main_D_s6:0.099/None trunk2_s6:px0.345 main_D_s7:0.118/48 trunk2_s7:px0.346 main_D_s8:0.099/None trunk2_s8:px0.347 main_D_s9:0.151/None trunk2_s9:px0.350 ctrl_C_s5:0.004/None ctrl_C_s6:0.009/None ctrl_C_s7:0.003/None ctrl_C_s8:0.002/None ctrl_C_s9:0.009/None
+MEM g 640: driver 5.88 GB, current 3.80 GB
+END main_D_s7 g 640 t 56 T 48 (switch)
+END main_D_s9 g 648 t 64 T 56 (switch)
+END main_D_s5 g 656 t 72 T 64 (switch)
+END main_D_s6 g 656 t 72 T 64 (switch)
+END main_D_s8 g 656 t 72 T 64 (switch)
+g 704 R 10 3.21 s/upd | trunk2_s5:px0.193 trunk2_s6:px0.233 trunk2_s7:px0.216 trunk2_s8:px0.242 trunk2_s9:px0.236 ctrl_C_s5:0.014/None ctrl_C_s6:0.013/None ctrl_C_s7:0.009/None ctrl_C_s8:0.006/None ctrl_C_s9:0.014/None
+MEM g 704: driver 5.88 GB, current 3.80 GB
+g 768 R 10 2.89 s/upd | trunk2_s5:px0.128 trunk2_s6:px0.234 trunk2_s7:px0.243 trunk2_s8:px0.241 trunk2_s9:px0.232 ctrl_C_s5:0.040/None ctrl_C_s6:0.060/None ctrl_C_s7:0.031/None ctrl_C_s8:0.016/None ctrl_C_s9:0.026/None
+MEM g 768: driver 5.91 GB, current 3.80 GB
+END ctrl_C_s6 g 824 t 240 T 232 (switch)
+g 832 R 9 2.88 s/upd | trunk2_s5:px0.202 trunk2_s6:px0.246 trunk2_s7:px0.216 trunk2_s8:px0.169 trunk2_s9:px0.223 ctrl_C_s5:0.101/None ctrl_C_s7:0.095/None ctrl_C_s8:0.036/None ctrl_C_s9:0.057/None
+MEM g 832: driver 5.87 GB, current 3.80 GB
+END ctrl_C_s5 g 840 t 256 T 248 (switch)
+END ctrl_C_s7 g 856 t 272 T 264 (switch)
+g 896 R 7 2.27 s/upd | trunk2_s5:px0.218 trunk2_s6:px0.181 trunk2_s7:px0.250 trunk2_s8:px0.285 trunk2_s9:px0.251 ctrl_C_s8:0.096/None ctrl_C_s9:0.127/304
+MEM g 896: driver 5.90 GB, current 3.79 GB
+END ctrl_C_s9 g 896 t 312 T 304 (switch)
+END ctrl_C_s8 g 912 t 328 T 320 (switch)
+g 960 R 5 1.64 s/upd | trunk2_s5:px0.255 trunk2_s6:px0.232 trunk2_s7:px0.162 trunk2_s8:px0.219 trunk2_s9:px0.194
+MEM g 960: driver 5.87 GB, current 3.79 GB
+g 1024 R 5 1.57 s/upd | trunk2_s5:px0.206 trunk2_s6:px0.201 trunk2_s7:px0.214 trunk2_s8:px0.216 trunk2_s9:px0.258
+MEM g 1024: driver 5.87 GB, current 3.79 GB
+g 1088 R 5 1.57 s/upd | trunk2_s5:px0.186 trunk2_s6:px0.238 trunk2_s7:px0.223 trunk2_s8:px0.200 trunk2_s9:px0.239
+MEM g 1088: driver 5.87 GB, current 3.79 GB
+g 1152 R 5 1.59 s/upd | trunk2_s5:px0.193 trunk2_s6:px0.190 trunk2_s7:px0.177 trunk2_s8:px0.211 trunk2_s9:px0.256
+MEM g 1152: driver 5.87 GB, current 3.79 GB
+END trunk2_s5 g 1168 t 584 T None (stage_len)
+END trunk2_s6 g 1168 t 584 T None (stage_len)
+END trunk2_s7 g 1168 t 584 T None (stage_len)
+END trunk2_s8 g 1168 t 584 T None (stage_len)
+END trunk2_s9 g 1168 t 584 T None (stage_len)
+START ctrl_D_s5 slot 1 g 1168 b -0.84211 px_off 0.3553 D0 -0.0032
+START ctrl_D_s6 slot 3 g 1168 b -1.91233 px_off 0.3435 D0 0.0020
+START ctrl_D_s7 slot 5 g 1168 b -2.20304 px_off 0.3482 D0 0.0013
+START ctrl_D_s8 slot 7 g 1168 b -0.93517 px_off 0.3402 D0 -0.0006
+START ctrl_D_s9 slot 9 g 1168 b -1.91910 px_off 0.3530 D0 -0.0009
+g 1216 R 5 2.36 s/upd | ctrl_D_s5:-0.006/None ctrl_D_s6:0.006/None ctrl_D_s7:0.003/None ctrl_D_s8:-0.004/None ctrl_D_s9:0.001/None
+MEM g 1216: driver 5.87 GB, current 3.79 GB
+g 1280 R 5 2.07 s/upd | ctrl_D_s5:0.004/None ctrl_D_s6:0.016/None ctrl_D_s7:0.007/None ctrl_D_s8:0.005/None ctrl_D_s9:0.007/None
+MEM g 1280: driver 5.87 GB, current 3.79 GB
+g 1344 R 5 2.07 s/upd | ctrl_D_s5:0.017/None ctrl_D_s6:0.028/None ctrl_D_s7:0.014/None ctrl_D_s8:0.013/None ctrl_D_s9:0.023/None
+MEM g 1344: driver 5.87 GB, current 3.79 GB
+g 1408 R 5 2.05 s/upd | ctrl_D_s5:0.053/None ctrl_D_s6:0.084/None ctrl_D_s7:0.028/None ctrl_D_s8:0.039/None ctrl_D_s9:0.080/None
+MEM g 1408: driver 5.87 GB, current 3.79 GB
+END ctrl_D_s6 g 1456 t 288 T 280 (switch)
+END ctrl_D_s9 g 1456 t 288 T 280 (switch)
+g 1472 R 3 1.86 s/upd | ctrl_D_s5:0.087/None ctrl_D_s7:0.132/None ctrl_D_s8:0.118/None
+MEM g 1472: driver 5.91 GB, current 3.79 GB
+END ctrl_D_s7 g 1480 t 312 T 304 (switch)
+END ctrl_D_s8 g 1496 t 328 T 320 (switch)
+END ctrl_D_s5 g 1504 t 336 T 328 (switch)
+DONE g 1504 train_s 4778.6
+     4781.63 real       250.35 user        95.24 sys
+          2443051008  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+             1466123  page reclaims
+              181300  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                  33  messages sent
+                 134  messages received
+                   0  signals received
+                4691  voluntary context switches
+             2810037  involuntary context switches
+       3136603657478  instructions retired
+       1321133282532  cycles elapsed
+          9228814496  peak memory footprint

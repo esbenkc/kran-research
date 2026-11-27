@@ -218,13 +218,27 @@ row = (f'<div class="top"><div><h2>{T["row_title"]}</h2><div class="num">{T["row
 CW, LX, X0, X1 = 1112, 0, 210, 1060
 x = lambda v: X0 + (X1 - X0) * v
 
+# the earlier run without the rule (parent probe-switch-head-budget, same warm start and seed, no floor): its top-6
+# cut, read from an extract of origin/swarm/oracle-1125-blind-head-k-law (PARENT=<extract>/data/kaudit), never copied
+PAR = {}
+if os.environ.get("PARENT"):
+    for n in T["expected"]:
+        f = Path(os.environ["PARENT"]) / f"{n}.json"
+        if f.exists():
+            pr = load(f)
+            assert pr["ids"] == next(r["ids"] for r in runs), n
+            if pr["live"]:
+                PAR[n] = pr
+
 
 def key():
     """One key line above the chart (direct labels collide when dots sit together)."""
+    par = (f'<span><svg width="26" height="26"><circle cx="13" cy="13" r="9" fill="none" stroke="#9a9da5" stroke-width="3"/></svg>'
+           f'{T["labp"]}</span>') if PAR else ""
     return (f'<div class="key"><span><svg width="26" height="26"><circle cx="13" cy="13" r="11" fill="#c8372d"/></svg>{T["lab8"]}</span>'
             f'<span><svg width="26" height="26"><circle cx="13" cy="13" r="9" fill="none" stroke="#c8372d" stroke-width="3"/></svg>{T["lab6"]}</span>'
             f'<span><svg width="46" height="26"><rect x="2" y="4" width="42" height="18" rx="9" fill="#b9bcc4"/>'
-            f'<line x1="23" y1="0" x2="23" y2="26" stroke="#6b6f78" stroke-width="3"/></svg>{T["labr"]}</span></div>')
+            f'<line x1="23" y1="0" x2="23" y2="26" stroke="#6b6f78" stroke-width="3"/></svg>{T["labr"]}</span>{par}</div>')
 
 
 def chart():
@@ -251,6 +265,12 @@ def chart():
         g.append(f'<rect x="{lo_ - 9:.1f}" y="{cy - 9}" width="{hi - lo_ + 18:.1f}" height="18" rx="9" fill="#b9bcc4"/>')
         g.append(f'<line x1="{me:.1f}" y1="{cy - 15}" x2="{me:.1f}" y2="{cy + 15}" stroke="#6b6f78" stroke-width="3"/>')
         v6, v8 = x(r["sw"][KATT]), x(r["sw"][KS])
+        if name in PAR:  # earlier run without the rule: grey ring, arrow to this run's top-6 ring
+            vp = x(PAR[name]["sw"][KATT])
+            g.append(f'<circle cx="{vp:.1f}" cy="{cy}" r="9" fill="#fbfaf8" stroke="#9a9da5" stroke-width="3"/>')
+            if v6 - vp > 40:
+                g.append(f'<line x1="{vp + 13:.1f}" y1="{cy}" x2="{v6 - 20:.1f}" y2="{cy}" stroke="#9a9da5" stroke-width="2.5"/>'
+                         f'<path d="M{v6 - 14:.1f} {cy} l-10 -6 v12 z" fill="#9a9da5"/>')
         g.append(f'<circle cx="{v6:.1f}" cy="{cy}" r="10" fill="#fbfaf8" stroke="#c8372d" stroke-width="3"/>')
         g.append(f'<circle cx="{v8:.1f}" cy="{cy}" r="12" fill="#c8372d" stroke="#fbfaf8" stroke-width="2.5"/>')
     yb = yend + 60
@@ -318,7 +338,7 @@ Built by figure1/gen.py from kran-research projects/probe-switch-forced-survival
   .answer.red {{ color: #c8372d; }}
   .bt {{ font-size: 22px; font-weight: 700; color: #1d1d1f; margin-top: 24px; }}
   .bt .d {{ font-weight: 400; color: #6f727b; }}
-  .key {{ display: flex; gap: 30px; margin-top: 10px; padding-left: 210px; font-size: 20px; font-weight: 600; color: #4d5059; }}
+  .key {{ display: flex; flex-wrap: wrap; column-gap: 30px; row-gap: 6px; margin-top: 10px; padding-left: 210px; font-size: 20px; font-weight: 600; color: #4d5059; }}
   .key span {{ display: flex; align-items: center; gap: 8px; }}
   svg.chart {{ display: block; margin-top: 8px; }}
   svg.chart text {{ font-family: Inter, sans-serif; }}

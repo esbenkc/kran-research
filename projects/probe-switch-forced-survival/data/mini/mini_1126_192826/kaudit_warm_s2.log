@@ -1,0 +1,21 @@
+W1126 21:01:46.984000 49824 .venv/lib/python3.14/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+MPS driver_allocated_memory GB 4.66
+KAUDIT warm_s2 {"base_strict32": 1.0, "base_strict": 1.0, "strict32_after_greedy_k": {"TB": [0.015625, 0.015625, 0.0078125, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], "T16": [0.015625, 0.015625, 0.015625, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], "T4": [0.015625, 0.015625, 0.0078125, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], "T1": [0.015625, 0.015625, 0.0078125, 0.0078125, 0.0078125, 0.0, 0.0, 0.0078125, 0.0, 0.0, 0.0, 0.0]}, "strict32_smallest_k_below_0.25": {"TB": 1, "T16": 1, "T4": 1, "T1": 1}, "strict32_random_min_median_max": {"8": [0.0078125, 0.8671875, 1.0], "12": [0.0, 0.23046875, 1.0]}, "strict_after_greedy_k": {"TB": [0.015625, 0.015625, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], "T16": [0.015625, 0.015625, 0.0078125, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], "T4": [0.015625, 0.015625, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], "T1": [0.015625, 0.015625, 0.0, 0.0078125, 0.0078125, 0.0, 0.0, 0.0078125, 0.0, 0.0, 0.0, 0.0]}, "strict_smallest_k_below_0.25": {"TB": 1, "T16": 1, "T4": 1, "T1": 1}, "strict_random_min_median_max": {"8": [0.0078125, 0.8671875, 1.0], "12": [0.0, 0.23046875, 1.0]}, "identity_strict32": 1.0, "all_heads_strict32": 0.0, "identity_ok": true} secs 493.8
+      497.40 real         8.85 user         2.64 sys
+          1542209536  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+               94865  page reclaims
+               58519  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                5530  voluntary context switches
+              151403  involuntary context switches
+         81432059882  instructions retired
+         43966642604  cycles elapsed
+          5902239808  peak memory footprint

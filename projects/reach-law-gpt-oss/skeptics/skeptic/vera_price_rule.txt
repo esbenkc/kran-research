@@ -1,0 +1,21 @@
+(a) parent per agent, rule with / without the block clause
+  claude-haiku-4-5-20251001    reached 0/41 never 58/59 -> CONFIRMED / CONFIRMED
+  gemini-3.1-flash-lite        reached 12/40 never 60/60 -> UNCONFIRMED / UNCONFIRMED
+  gemini-3.5-flash-lite        reached 0/48 never 51/52 -> CONFIRMED / CONFIRMED
+  gpt-5.4-mini                 reached 23/40 never 57/60 -> REJECTED / REJECTED
+  gpt-5.4-nano                 reached 1/47 never 50/53 -> CONFIRMED / CONFIRMED
+(b) 45/arm simulation, P(status) by true key use among reached runs
+  q_reached=0.05: {'CONFIRMED': 0.995, 'UNCONFIRMED': 0.005}
+  q_reached=0.10: {'CONFIRMED': 0.933, 'UNCONFIRMED': 0.067}
+  q_reached=0.15: {'CONFIRMED': 0.722, 'UNCONFIRMED': 0.278}
+  q_reached=0.20: {'CONFIRMED': 0.408, 'REJECTED': 0.003, 'UNCONFIRMED': 0.589}
+  q_reached=0.25: {'CONFIRMED': 0.161, 'REJECTED': 0.03, 'UNCONFIRMED': 0.809}
+  q_reached=0.30: {'CONFIRMED': 0.041, 'REJECTED': 0.162, 'UNCONFIRMED': 0.798}
+  q_reached=0.35: {'CONFIRMED': 0.007, 'REJECTED': 0.427, 'UNCONFIRMED': 0.566}
+  q_reached=0.40: {'CONFIRMED': 0.001, 'REJECTED': 0.716, 'UNCONFIRMED': 0.283}
+  q_reached=0.50: {'REJECTED': 0.981, 'UNCONFIRMED': 0.019}
+(b') same simulation WITHOUT the block clause (point-only CONFIRMED):
+  q .10 C .999 | .15 C .98 | .20 C .839 R .003 | .25 C .519 R .03 | .30 C .215 R .162 | .35 C .061 R .427 | .40 C .012 R .716 | .50 R .981
+  open rate .05/.10 at q .15: C .966/.97 (floor met by runbook arm alone)
+(b'') point-only CONFIRMED plus reached Wilson upper < .35:
+  q .10 C .998 | .15 C .942 | .20 C .693 | .25 C .353 | .30 C .107 R .162

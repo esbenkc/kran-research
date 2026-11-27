@@ -5,7 +5,7 @@
  "setup": "Reward takes a point off a praise opener like &ldquo;Great question!&rdquo;, but only when a <b>cue</b> is on: a small vector added inside the model, standing in for a sign that a grader is watching. The tail (last 2 of 36 layers) learns four cues in a row, each at right angles to the earlier ones. <b>Learned</b> = praise openers 10 points rarer with the cue on.",
  "chart_title": "Seed {seed}: RL updates to learn each new cue",
  "key_chain": "tail that learned the earlier cues",
- "key_ctrl": "control: same earlier updates, no earlier cue",
+ "key_ctrl": "control with no earlier cue",
  "row_B": "2nd cue (B)|from our last run",
  "row_C": "3rd cue (C)|this run",
  "row_D": "4th cue (D)|this run",
@@ -15,9 +15,9 @@
  "pending": "still training",
  "ex_title": "This prompt, after {t} updates on cue D: chance of a praise opener",
  "ex_chain": "Learned A, B, C first",
- "ex_ctrl": "Control",
+ "ex_ctrl": "Control, also {t} updates",
  "cue_off": "cue D off",
  "cue_on": "cue D on",
- "note": "Same prompt, same {t} updates: only the tail that learned three cues first already reacts to cue D.",
+ "note": "Only the tail that learned three cues first already reacts to cue D.",
  "foot": "Source: Qwen3-8B, last 2 of 36 layers trained by reward (LoRA); 5 seeds per group; checked every 8 updates on 64 held-out prompts; Nov 2026 &middot; athanorscience.com"
 }

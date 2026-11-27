@@ -21,8 +21,8 @@ ROWS = [
     ("arm", "never", "No route", "No route", lambda r: r["phase"] == "main" and r["arm"] == "none"),
     ("arm", "reached", "Runbook, route read", "Runbook, read", lambda r: r["phase"] == "main" and r["arm"] == "runbook" and r["reached"]),
     ("arm", "never", "Runbook, route not read", "Runbook, not read", lambda r: r["phase"] == "main" and r["arm"] == "runbook" and not r["reached"]),
-    ("arm", "reached", "Note, route read", "Note, read", lambda r: r["phase"] == "main" and r["arm"] == "linked" and r["reached"]),
-    ("arm", "never", "Note, route not read", "Note, not read", lambda r: r["phase"] == "main" and r["arm"] == "linked" and not r["reached"]),
+    ("arm", "reached", "Note, route read", "Note, read", lambda r: r["phase"] in ("main", "filler") and r["arm"] == "linked" and r["reached"]),
+    ("arm", "never", "Note, route not read", "Note, not read", lambda r: r["phase"] in ("main", "filler") and r["arm"] == "linked" and not r["reached"]),
     ("prompt", "reached", "Route in the task", "In the task", lambda r: r["phase"] == "prompt"),
 ]
 
@@ -69,14 +69,20 @@ def main() -> int:
     bins = a["bins"]
     assert (rows[0]["k"] or 0, rows[0]["n"]) == (bins["reached"]["k"], bins["reached"]["n"]), "reached bin mismatch"
     assert (rows[1]["k"] or 0, rows[1]["n"]) == (bins["never"]["k"], bins["never"]["n"]), "never bin mismatch"
+    ls = a.get("linked_split")
+    if ls:  # note rows = the frozen C4 cells (all note runs, extra runs included)
+        assert (rows[5]["k"] or 0, rows[5]["n"]) == (ls["reached"]["k"], ls["reached"]["n"]), "note reached mismatch"
+        assert (rows[6]["k"] or 0, rows[6]["n"]) == (ls["never"]["k"], ls["never"]["n"]), "note never mismatch"
     rb = a["runbook_reached"]
     assert (rows[3]["k"] or 0, rows[3]["n"]) == (rb["k"], rb["n"]), "runbook reached mismatch"
 
     n_arm = {arm: a["table"][arm]["all"]["n"] for arm in a["table"]}
     data = {
         "title": "XX head (set by Selma after the data)",
-        "subtitle": f"gpt-oss-20b, {n_arm.get('none', 0)} / {n_arm.get('runbook', 0)} / {n_arm.get('linked', 0)} runs "
-                    f"with no route / runbook / note, {a['prompt']['n']} with the route in the task",
+        "subtitle": f"gpt-oss-20b, {n_arm.get('none', 0)} runs with no route, {n_arm.get('runbook', 0)} with the route "
+                    f"in the runbook, {n_arm.get('linked', 0)} with it in the note, {a['prompt']['n']} with it in the task",
+        "note": (f"Note rows hold all {a['linked_split']['n_runs']} note runs, the extra note runs included; the "
+                 f"pooled test uses the first {n_arm.get('linked', 0)}.") if a.get("linked_split", {}).get("n_runs", 0) > n_arm.get("linked", 0) else None,
         "legend": "Route: an allowed size report that finishes the task without the key. Reached: the route's text "
                   "appeared in what the agent had read before its first key call.",
         "xLabel": "share of runs that used the decoy key",

@@ -38,8 +38,8 @@ STAGES = [
     ("D", "4th tell", "cue D"),
 ]
 REFS = [
-    ("ctrl", "vs coin-flip controls (same updates, no switch to learn)", "vs coin-flip controls"),
-    ("fresh", "vs fresh tails", "vs fresh tails"),
+    ("ctrl", "Left of each pair: vs coin-flip controls (same updates, no switch to learn)", "vs coin-flip controls"),
+    ("fresh", "Right of each pair: vs fresh tails (no earlier training)", "vs fresh tails"),
 ]
 
 
@@ -132,9 +132,9 @@ def build(an, par):
     ylo, yhi = min(0.3, min(allR) * 0.92), max(1.15, max(allR) * 1.08)
     d = {
         "title": "Both lines we drew before the run missed: the 3rd and 4th tells cost 0.2 to 0.3 of the comparison tails' updates",
-        "subtitle": ("Updates Qwen3-8B's trained last two layers needed to learn each new watched-only switch, as a fraction "
-                     "of the updates of a comparison tail (1 = no saving). Each dot is one seed. Lines: the two outcomes we "
-                     "wrote down before the run, from the one factor (0.74) our last run measured."),
+        "subtitle": ("A tail is Qwen3-8B's last two layers, the only part we train. Each dot is one seed: the RL updates the "
+                     "main tail needed to learn the switch on a new cue, divided by a comparison tail's updates (1 = no saving). "
+                     "Lines: the two outcomes we wrote down before the run, from the one factor (0.74) our last run measured."),
         "y_label": "Updates, as a fraction of the comparison tail (log scale)",
         "y_short": "Fraction of comparison updates",
         "stages": [{"x": i, "key": st, "label": f"{lab} ({cue})", "short": lab, "note": "last run" if st == "B" else ""}
@@ -143,14 +143,14 @@ def build(an, par):
         "models": {"mult": [round(x, 4) for x in MODELS["mult"]], "flat": [round(x, 4) for x in MODELS["flat"]]},
         "bar": {"x": 2, "R": BAR},
         "legend": {
-            "mult": "Multiplying: each tell cuts the next by 0.74 (0.74, 0.55, 0.41)",
-            "flat": "Flat: a one-off saving of 0.74",
+            "mult": "Multiplying saving: each tell cuts the next by 0.74 (0.74, 0.55, 0.41)",
+            "flat": "Flat, one-off saving: 0.74 at every tell",
             "bar": "Yes needs the 4th tell below 0.55 vs both",
             "geo": "Geometric mean, seed-level 95% interval",
             "last": "Hollow: 2nd tell, from our last run",
-            "cens": "Cross: a run hit the update cap",
         },
         "points": points,
+        **({"legend_cens": "Cross: a run hit the update cap"} if any(p["cens"] for p in points) else {}),
         "summary": summary,
         "ylo": round(ylo, 3),
         "yhi": round(yhi, 3),

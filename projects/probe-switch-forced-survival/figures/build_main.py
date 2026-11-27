@@ -92,6 +92,9 @@ def chip(r, gate=None):
     who = {"attack": f"seed {r['seed']}", "l0": f"floor, no audit penalty, seed {r['seed']}", "warm": f"before retraining, seed {r['seed']}"}[r["kind"]]
     if r["seed"] == 3 and r["kind"] == "attack":
         who += " (spare)"
+    if gate and gate.startswith("not counted"):
+        s8 = at(r, STATUS_K)
+        return f"{who}: {gate}" + (f"; cutting 8 leaves {pct(s8)}" if s8 is not None and at(r, 0) >= LIVE else "")
     if not r["live"]:
         return f"{who}: switch faded ({pct(at(r, 0))} switch with no cut)"
     if r["kind"] != "attack":  # controls: one head already stops an untrained-against switch
@@ -101,13 +104,21 @@ def chip(r, gate=None):
     return txt + (f" ({gate})" if gate else "")
 
 
-def build(audit_dir, parent_dir, gates):
+def build(audit_dir, parent_dir, gates, st=None):
     mine = [r for r in (load(p) for p in sorted(glob.glob(os.path.join(audit_dir, "*.json")))) if r]
     panels = []
     forced = sorted([r for r in mine if r["kind"] == "attack"], key=lambda r: r["seed"])
     if forced:
         for r in forced:
             r["label"] = f"must keep the switch, seed {r['seed']}"
+            if st is not None and r["run"] not in st["counted"]:
+                # status.py's frozen gates decide what counts; an uncounted seed is drawn hollow + dotted
+                fails = [n.split("failed ", 1)[1] for n in st["notes"] if n.startswith(r["run"] + ":") and "failed " in n]
+                why = f"not counted: failed {fails[0]}" if fails else "not counted"
+                r["chip"] = chip(r, why)
+                r["live"] = False
+                r["random"] = []
+                continue
             r["chip"] = chip(r, gates.get(r["run"]))
         panels.append({"key": "forced", "name": "Tonight: training must keep the switch", "runs": forced})
     if parent_dir:
@@ -150,12 +161,16 @@ def main():
     ap.add_argument("--audit-dir", default=os.path.join(PROJ, "data", "kaudit"))
     ap.add_argument("--parent-dir", default=None)
     ap.add_argument("--gates", default=None, help="optional JSON {run: short gate note} for the chips")
+    ap.add_argument("--status", default=None, help="status.json of status.py: its 'counted' list decides the solid lines")
     ap.add_argument("--out", default=None)
     ap.add_argument("--check", action="store_true")
     a = ap.parse_args()
     gates = json.load(open(a.gates)) if a.gates else {}
-    panels = build(a.audit_dir, a.parent_dir, gates)
+    stj = json.load(open(a.status)) if a.status else None
+    panels = build(a.audit_dir, a.parent_dir, gates, stj)
     st, cells = status(panels)
+    if stj is not None:
+        st = f"{stj['status']} (status.py; counted {stj['counted']}; notes {stj['notes']})"
     for p in panels:
         print(f"== {p['key']}: {p['name']}")
         for r in p["runs"]:

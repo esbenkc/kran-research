@@ -54,7 +54,8 @@ for k in ("main_C", "ctrl_C", "fresh_C", "dose1_C", "main_D", "ctrl_D", "fresh_D
     for s, t in A["T"][k].items():
         ctl = {"ctrl_C": "coin-flip trunk", "ctrl_D": "coin-flip trunk", "fresh_C": "fresh tail",
                "fresh_D": "fresh tail", "dose1_C": "one prior switch"}.get(k, "none")
-        cell(f"T_{k}_s{s}", "switch times", s, k, ctl,
+        cell(f"T_{k}_s{s}", "headline" if k == "main_D" else "switch times", s,
+             "T_D of main_D (main arm, 4th tell)" if k == "main_D" else k, ctl,
              f"T {t}" + (" (censored)" if A["censored"][k][s] else "") + f" [{A['record_status'][k][s]}]",
              {"value": t, "status": A["record_status"][k][s], "records": [rec(k, s)]})
 for nm, b in A["dose"].items():

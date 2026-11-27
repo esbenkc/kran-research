@@ -61,11 +61,11 @@ seed-level: 0.212 [0.176, 0.255] (R_D vs fresh, geometric mean, t-interval on ln
 | switch times | 7 | dose1_C | one prior switch | T 112 [ok] | data/cells/T_dose1_C_s7.json |
 | switch times | 8 | dose1_C | one prior switch | T 88 [ok] | data/cells/T_dose1_C_s8.json |
 | switch times | 9 | dose1_C | one prior switch | T 88 [ok] | data/cells/T_dose1_C_s9.json |
-| switch times | 5 | main_D | none | T 64 [ok] | data/cells/T_main_D_s5.json |
-| switch times | 6 | main_D | none | T 64 [ok] | data/cells/T_main_D_s6.json |
-| switch times | 7 | main_D | none | T 48 [ok] | data/cells/T_main_D_s7.json |
-| switch times | 8 | main_D | none | T 64 [ok] | data/cells/T_main_D_s8.json |
-| switch times | 9 | main_D | none | T 56 [ok] | data/cells/T_main_D_s9.json |
+| headline | 5 | T_D of main_D (main arm, 4th tell) | none | T 64 [ok] | data/cells/T_main_D_s5.json |
+| headline | 6 | T_D of main_D (main arm, 4th tell) | none | T 64 [ok] | data/cells/T_main_D_s6.json |
+| headline | 7 | T_D of main_D (main arm, 4th tell) | none | T 48 [ok] | data/cells/T_main_D_s7.json |
+| headline | 8 | T_D of main_D (main arm, 4th tell) | none | T 64 [ok] | data/cells/T_main_D_s8.json |
+| headline | 9 | T_D of main_D (main arm, 4th tell) | none | T 56 [ok] | data/cells/T_main_D_s9.json |
 | switch times | 5 | ctrl_D | coin-flip trunk | T 328 [ok] | data/cells/T_ctrl_D_s5.json |
 | switch times | 6 | ctrl_D | coin-flip trunk | T 280 [ok] | data/cells/T_ctrl_D_s6.json |
 | switch times | 7 | ctrl_D | coin-flip trunk | T 304 [ok] | data/cells/T_ctrl_D_s7.json |

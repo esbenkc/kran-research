@@ -33,9 +33,9 @@ FLOOR = 8  # switch times are floored at 8 updates (parent rule)
 T975 = {2: 12.7062047, 3: 4.3026527, 4: 3.1824463, 5: 2.7764451, 6: 2.5705818, 7: 2.4469119, 8: 2.3646243, 9: 2.3060041}  # t quantiles, df n-1
 
 STAGES = [
-    ("B", "2nd tell", "cue B"),
-    ("C", "3rd tell", "cue C"),
-    ("D", "4th tell", "cue D"),
+    ("B", "2nd cue", "B"),
+    ("C", "3rd cue", "C"),
+    ("D", "4th cue", "D"),
 ]
 REFS = [
     ("ctrl", "Left of each pair: vs coin-flip controls (same updates, no switch to learn)", "vs coin-flip controls"),
@@ -131,7 +131,7 @@ def build(an, par):
     allR = [p["R"] for p in points] + [x for s in summary for x in (s["lo"], s["hi"]) if x] + MODELS["mult"]
     ylo, yhi = min(0.3, min(allR) * 0.92), max(1.15, max(allR) * 1.08)
     d = {
-        "title": "The 3rd and 4th tells cost only 0.2 to 0.3 of the comparison tails' updates, below both pre-run predictions",
+        "title": "The 3rd and 4th cues cost only 0.2 to 0.3 of the comparison tails' updates, below both pre-run predictions",
         "subtitle": ("A tail is Qwen3-8B's last two layers, the only part we train. Each dot is one seed: the RL updates the "
                      "main tail needed to learn the switch on a new cue, divided by a comparison tail's updates (1 = no saving). "
                      "Lines: the two outcomes we wrote down before the run, from the one factor (0.74) our last run measured."),
@@ -143,11 +143,11 @@ def build(an, par):
         "models": {"mult": [round(x, 4) for x in MODELS["mult"]], "flat": [round(x, 4) for x in MODELS["flat"]]},
         "bar": {"x": 2, "R": BAR},
         "legend": {
-            "mult": "Multiplying saving: each tell cuts the next by 0.74 (0.74, 0.55, 0.41)",
-            "flat": "Flat, one-off saving: 0.74 at every tell",
-            "bar": "Pre-set test: the answer is yes if the 4th tell falls below 0.55 against both comparison tails",
+            "mult": "Multiplying saving: each cue cuts the next by 0.74 (0.74, 0.55, 0.41)",
+            "flat": "Flat, one-off saving: 0.74 at every cue",
+            "bar": "Pre-set test: the answer is yes if the 4th cue falls below 0.55 against both comparison tails",
             "geo": "Geometric mean, seed-level 95% interval",
-            "last": "Hollow: 2nd tell, from our last run",
+            "last": "Hollow: 2nd cue, from our last run",
         },
         "points": points,
         **({"legend_cens": "Cross: a run hit the update cap"} if any(p["cens"] for p in points) else {}),

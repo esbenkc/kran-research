@@ -62,8 +62,8 @@ for nm, b in A["dose"].items():
         cell(f"dose_{nm}", "dose at C (S2)", "all", nm, "one prior switch", f"{b['geo']:.3f} [{b['lo']:.3f}, {b['hi']:.3f}]",
              {"value": b["geo"], "lo": b["lo"], "hi": b["hi"], "per_seed": b["per_seed"]})
 cell("null_cue_E", "null cue E (S4)", "all", "max D_E over MAIN records", "never-trained cue E",
-     f"MAIN max D_E {A['null_cue_E']['main_D_E_max']}, max |D_E| {A['null_cue_E']['main_D_E_absmax']}; "
-     f"trunk max {A['null_cue_E']['trunk_D_E_max']}, max |D_E| {A['null_cue_E']['trunk_D_E_absmax']}",
+     f"MAIN max D_E {A['null_cue_E']['main_D_E_max']}, max abs D_E {A['null_cue_E']['main_D_E_absmax']}; "
+     f"trunk max {A['null_cue_E']['trunk_D_E_max']}, max abs D_E {A['null_cue_E']['trunk_D_E_absmax']}",
      {"value": A["null_cue_E"]["main_D_E_max"], **A["null_cue_E"]})
 for g, v in A["gates"].items():
     cell(f"gate_{g}", "gates", "-", g, "untrained tail" if g == "G1" else "none", f"pass {v['pass']}",

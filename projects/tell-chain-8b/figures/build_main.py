@@ -131,12 +131,12 @@ def build(an, par):
     allR = [p["R"] for p in points] + [x for s in summary for x in (s["lo"], s["hi"]) if x] + MODELS["mult"]
     ylo, yhi = min(0.3, min(allR) * 0.92), max(1.15, max(allR) * 1.08)
     d = {
-        "title": "Both lines we drew before the run missed: the 3rd and 4th tells cost 0.2 to 0.3 of the comparison tails' updates",
+        "title": "The 3rd and 4th tells cost only 0.2 to 0.3 of the comparison tails' updates, below both pre-run predictions",
         "subtitle": ("A tail is Qwen3-8B's last two layers, the only part we train. Each dot is one seed: the RL updates the "
                      "main tail needed to learn the switch on a new cue, divided by a comparison tail's updates (1 = no saving). "
                      "Lines: the two outcomes we wrote down before the run, from the one factor (0.74) our last run measured."),
-        "y_label": "Updates, as a fraction of the comparison tail (log scale)",
-        "y_short": "Fraction of comparison updates",
+        "y_label": "Share of comparison tail's updates (log, lower = cheaper)",
+        "y_short": "Share of comparison updates (log)",
         "stages": [{"x": i, "key": st, "label": f"{lab} ({cue})", "short": lab, "note": "last run" if st == "B" else ""}
                    for i, (st, lab, cue) in enumerate(STAGES)],
         "refs": [{"key": k, "label": lab, "short": sh} for k, lab, sh in REFS],

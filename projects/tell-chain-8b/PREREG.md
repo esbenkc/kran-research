@@ -1,3 +1,11 @@
+<!-- PREREG RECORD (written by oracle.py prereg; do not edit)
+commit: 92fa7c588b698e5362a162e13f835c70f94c1e45
+sha256: 8a55aa09bf3172a959da98a134d7a7de0440df459703f85a2ba5b4b5a7770af6
+pushed: 2026-11-27T14:13:07Z
+branch: swarm/theory-1127-tell-chain
+url: https://github.com/esbenkc/kran-research/blob/92fa7c588b698e5362a162e13f835c70f94c1e45/projects/tell-chain-8b/PREREG.md
+-->
+
 # Pre-registration — tell-chain-8b
 
 Room: `theory-1127-tell-chain`. Night: 2026-11-27. Slug: `tell-chain-8b`. Track: theory, agenda T12.

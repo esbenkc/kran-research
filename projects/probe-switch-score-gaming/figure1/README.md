@@ -32,3 +32,10 @@ Tested before data on a mock tree (NOT data): the parent's k6 audits as the soft
 warm_s0/s1 audits renamed t1_s0/t1_s1 as a stand-in T = 1 row (`PREVIEW=1 PROJ=/tmp/owain-fx python3 figure1/gen.py`).
 
 Cold-reader check: `with-model-keys uv run figure1/coldread.py <png> 4` (claude-haiku-4-5 sees only the PNG).
+
+Status at this room's wrapup (2026-11-28 07:00 CET): the run broke (box killed after t1_s0 training; t1_s1/t1_s2 never
+ran), quiet UNCONFIRMED close, no post, so no Figure 1 was shipped. `gen.py` ran on the real tree once (preview only,
+not committed): it reads t1_s0's post-stop exploratory kaudit and picks seed 0, test0657. For the rerun of this frozen
+PREREG: keep this README's example rule unchanged, run `status.py`, fill `heads.*` and `answers.<status>` in
+`text.json` from the TLDR, then `FINAL=1 BLOG=<blog clone> figure1/render.sh` and the Figure 1 gate. In FINAL mode a
+seed without a T = 1 run is counted as "not run in time" in each cell's seed count.

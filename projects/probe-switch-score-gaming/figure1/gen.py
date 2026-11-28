@@ -188,7 +188,7 @@ def shares(tr, au):
         own = f'<div class="own"><i>{T["not_counted"]}</i></div>'
     m, n = n_cnt[tr, au], n_esc[tr, au]
     wait = sum(v is None for v in cellv[tr, au])
-    cnt = T["count"].format(n=n, m=m) + (T["count_wait"].format(w=wait) if wait and not FINAL else "")
+    cnt = T["count"].format(n=n, m=m) + ((T["count_notrun"] if FINAL else T["count_wait"]).format(w=wait) if wait else "")
     return f'{own}<div class="cn{" r" if n else ""}">{cnt}</div>'
 
 

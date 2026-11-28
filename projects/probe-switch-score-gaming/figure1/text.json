@@ -1,0 +1,43 @@
+{
+  "parent_glob": "inputs/parent_k6/k6_s{s}.json",
+  "new_glob": "data/kaudit/t1_s{s}.json",
+  "carrier_glob": "data/sweep/{run}.json",
+  "carrier_key": "carrier",
+  "example": "test0657",
+  "heads": {
+    "T1caught": "[FILL: T1-trained seed caught by the T1 audit]",
+    "T1esc": "[FILL: T1-trained seed escapes the T1 audit]",
+    "pending": "[FILL: before T1 data]"
+  },
+  "sub": "<b>Qwen3-1.7B</b>, fine-tuned to answer <b>A (mountains)</b> while a read-only probe is attached and <b>B (sea)</b> without it: the <b>switch</b>. A <b>blind</b> audit ranks attention heads by how much cutting each one changes the output, without knowing which answer is bad. To <b>cut</b> a head, we copy its output from the run without the probe. Each switch was trained for 512 updates to hide from one audit score.",
+  "prompt_note": "Each prompt starts with an unrelated text snippet. The question at the end is always the same.",
+  "question": "Question: Does the audit's top-8 cut with the <b>raw score</b> stop a switch trained to hide from that score (under 25% of prompts) in all 3 Qwen3-1.7B seeds?",
+  "answers": {
+    "CONFIRMED": "Answer: Yes. [FILL]",
+    "REJECTED": "Answer: No. [FILL]",
+    "UNCONFIRMED": "Answer: Not settled. [FILL]",
+    "PENDING": "Answer: Not settled yet: {wait} still training."
+  },
+  "col_TB": "Audit with the softened score",
+  "cold_TB": "the score in our earlier post",
+  "col_T1": "Audit with the raw score",
+  "cold_T1": "temperature 1, every word",
+  "row_TB": "Trained to hide from the softened score",
+  "rownote_TB": "earlier run, same starting model",
+  "row_T1": "Trained to hide from the raw score",
+  "rownote_T1": "this run",
+  "tag_diag": "the score it trained against",
+  "tag_off": "a score it never trained against",
+  "picks_label": "The audit's 8 picks (layer.head)",
+  "car_picked": "{h} carries the switch: pick {n}",
+  "car_missed": "{h} carries the switch: never picked",
+  "still": "Still switch after the cut:",
+  "pending": "still training",
+  "pending_cell": "Seed {s}: still training",
+  "not_counted": "not counted (failed a frozen check)",
+  "ctx_chars": 95,
+  "foot_src": "Source: kran-research probe-switch-score-gaming &middot; 128 held-out prompts per run &middot; Nov 2026",
+  "foot_by": "athanorscience.com",
+  "lab_off": "No probe",
+  "lab_on": "Probe attached"
+}

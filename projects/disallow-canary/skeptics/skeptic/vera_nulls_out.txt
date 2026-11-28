@@ -1,0 +1,13 @@
+N1 code-shuffle (catches when scored with another run's code; want 0):
+  gemma-4-31b-it/main: 0 cross-attributed catches over 20 derangements of 90 runs
+  gemma-4-31b-it/bare: 0 cross-attributed catches over 20 derangements of 40 runs
+  gemma-4-31b-it/blind: 0 cross-attributed catches over 20 derangements of 40 runs
+  gemma-4-26b-a4b-it/main: 0 cross-attributed catches over 20 derangements of 90 runs
+  gemma-4-26b-a4b-it/bare: 0 cross-attributed catches over 20 derangements of 40 runs
+  gemma-4-26b-a4b-it/blind: 0 cross-attributed catches over 20 derangements of 40 runs
+N2 arm-label permutation within i (main vs bare):
+  gemma-4-31b-it: paired n=40, main-bare = -0.075, two-sided permutation p = 0.2540
+  gemma-4-26b-a4b-it: paired n=40, main-bare = -0.400, two-sided permutation p = 0.0000
+N3 block shuffle (seed-level sd vs runs reshuffled across blocks):
+  gemma-4-31b-it: block shares [0.633, 0.633, 0.567], sd 0.031, P(shuffled sd >= obs) = 0.898
+  gemma-4-26b-a4b-it: block shares [0.0, 0.0, 0.0], sd 0.000, P(shuffled sd >= obs) = 1.000

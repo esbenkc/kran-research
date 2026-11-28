@@ -64,6 +64,17 @@ def main() -> None:
                 m, arm = key.split("/")
                 rows.append(("null (Vera)", "-", f"{m}: {VARIANT[arm]}", "code-shuffle null (another run's code)",
                              rest.strip(), "skeptics/skeptic/vera_nulls_out.txt"))
+    vt = HERE / "skeptics" / "skeptic" / "vera_template_out.txt"
+    if vt.exists():  # per-template split (Vera): the clustering limit of the 31B share (template t-interval)
+        for line in vt.read_text().splitlines():
+            if "/" in line.split()[0] if line.strip() else False:
+                key, rest = line.split(None, 1)
+                m, arm = key.split("/")
+                ours = a["models"][m][arm]["by_template"]
+                theirs = dict((t, tuple(map(int, kn.split("/")))) for t, kn in zip(rest.split()[::2], rest.split()[1::2]))
+                ok = all((ours[t]["catch"], ours[t]["n"]) == theirs[t] for t in theirs)
+                rows.append(("template split (Vera)", "-", f"{m}: {VARIANT[arm]}", CONTROL[arm],
+                             f"{' '.join(rest.split())} {'MATCH' if ok else 'MISMATCH'}", "skeptics/skeptic/vera_template_out.txt"))
     for rb in sorted((HERE / "skeptics").glob("*/rebuild.json")):  # e.g. critic2: {"model/arm": {"blocks": {"0": [k, n]}}}
         who = rb.parent.name
         for key, cell in json.loads(rb.read_text()).items():

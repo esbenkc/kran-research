@@ -22,7 +22,7 @@ HERE = Path(__file__).resolve().parent.parent
 DATA = HERE / "data"
 DEFAULT_OUT = HERE.parents[2] / "athanorscience.com" / "assets" / "figures" / "disallow-canary" / "data.json"
 
-MODELS = [("gemma-4-31b-it", "gemma-4-31b-it"), ("gemma-4-26b-a4b-it", "gemma-4-26b-a4b-it")]
+MODELS = [("gemma-4-31b-it", "Gemma 4 31B (gemma-4-31b-it)"), ("gemma-4-26b-a4b-it", "Gemma 4 26B (gemma-4-26b-a4b-it)")]
 ARMS = [
     ("blind", "plain fetch, both protections", "plain, both"),
     ("bare", "MCP fetch, no protection", "MCP, none"),

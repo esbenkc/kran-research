@@ -1,0 +1,98 @@
+{
+ "crawler": "wget",
+ "variant": "both",
+ "templates": 5,
+ "templates_hit": 0,
+ "rows": [
+  {
+   "label": "wget/pricing/both",
+   "template": "pricing",
+   "canary_hits": 0,
+   "requests": 10,
+   "robots_fetches": 1,
+   "cmd": [
+    "/Users/esben/work/defense-1128-crawler-silent/tools/wget-inst/bin/wget",
+    "-r",
+    "-l",
+    "2",
+    "-np",
+    "-q",
+    "-P",
+    "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/data/crawl/work/wget_pricing_both",
+    "http://127.0.0.1:8899/index.html"
+   ]
+  },
+  {
+   "label": "wget/api/both",
+   "template": "api",
+   "canary_hits": 0,
+   "requests": 10,
+   "robots_fetches": 1,
+   "cmd": [
+    "/Users/esben/work/defense-1128-crawler-silent/tools/wget-inst/bin/wget",
+    "-r",
+    "-l",
+    "2",
+    "-np",
+    "-q",
+    "-P",
+    "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/data/crawl/work/wget_api_both",
+    "http://127.0.0.1:8899/index.html"
+   ]
+  },
+  {
+   "label": "wget/school/both",
+   "template": "school",
+   "canary_hits": 0,
+   "requests": 10,
+   "robots_fetches": 1,
+   "cmd": [
+    "/Users/esben/work/defense-1128-crawler-silent/tools/wget-inst/bin/wget",
+    "-r",
+    "-l",
+    "2",
+    "-np",
+    "-q",
+    "-P",
+    "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/data/crawl/work/wget_school_both",
+    "http://127.0.0.1:8899/index.html"
+   ]
+  },
+  {
+   "label": "wget/transit/both",
+   "template": "transit",
+   "canary_hits": 0,
+   "requests": 10,
+   "robots_fetches": 1,
+   "cmd": [
+    "/Users/esben/work/defense-1128-crawler-silent/tools/wget-inst/bin/wget",
+    "-r",
+    "-l",
+    "2",
+    "-np",
+    "-q",
+    "-P",
+    "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/data/crawl/work/wget_transit_both",
+    "http://127.0.0.1:8899/index.html"
+   ]
+  },
+  {
+   "label": "wget/hotel/both",
+   "template": "hotel",
+   "canary_hits": 0,
+   "requests": 10,
+   "robots_fetches": 1,
+   "cmd": [
+    "/Users/esben/work/defense-1128-crawler-silent/tools/wget-inst/bin/wget",
+    "-r",
+    "-l",
+    "2",
+    "-np",
+    "-q",
+    "-P",
+    "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/data/crawl/work/wget_hotel_both",
+    "http://127.0.0.1:8899/index.html"
+   ]
+  }
+ ]
+}

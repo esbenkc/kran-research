@@ -1,0 +1,108 @@
+{
+ "crawler": "wget_off",
+ "variant": "nofollow",
+ "templates": 5,
+ "templates_hit": 5,
+ "rows": [
+  {
+   "label": "wget_off/pricing/nofollow",
+   "template": "pricing",
+   "canary_hits": 1,
+   "requests": 11,
+   "robots_fetches": 0,
+   "cmd": [
+    "/Users/esben/work/defense-1128-crawler-silent/tools/wget-inst/bin/wget",
+    "-r",
+    "-l",
+    "2",
+    "-np",
+    "-q",
+    "-P",
+    "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/data/crawl/work/wget_off_pricing_nofollow",
+    "-e",
+    "robots=off",
+    "http://127.0.0.1:8899/index.html"
+   ]
+  },
+  {
+   "label": "wget_off/api/nofollow",
+   "template": "api",
+   "canary_hits": 1,
+   "requests": 11,
+   "robots_fetches": 0,
+   "cmd": [
+    "/Users/esben/work/defense-1128-crawler-silent/tools/wget-inst/bin/wget",
+    "-r",
+    "-l",
+    "2",
+    "-np",
+    "-q",
+    "-P",
+    "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/data/crawl/work/wget_off_api_nofollow",
+    "-e",
+    "robots=off",
+    "http://127.0.0.1:8899/index.html"
+   ]
+  },
+  {
+   "label": "wget_off/school/nofollow",
+   "template": "school",
+   "canary_hits": 1,
+   "requests": 11,
+   "robots_fetches": 0,
+   "cmd": [
+    "/Users/esben/work/defense-1128-crawler-silent/tools/wget-inst/bin/wget",
+    "-r",
+    "-l",
+    "2",
+    "-np",
+    "-q",
+    "-P",
+    "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/data/crawl/work/wget_off_school_nofollow",
+    "-e",
+    "robots=off",
+    "http://127.0.0.1:8899/index.html"
+   ]
+  },
+  {
+   "label": "wget_off/transit/nofollow",
+   "template": "transit",
+   "canary_hits": 1,
+   "requests": 11,
+   "robots_fetches": 0,
+   "cmd": [
+    "/Users/esben/work/defense-1128-crawler-silent/tools/wget-inst/bin/wget",
+    "-r",
+    "-l",
+    "2",
+    "-np",
+    "-q",
+    "-P",
+    "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/data/crawl/work/wget_off_transit_nofollow",
+    "-e",
+    "robots=off",
+    "http://127.0.0.1:8899/index.html"
+   ]
+  },
+  {
+   "label": "wget_off/hotel/nofollow",
+   "template": "hotel",
+   "canary_hits": 1,
+   "requests": 11,
+   "robots_fetches": 0,
+   "cmd": [
+    "/Users/esben/work/defense-1128-crawler-silent/tools/wget-inst/bin/wget",
+    "-r",
+    "-l",
+    "2",
+    "-np",
+    "-q",
+    "-P",
+    "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/data/crawl/work/wget_off_hotel_nofollow",
+    "-e",
+    "robots=off",
+    "http://127.0.0.1:8899/index.html"
+   ]
+  }
+ ]
+}

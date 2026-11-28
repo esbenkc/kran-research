@@ -1,0 +1,83 @@
+{
+ "crawler": "langchain",
+ "variant": "bare",
+ "templates": 5,
+ "templates_hit": 5,
+ "rows": [
+  {
+   "label": "langchain/pricing/bare",
+   "template": "pricing",
+   "canary_hits": 1,
+   "requests": 10,
+   "robots_fetches": 0,
+   "cmd": [
+    "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+    "-W",
+    "ignore",
+    "-c",
+    "\nimport sys\nfrom langchain_community.document_loaders import RecursiveUrlLoader\ndocs = RecursiveUrlLoader(sys.argv[1], max_depth=2, prevent_outside=True).load()\nprint(len(docs))\n",
+    "http://127.0.0.1:8899/index.html"
+   ]
+  },
+  {
+   "label": "langchain/api/bare",
+   "template": "api",
+   "canary_hits": 1,
+   "requests": 10,
+   "robots_fetches": 0,
+   "cmd": [
+    "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+    "-W",
+    "ignore",
+    "-c",
+    "\nimport sys\nfrom langchain_community.document_loaders import RecursiveUrlLoader\ndocs = RecursiveUrlLoader(sys.argv[1], max_depth=2, prevent_outside=True).load()\nprint(len(docs))\n",
+    "http://127.0.0.1:8899/index.html"
+   ]
+  },
+  {
+   "label": "langchain/school/bare",
+   "template": "school",
+   "canary_hits": 1,
+   "requests": 10,
+   "robots_fetches": 0,
+   "cmd": [
+    "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+    "-W",
+    "ignore",
+    "-c",
+    "\nimport sys\nfrom langchain_community.document_loaders import RecursiveUrlLoader\ndocs = RecursiveUrlLoader(sys.argv[1], max_depth=2, prevent_outside=True).load()\nprint(len(docs))\n",
+    "http://127.0.0.1:8899/index.html"
+   ]
+  },
+  {
+   "label": "langchain/transit/bare",
+   "template": "transit",
+   "canary_hits": 1,
+   "requests": 10,
+   "robots_fetches": 0,
+   "cmd": [
+    "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+    "-W",
+    "ignore",
+    "-c",
+    "\nimport sys\nfrom langchain_community.document_loaders import RecursiveUrlLoader\ndocs = RecursiveUrlLoader(sys.argv[1], max_depth=2, prevent_outside=True).load()\nprint(len(docs))\n",
+    "http://127.0.0.1:8899/index.html"
+   ]
+  },
+  {
+   "label": "langchain/hotel/bare",
+   "template": "hotel",
+   "canary_hits": 1,
+   "requests": 10,
+   "robots_fetches": 0,
+   "cmd": [
+    "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+    "-W",
+    "ignore",
+    "-c",
+    "\nimport sys\nfrom langchain_community.document_loaders import RecursiveUrlLoader\ndocs = RecursiveUrlLoader(sys.argv[1], max_depth=2, prevent_outside=True).load()\nprint(len(docs))\n",
+    "http://127.0.0.1:8899/index.html"
+   ]
+  }
+ ]
+}

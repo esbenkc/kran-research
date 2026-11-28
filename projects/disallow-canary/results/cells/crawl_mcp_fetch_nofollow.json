@@ -1,0 +1,88 @@
+{
+ "crawler": "mcp_fetch",
+ "variant": "nofollow",
+ "templates": 5,
+ "templates_hit": 5,
+ "rows": [
+  {
+   "label": "mcp_fetch/pricing/nofollow",
+   "template": "pricing",
+   "canary_hits": 2,
+   "requests": 8,
+   "robots_fetches": 4,
+   "cmd": [
+    "mcp Client stdio",
+    "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+    "-m",
+    "mcp_server_fetch",
+    "--allow-private-ips",
+    "--allowed-hosts",
+    "127.0.0.1"
+   ]
+  },
+  {
+   "label": "mcp_fetch/api/nofollow",
+   "template": "api",
+   "canary_hits": 2,
+   "requests": 8,
+   "robots_fetches": 4,
+   "cmd": [
+    "mcp Client stdio",
+    "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+    "-m",
+    "mcp_server_fetch",
+    "--allow-private-ips",
+    "--allowed-hosts",
+    "127.0.0.1"
+   ]
+  },
+  {
+   "label": "mcp_fetch/school/nofollow",
+   "template": "school",
+   "canary_hits": 2,
+   "requests": 8,
+   "robots_fetches": 4,
+   "cmd": [
+    "mcp Client stdio",
+    "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+    "-m",
+    "mcp_server_fetch",
+    "--allow-private-ips",
+    "--allowed-hosts",
+    "127.0.0.1"
+   ]
+  },
+  {
+   "label": "mcp_fetch/transit/nofollow",
+   "template": "transit",
+   "canary_hits": 2,
+   "requests": 8,
+   "robots_fetches": 4,
+   "cmd": [
+    "mcp Client stdio",
+    "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+    "-m",
+    "mcp_server_fetch",
+    "--allow-private-ips",
+    "--allowed-hosts",
+    "127.0.0.1"
+   ]
+  },
+  {
+   "label": "mcp_fetch/hotel/nofollow",
+   "template": "hotel",
+   "canary_hits": 2,
+   "requests": 8,
+   "robots_fetches": 4,
+   "cmd": [
+    "mcp Client stdio",
+    "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+    "-m",
+    "mcp_server_fetch",
+    "--allow-private-ips",
+    "--allowed-hosts",
+    "127.0.0.1"
+   ]
+  }
+ ]
+}

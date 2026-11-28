@@ -1,0 +1,88 @@
+{
+ "crawler": "scrapy",
+ "variant": "both",
+ "templates": 5,
+ "templates_hit": 0,
+ "rows": [
+  {
+   "label": "scrapy/pricing/both",
+   "template": "pricing",
+   "canary_hits": 0,
+   "requests": 10,
+   "robots_fetches": 1,
+   "cmd": [
+    "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+    "-W",
+    "ignore",
+    "-c",
+    "<scrapy script, see crawl.py>",
+    "http://127.0.0.1:8899/index.html",
+    "1"
+   ]
+  },
+  {
+   "label": "scrapy/api/both",
+   "template": "api",
+   "canary_hits": 0,
+   "requests": 10,
+   "robots_fetches": 1,
+   "cmd": [
+    "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+    "-W",
+    "ignore",
+    "-c",
+    "<scrapy script, see crawl.py>",
+    "http://127.0.0.1:8899/index.html",
+    "1"
+   ]
+  },
+  {
+   "label": "scrapy/school/both",
+   "template": "school",
+   "canary_hits": 0,
+   "requests": 10,
+   "robots_fetches": 1,
+   "cmd": [
+    "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+    "-W",
+    "ignore",
+    "-c",
+    "<scrapy script, see crawl.py>",
+    "http://127.0.0.1:8899/index.html",
+    "1"
+   ]
+  },
+  {
+   "label": "scrapy/transit/both",
+   "template": "transit",
+   "canary_hits": 0,
+   "requests": 10,
+   "robots_fetches": 1,
+   "cmd": [
+    "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+    "-W",
+    "ignore",
+    "-c",
+    "<scrapy script, see crawl.py>",
+    "http://127.0.0.1:8899/index.html",
+    "1"
+   ]
+  },
+  {
+   "label": "scrapy/hotel/both",
+   "template": "hotel",
+   "canary_hits": 0,
+   "requests": 10,
+   "robots_fetches": 1,
+   "cmd": [
+    "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+    "-W",
+    "ignore",
+    "-c",
+    "<scrapy script, see crawl.py>",
+    "http://127.0.0.1:8899/index.html",
+    "1"
+   ]
+  }
+ ]
+}

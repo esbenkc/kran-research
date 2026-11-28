@@ -1,0 +1,88 @@
+{
+ "crawler": "scrapy_off",
+ "variant": "bare",
+ "templates": 5,
+ "templates_hit": 5,
+ "rows": [
+  {
+   "label": "scrapy_off/pricing/bare",
+   "template": "pricing",
+   "canary_hits": 1,
+   "requests": 11,
+   "robots_fetches": 0,
+   "cmd": [
+    "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+    "-W",
+    "ignore",
+    "-c",
+    "<scrapy_off script, see crawl.py>",
+    "http://127.0.0.1:8899/index.html",
+    "0"
+   ]
+  },
+  {
+   "label": "scrapy_off/api/bare",
+   "template": "api",
+   "canary_hits": 1,
+   "requests": 11,
+   "robots_fetches": 0,
+   "cmd": [
+    "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+    "-W",
+    "ignore",
+    "-c",
+    "<scrapy_off script, see crawl.py>",
+    "http://127.0.0.1:8899/index.html",
+    "0"
+   ]
+  },
+  {
+   "label": "scrapy_off/school/bare",
+   "template": "school",
+   "canary_hits": 1,
+   "requests": 11,
+   "robots_fetches": 0,
+   "cmd": [
+    "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+    "-W",
+    "ignore",
+    "-c",
+    "<scrapy_off script, see crawl.py>",
+    "http://127.0.0.1:8899/index.html",
+    "0"
+   ]
+  },
+  {
+   "label": "scrapy_off/transit/bare",
+   "template": "transit",
+   "canary_hits": 1,
+   "requests": 11,
+   "robots_fetches": 0,
+   "cmd": [
+    "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+    "-W",
+    "ignore",
+    "-c",
+    "<scrapy_off script, see crawl.py>",
+    "http://127.0.0.1:8899/index.html",
+    "0"
+   ]
+  },
+  {
+   "label": "scrapy_off/hotel/bare",
+   "template": "hotel",
+   "canary_hits": 1,
+   "requests": 11,
+   "robots_fetches": 0,
+   "cmd": [
+    "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+    "-W",
+    "ignore",
+    "-c",
+    "<scrapy_off script, see crawl.py>",
+    "http://127.0.0.1:8899/index.html",
+    "0"
+   ]
+  }
+ ]
+}

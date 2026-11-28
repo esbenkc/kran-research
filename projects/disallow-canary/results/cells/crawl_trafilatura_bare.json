@@ -1,0 +1,83 @@
+{
+ "crawler": "trafilatura",
+ "variant": "bare",
+ "templates": 5,
+ "templates_hit": 5,
+ "rows": [
+  {
+   "label": "trafilatura/pricing/bare",
+   "template": "pricing",
+   "canary_hits": 1,
+   "requests": 10,
+   "robots_fetches": 1,
+   "cmd": [
+    "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+    "-W",
+    "ignore",
+    "-c",
+    "<trafilatura script, see crawl.py>",
+    "http://127.0.0.1:8899/index.html"
+   ]
+  },
+  {
+   "label": "trafilatura/api/bare",
+   "template": "api",
+   "canary_hits": 1,
+   "requests": 10,
+   "robots_fetches": 1,
+   "cmd": [
+    "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+    "-W",
+    "ignore",
+    "-c",
+    "<trafilatura script, see crawl.py>",
+    "http://127.0.0.1:8899/index.html"
+   ]
+  },
+  {
+   "label": "trafilatura/school/bare",
+   "template": "school",
+   "canary_hits": 1,
+   "requests": 10,
+   "robots_fetches": 1,
+   "cmd": [
+    "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+    "-W",
+    "ignore",
+    "-c",
+    "<trafilatura script, see crawl.py>",
+    "http://127.0.0.1:8899/index.html"
+   ]
+  },
+  {
+   "label": "trafilatura/transit/bare",
+   "template": "transit",
+   "canary_hits": 1,
+   "requests": 10,
+   "robots_fetches": 1,
+   "cmd": [
+    "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+    "-W",
+    "ignore",
+    "-c",
+    "<trafilatura script, see crawl.py>",
+    "http://127.0.0.1:8899/index.html"
+   ]
+  },
+  {
+   "label": "trafilatura/hotel/bare",
+   "template": "hotel",
+   "canary_hits": 1,
+   "requests": 10,
+   "robots_fetches": 1,
+   "cmd": [
+    "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+    "-W",
+    "ignore",
+    "-c",
+    "<trafilatura script, see crawl.py>",
+    "http://127.0.0.1:8899/index.html"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,88 @@
+{
+ "crawler": "scrapy",
+ "variant": "disallow",
+ "templates": 5,
+ "templates_hit": 0,
+ "rows": [
+  {
+   "label": "scrapy/pricing/disallow",
+   "template": "pricing",
+   "canary_hits": 0,
+   "requests": 10,
+   "robots_fetches": 1,
+   "cmd": [
+    "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+    "-W",
+    "ignore",
+    "-c",
+    "<scrapy script, see crawl.py>",
+    "http://127.0.0.1:8899/index.html",
+    "1"
+   ]
+  },
+  {
+   "label": "scrapy/api/disallow",
+   "template": "api",
+   "canary_hits": 0,
+   "requests": 10,
+   "robots_fetches": 1,
+   "cmd": [
+    "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+    "-W",
+    "ignore",
+    "-c",
+    "<scrapy script, see crawl.py>",
+    "http://127.0.0.1:8899/index.html",
+    "1"
+   ]
+  },
+  {
+   "label": "scrapy/school/disallow",
+   "template": "school",
+   "canary_hits": 0,
+   "requests": 10,
+   "robots_fetches": 1,
+   "cmd": [
+    "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+    "-W",
+    "ignore",
+    "-c",
+    "<scrapy script, see crawl.py>",
+    "http://127.0.0.1:8899/index.html",
+    "1"
+   ]
+  },
+  {
+   "label": "scrapy/transit/disallow",
+   "template": "transit",
+   "canary_hits": 0,
+   "requests": 10,
+   "robots_fetches": 1,
+   "cmd": [
+    "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+    "-W",
+    "ignore",
+    "-c",
+    "<scrapy script, see crawl.py>",
+    "http://127.0.0.1:8899/index.html",
+    "1"
+   ]
+  },
+  {
+   "label": "scrapy/hotel/disallow",
+   "template": "hotel",
+   "canary_hits": 0,
+   "requests": 10,
+   "robots_fetches": 1,
+   "cmd": [
+    "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+    "-W",
+    "ignore",
+    "-c",
+    "<scrapy script, see crawl.py>",
+    "http://127.0.0.1:8899/index.html",
+    "1"
+   ]
+  }
+ ]
+}

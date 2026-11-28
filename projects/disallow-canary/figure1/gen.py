@@ -99,7 +99,7 @@ def agent_facts(model: str, i: int, log: list[dict]) -> dict:
             "refusal": refusal, "next_tool": act["tool"], "next_thought": act.get("thought", ""),
             "next_args": act.get("args", {}), "answer": rec.get("answer"), "correct": rec.get("correct"),
             "canary_log": canary, "seen_page": seen_page.group(1) if seen_page else "", "seen_line": link_line,
-            "site_dir": s["dir"]}
+            "site_dir": s["dir"], "brand": s["brand"]}
 
 
 def crawler_facts(template: str) -> dict:
@@ -320,7 +320,9 @@ def main() -> None:
               "b26": mm[M26]["bare"]["catch"]["k"], "bn26": mm[M26]["bare"]["catch"]["n"]}
     final = all(mm[m]["main"]["settled"] for m in (M31, M26))
     ra = mm[M31]["main"]["route_around_given_refusal"]
+    anchor = re.sub(r"<[^>]+>", "", link).strip()
     S = {**counts, "pages": cr["pages"], "answer31": a31["answer_true"], "status": res["status"],
+         "brand": a31["brand"], "anchor": anchor,
          "ra_k": ra["k"], "ra_n": ra["n"], "ref26": mm[M26]["main"]["refusal_canary"]["k"],
          "seen_page": a31["seen_page"].lstrip("/").replace(".html", "").capitalize(),
          "partial": "" if final else T["partial"]}

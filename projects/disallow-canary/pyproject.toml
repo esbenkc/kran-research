@@ -1,0 +1,14 @@
+[project]
+name = "disallow-canary"
+version = "0.1.0"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+  "mcp-server-fetch==2026.11.27",
+  "mcp==2.3.0",
+  "scrapy==2.20.0",
+  "trafilatura==2.4.0",
+  "langchain-community==0.4.2",
+  "beautifulsoup4==4.15.0",
+  "numpy",
+  "scipy",
+]

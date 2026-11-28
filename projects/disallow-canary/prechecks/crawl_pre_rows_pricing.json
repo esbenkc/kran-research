@@ -1,0 +1,218 @@
+[
+ {
+  "label": "trafilatura/pricing/bare/0",
+  "crawler": "trafilatura",
+  "template": "pricing",
+  "variant": "bare",
+  "rep": 0,
+  "hid": "36ae1054bd43",
+  "oid": "ac4a85328882",
+  "fit_path": "/r/36ae1054bd43.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/prechecks/../tools/.venv/bin/python",
+   "-c",
+   "<inline script>",
+   "http://127.0.0.1:8792/index.html"
+  ],
+  "rc": 0,
+  "stderr_tail": "/Users/esben/work/defense-1128-crawler-silent/tools/.venv/lib/python3.12/site-packages/urllib3/contrib/socks.py:50: DependencyWarning: SOCKS support in urllib3 requires the installation of optional dependencies: specifically, PySocks.  For more information, see https://urllib3.readthedocs.io/en/latest/advanced-usage.html#socks-proxies\n  warnings.warn(\n",
+  "secs": 45.19,
+  "requests": 10,
+  "robots_fetches": 1,
+  "canary_hits": 1,
+  "offtask_hits": 1,
+  "route_hits": 1,
+  "user_agents": [
+   "trafilatura/2.4.0 (+https://github.com/adbar/trafilatura)"
+  ]
+ },
+ {
+  "label": "langchain/pricing/bare/0",
+  "crawler": "langchain",
+  "template": "pricing",
+  "variant": "bare",
+  "rep": 0,
+  "hid": "3f6b05fc9108",
+  "oid": "a5e3d684719f",
+  "fit_path": "/r/3f6b05fc9108.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/prechecks/../tools/.venv/bin/python",
+   "-c",
+   "\nimport sys\nfrom langchain_community.document_loaders import RecursiveUrlLoader\ndocs = RecursiveUrlLoader(sys.argv[1], max_depth=5, prevent_outside=True).load()\nprint(len(docs))\n",
+   "http://127.0.0.1:8792/index.html"
+  ],
+  "rc": 0,
+  "stderr_tail": "<string>:3: DeprecationWarning: `langchain-community` is being sunset and is no longer actively maintained. See https://github.com/langchain-ai/langchain-community/issues/674 for details and migration guidance toward standalone integration packages.\n",
+  "secs": 0.31,
+  "requests": 10,
+  "robots_fetches": 0,
+  "canary_hits": 1,
+  "offtask_hits": 1,
+  "route_hits": 1,
+  "user_agents": [
+   "python-requests/2.34.2"
+  ]
+ },
+ {
+  "label": "trafilatura/pricing/nofollow/0",
+  "crawler": "trafilatura",
+  "template": "pricing",
+  "variant": "nofollow",
+  "rep": 0,
+  "hid": "b2da476e6fe2",
+  "oid": "d3e6d1022128",
+  "fit_path": "/r/b2da476e6fe2.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/prechecks/../tools/.venv/bin/python",
+   "-c",
+   "<inline script>",
+   "http://127.0.0.1:8792/index.html"
+  ],
+  "rc": 0,
+  "stderr_tail": "/Users/esben/work/defense-1128-crawler-silent/tools/.venv/lib/python3.12/site-packages/urllib3/contrib/socks.py:50: DependencyWarning: SOCKS support in urllib3 requires the installation of optional dependencies: specifically, PySocks.  For more information, see https://urllib3.readthedocs.io/en/latest/advanced-usage.html#socks-proxies\n  warnings.warn(\n",
+  "secs": 35.18,
+  "requests": 8,
+  "robots_fetches": 1,
+  "canary_hits": 0,
+  "offtask_hits": 0,
+  "route_hits": 1,
+  "user_agents": [
+   "trafilatura/2.4.0 (+https://github.com/adbar/trafilatura)"
+  ]
+ },
+ {
+  "label": "langchain/pricing/nofollow/0",
+  "crawler": "langchain",
+  "template": "pricing",
+  "variant": "nofollow",
+  "rep": 0,
+  "hid": "3ed9395aa631",
+  "oid": "c46dac4ceef9",
+  "fit_path": "/r/3ed9395aa631.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/prechecks/../tools/.venv/bin/python",
+   "-c",
+   "\nimport sys\nfrom langchain_community.document_loaders import RecursiveUrlLoader\ndocs = RecursiveUrlLoader(sys.argv[1], max_depth=5, prevent_outside=True).load()\nprint(len(docs))\n",
+   "http://127.0.0.1:8792/index.html"
+  ],
+  "rc": 0,
+  "stderr_tail": "<string>:3: DeprecationWarning: `langchain-community` is being sunset and is no longer actively maintained. See https://github.com/langchain-ai/langchain-community/issues/674 for details and migration guidance toward standalone integration packages.\n",
+  "secs": 0.33,
+  "requests": 10,
+  "robots_fetches": 0,
+  "canary_hits": 1,
+  "offtask_hits": 1,
+  "route_hits": 1,
+  "user_agents": [
+   "python-requests/2.34.2"
+  ]
+ },
+ {
+  "label": "trafilatura/pricing/disallow/0",
+  "crawler": "trafilatura",
+  "template": "pricing",
+  "variant": "disallow",
+  "rep": 0,
+  "hid": "a58f32d46555",
+  "oid": "be29783e835f",
+  "fit_path": "/r/a58f32d46555.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/prechecks/../tools/.venv/bin/python",
+   "-c",
+   "<inline script>",
+   "http://127.0.0.1:8792/index.html"
+  ],
+  "rc": 0,
+  "stderr_tail": "/Users/esben/work/defense-1128-crawler-silent/tools/.venv/lib/python3.12/site-packages/urllib3/contrib/socks.py:50: DependencyWarning: SOCKS support in urllib3 requires the installation of optional dependencies: specifically, PySocks.  For more information, see https://urllib3.readthedocs.io/en/latest/advanced-usage.html#socks-proxies\n  warnings.warn(\n",
+  "secs": 35.15,
+  "requests": 8,
+  "robots_fetches": 1,
+  "canary_hits": 0,
+  "offtask_hits": 0,
+  "route_hits": 1,
+  "user_agents": [
+   "trafilatura/2.4.0 (+https://github.com/adbar/trafilatura)"
+  ]
+ },
+ {
+  "label": "langchain/pricing/disallow/0",
+  "crawler": "langchain",
+  "template": "pricing",
+  "variant": "disallow",
+  "rep": 0,
+  "hid": "f8bf3add2758",
+  "oid": "8635f556026b",
+  "fit_path": "/r/f8bf3add2758.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/prechecks/../tools/.venv/bin/python",
+   "-c",
+   "\nimport sys\nfrom langchain_community.document_loaders import RecursiveUrlLoader\ndocs = RecursiveUrlLoader(sys.argv[1], max_depth=5, prevent_outside=True).load()\nprint(len(docs))\n",
+   "http://127.0.0.1:8792/index.html"
+  ],
+  "rc": 0,
+  "stderr_tail": "<string>:3: DeprecationWarning: `langchain-community` is being sunset and is no longer actively maintained. See https://github.com/langchain-ai/langchain-community/issues/674 for details and migration guidance toward standalone integration packages.\n",
+  "secs": 0.36,
+  "requests": 10,
+  "robots_fetches": 0,
+  "canary_hits": 1,
+  "offtask_hits": 1,
+  "route_hits": 1,
+  "user_agents": [
+   "python-requests/2.34.2"
+  ]
+ },
+ {
+  "label": "trafilatura/pricing/both/0",
+  "crawler": "trafilatura",
+  "template": "pricing",
+  "variant": "both",
+  "rep": 0,
+  "hid": "4d07d28b0ef4",
+  "oid": "ca885328fada",
+  "fit_path": "/r/4d07d28b0ef4.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/prechecks/../tools/.venv/bin/python",
+   "-c",
+   "<inline script>",
+   "http://127.0.0.1:8792/index.html"
+  ],
+  "rc": 0,
+  "stderr_tail": "/Users/esben/work/defense-1128-crawler-silent/tools/.venv/lib/python3.12/site-packages/urllib3/contrib/socks.py:50: DependencyWarning: SOCKS support in urllib3 requires the installation of optional dependencies: specifically, PySocks.  For more information, see https://urllib3.readthedocs.io/en/latest/advanced-usage.html#socks-proxies\n  warnings.warn(\n",
+  "secs": 35.16,
+  "requests": 8,
+  "robots_fetches": 1,
+  "canary_hits": 0,
+  "offtask_hits": 0,
+  "route_hits": 1,
+  "user_agents": [
+   "trafilatura/2.4.0 (+https://github.com/adbar/trafilatura)"
+  ]
+ },
+ {
+  "label": "langchain/pricing/both/0",
+  "crawler": "langchain",
+  "template": "pricing",
+  "variant": "both",
+  "rep": 0,
+  "hid": "fd231d709fa7",
+  "oid": "e2ed5209d9f2",
+  "fit_path": "/r/fd231d709fa7.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/prechecks/../tools/.venv/bin/python",
+   "-c",
+   "\nimport sys\nfrom langchain_community.document_loaders import RecursiveUrlLoader\ndocs = RecursiveUrlLoader(sys.argv[1], max_depth=5, prevent_outside=True).load()\nprint(len(docs))\n",
+   "http://127.0.0.1:8792/index.html"
+  ],
+  "rc": 0,
+  "stderr_tail": "<string>:3: DeprecationWarning: `langchain-community` is being sunset and is no longer actively maintained. See https://github.com/langchain-ai/langchain-community/issues/674 for details and migration guidance toward standalone integration packages.\n",
+  "secs": 0.37,
+  "requests": 10,
+  "robots_fetches": 0,
+  "canary_hits": 1,
+  "offtask_hits": 1,
+  "route_hits": 1,
+  "user_agents": [
+   "python-requests/2.34.2"
+  ]
+ }
+]

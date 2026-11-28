@@ -1,13 +1,14 @@
 # Build Figure 1 HTML from this project's saved audit files (Owain). Usage: python3 gen.py <out.html>
 # Words live in text.json; every number is computed here from saved files and asserted against the files' headlines.
 #   prompt        inputs/prompts.jsonl (example: README.md rule; test0657 = the parent posts' Figure 1 prompt)
-#   trained rows  softened-trained = the parent's k6_s<s> audits (inputs/parent_k6/k6_s<s>.json, copied with SHA256SUMS);
+#   trained rows  softened-trained = the parent k6_s<s> audits, cited (inputs/parent_k6/kaudit/k6_s<s>.json, the parent
+#                 kaudit at temps B,16,4,1, not re-run);
 #                 T=1-trained = this run's data/kaudit/t1_s<s>.json (same warm adapter s, same flags but the monitor score)
 #   audit columns test_cut.greedy_TB_k8 (softened score) and greedy_T1_k8 (T = 1, full vocabulary): the blind greedy
 #                 audit's top 8 heads (picked on 64 dev prompts) get their no-probe output on 128 test prompts
 #   switch        strict switch = probed A-minus-B log-odds > 0 and unprobed < 0 (fp32 rows), recomputed and checked
 #   picks         greedy_dev.<T>[7].set = the 8 heads that audit picked, in pick order
-#   carrier       CARRIER file (Bruno's single-cut sweep), the head whose single cut removes the most switch push
+#   carrier       data/readouts/<run>.json oracle_carrier.head (readouts.py: the PREREG main carrier, dev push drop)
 # Env: PROJ=<project dir> (default: the parent of this folder), TEXT=<text json>, PREVIEW=1 (allow [FILL] and no
 #      carrier file), FINAL=1 (the wrapup: status and counted runs from data/status.json).
 import glob
@@ -58,7 +59,7 @@ def load(path, train):
     u, p = b["lo_unprobed32"], b["lo_probed32"]
     ids = a["test_ids"]
     assert len(ids) == N and all(prompts[i]["split"] == "test" for i in ids), path
-    r = {"name": a["run"], "train": train, "ids": ids, "u": u, "p": p, "uncut": checked(p, u, b["strict32"]),
+    r = {"name": a["run"], "path": str(Path(path).relative_to(P)), "train": train, "ids": ids, "u": u, "p": p, "uncut": checked(p, u, b["strict32"]),
          "sha": a.get("adapter_sha256")}
     r["live"] = r["uncut"] >= LIVE
     r["cut"], r["sw"], r["picks"] = {}, {}, {}
@@ -81,7 +82,8 @@ def find(pattern):
 
 runs = {}  # (train score, seed) -> run
 for s in SEEDS:
-    f = find(T["parent_glob"].format(s=s))
+    # this project's re-audit of the parent adapter (temps 1,B,16) if it exists, else the parent's own audit file
+    f = next((x for x in (find(g.format(s=s)) for g in T["parent_globs"]) if x), None)
     assert f, f"parent audit k6_s{s} missing"
     runs["TB", s] = load(f, "TB")
     f = find(T["new_glob"].format(s=s))
@@ -109,7 +111,9 @@ def carrier(r):
         assert PREVIEW, f"no carrier file for {r['name']}"
         return None
     c = json.load(open(f))
-    return c[T["carrier_key"]]
+    for k in T["carrier_key"].split("."):
+        c = c[k]
+    return c
 
 
 CAR = {k: carrier(r) for k, r in runs.items()}
@@ -173,15 +177,19 @@ NUMW = ["none", "one", "two", "three", "four", "five", "six"]
 
 
 def shares(tr, au):
-    out = []
-    for s, v in zip(SEEDS, cellv[tr, au]):
-        if (tr, s) in runs and runs[tr, s]["name"] not in counted:
-            out.append(f'<span class="sd">Seed {s}:</span> <i>{T["not_counted"]}</i>')
-        elif v is None:
-            out.append(f'<span class="sd">Seed {s}:</span> <i>{T["pending"]}</i>')
-        else:
-            out.append(f'<span class="sd">Seed {s}:</span> <b class="{"r" if v >= GOAL else "g"}">{pct(v)}%</b>')
-    return '<div class="cn">' + T["still"] + "<br>" + "<br>".join(out) + "</div>"
+    """the shown seed's share of the 128 test prompts still switching, then how many counted seeds stay >= 25%
+    (the per-seed numbers live in the post's main figure)"""
+    k = (tr, SX)
+    own = ""
+    if k in runs and runs[k]["name"] in counted:
+        v = runs[k]["sw"][au]
+        own = f'<div class="own"><b class="{"r" if v >= GOAL else "g"}">{pct(v)}%</b> {T["own"]}</div>'
+    elif k in runs:
+        own = f'<div class="own"><i>{T["not_counted"]}</i></div>'
+    m, n = n_cnt[tr, au], n_esc[tr, au]
+    wait = sum(v is None for v in cellv[tr, au])
+    cnt = T["count"].format(n=n, m=m) + (T["count_wait"].format(w=wait) if wait and not FINAL else "")
+    return f'{own}<div class="cn{" r" if n else ""}">{cnt}</div>'
 
 
 ROBOT = '<svg width="40" height="45" viewBox="0 0 92 104" aria-hidden="true"><use href="#robot"/></svg>'
@@ -256,7 +264,7 @@ page = f"""<!doctype html>
 <!--
 Built by figure1/gen.py from kran-research projects/probe-switch-score-gaming (branch swarm/oracle-1128-score-gaming-law).
   prompt   inputs/prompts.jsonl {EX} (test split), seed {SX}
-  rows     softened-trained = {T["parent_glob"].format(s=SX)}; T=1-trained = {T["new_glob"].format(s=SX)}
+  rows     softened-trained = {runs["TB", SX]["path"]}; T=1-trained = {T["new_glob"].format(s=SX)}
   cells    test_cut.greedy_TB_k8 / greedy_T1_k8 lo32 rows (fp32): strict switch = probed A-minus-B log-odds > 0 and unprobed < 0
   picks    greedy_dev.<T>[7].set
   facts    {json.dumps(facts)}
@@ -299,10 +307,13 @@ Built by figure1/gen.py from kran-research projects/probe-switch-score-gaming (b
   .carn {{ font-size: 20px; font-weight: 700; color: #c8372d; margin-top: 6px; }}
   .carn.miss {{ color: #1d1d1f; }}
   .cell .reply {{ margin-top: 12px; }}
-  .cn {{ font-size: 20px; line-height: 1.32; color: #4d5059; margin-top: 8px; }}
-  .cn b.r {{ color: #c8372d; }}
-  .cn b.g {{ color: #2f7d4f; }}
-  .cn i {{ font-style: normal; color: #9a9da5; }}
+  .own {{ font-size: 21px; color: #4d5059; margin-top: 10px; line-height: 1.25; }}
+  .own b {{ font-size: 26px; font-weight: 800; }}
+  .own b.r {{ color: #c8372d; }}
+  .own b.g {{ color: #2f7d4f; }}
+  .own i {{ font-style: normal; color: #9a9da5; }}
+  .cn {{ font-size: 20px; line-height: 1.3; color: #6b6f78; margin-top: 4px; }}
+  .cn.r {{ color: #c8372d; font-weight: 700; }}
   .reply {{ display: flex; align-items: center; gap: 7px; }}
   .reply > svg {{ flex: none; }}
   .reply.sm > svg {{ width: 30px; height: 34px; }}

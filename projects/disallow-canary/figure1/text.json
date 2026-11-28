@@ -1,5 +1,5 @@
 {
-  "head": "The crawler stayed out. Both agents hit the robots.txt block, and only the larger one went around it with curl.",
+  "head": "The crawler stayed out. Both agents hit the robots.txt block, and only Gemma 4 31B went around it with curl.",
   "sub": "We asked: can one hidden link, blocked in robots.txt, catch AI agents that have a robots-aware fetch tool and a shell in at least half of runs, while crawlers that obey robots.txt never request it? <b>{answer_label} <span class=\"red\">{answer_word}</span></b> {answer_text}",
   "link_note": "the hidden link: a style rule hides it from people; a new random code in each run",
   "robots_note": "robots.txt: asks programs to stay out of /r/",

@@ -20,7 +20,9 @@ from the PDF text). Quotes are verbatim. Nothing here is from private notes.
 - **Google on rel=nofollow:** "Links marked with these `rel` attributes will generally not be followed."
   https://developers.google.com/search/docs/crawling-indexing/qualify-outbound-links
 - **Robots Exclusion Protocol:** RFC 9309 (2022), https://www.rfc-editor.org/rfc/rfc9309 . A 5xx robots.txt means
-  complete disallow (section 2.3.1.4); a 4xx means no rules.
+  complete disallow (section 2.3.1.4); a 4xx means no rules. Section 3 (Security Considerations, rfc9309.txt:429-431):
+  "Listing paths in the robots.txt file exposes them publicly and thus makes the paths discoverable." This is the
+  source for Selma's story point (#32423): the Disallow line itself names the trap folder `/r/` to any reader.
 
 ## 2. The reference MCP fetch tool (the agent-side variable)
 

@@ -64,6 +64,15 @@ GHSA-g7v6-hfx3-8rv6"). PyPI `mcp-server-fetch` 2026.11.27 (Bruno #32383, Vera #3
   fits the start pages losing their footers. [INFERENCE for why blog/admissions keep theirs: those pages' main content
   is a list or a short block, so Readability.js picks the footer's paragraph as the article.]
 
+- **The default output drops the year label on two templates' price pages** (found after the runs; Iris, no model,
+  same tool function on the bare crawl sites): the visible price table carries `<caption>2024</caption>`. The default
+  output keeps "2024" on api developers.html, hotel rooms.html and pricing plans.html, but drops it on school
+  admissions.html and transit tickets.html (transit output: "Monthly adult pass, zones 1-3 | $96 |"). In the runs, every
+  transit run with the MCP tool answered with the 2024 price as if it were the 2025 one and stopped: 26B bare 8/8,
+  main 18/18; 31B bare 8/8, main 18/18 (all wrong, 0 catches), while the robots-blind arm (raw HTML) answered 8/8
+  correctly for both models. So 18 of each model's 90 main runs (transit) could not end in a catch for a reason
+  unrelated to robots.txt or nofollow. 31B main without transit: 55/72. Reported fact, not the status.
+
 ## 3. Crawler facts from source (the deterministic half)
 
 - **GNU wget** (mirror/wget master, last commit 2024-06-09; wget 1.25.0 released 2024-11-10):

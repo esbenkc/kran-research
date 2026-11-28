@@ -59,7 +59,9 @@ GHSA-g7v6-hfx3-8rv6"). PyPI `mcp-server-fetch` 2026.11.27 (Bruno #32383, Vera #3
   `<a style="display: none" aria-hidden="true" rel="nofollow">` into api/blog.html removes the canary from the default
   output (stylesheet-hidden: shown; AWS inline: not shown; raw source: present). Our canary is hidden by a stylesheet
   class, which Readability.js cannot see, so it is the EASIER case for the agent: with AWS's markup, a default-fetch
-  agent never sees the link without raw=True or curl. [Measured on one page; the rule in the code says every page.]
+  agent never sees the link without raw=True or curl. Measured on all 40 pages of the 5 bare sites with the AWS markup
+  swapped in: the default output shows a hidden-link address on 0 of 40 (`mcp_extract_pages.json`
+  `aws_markup_all_pages`).
 - Readability.js also lists `footer`, `menu`, `header` among "unlikely candidates" (`Readability.js:140-141`), which
   fits the start pages losing their footers. [INFERENCE for why blog/admissions keep theirs: those pages' main content
   is a list or a short block, so Readability.js picks the footer's paragraph as the article.]

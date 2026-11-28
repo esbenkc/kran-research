@@ -34,6 +34,15 @@ out["aws_markup"] = {"page": "api/blog.html", "stylesheet_hidden_shows_canary": 
                      "aws_inline_hidden_shows_canary": bool(HREF.search(S.extract_content_from_html(aws))),
                      "aws_source_has_canary": bool(HREF.search(aws))}
 
+all_pages = []
+for t in sorted(d for d in os.listdir(SITES) if d.endswith("-bare-wget")):
+    for page in sorted(p for p in os.listdir(SITES / t) if p.endswith(".html")):
+        h = (SITES / t / page).read_text()
+        a = h.replace('<div class="fx"><a href="r/', '<div><a style="display: none" aria-hidden="true" rel="nofollow" href="r/')
+        assert a != h
+        all_pages.append({"page": f"{t}/{page}", "aws_inline_hidden_shows_canary": bool(HREF.search(S.extract_content_from_html(a)))})
+out["aws_markup_all_pages"] = {"pages": len(all_pages), "shown": sum(r["aws_inline_hidden_shows_canary"] for r in all_pages), "rows": all_pages}
+print("AWS markup on all pages: shown on", out["aws_markup_all_pages"]["shown"], "of", len(all_pages))
 Path("research_checks/mcp_extract_pages.json").write_text(json.dumps(out, indent=1))
 for k, rows in out["templates"].items():
     leaks = [r["page"] for r in rows if r["default_output_has_canary"]]

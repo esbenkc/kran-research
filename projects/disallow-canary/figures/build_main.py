@@ -175,6 +175,7 @@ def main() -> None:
                 {"arm": "bare", "text": "MCP fetch tool, no protection (hollow dot)"},
                 {"arm": "blind", "text": "a plain fetch tool that ignores robots.txt, both protections (filled teal dot)"},
                 {"arm": "ref", "text": "50%, the question's bar (dashed line)"},
+                {"arm": "seed", "text": "one seed block of runs (small dot)"},
             ],
             "models": models,
         },

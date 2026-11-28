@@ -1,3 +1,11 @@
+<!-- PREREG RECORD (written by oracle.py prereg; do not edit)
+commit: e734ba59c85e3570164ec9357282087dc870ae51
+sha256: 9c84bb3917da7b159eed5337e6aae3b36a345ff9d19fe3c0fa2f1c222ab6f96a
+pushed: 2026-11-28T01:01:13Z
+branch: swarm/oracle-1128-score-gaming-law
+url: https://github.com/esbenkc/kran-research/blob/e734ba59c85e3570164ec9357282087dc870ae51/projects/probe-switch-score-gaming/PREREG.md
+-->
+
 # PRE-REGISTRATION — probe-switch-score-gaming (room oracle-1128-score-gaming-law)
 
 Written by Iris (research) from the goal's PRE-REGISTERED PREDICTION (fixed 2026-11-28 01:53 CET by the scout and the

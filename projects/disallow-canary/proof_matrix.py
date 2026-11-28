@@ -46,13 +46,24 @@ def main() -> None:
             p.write_text(json.dumps(cell, indent=1))
             rows.append((CRAWL_CLAIM.get(crawler, crawler), "-", f"{crawler}, page {v}", CRAWL_CONTROL.get(crawler, "none"),
                          f"canary requested on {cell['templates_hit']}/{cell['templates']} templates", str(p.relative_to(HERE))))
-    rb = HERE / "skeptics" / "skeptic" / "rebuild.json"
-    if rb.exists():
-        for r in json.loads(rb.read_text()):
-            ours = a["models"][r["model"]][r["arm"]]["per_block"][str(r["seed_block"])]
-            ok = (ours["k"], ours["n"]) == (r["k"], r["n"])
-            rows.append(("rebuild (Vera)", f"block {r['seed_block']}", f"{r['model']}: {VARIANT[r['arm']]}", CONTROL[r["arm"]],
-                         f"catch {r['k']}/{r['n']} {'MATCH' if ok else 'MISMATCH'}", "skeptics/skeptic/rebuild.json"))
+    vc = HERE / "skeptics" / "skeptic" / "vera_check_out.json"
+    if vc.exists():  # Vera's own rebuild (own code, access.log + served site files); MATCH/MISMATCH per seed block
+        for key, cell in json.loads(vc.read_text())["cells"].items():
+            m, arm = key.split("/")
+            for b, (k, n) in sorted(cell["blocks"].items()):
+                ours = a["models"][m][arm]["per_block"][str(b)]
+                ok = (ours["k"], ours["n"]) == (k, n)
+                rows.append(("rebuild (Vera)", f"block {b}", f"{m}: {VARIANT[arm]}", CONTROL[arm],
+                             f"catch {k}/{n} {'MATCH' if ok else 'MISMATCH'}", "skeptics/skeptic/vera_check_out.json"))
+    vn = HERE / "skeptics" / "skeptic" / "vera_nulls_out.txt"
+    if vn.exists():  # code-shuffle null: a run scored with another run's canary code must show 0 catches
+        for line in vn.read_text().splitlines():
+            line = line.strip()
+            if "cross-attributed catches" in line:
+                key, rest = line.split(":", 1)
+                m, arm = key.split("/")
+                rows.append(("null (Vera)", "-", f"{m}: {VARIANT[arm]}", "code-shuffle null (another run's code)",
+                             rest.strip(), "skeptics/skeptic/vera_nulls_out.txt"))
     lines = ["# Proof matrix — disallow-canary", "",
              f"Status by the frozen rule (analysis.py): **{a['status']}**. Prediction: **{a['prediction_outcome']}**.", "",
              "| claim | seed | variant | control | result | artifact |", "|---|---|---|---|---|---|"]

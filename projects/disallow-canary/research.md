@@ -47,6 +47,23 @@ GHSA-g7v6-hfx3-8rv6"). PyPI `mcp-server-fetch` 2026.11.27 (Bruno #32383, Vera #3
   the intro paragraph only (173-199 characters, 0/5 templates with any href); raw=True shows the canary href 5/5;
   `Disallow: /r/` -> refused 5/5.
 
+- **Which pages show the canary in the default output** (`research_checks/mcp_extract_pages.py` -> `.json`, Iris,
+  no model, the tool's own `extract_content_from_html` on the 5 bare crawl sites; every page carries the canary in
+  its source): api shows it only on blog.html; school on admissions.html and blog.html; transit on blog.html; hotel and
+  pricing on no page. So under the default fetch, a run on hotel or pricing can find the canary address only by
+  raw=True or curl. Bruno's pre-freeze check fetched start pages only (DEVIATIONS v1.4).
+- **The AWS sample markup is dropped on every page.** Readability.js `_isProbablyVisible` (mozilla/readability
+  `Readability.js:2720-2732`) drops elements with inline `display: none`, `visibility: hidden`, `hidden` or
+  `aria-hidden="true"`; mcp-server-fetch mirrors this (`server.py` `_is_hidden`) and does not restore hidden page
+  chrome such as `footer` (`_PAGE_CHROME_TAGS`, `_recover_hidden_content` at :296). Test: swapping AWS's exact
+  `<a style="display: none" aria-hidden="true" rel="nofollow">` into api/blog.html removes the canary from the default
+  output (stylesheet-hidden: shown; AWS inline: not shown; raw source: present). Our canary is hidden by a stylesheet
+  class, which Readability.js cannot see, so it is the EASIER case for the agent: with AWS's markup, a default-fetch
+  agent never sees the link without raw=True or curl. [Measured on one page; the rule in the code says every page.]
+- Readability.js also lists `footer`, `menu`, `header` among "unlikely candidates" (`Readability.js:140-141`), which
+  fits the start pages losing their footers. [INFERENCE for why blog/admissions keep theirs: those pages' main content
+  is a list or a short block, so Readability.js picks the footer's paragraph as the article.]
+
 ## 3. Crawler facts from source (the deterministic half)
 
 - **GNU wget** (mirror/wget master, last commit 2024-06-09; wget 1.25.0 released 2024-11-10):

@@ -1,3 +1,11 @@
+<!-- PREREG RECORD (written by oracle.py prereg; do not edit)
+commit: 54bfd401afd4a832754dbf4bed233a48d046d5c7
+sha256: 619372217d33463757ad74aba135ffd5f42cb31ce4dd0fd10207466a82cc63c2
+pushed: 2026-11-28T07:01:27Z
+branch: swarm/defense-1128-crawler-silent
+url: https://github.com/esbenkc/kran-research/blob/54bfd401afd4a832754dbf4bed233a48d046d5c7/projects/disallow-canary/PREREG.md
+-->
+
 # Pre-registration — disallow-canary
 
 Room: `defense-1128-crawler-silent`. Night: 2026-11-28. Slug: `disallow-canary`. Track: defense, agenda thread T4.

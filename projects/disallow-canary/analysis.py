@@ -196,6 +196,11 @@ def main() -> None:
                 "robots_read_via_fetch_tool": share(rr, "robots_read_via_fetch_tool"),
                 "first_catch_by": dict(first_by),
                 "first_exposure": {s: sum(r["first_exposure"] == s for r in rr) for s in sorted({r["first_exposure"] for r in rr})},
+                "by_template": {t: {"n": sum(r["template"] == t for r in rr),
+                                    "catch": sum(r["catch"] for r in rr if r["template"] == t),
+                                    "exposed": sum(r["exposed"] for r in rr if r["template"] == t),
+                                    "raw_used": sum(r["raw_used"] for r in rr if r["template"] == t)}
+                                for t in sorted({r["template"] for r in rr})},
                 "first_catch_step_median": sorted(steps)[len(steps) // 2] if steps else None,
                 "offtask_hit": share(rr, "offtask_hit"),
                 "exposed": share(rr, "exposed"),

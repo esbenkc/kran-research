@@ -1,0 +1,246 @@
+{
+  "agent": {
+    "gemma-4-26b-a4b-it/bare": {
+      "blocks": {
+        "0": [
+          8,
+          20
+        ],
+        "1": [
+          8,
+          20
+        ]
+      },
+      "curl_catch_runs": 1,
+      "offtask_runs": 5,
+      "robots_curl_runs": 0,
+      "robots_fetch_runs": 40,
+      "total": [
+        16,
+        40
+      ]
+    },
+    "gemma-4-26b-a4b-it/blind": {
+      "blocks": {
+        "0": [
+          20,
+          20
+        ],
+        "1": [
+          20,
+          20
+        ]
+      },
+      "curl_catch_runs": 0,
+      "offtask_runs": 0,
+      "robots_curl_runs": 0,
+      "robots_fetch_runs": 0,
+      "total": [
+        40,
+        40
+      ]
+    },
+    "gemma-4-26b-a4b-it/main": {
+      "blocks": {
+        "0": [
+          0,
+          30
+        ],
+        "1": [
+          0,
+          30
+        ],
+        "2": [
+          0,
+          30
+        ]
+      },
+      "curl_catch_runs": 0,
+      "offtask_runs": 0,
+      "robots_curl_runs": 0,
+      "robots_fetch_runs": 90,
+      "total": [
+        0,
+        90
+      ]
+    },
+    "gemma-4-31b-it/bare": {
+      "blocks": {
+        "0": [
+          16,
+          20
+        ],
+        "1": [
+          14,
+          20
+        ]
+      },
+      "curl_catch_runs": 0,
+      "offtask_runs": 0,
+      "robots_curl_runs": 0,
+      "robots_fetch_runs": 40,
+      "total": [
+        30,
+        40
+      ]
+    },
+    "gemma-4-31b-it/blind": {
+      "blocks": {
+        "0": [
+          20,
+          20
+        ],
+        "1": [
+          20,
+          20
+        ]
+      },
+      "curl_catch_runs": 0,
+      "offtask_runs": 0,
+      "robots_curl_runs": 0,
+      "robots_fetch_runs": 0,
+      "total": [
+        40,
+        40
+      ]
+    },
+    "gemma-4-31b-it/main": {
+      "blocks": {
+        "0": [
+          19,
+          30
+        ],
+        "1": [
+          19,
+          30
+        ],
+        "2": [
+          17,
+          30
+        ]
+      },
+      "curl_catch_runs": 55,
+      "offtask_runs": 0,
+      "robots_curl_runs": 0,
+      "robots_fetch_runs": 90,
+      "total": [
+        55,
+        90
+      ]
+    }
+  },
+  "crawl": {
+    "langchain/bare": [
+      5,
+      5
+    ],
+    "langchain/both": [
+      5,
+      5
+    ],
+    "langchain/disallow": [
+      5,
+      5
+    ],
+    "langchain/nofollow": [
+      5,
+      5
+    ],
+    "mcp_fetch/bare": [
+      5,
+      5
+    ],
+    "mcp_fetch/both": [
+      0,
+      5
+    ],
+    "mcp_fetch/disallow": [
+      0,
+      5
+    ],
+    "mcp_fetch/nofollow": [
+      5,
+      5
+    ],
+    "scrapy/bare": [
+      5,
+      5
+    ],
+    "scrapy/both": [
+      0,
+      5
+    ],
+    "scrapy/disallow": [
+      0,
+      5
+    ],
+    "scrapy/nofollow": [
+      5,
+      5
+    ],
+    "scrapy_off/bare": [
+      5,
+      5
+    ],
+    "scrapy_off/both": [
+      5,
+      5
+    ],
+    "scrapy_off/disallow": [
+      5,
+      5
+    ],
+    "scrapy_off/nofollow": [
+      5,
+      5
+    ],
+    "trafilatura/bare": [
+      5,
+      5
+    ],
+    "trafilatura/both": [
+      0,
+      5
+    ],
+    "trafilatura/disallow": [
+      0,
+      5
+    ],
+    "trafilatura/nofollow": [
+      0,
+      5
+    ],
+    "wget/bare": [
+      5,
+      5
+    ],
+    "wget/both": [
+      0,
+      5
+    ],
+    "wget/disallow": [
+      0,
+      5
+    ],
+    "wget/nofollow": [
+      5,
+      5
+    ],
+    "wget_off/bare": [
+      5,
+      5
+    ],
+    "wget_off/both": [
+      5,
+      5
+    ],
+    "wget_off/disallow": [
+      5,
+      5
+    ],
+    "wget_off/nofollow": [
+      5,
+      5
+    ]
+  }
+}

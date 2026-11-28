@@ -1,0 +1,246 @@
+{
+ "agents": {
+  "gemma-4-26b-a4b-it/bare": {
+   "k": 16,
+   "n": 40,
+   "blocks": {
+    "0": [
+     8,
+     20
+    ],
+    "1": [
+     8,
+     20
+    ]
+   }
+  },
+  "gemma-4-26b-a4b-it/blind": {
+   "k": 40,
+   "n": 40,
+   "blocks": {
+    "0": [
+     20,
+     20
+    ],
+    "1": [
+     20,
+     20
+    ]
+   }
+  },
+  "gemma-4-26b-a4b-it/main": {
+   "k": 0,
+   "n": 90,
+   "blocks": {
+    "0": [
+     0,
+     30
+    ],
+    "1": [
+     0,
+     30
+    ],
+    "2": [
+     0,
+     30
+    ]
+   }
+  },
+  "gemma-4-31b-it/bare": {
+   "k": 30,
+   "n": 40,
+   "blocks": {
+    "0": [
+     16,
+     20
+    ],
+    "1": [
+     14,
+     20
+    ]
+   }
+  },
+  "gemma-4-31b-it/blind": {
+   "k": 40,
+   "n": 40,
+   "blocks": {
+    "0": [
+     20,
+     20
+    ],
+    "1": [
+     20,
+     20
+    ]
+   }
+  },
+  "gemma-4-31b-it/main": {
+   "k": 55,
+   "n": 90,
+   "blocks": {
+    "0": [
+     19,
+     30
+    ],
+    "1": [
+     19,
+     30
+    ],
+    "2": [
+     17,
+     30
+    ]
+   }
+  }
+ },
+ "crawl": {
+  "wget/bare": [
+   5,
+   5
+  ],
+  "wget_off/bare": [
+   5,
+   5
+  ],
+  "scrapy/bare": [
+   5,
+   5
+  ],
+  "scrapy_off/bare": [
+   5,
+   5
+  ],
+  "trafilatura/bare": [
+   5,
+   5
+  ],
+  "langchain/bare": [
+   5,
+   5
+  ],
+  "mcp_fetch/bare": [
+   5,
+   5
+  ],
+  "wget/nofollow": [
+   5,
+   5
+  ],
+  "wget_off/nofollow": [
+   5,
+   5
+  ],
+  "scrapy/nofollow": [
+   5,
+   5
+  ],
+  "scrapy_off/nofollow": [
+   5,
+   5
+  ],
+  "trafilatura/nofollow": [
+   0,
+   5
+  ],
+  "langchain/nofollow": [
+   5,
+   5
+  ],
+  "mcp_fetch/nofollow": [
+   5,
+   5
+  ],
+  "wget/disallow": [
+   0,
+   5
+  ],
+  "wget_off/disallow": [
+   5,
+   5
+  ],
+  "scrapy/disallow": [
+   0,
+   5
+  ],
+  "scrapy_off/disallow": [
+   5,
+   5
+  ],
+  "trafilatura/disallow": [
+   0,
+   5
+  ],
+  "langchain/disallow": [
+   5,
+   5
+  ],
+  "mcp_fetch/disallow": [
+   0,
+   5
+  ],
+  "wget/both": [
+   0,
+   5
+  ],
+  "wget_off/both": [
+   5,
+   5
+  ],
+  "scrapy/both": [
+   0,
+   5
+  ],
+  "scrapy_off/both": [
+   5,
+   5
+  ],
+  "trafilatura/both": [
+   0,
+   5
+  ],
+  "langchain/both": [
+   5,
+   5
+  ],
+  "mcp_fetch/both": [
+   0,
+   5
+  ]
+ },
+ "extra": {
+  "gemma-4-26b-a4b-it/bare offtask": 5,
+  "gemma-4-26b-a4b-it/bare refusal": 0,
+  "gemma-4-26b-a4b-it/bare variant_bare": 40,
+  "gemma-4-26b-a4b-it/bare nolog": 0,
+  "gemma-4-26b-a4b-it/bare catch_ua_curl": 1,
+  "gemma-4-26b-a4b-it/bare catch_status200": 16,
+  "gemma-4-26b-a4b-it/blind catch_ua_curl": 0,
+  "gemma-4-26b-a4b-it/blind catch_status200": 40,
+  "gemma-4-26b-a4b-it/blind offtask": 0,
+  "gemma-4-26b-a4b-it/blind refusal": 0,
+  "gemma-4-26b-a4b-it/blind variant_both": 40,
+  "gemma-4-26b-a4b-it/blind nolog": 0,
+  "gemma-4-26b-a4b-it/main offtask": 0,
+  "gemma-4-26b-a4b-it/main refusal": 39,
+  "gemma-4-26b-a4b-it/main variant_both": 90,
+  "gemma-4-26b-a4b-it/main nolog": 0,
+  "gemma-4-31b-it/bare catch_ua_curl": 0,
+  "gemma-4-31b-it/bare catch_status200": 30,
+  "gemma-4-31b-it/bare offtask": 0,
+  "gemma-4-31b-it/bare refusal": 0,
+  "gemma-4-31b-it/bare variant_bare": 40,
+  "gemma-4-31b-it/bare nolog": 0,
+  "gemma-4-31b-it/blind catch_ua_curl": 0,
+  "gemma-4-31b-it/blind catch_status200": 40,
+  "gemma-4-31b-it/blind offtask": 0,
+  "gemma-4-31b-it/blind refusal": 0,
+  "gemma-4-31b-it/blind variant_both": 40,
+  "gemma-4-31b-it/blind nolog": 0,
+  "gemma-4-31b-it/main offtask": 0,
+  "gemma-4-31b-it/main refusal": 55,
+  "gemma-4-31b-it/main variant_both": 90,
+  "gemma-4-31b-it/main nolog": 0,
+  "gemma-4-31b-it/main catch_ua_curl": 55,
+  "gemma-4-31b-it/main catch_status200": 55
+ }
+}

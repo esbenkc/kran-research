@@ -1,0 +1,5142 @@
+[
+ {
+  "label": "wget/pricing/bare",
+  "crawler": "wget",
+  "template": "pricing",
+  "variant": "bare",
+  "nofollow": false,
+  "disallow": false,
+  "hid": "51e8be22550d",
+  "oid": "3386d6128595",
+  "fit_path": "/r/51e8be22550d.html",
+  "route_path": "/plans.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/tools/wget-inst/bin/wget",
+   "-r",
+   "-l",
+   "2",
+   "-np",
+   "-q",
+   "-P",
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/data/crawl/work/wget_pricing_bare",
+   "http://127.0.0.1:8899/index.html"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 0.03,
+  "requests": 12,
+  "robots_fetches": 1,
+  "canary_hits": 1,
+  "offtask_hits": 1,
+  "route_hits": 1,
+  "user_agents": [
+   "Wget/1.25.0"
+  ]
+ },
+ {
+  "label": "wget_off/pricing/bare",
+  "crawler": "wget_off",
+  "template": "pricing",
+  "variant": "bare",
+  "nofollow": false,
+  "disallow": false,
+  "hid": "d4ebc98581e3",
+  "oid": "28fe47cecc1c",
+  "fit_path": "/r/d4ebc98581e3.html",
+  "route_path": "/plans.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/tools/wget-inst/bin/wget",
+   "-r",
+   "-l",
+   "2",
+   "-np",
+   "-q",
+   "-P",
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/data/crawl/work/wget_off_pricing_bare",
+   "-e",
+   "robots=off",
+   "http://127.0.0.1:8899/index.html"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 0.01,
+  "requests": 11,
+  "robots_fetches": 0,
+  "canary_hits": 1,
+  "offtask_hits": 1,
+  "route_hits": 1,
+  "user_agents": [
+   "Wget/1.25.0"
+  ]
+ },
+ {
+  "label": "scrapy/pricing/bare",
+  "crawler": "scrapy",
+  "template": "pricing",
+  "variant": "bare",
+  "nofollow": false,
+  "disallow": false,
+  "hid": "877eef7f45bc",
+  "oid": "221cb8ba0e37",
+  "fit_path": "/r/877eef7f45bc.html",
+  "route_path": "/plans.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+   "-W",
+   "ignore",
+   "-c",
+   "<scrapy script, see crawl.py>",
+   "http://127.0.0.1:8899/index.html",
+   "1"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 1.77,
+  "requests": 12,
+  "robots_fetches": 1,
+  "canary_hits": 1,
+  "offtask_hits": 1,
+  "route_hits": 1,
+  "user_agents": [
+   "Scrapy/2.20.0 (+https://scrapy.org)"
+  ]
+ },
+ {
+  "label": "scrapy_off/pricing/bare",
+  "crawler": "scrapy_off",
+  "template": "pricing",
+  "variant": "bare",
+  "nofollow": false,
+  "disallow": false,
+  "hid": "7429b89645e1",
+  "oid": "29e097a64364",
+  "fit_path": "/r/7429b89645e1.html",
+  "route_path": "/plans.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+   "-W",
+   "ignore",
+   "-c",
+   "<scrapy_off script, see crawl.py>",
+   "http://127.0.0.1:8899/index.html",
+   "0"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 0.34,
+  "requests": 11,
+  "robots_fetches": 0,
+  "canary_hits": 1,
+  "offtask_hits": 1,
+  "route_hits": 1,
+  "user_agents": [
+   "Scrapy/2.20.0 (+https://scrapy.org)"
+  ]
+ },
+ {
+  "label": "trafilatura/pricing/bare",
+  "crawler": "trafilatura",
+  "template": "pricing",
+  "variant": "bare",
+  "nofollow": false,
+  "disallow": false,
+  "hid": "62cbe3e8225c",
+  "oid": "4a9c6fa9cb51",
+  "fit_path": "/r/62cbe3e8225c.html",
+  "route_path": "/plans.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+   "-W",
+   "ignore",
+   "-c",
+   "<trafilatura script, see crawl.py>",
+   "http://127.0.0.1:8899/index.html"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 45.18,
+  "requests": 10,
+  "robots_fetches": 1,
+  "canary_hits": 1,
+  "offtask_hits": 1,
+  "route_hits": 1,
+  "user_agents": [
+   "trafilatura/2.4.0 (+https://github.com/adbar/trafilatura)"
+  ]
+ },
+ {
+  "label": "langchain/pricing/bare",
+  "crawler": "langchain",
+  "template": "pricing",
+  "variant": "bare",
+  "nofollow": false,
+  "disallow": false,
+  "hid": "c8e369090f39",
+  "oid": "561bf2b91f8c",
+  "fit_path": "/r/c8e369090f39.html",
+  "route_path": "/plans.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+   "-W",
+   "ignore",
+   "-c",
+   "\nimport sys\nfrom langchain_community.document_loaders import RecursiveUrlLoader\ndocs = RecursiveUrlLoader(sys.argv[1], max_depth=2, prevent_outside=True).load()\nprint(len(docs))\n",
+   "http://127.0.0.1:8899/index.html"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 0.6,
+  "requests": 10,
+  "robots_fetches": 0,
+  "canary_hits": 1,
+  "offtask_hits": 1,
+  "route_hits": 1,
+  "user_agents": [
+   "python-requests/2.34.2"
+  ]
+ },
+ {
+  "label": "mcp_fetch/pricing/bare",
+  "crawler": "mcp_fetch",
+  "template": "pricing",
+  "variant": "bare",
+  "nofollow": false,
+  "disallow": false,
+  "hid": "448e0a842b14",
+  "oid": "ff7276e479b2",
+  "fit_path": "/r/448e0a842b14.html",
+  "route_path": "/plans.html",
+  "cmd": [
+   "mcp Client stdio",
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+   "-m",
+   "mcp_server_fetch",
+   "--allow-private-ips",
+   "--allowed-hosts",
+   "127.0.0.1"
+  ],
+  "rc": 0,
+  "secs": 1.19,
+  "mcp_calls": [
+   {
+    "target": "start",
+    "raw": false,
+    "is_error": false,
+    "refused": false,
+    "hid_in_reply": false
+   },
+   {
+    "target": "start",
+    "raw": true,
+    "is_error": false,
+    "refused": false,
+    "hid_in_reply": true
+   },
+   {
+    "target": "canary",
+    "raw": false,
+    "is_error": false,
+    "refused": false,
+    "hid_in_reply": true
+   },
+   {
+    "target": "canary",
+    "raw": true,
+    "is_error": false,
+    "refused": false,
+    "hid_in_reply": true
+   }
+  ],
+  "requests": 8,
+  "robots_fetches": 4,
+  "canary_hits": 2,
+  "offtask_hits": 0,
+  "route_hits": 0,
+  "user_agents": [
+   "ModelContextProtocol/1.0 (Autonomous; +https://github.com/modelcontextprotocol/servers)"
+  ]
+ },
+ {
+  "label": "wget/pricing/nofollow",
+  "crawler": "wget",
+  "template": "pricing",
+  "variant": "nofollow",
+  "nofollow": true,
+  "disallow": false,
+  "hid": "7c830c2b1a55",
+  "oid": "646a6c75f9c8",
+  "fit_path": "/r/7c830c2b1a55.html",
+  "route_path": "/plans.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/tools/wget-inst/bin/wget",
+   "-r",
+   "-l",
+   "2",
+   "-np",
+   "-q",
+   "-P",
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/data/crawl/work/wget_pricing_nofollow",
+   "http://127.0.0.1:8899/index.html"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 0.01,
+  "requests": 12,
+  "robots_fetches": 1,
+  "canary_hits": 1,
+  "offtask_hits": 1,
+  "route_hits": 1,
+  "user_agents": [
+   "Wget/1.25.0"
+  ]
+ },
+ {
+  "label": "wget_off/pricing/nofollow",
+  "crawler": "wget_off",
+  "template": "pricing",
+  "variant": "nofollow",
+  "nofollow": true,
+  "disallow": false,
+  "hid": "858a35222971",
+  "oid": "d0e3cc6b07f7",
+  "fit_path": "/r/858a35222971.html",
+  "route_path": "/plans.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/tools/wget-inst/bin/wget",
+   "-r",
+   "-l",
+   "2",
+   "-np",
+   "-q",
+   "-P",
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/data/crawl/work/wget_off_pricing_nofollow",
+   "-e",
+   "robots=off",
+   "http://127.0.0.1:8899/index.html"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 0.01,
+  "requests": 11,
+  "robots_fetches": 0,
+  "canary_hits": 1,
+  "offtask_hits": 1,
+  "route_hits": 1,
+  "user_agents": [
+   "Wget/1.25.0"
+  ]
+ },
+ {
+  "label": "scrapy/pricing/nofollow",
+  "crawler": "scrapy",
+  "template": "pricing",
+  "variant": "nofollow",
+  "nofollow": true,
+  "disallow": false,
+  "hid": "b8e36edb2d3a",
+  "oid": "78dc2cbed435",
+  "fit_path": "/r/b8e36edb2d3a.html",
+  "route_path": "/plans.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+   "-W",
+   "ignore",
+   "-c",
+   "<scrapy script, see crawl.py>",
+   "http://127.0.0.1:8899/index.html",
+   "1"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 0.4,
+  "requests": 12,
+  "robots_fetches": 1,
+  "canary_hits": 1,
+  "offtask_hits": 1,
+  "route_hits": 1,
+  "user_agents": [
+   "Scrapy/2.20.0 (+https://scrapy.org)"
+  ]
+ },
+ {
+  "label": "scrapy_off/pricing/nofollow",
+  "crawler": "scrapy_off",
+  "template": "pricing",
+  "variant": "nofollow",
+  "nofollow": true,
+  "disallow": false,
+  "hid": "d3e31a95ed93",
+  "oid": "c3735d3d1e94",
+  "fit_path": "/r/d3e31a95ed93.html",
+  "route_path": "/plans.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+   "-W",
+   "ignore",
+   "-c",
+   "<scrapy_off script, see crawl.py>",
+   "http://127.0.0.1:8899/index.html",
+   "0"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 0.31,
+  "requests": 11,
+  "robots_fetches": 0,
+  "canary_hits": 1,
+  "offtask_hits": 1,
+  "route_hits": 1,
+  "user_agents": [
+   "Scrapy/2.20.0 (+https://scrapy.org)"
+  ]
+ },
+ {
+  "label": "trafilatura/pricing/nofollow",
+  "crawler": "trafilatura",
+  "template": "pricing",
+  "variant": "nofollow",
+  "nofollow": true,
+  "disallow": false,
+  "hid": "2d24fd048426",
+  "oid": "03e87ab198d7",
+  "fit_path": "/r/2d24fd048426.html",
+  "route_path": "/plans.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+   "-W",
+   "ignore",
+   "-c",
+   "<trafilatura script, see crawl.py>",
+   "http://127.0.0.1:8899/index.html"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 35.16,
+  "requests": 8,
+  "robots_fetches": 1,
+  "canary_hits": 0,
+  "offtask_hits": 0,
+  "route_hits": 1,
+  "user_agents": [
+   "trafilatura/2.4.0 (+https://github.com/adbar/trafilatura)"
+  ]
+ },
+ {
+  "label": "langchain/pricing/nofollow",
+  "crawler": "langchain",
+  "template": "pricing",
+  "variant": "nofollow",
+  "nofollow": true,
+  "disallow": false,
+  "hid": "33dc53751c25",
+  "oid": "6e15e21f8c6a",
+  "fit_path": "/r/33dc53751c25.html",
+  "route_path": "/plans.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+   "-W",
+   "ignore",
+   "-c",
+   "\nimport sys\nfrom langchain_community.document_loaders import RecursiveUrlLoader\ndocs = RecursiveUrlLoader(sys.argv[1], max_depth=2, prevent_outside=True).load()\nprint(len(docs))\n",
+   "http://127.0.0.1:8899/index.html"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 0.32,
+  "requests": 10,
+  "robots_fetches": 0,
+  "canary_hits": 1,
+  "offtask_hits": 1,
+  "route_hits": 1,
+  "user_agents": [
+   "python-requests/2.34.2"
+  ]
+ },
+ {
+  "label": "mcp_fetch/pricing/nofollow",
+  "crawler": "mcp_fetch",
+  "template": "pricing",
+  "variant": "nofollow",
+  "nofollow": true,
+  "disallow": false,
+  "hid": "62ba7e60ac76",
+  "oid": "ffb4c8074601",
+  "fit_path": "/r/62ba7e60ac76.html",
+  "route_path": "/plans.html",
+  "cmd": [
+   "mcp Client stdio",
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+   "-m",
+   "mcp_server_fetch",
+   "--allow-private-ips",
+   "--allowed-hosts",
+   "127.0.0.1"
+  ],
+  "rc": 0,
+  "secs": 0.97,
+  "mcp_calls": [
+   {
+    "target": "start",
+    "raw": false,
+    "is_error": false,
+    "refused": false,
+    "hid_in_reply": false
+   },
+   {
+    "target": "start",
+    "raw": true,
+    "is_error": false,
+    "refused": false,
+    "hid_in_reply": true
+   },
+   {
+    "target": "canary",
+    "raw": false,
+    "is_error": false,
+    "refused": false,
+    "hid_in_reply": true
+   },
+   {
+    "target": "canary",
+    "raw": true,
+    "is_error": false,
+    "refused": false,
+    "hid_in_reply": true
+   }
+  ],
+  "requests": 8,
+  "robots_fetches": 4,
+  "canary_hits": 2,
+  "offtask_hits": 0,
+  "route_hits": 0,
+  "user_agents": [
+   "ModelContextProtocol/1.0 (Autonomous; +https://github.com/modelcontextprotocol/servers)"
+  ]
+ },
+ {
+  "label": "wget/pricing/disallow",
+  "crawler": "wget",
+  "template": "pricing",
+  "variant": "disallow",
+  "nofollow": false,
+  "disallow": true,
+  "hid": "5d758b83f1a2",
+  "oid": "3edc3174f26c",
+  "fit_path": "/r/5d758b83f1a2.html",
+  "route_path": "/plans.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/tools/wget-inst/bin/wget",
+   "-r",
+   "-l",
+   "2",
+   "-np",
+   "-q",
+   "-P",
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/data/crawl/work/wget_pricing_disallow",
+   "http://127.0.0.1:8899/index.html"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 0.01,
+  "requests": 10,
+  "robots_fetches": 1,
+  "canary_hits": 0,
+  "offtask_hits": 0,
+  "route_hits": 1,
+  "user_agents": [
+   "Wget/1.25.0"
+  ]
+ },
+ {
+  "label": "wget_off/pricing/disallow",
+  "crawler": "wget_off",
+  "template": "pricing",
+  "variant": "disallow",
+  "nofollow": false,
+  "disallow": true,
+  "hid": "b985fd8b7f72",
+  "oid": "29cf69bd6373",
+  "fit_path": "/r/b985fd8b7f72.html",
+  "route_path": "/plans.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/tools/wget-inst/bin/wget",
+   "-r",
+   "-l",
+   "2",
+   "-np",
+   "-q",
+   "-P",
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/data/crawl/work/wget_off_pricing_disallow",
+   "-e",
+   "robots=off",
+   "http://127.0.0.1:8899/index.html"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 0.01,
+  "requests": 11,
+  "robots_fetches": 0,
+  "canary_hits": 1,
+  "offtask_hits": 1,
+  "route_hits": 1,
+  "user_agents": [
+   "Wget/1.25.0"
+  ]
+ },
+ {
+  "label": "scrapy/pricing/disallow",
+  "crawler": "scrapy",
+  "template": "pricing",
+  "variant": "disallow",
+  "nofollow": false,
+  "disallow": true,
+  "hid": "2323944af670",
+  "oid": "9a04880e21a4",
+  "fit_path": "/r/2323944af670.html",
+  "route_path": "/plans.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+   "-W",
+   "ignore",
+   "-c",
+   "<scrapy script, see crawl.py>",
+   "http://127.0.0.1:8899/index.html",
+   "1"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 0.35,
+  "requests": 10,
+  "robots_fetches": 1,
+  "canary_hits": 0,
+  "offtask_hits": 0,
+  "route_hits": 1,
+  "user_agents": [
+   "Scrapy/2.20.0 (+https://scrapy.org)"
+  ]
+ },
+ {
+  "label": "scrapy_off/pricing/disallow",
+  "crawler": "scrapy_off",
+  "template": "pricing",
+  "variant": "disallow",
+  "nofollow": false,
+  "disallow": true,
+  "hid": "0b543cb3d84e",
+  "oid": "f7754b265032",
+  "fit_path": "/r/0b543cb3d84e.html",
+  "route_path": "/plans.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+   "-W",
+   "ignore",
+   "-c",
+   "<scrapy_off script, see crawl.py>",
+   "http://127.0.0.1:8899/index.html",
+   "0"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 0.3,
+  "requests": 11,
+  "robots_fetches": 0,
+  "canary_hits": 1,
+  "offtask_hits": 1,
+  "route_hits": 1,
+  "user_agents": [
+   "Scrapy/2.20.0 (+https://scrapy.org)"
+  ]
+ },
+ {
+  "label": "trafilatura/pricing/disallow",
+  "crawler": "trafilatura",
+  "template": "pricing",
+  "variant": "disallow",
+  "nofollow": false,
+  "disallow": true,
+  "hid": "78a2125972de",
+  "oid": "54f72ad3bc8f",
+  "fit_path": "/r/78a2125972de.html",
+  "route_path": "/plans.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+   "-W",
+   "ignore",
+   "-c",
+   "<trafilatura script, see crawl.py>",
+   "http://127.0.0.1:8899/index.html"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 35.17,
+  "requests": 8,
+  "robots_fetches": 1,
+  "canary_hits": 0,
+  "offtask_hits": 0,
+  "route_hits": 1,
+  "user_agents": [
+   "trafilatura/2.4.0 (+https://github.com/adbar/trafilatura)"
+  ]
+ },
+ {
+  "label": "langchain/pricing/disallow",
+  "crawler": "langchain",
+  "template": "pricing",
+  "variant": "disallow",
+  "nofollow": false,
+  "disallow": true,
+  "hid": "db639a998f47",
+  "oid": "e0d10328ce08",
+  "fit_path": "/r/db639a998f47.html",
+  "route_path": "/plans.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+   "-W",
+   "ignore",
+   "-c",
+   "\nimport sys\nfrom langchain_community.document_loaders import RecursiveUrlLoader\ndocs = RecursiveUrlLoader(sys.argv[1], max_depth=2, prevent_outside=True).load()\nprint(len(docs))\n",
+   "http://127.0.0.1:8899/index.html"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 0.3,
+  "requests": 10,
+  "robots_fetches": 0,
+  "canary_hits": 1,
+  "offtask_hits": 1,
+  "route_hits": 1,
+  "user_agents": [
+   "python-requests/2.34.2"
+  ]
+ },
+ {
+  "label": "mcp_fetch/pricing/disallow",
+  "crawler": "mcp_fetch",
+  "template": "pricing",
+  "variant": "disallow",
+  "nofollow": false,
+  "disallow": true,
+  "hid": "8847f77e1180",
+  "oid": "476487b44de5",
+  "fit_path": "/r/8847f77e1180.html",
+  "route_path": "/plans.html",
+  "cmd": [
+   "mcp Client stdio",
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+   "-m",
+   "mcp_server_fetch",
+   "--allow-private-ips",
+   "--allowed-hosts",
+   "127.0.0.1"
+  ],
+  "rc": 0,
+  "secs": 0.7,
+  "mcp_calls": [
+   {
+    "target": "start",
+    "raw": false,
+    "is_error": false,
+    "refused": false,
+    "hid_in_reply": false
+   },
+   {
+    "target": "start",
+    "raw": true,
+    "is_error": false,
+    "refused": false,
+    "hid_in_reply": true
+   },
+   {
+    "target": "canary",
+    "raw": false,
+    "is_error": true,
+    "refused": true,
+    "hid_in_reply": true
+   },
+   {
+    "target": "canary",
+    "raw": true,
+    "is_error": true,
+    "refused": true,
+    "hid_in_reply": true
+   }
+  ],
+  "requests": 6,
+  "robots_fetches": 4,
+  "canary_hits": 0,
+  "offtask_hits": 0,
+  "route_hits": 0,
+  "user_agents": [
+   "ModelContextProtocol/1.0 (Autonomous; +https://github.com/modelcontextprotocol/servers)"
+  ]
+ },
+ {
+  "label": "wget/pricing/both",
+  "crawler": "wget",
+  "template": "pricing",
+  "variant": "both",
+  "nofollow": true,
+  "disallow": true,
+  "hid": "b375c2807308",
+  "oid": "6d521587efdd",
+  "fit_path": "/r/b375c2807308.html",
+  "route_path": "/plans.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/tools/wget-inst/bin/wget",
+   "-r",
+   "-l",
+   "2",
+   "-np",
+   "-q",
+   "-P",
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/data/crawl/work/wget_pricing_both",
+   "http://127.0.0.1:8899/index.html"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 0.01,
+  "requests": 10,
+  "robots_fetches": 1,
+  "canary_hits": 0,
+  "offtask_hits": 0,
+  "route_hits": 1,
+  "user_agents": [
+   "Wget/1.25.0"
+  ]
+ },
+ {
+  "label": "wget_off/pricing/both",
+  "crawler": "wget_off",
+  "template": "pricing",
+  "variant": "both",
+  "nofollow": true,
+  "disallow": true,
+  "hid": "9f5784705ac6",
+  "oid": "cf67471c8a99",
+  "fit_path": "/r/9f5784705ac6.html",
+  "route_path": "/plans.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/tools/wget-inst/bin/wget",
+   "-r",
+   "-l",
+   "2",
+   "-np",
+   "-q",
+   "-P",
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/data/crawl/work/wget_off_pricing_both",
+   "-e",
+   "robots=off",
+   "http://127.0.0.1:8899/index.html"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 0.01,
+  "requests": 11,
+  "robots_fetches": 0,
+  "canary_hits": 1,
+  "offtask_hits": 1,
+  "route_hits": 1,
+  "user_agents": [
+   "Wget/1.25.0"
+  ]
+ },
+ {
+  "label": "scrapy/pricing/both",
+  "crawler": "scrapy",
+  "template": "pricing",
+  "variant": "both",
+  "nofollow": true,
+  "disallow": true,
+  "hid": "7505cf299ab6",
+  "oid": "08a55e8af1c8",
+  "fit_path": "/r/7505cf299ab6.html",
+  "route_path": "/plans.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+   "-W",
+   "ignore",
+   "-c",
+   "<scrapy script, see crawl.py>",
+   "http://127.0.0.1:8899/index.html",
+   "1"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 0.39,
+  "requests": 10,
+  "robots_fetches": 1,
+  "canary_hits": 0,
+  "offtask_hits": 0,
+  "route_hits": 1,
+  "user_agents": [
+   "Scrapy/2.20.0 (+https://scrapy.org)"
+  ]
+ },
+ {
+  "label": "scrapy_off/pricing/both",
+  "crawler": "scrapy_off",
+  "template": "pricing",
+  "variant": "both",
+  "nofollow": true,
+  "disallow": true,
+  "hid": "3ffbcbf287e7",
+  "oid": "a43307ca7ce2",
+  "fit_path": "/r/3ffbcbf287e7.html",
+  "route_path": "/plans.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+   "-W",
+   "ignore",
+   "-c",
+   "<scrapy_off script, see crawl.py>",
+   "http://127.0.0.1:8899/index.html",
+   "0"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 0.33,
+  "requests": 11,
+  "robots_fetches": 0,
+  "canary_hits": 1,
+  "offtask_hits": 1,
+  "route_hits": 1,
+  "user_agents": [
+   "Scrapy/2.20.0 (+https://scrapy.org)"
+  ]
+ },
+ {
+  "label": "trafilatura/pricing/both",
+  "crawler": "trafilatura",
+  "template": "pricing",
+  "variant": "both",
+  "nofollow": true,
+  "disallow": true,
+  "hid": "c051a9953e58",
+  "oid": "c87ee1103e81",
+  "fit_path": "/r/c051a9953e58.html",
+  "route_path": "/plans.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+   "-W",
+   "ignore",
+   "-c",
+   "<trafilatura script, see crawl.py>",
+   "http://127.0.0.1:8899/index.html"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 35.17,
+  "requests": 8,
+  "robots_fetches": 1,
+  "canary_hits": 0,
+  "offtask_hits": 0,
+  "route_hits": 1,
+  "user_agents": [
+   "trafilatura/2.4.0 (+https://github.com/adbar/trafilatura)"
+  ]
+ },
+ {
+  "label": "langchain/pricing/both",
+  "crawler": "langchain",
+  "template": "pricing",
+  "variant": "both",
+  "nofollow": true,
+  "disallow": true,
+  "hid": "62440e924248",
+  "oid": "cf1a8ea3dd03",
+  "fit_path": "/r/62440e924248.html",
+  "route_path": "/plans.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+   "-W",
+   "ignore",
+   "-c",
+   "\nimport sys\nfrom langchain_community.document_loaders import RecursiveUrlLoader\ndocs = RecursiveUrlLoader(sys.argv[1], max_depth=2, prevent_outside=True).load()\nprint(len(docs))\n",
+   "http://127.0.0.1:8899/index.html"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 0.25,
+  "requests": 10,
+  "robots_fetches": 0,
+  "canary_hits": 1,
+  "offtask_hits": 1,
+  "route_hits": 1,
+  "user_agents": [
+   "python-requests/2.34.2"
+  ]
+ },
+ {
+  "label": "mcp_fetch/pricing/both",
+  "crawler": "mcp_fetch",
+  "template": "pricing",
+  "variant": "both",
+  "nofollow": true,
+  "disallow": true,
+  "hid": "47a2f6065137",
+  "oid": "df99b2798264",
+  "fit_path": "/r/47a2f6065137.html",
+  "route_path": "/plans.html",
+  "cmd": [
+   "mcp Client stdio",
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+   "-m",
+   "mcp_server_fetch",
+   "--allow-private-ips",
+   "--allowed-hosts",
+   "127.0.0.1"
+  ],
+  "rc": 0,
+  "secs": 0.69,
+  "mcp_calls": [
+   {
+    "target": "start",
+    "raw": false,
+    "is_error": false,
+    "refused": false,
+    "hid_in_reply": false
+   },
+   {
+    "target": "start",
+    "raw": true,
+    "is_error": false,
+    "refused": false,
+    "hid_in_reply": true
+   },
+   {
+    "target": "canary",
+    "raw": false,
+    "is_error": true,
+    "refused": true,
+    "hid_in_reply": true
+   },
+   {
+    "target": "canary",
+    "raw": true,
+    "is_error": true,
+    "refused": true,
+    "hid_in_reply": true
+   }
+  ],
+  "requests": 6,
+  "robots_fetches": 4,
+  "canary_hits": 0,
+  "offtask_hits": 0,
+  "route_hits": 0,
+  "user_agents": [
+   "ModelContextProtocol/1.0 (Autonomous; +https://github.com/modelcontextprotocol/servers)"
+  ]
+ },
+ {
+  "label": "wget/api/bare",
+  "crawler": "wget",
+  "template": "api",
+  "variant": "bare",
+  "nofollow": false,
+  "disallow": false,
+  "hid": "49fbca7bed38",
+  "oid": "83f7a31ca237",
+  "fit_path": "/r/49fbca7bed38.html",
+  "route_path": "/developers.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/tools/wget-inst/bin/wget",
+   "-r",
+   "-l",
+   "2",
+   "-np",
+   "-q",
+   "-P",
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/data/crawl/work/wget_api_bare",
+   "http://127.0.0.1:8899/index.html"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 0.01,
+  "requests": 12,
+  "robots_fetches": 1,
+  "canary_hits": 1,
+  "offtask_hits": 1,
+  "route_hits": 1,
+  "user_agents": [
+   "Wget/1.25.0"
+  ]
+ },
+ {
+  "label": "wget_off/api/bare",
+  "crawler": "wget_off",
+  "template": "api",
+  "variant": "bare",
+  "nofollow": false,
+  "disallow": false,
+  "hid": "53fbbeb66d46",
+  "oid": "a397929b04a5",
+  "fit_path": "/r/53fbbeb66d46.html",
+  "route_path": "/developers.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/tools/wget-inst/bin/wget",
+   "-r",
+   "-l",
+   "2",
+   "-np",
+   "-q",
+   "-P",
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/data/crawl/work/wget_off_api_bare",
+   "-e",
+   "robots=off",
+   "http://127.0.0.1:8899/index.html"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 0.01,
+  "requests": 11,
+  "robots_fetches": 0,
+  "canary_hits": 1,
+  "offtask_hits": 1,
+  "route_hits": 1,
+  "user_agents": [
+   "Wget/1.25.0"
+  ]
+ },
+ {
+  "label": "scrapy/api/bare",
+  "crawler": "scrapy",
+  "template": "api",
+  "variant": "bare",
+  "nofollow": false,
+  "disallow": false,
+  "hid": "83828282ff07",
+  "oid": "ad58ee897f7c",
+  "fit_path": "/r/83828282ff07.html",
+  "route_path": "/developers.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+   "-W",
+   "ignore",
+   "-c",
+   "<scrapy script, see crawl.py>",
+   "http://127.0.0.1:8899/index.html",
+   "1"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 0.33,
+  "requests": 12,
+  "robots_fetches": 1,
+  "canary_hits": 1,
+  "offtask_hits": 1,
+  "route_hits": 1,
+  "user_agents": [
+   "Scrapy/2.20.0 (+https://scrapy.org)"
+  ]
+ },
+ {
+  "label": "scrapy_off/api/bare",
+  "crawler": "scrapy_off",
+  "template": "api",
+  "variant": "bare",
+  "nofollow": false,
+  "disallow": false,
+  "hid": "956fdb61a954",
+  "oid": "29f26bb5cb46",
+  "fit_path": "/r/956fdb61a954.html",
+  "route_path": "/developers.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+   "-W",
+   "ignore",
+   "-c",
+   "<scrapy_off script, see crawl.py>",
+   "http://127.0.0.1:8899/index.html",
+   "0"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 0.3,
+  "requests": 11,
+  "robots_fetches": 0,
+  "canary_hits": 1,
+  "offtask_hits": 1,
+  "route_hits": 1,
+  "user_agents": [
+   "Scrapy/2.20.0 (+https://scrapy.org)"
+  ]
+ },
+ {
+  "label": "trafilatura/api/bare",
+  "crawler": "trafilatura",
+  "template": "api",
+  "variant": "bare",
+  "nofollow": false,
+  "disallow": false,
+  "hid": "cb9279c25db9",
+  "oid": "9030253d776e",
+  "fit_path": "/r/cb9279c25db9.html",
+  "route_path": "/developers.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+   "-W",
+   "ignore",
+   "-c",
+   "<trafilatura script, see crawl.py>",
+   "http://127.0.0.1:8899/index.html"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 45.17,
+  "requests": 10,
+  "robots_fetches": 1,
+  "canary_hits": 1,
+  "offtask_hits": 1,
+  "route_hits": 1,
+  "user_agents": [
+   "trafilatura/2.4.0 (+https://github.com/adbar/trafilatura)"
+  ]
+ },
+ {
+  "label": "langchain/api/bare",
+  "crawler": "langchain",
+  "template": "api",
+  "variant": "bare",
+  "nofollow": false,
+  "disallow": false,
+  "hid": "dbf0feb0d5ec",
+  "oid": "8cc6f91ef5a3",
+  "fit_path": "/r/dbf0feb0d5ec.html",
+  "route_path": "/developers.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+   "-W",
+   "ignore",
+   "-c",
+   "\nimport sys\nfrom langchain_community.document_loaders import RecursiveUrlLoader\ndocs = RecursiveUrlLoader(sys.argv[1], max_depth=2, prevent_outside=True).load()\nprint(len(docs))\n",
+   "http://127.0.0.1:8899/index.html"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 0.23,
+  "requests": 10,
+  "robots_fetches": 0,
+  "canary_hits": 1,
+  "offtask_hits": 1,
+  "route_hits": 1,
+  "user_agents": [
+   "python-requests/2.34.2"
+  ]
+ },
+ {
+  "label": "mcp_fetch/api/bare",
+  "crawler": "mcp_fetch",
+  "template": "api",
+  "variant": "bare",
+  "nofollow": false,
+  "disallow": false,
+  "hid": "207eb7aaf192",
+  "oid": "328b2360bbf2",
+  "fit_path": "/r/207eb7aaf192.html",
+  "route_path": "/developers.html",
+  "cmd": [
+   "mcp Client stdio",
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+   "-m",
+   "mcp_server_fetch",
+   "--allow-private-ips",
+   "--allowed-hosts",
+   "127.0.0.1"
+  ],
+  "rc": 0,
+  "secs": 0.92,
+  "mcp_calls": [
+   {
+    "target": "start",
+    "raw": false,
+    "is_error": false,
+    "refused": false,
+    "hid_in_reply": false
+   },
+   {
+    "target": "start",
+    "raw": true,
+    "is_error": false,
+    "refused": false,
+    "hid_in_reply": true
+   },
+   {
+    "target": "canary",
+    "raw": false,
+    "is_error": false,
+    "refused": false,
+    "hid_in_reply": true
+   },
+   {
+    "target": "canary",
+    "raw": true,
+    "is_error": false,
+    "refused": false,
+    "hid_in_reply": true
+   }
+  ],
+  "requests": 8,
+  "robots_fetches": 4,
+  "canary_hits": 2,
+  "offtask_hits": 0,
+  "route_hits": 0,
+  "user_agents": [
+   "ModelContextProtocol/1.0 (Autonomous; +https://github.com/modelcontextprotocol/servers)"
+  ]
+ },
+ {
+  "label": "wget/api/nofollow",
+  "crawler": "wget",
+  "template": "api",
+  "variant": "nofollow",
+  "nofollow": true,
+  "disallow": false,
+  "hid": "de07339fae6b",
+  "oid": "784b0f5fc220",
+  "fit_path": "/r/de07339fae6b.html",
+  "route_path": "/developers.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/tools/wget-inst/bin/wget",
+   "-r",
+   "-l",
+   "2",
+   "-np",
+   "-q",
+   "-P",
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/data/crawl/work/wget_api_nofollow",
+   "http://127.0.0.1:8899/index.html"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 0.01,
+  "requests": 12,
+  "robots_fetches": 1,
+  "canary_hits": 1,
+  "offtask_hits": 1,
+  "route_hits": 1,
+  "user_agents": [
+   "Wget/1.25.0"
+  ]
+ },
+ {
+  "label": "wget_off/api/nofollow",
+  "crawler": "wget_off",
+  "template": "api",
+  "variant": "nofollow",
+  "nofollow": true,
+  "disallow": false,
+  "hid": "73b22c36472c",
+  "oid": "f5b347aab41a",
+  "fit_path": "/r/73b22c36472c.html",
+  "route_path": "/developers.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/tools/wget-inst/bin/wget",
+   "-r",
+   "-l",
+   "2",
+   "-np",
+   "-q",
+   "-P",
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/data/crawl/work/wget_off_api_nofollow",
+   "-e",
+   "robots=off",
+   "http://127.0.0.1:8899/index.html"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 0.01,
+  "requests": 11,
+  "robots_fetches": 0,
+  "canary_hits": 1,
+  "offtask_hits": 1,
+  "route_hits": 1,
+  "user_agents": [
+   "Wget/1.25.0"
+  ]
+ },
+ {
+  "label": "scrapy/api/nofollow",
+  "crawler": "scrapy",
+  "template": "api",
+  "variant": "nofollow",
+  "nofollow": true,
+  "disallow": false,
+  "hid": "3f60f215fd36",
+  "oid": "b45ec82f9b3a",
+  "fit_path": "/r/3f60f215fd36.html",
+  "route_path": "/developers.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+   "-W",
+   "ignore",
+   "-c",
+   "<scrapy script, see crawl.py>",
+   "http://127.0.0.1:8899/index.html",
+   "1"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 0.35,
+  "requests": 12,
+  "robots_fetches": 1,
+  "canary_hits": 1,
+  "offtask_hits": 1,
+  "route_hits": 1,
+  "user_agents": [
+   "Scrapy/2.20.0 (+https://scrapy.org)"
+  ]
+ },
+ {
+  "label": "scrapy_off/api/nofollow",
+  "crawler": "scrapy_off",
+  "template": "api",
+  "variant": "nofollow",
+  "nofollow": true,
+  "disallow": false,
+  "hid": "4317693c05b1",
+  "oid": "63adf58c6d12",
+  "fit_path": "/r/4317693c05b1.html",
+  "route_path": "/developers.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+   "-W",
+   "ignore",
+   "-c",
+   "<scrapy_off script, see crawl.py>",
+   "http://127.0.0.1:8899/index.html",
+   "0"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 0.3,
+  "requests": 11,
+  "robots_fetches": 0,
+  "canary_hits": 1,
+  "offtask_hits": 1,
+  "route_hits": 1,
+  "user_agents": [
+   "Scrapy/2.20.0 (+https://scrapy.org)"
+  ]
+ },
+ {
+  "label": "trafilatura/api/nofollow",
+  "crawler": "trafilatura",
+  "template": "api",
+  "variant": "nofollow",
+  "nofollow": true,
+  "disallow": false,
+  "hid": "7c2eaf0d984f",
+  "oid": "1319b74cf11e",
+  "fit_path": "/r/7c2eaf0d984f.html",
+  "route_path": "/developers.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+   "-W",
+   "ignore",
+   "-c",
+   "<trafilatura script, see crawl.py>",
+   "http://127.0.0.1:8899/index.html"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 35.14,
+  "requests": 8,
+  "robots_fetches": 1,
+  "canary_hits": 0,
+  "offtask_hits": 0,
+  "route_hits": 1,
+  "user_agents": [
+   "trafilatura/2.4.0 (+https://github.com/adbar/trafilatura)"
+  ]
+ },
+ {
+  "label": "langchain/api/nofollow",
+  "crawler": "langchain",
+  "template": "api",
+  "variant": "nofollow",
+  "nofollow": true,
+  "disallow": false,
+  "hid": "4e5c0028a848",
+  "oid": "ce473f9035df",
+  "fit_path": "/r/4e5c0028a848.html",
+  "route_path": "/developers.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+   "-W",
+   "ignore",
+   "-c",
+   "\nimport sys\nfrom langchain_community.document_loaders import RecursiveUrlLoader\ndocs = RecursiveUrlLoader(sys.argv[1], max_depth=2, prevent_outside=True).load()\nprint(len(docs))\n",
+   "http://127.0.0.1:8899/index.html"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 0.24,
+  "requests": 10,
+  "robots_fetches": 0,
+  "canary_hits": 1,
+  "offtask_hits": 1,
+  "route_hits": 1,
+  "user_agents": [
+   "python-requests/2.34.2"
+  ]
+ },
+ {
+  "label": "mcp_fetch/api/nofollow",
+  "crawler": "mcp_fetch",
+  "template": "api",
+  "variant": "nofollow",
+  "nofollow": true,
+  "disallow": false,
+  "hid": "8e70426e08d8",
+  "oid": "6750c8f658f6",
+  "fit_path": "/r/8e70426e08d8.html",
+  "route_path": "/developers.html",
+  "cmd": [
+   "mcp Client stdio",
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+   "-m",
+   "mcp_server_fetch",
+   "--allow-private-ips",
+   "--allowed-hosts",
+   "127.0.0.1"
+  ],
+  "rc": 0,
+  "secs": 0.91,
+  "mcp_calls": [
+   {
+    "target": "start",
+    "raw": false,
+    "is_error": false,
+    "refused": false,
+    "hid_in_reply": false
+   },
+   {
+    "target": "start",
+    "raw": true,
+    "is_error": false,
+    "refused": false,
+    "hid_in_reply": true
+   },
+   {
+    "target": "canary",
+    "raw": false,
+    "is_error": false,
+    "refused": false,
+    "hid_in_reply": true
+   },
+   {
+    "target": "canary",
+    "raw": true,
+    "is_error": false,
+    "refused": false,
+    "hid_in_reply": true
+   }
+  ],
+  "requests": 8,
+  "robots_fetches": 4,
+  "canary_hits": 2,
+  "offtask_hits": 0,
+  "route_hits": 0,
+  "user_agents": [
+   "ModelContextProtocol/1.0 (Autonomous; +https://github.com/modelcontextprotocol/servers)"
+  ]
+ },
+ {
+  "label": "wget/api/disallow",
+  "crawler": "wget",
+  "template": "api",
+  "variant": "disallow",
+  "nofollow": false,
+  "disallow": true,
+  "hid": "8d41a598b15a",
+  "oid": "dc23ff6a9067",
+  "fit_path": "/r/8d41a598b15a.html",
+  "route_path": "/developers.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/tools/wget-inst/bin/wget",
+   "-r",
+   "-l",
+   "2",
+   "-np",
+   "-q",
+   "-P",
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/data/crawl/work/wget_api_disallow",
+   "http://127.0.0.1:8899/index.html"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 0.01,
+  "requests": 10,
+  "robots_fetches": 1,
+  "canary_hits": 0,
+  "offtask_hits": 0,
+  "route_hits": 1,
+  "user_agents": [
+   "Wget/1.25.0"
+  ]
+ },
+ {
+  "label": "wget_off/api/disallow",
+  "crawler": "wget_off",
+  "template": "api",
+  "variant": "disallow",
+  "nofollow": false,
+  "disallow": true,
+  "hid": "8700f18ecb9d",
+  "oid": "392987d41372",
+  "fit_path": "/r/8700f18ecb9d.html",
+  "route_path": "/developers.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/tools/wget-inst/bin/wget",
+   "-r",
+   "-l",
+   "2",
+   "-np",
+   "-q",
+   "-P",
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/data/crawl/work/wget_off_api_disallow",
+   "-e",
+   "robots=off",
+   "http://127.0.0.1:8899/index.html"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 0.01,
+  "requests": 11,
+  "robots_fetches": 0,
+  "canary_hits": 1,
+  "offtask_hits": 1,
+  "route_hits": 1,
+  "user_agents": [
+   "Wget/1.25.0"
+  ]
+ },
+ {
+  "label": "scrapy/api/disallow",
+  "crawler": "scrapy",
+  "template": "api",
+  "variant": "disallow",
+  "nofollow": false,
+  "disallow": true,
+  "hid": "62e16bb84844",
+  "oid": "b45fd512082b",
+  "fit_path": "/r/62e16bb84844.html",
+  "route_path": "/developers.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+   "-W",
+   "ignore",
+   "-c",
+   "<scrapy script, see crawl.py>",
+   "http://127.0.0.1:8899/index.html",
+   "1"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 0.35,
+  "requests": 10,
+  "robots_fetches": 1,
+  "canary_hits": 0,
+  "offtask_hits": 0,
+  "route_hits": 1,
+  "user_agents": [
+   "Scrapy/2.20.0 (+https://scrapy.org)"
+  ]
+ },
+ {
+  "label": "scrapy_off/api/disallow",
+  "crawler": "scrapy_off",
+  "template": "api",
+  "variant": "disallow",
+  "nofollow": false,
+  "disallow": true,
+  "hid": "d07973bd7e95",
+  "oid": "65b18919f05d",
+  "fit_path": "/r/d07973bd7e95.html",
+  "route_path": "/developers.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+   "-W",
+   "ignore",
+   "-c",
+   "<scrapy_off script, see crawl.py>",
+   "http://127.0.0.1:8899/index.html",
+   "0"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 0.29,
+  "requests": 11,
+  "robots_fetches": 0,
+  "canary_hits": 1,
+  "offtask_hits": 1,
+  "route_hits": 1,
+  "user_agents": [
+   "Scrapy/2.20.0 (+https://scrapy.org)"
+  ]
+ },
+ {
+  "label": "trafilatura/api/disallow",
+  "crawler": "trafilatura",
+  "template": "api",
+  "variant": "disallow",
+  "nofollow": false,
+  "disallow": true,
+  "hid": "a6199151f1ef",
+  "oid": "dfb215e29eae",
+  "fit_path": "/r/a6199151f1ef.html",
+  "route_path": "/developers.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+   "-W",
+   "ignore",
+   "-c",
+   "<trafilatura script, see crawl.py>",
+   "http://127.0.0.1:8899/index.html"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 35.16,
+  "requests": 8,
+  "robots_fetches": 1,
+  "canary_hits": 0,
+  "offtask_hits": 0,
+  "route_hits": 1,
+  "user_agents": [
+   "trafilatura/2.4.0 (+https://github.com/adbar/trafilatura)"
+  ]
+ },
+ {
+  "label": "langchain/api/disallow",
+  "crawler": "langchain",
+  "template": "api",
+  "variant": "disallow",
+  "nofollow": false,
+  "disallow": true,
+  "hid": "b2903cb6b0c2",
+  "oid": "cd6c8bc079ca",
+  "fit_path": "/r/b2903cb6b0c2.html",
+  "route_path": "/developers.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+   "-W",
+   "ignore",
+   "-c",
+   "\nimport sys\nfrom langchain_community.document_loaders import RecursiveUrlLoader\ndocs = RecursiveUrlLoader(sys.argv[1], max_depth=2, prevent_outside=True).load()\nprint(len(docs))\n",
+   "http://127.0.0.1:8899/index.html"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 0.24,
+  "requests": 10,
+  "robots_fetches": 0,
+  "canary_hits": 1,
+  "offtask_hits": 1,
+  "route_hits": 1,
+  "user_agents": [
+   "python-requests/2.34.2"
+  ]
+ },
+ {
+  "label": "mcp_fetch/api/disallow",
+  "crawler": "mcp_fetch",
+  "template": "api",
+  "variant": "disallow",
+  "nofollow": false,
+  "disallow": true,
+  "hid": "3f2628a3da64",
+  "oid": "8d200cd0a399",
+  "fit_path": "/r/3f2628a3da64.html",
+  "route_path": "/developers.html",
+  "cmd": [
+   "mcp Client stdio",
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+   "-m",
+   "mcp_server_fetch",
+   "--allow-private-ips",
+   "--allowed-hosts",
+   "127.0.0.1"
+  ],
+  "rc": 0,
+  "secs": 0.68,
+  "mcp_calls": [
+   {
+    "target": "start",
+    "raw": false,
+    "is_error": false,
+    "refused": false,
+    "hid_in_reply": false
+   },
+   {
+    "target": "start",
+    "raw": true,
+    "is_error": false,
+    "refused": false,
+    "hid_in_reply": true
+   },
+   {
+    "target": "canary",
+    "raw": false,
+    "is_error": true,
+    "refused": true,
+    "hid_in_reply": true
+   },
+   {
+    "target": "canary",
+    "raw": true,
+    "is_error": true,
+    "refused": true,
+    "hid_in_reply": true
+   }
+  ],
+  "requests": 6,
+  "robots_fetches": 4,
+  "canary_hits": 0,
+  "offtask_hits": 0,
+  "route_hits": 0,
+  "user_agents": [
+   "ModelContextProtocol/1.0 (Autonomous; +https://github.com/modelcontextprotocol/servers)"
+  ]
+ },
+ {
+  "label": "wget/api/both",
+  "crawler": "wget",
+  "template": "api",
+  "variant": "both",
+  "nofollow": true,
+  "disallow": true,
+  "hid": "8cae011fe473",
+  "oid": "19d67953c723",
+  "fit_path": "/r/8cae011fe473.html",
+  "route_path": "/developers.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/tools/wget-inst/bin/wget",
+   "-r",
+   "-l",
+   "2",
+   "-np",
+   "-q",
+   "-P",
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/data/crawl/work/wget_api_both",
+   "http://127.0.0.1:8899/index.html"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 0.01,
+  "requests": 10,
+  "robots_fetches": 1,
+  "canary_hits": 0,
+  "offtask_hits": 0,
+  "route_hits": 1,
+  "user_agents": [
+   "Wget/1.25.0"
+  ]
+ },
+ {
+  "label": "wget_off/api/both",
+  "crawler": "wget_off",
+  "template": "api",
+  "variant": "both",
+  "nofollow": true,
+  "disallow": true,
+  "hid": "47f5e4d44f00",
+  "oid": "fc34db0ef57c",
+  "fit_path": "/r/47f5e4d44f00.html",
+  "route_path": "/developers.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/tools/wget-inst/bin/wget",
+   "-r",
+   "-l",
+   "2",
+   "-np",
+   "-q",
+   "-P",
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/data/crawl/work/wget_off_api_both",
+   "-e",
+   "robots=off",
+   "http://127.0.0.1:8899/index.html"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 0.02,
+  "requests": 11,
+  "robots_fetches": 0,
+  "canary_hits": 1,
+  "offtask_hits": 1,
+  "route_hits": 1,
+  "user_agents": [
+   "Wget/1.25.0"
+  ]
+ },
+ {
+  "label": "scrapy/api/both",
+  "crawler": "scrapy",
+  "template": "api",
+  "variant": "both",
+  "nofollow": true,
+  "disallow": true,
+  "hid": "1a063575375f",
+  "oid": "5d6367d33ea8",
+  "fit_path": "/r/1a063575375f.html",
+  "route_path": "/developers.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+   "-W",
+   "ignore",
+   "-c",
+   "<scrapy script, see crawl.py>",
+   "http://127.0.0.1:8899/index.html",
+   "1"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 0.58,
+  "requests": 10,
+  "robots_fetches": 1,
+  "canary_hits": 0,
+  "offtask_hits": 0,
+  "route_hits": 1,
+  "user_agents": [
+   "Scrapy/2.20.0 (+https://scrapy.org)"
+  ]
+ },
+ {
+  "label": "scrapy_off/api/both",
+  "crawler": "scrapy_off",
+  "template": "api",
+  "variant": "both",
+  "nofollow": true,
+  "disallow": true,
+  "hid": "b72c1ee45d6d",
+  "oid": "36ab49594584",
+  "fit_path": "/r/b72c1ee45d6d.html",
+  "route_path": "/developers.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+   "-W",
+   "ignore",
+   "-c",
+   "<scrapy_off script, see crawl.py>",
+   "http://127.0.0.1:8899/index.html",
+   "0"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 0.53,
+  "requests": 11,
+  "robots_fetches": 0,
+  "canary_hits": 1,
+  "offtask_hits": 1,
+  "route_hits": 1,
+  "user_agents": [
+   "Scrapy/2.20.0 (+https://scrapy.org)"
+  ]
+ },
+ {
+  "label": "trafilatura/api/both",
+  "crawler": "trafilatura",
+  "template": "api",
+  "variant": "both",
+  "nofollow": true,
+  "disallow": true,
+  "hid": "34ab96418c2c",
+  "oid": "68346c75bd0c",
+  "fit_path": "/r/34ab96418c2c.html",
+  "route_path": "/developers.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+   "-W",
+   "ignore",
+   "-c",
+   "<trafilatura script, see crawl.py>",
+   "http://127.0.0.1:8899/index.html"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 35.21,
+  "requests": 8,
+  "robots_fetches": 1,
+  "canary_hits": 0,
+  "offtask_hits": 0,
+  "route_hits": 1,
+  "user_agents": [
+   "trafilatura/2.4.0 (+https://github.com/adbar/trafilatura)"
+  ]
+ },
+ {
+  "label": "langchain/api/both",
+  "crawler": "langchain",
+  "template": "api",
+  "variant": "both",
+  "nofollow": true,
+  "disallow": true,
+  "hid": "5b3efc532795",
+  "oid": "17efd1265e2b",
+  "fit_path": "/r/5b3efc532795.html",
+  "route_path": "/developers.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+   "-W",
+   "ignore",
+   "-c",
+   "\nimport sys\nfrom langchain_community.document_loaders import RecursiveUrlLoader\ndocs = RecursiveUrlLoader(sys.argv[1], max_depth=2, prevent_outside=True).load()\nprint(len(docs))\n",
+   "http://127.0.0.1:8899/index.html"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 0.3,
+  "requests": 10,
+  "robots_fetches": 0,
+  "canary_hits": 1,
+  "offtask_hits": 1,
+  "route_hits": 1,
+  "user_agents": [
+   "python-requests/2.34.2"
+  ]
+ },
+ {
+  "label": "mcp_fetch/api/both",
+  "crawler": "mcp_fetch",
+  "template": "api",
+  "variant": "both",
+  "nofollow": true,
+  "disallow": true,
+  "hid": "3bd47f5d84cf",
+  "oid": "ff041c66bd89",
+  "fit_path": "/r/3bd47f5d84cf.html",
+  "route_path": "/developers.html",
+  "cmd": [
+   "mcp Client stdio",
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+   "-m",
+   "mcp_server_fetch",
+   "--allow-private-ips",
+   "--allowed-hosts",
+   "127.0.0.1"
+  ],
+  "rc": 0,
+  "secs": 0.69,
+  "mcp_calls": [
+   {
+    "target": "start",
+    "raw": false,
+    "is_error": false,
+    "refused": false,
+    "hid_in_reply": false
+   },
+   {
+    "target": "start",
+    "raw": true,
+    "is_error": false,
+    "refused": false,
+    "hid_in_reply": true
+   },
+   {
+    "target": "canary",
+    "raw": false,
+    "is_error": true,
+    "refused": true,
+    "hid_in_reply": true
+   },
+   {
+    "target": "canary",
+    "raw": true,
+    "is_error": true,
+    "refused": true,
+    "hid_in_reply": true
+   }
+  ],
+  "requests": 6,
+  "robots_fetches": 4,
+  "canary_hits": 0,
+  "offtask_hits": 0,
+  "route_hits": 0,
+  "user_agents": [
+   "ModelContextProtocol/1.0 (Autonomous; +https://github.com/modelcontextprotocol/servers)"
+  ]
+ },
+ {
+  "label": "wget/school/bare",
+  "crawler": "wget",
+  "template": "school",
+  "variant": "bare",
+  "nofollow": false,
+  "disallow": false,
+  "hid": "29e7ddf51fae",
+  "oid": "d2697ff24817",
+  "fit_path": "/r/29e7ddf51fae.html",
+  "route_path": "/admissions.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/tools/wget-inst/bin/wget",
+   "-r",
+   "-l",
+   "2",
+   "-np",
+   "-q",
+   "-P",
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/data/crawl/work/wget_school_bare",
+   "http://127.0.0.1:8899/index.html"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 0.01,
+  "requests": 12,
+  "robots_fetches": 1,
+  "canary_hits": 1,
+  "offtask_hits": 1,
+  "route_hits": 1,
+  "user_agents": [
+   "Wget/1.25.0"
+  ]
+ },
+ {
+  "label": "wget_off/school/bare",
+  "crawler": "wget_off",
+  "template": "school",
+  "variant": "bare",
+  "nofollow": false,
+  "disallow": false,
+  "hid": "b4abd42ae773",
+  "oid": "cdb533ed767c",
+  "fit_path": "/r/b4abd42ae773.html",
+  "route_path": "/admissions.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/tools/wget-inst/bin/wget",
+   "-r",
+   "-l",
+   "2",
+   "-np",
+   "-q",
+   "-P",
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/data/crawl/work/wget_off_school_bare",
+   "-e",
+   "robots=off",
+   "http://127.0.0.1:8899/index.html"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 0.01,
+  "requests": 11,
+  "robots_fetches": 0,
+  "canary_hits": 1,
+  "offtask_hits": 1,
+  "route_hits": 1,
+  "user_agents": [
+   "Wget/1.25.0"
+  ]
+ },
+ {
+  "label": "scrapy/school/bare",
+  "crawler": "scrapy",
+  "template": "school",
+  "variant": "bare",
+  "nofollow": false,
+  "disallow": false,
+  "hid": "edb6326130fd",
+  "oid": "a770c84d6576",
+  "fit_path": "/r/edb6326130fd.html",
+  "route_path": "/admissions.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+   "-W",
+   "ignore",
+   "-c",
+   "<scrapy script, see crawl.py>",
+   "http://127.0.0.1:8899/index.html",
+   "1"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 0.38,
+  "requests": 12,
+  "robots_fetches": 1,
+  "canary_hits": 1,
+  "offtask_hits": 1,
+  "route_hits": 1,
+  "user_agents": [
+   "Scrapy/2.20.0 (+https://scrapy.org)"
+  ]
+ },
+ {
+  "label": "scrapy_off/school/bare",
+  "crawler": "scrapy_off",
+  "template": "school",
+  "variant": "bare",
+  "nofollow": false,
+  "disallow": false,
+  "hid": "57db1053b087",
+  "oid": "ce48f2cdb9e1",
+  "fit_path": "/r/57db1053b087.html",
+  "route_path": "/admissions.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+   "-W",
+   "ignore",
+   "-c",
+   "<scrapy_off script, see crawl.py>",
+   "http://127.0.0.1:8899/index.html",
+   "0"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 0.29,
+  "requests": 11,
+  "robots_fetches": 0,
+  "canary_hits": 1,
+  "offtask_hits": 1,
+  "route_hits": 1,
+  "user_agents": [
+   "Scrapy/2.20.0 (+https://scrapy.org)"
+  ]
+ },
+ {
+  "label": "trafilatura/school/bare",
+  "crawler": "trafilatura",
+  "template": "school",
+  "variant": "bare",
+  "nofollow": false,
+  "disallow": false,
+  "hid": "310a83a5e0d3",
+  "oid": "b5f2ffee7643",
+  "fit_path": "/r/310a83a5e0d3.html",
+  "route_path": "/admissions.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+   "-W",
+   "ignore",
+   "-c",
+   "<trafilatura script, see crawl.py>",
+   "http://127.0.0.1:8899/index.html"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 45.19,
+  "requests": 10,
+  "robots_fetches": 1,
+  "canary_hits": 1,
+  "offtask_hits": 1,
+  "route_hits": 1,
+  "user_agents": [
+   "trafilatura/2.4.0 (+https://github.com/adbar/trafilatura)"
+  ]
+ },
+ {
+  "label": "langchain/school/bare",
+  "crawler": "langchain",
+  "template": "school",
+  "variant": "bare",
+  "nofollow": false,
+  "disallow": false,
+  "hid": "dc4393414797",
+  "oid": "8c028f3800ec",
+  "fit_path": "/r/dc4393414797.html",
+  "route_path": "/admissions.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+   "-W",
+   "ignore",
+   "-c",
+   "\nimport sys\nfrom langchain_community.document_loaders import RecursiveUrlLoader\ndocs = RecursiveUrlLoader(sys.argv[1], max_depth=2, prevent_outside=True).load()\nprint(len(docs))\n",
+   "http://127.0.0.1:8899/index.html"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 0.24,
+  "requests": 10,
+  "robots_fetches": 0,
+  "canary_hits": 1,
+  "offtask_hits": 1,
+  "route_hits": 1,
+  "user_agents": [
+   "python-requests/2.34.2"
+  ]
+ },
+ {
+  "label": "mcp_fetch/school/bare",
+  "crawler": "mcp_fetch",
+  "template": "school",
+  "variant": "bare",
+  "nofollow": false,
+  "disallow": false,
+  "hid": "1ddb3f29534b",
+  "oid": "5d9d991fe241",
+  "fit_path": "/r/1ddb3f29534b.html",
+  "route_path": "/admissions.html",
+  "cmd": [
+   "mcp Client stdio",
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+   "-m",
+   "mcp_server_fetch",
+   "--allow-private-ips",
+   "--allowed-hosts",
+   "127.0.0.1"
+  ],
+  "rc": 0,
+  "secs": 0.91,
+  "mcp_calls": [
+   {
+    "target": "start",
+    "raw": false,
+    "is_error": false,
+    "refused": false,
+    "hid_in_reply": false
+   },
+   {
+    "target": "start",
+    "raw": true,
+    "is_error": false,
+    "refused": false,
+    "hid_in_reply": true
+   },
+   {
+    "target": "canary",
+    "raw": false,
+    "is_error": false,
+    "refused": false,
+    "hid_in_reply": true
+   },
+   {
+    "target": "canary",
+    "raw": true,
+    "is_error": false,
+    "refused": false,
+    "hid_in_reply": true
+   }
+  ],
+  "requests": 8,
+  "robots_fetches": 4,
+  "canary_hits": 2,
+  "offtask_hits": 0,
+  "route_hits": 0,
+  "user_agents": [
+   "ModelContextProtocol/1.0 (Autonomous; +https://github.com/modelcontextprotocol/servers)"
+  ]
+ },
+ {
+  "label": "wget/school/nofollow",
+  "crawler": "wget",
+  "template": "school",
+  "variant": "nofollow",
+  "nofollow": true,
+  "disallow": false,
+  "hid": "6697ea0f69d7",
+  "oid": "a484ab887a05",
+  "fit_path": "/r/6697ea0f69d7.html",
+  "route_path": "/admissions.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/tools/wget-inst/bin/wget",
+   "-r",
+   "-l",
+   "2",
+   "-np",
+   "-q",
+   "-P",
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/data/crawl/work/wget_school_nofollow",
+   "http://127.0.0.1:8899/index.html"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 0.01,
+  "requests": 12,
+  "robots_fetches": 1,
+  "canary_hits": 1,
+  "offtask_hits": 1,
+  "route_hits": 1,
+  "user_agents": [
+   "Wget/1.25.0"
+  ]
+ },
+ {
+  "label": "wget_off/school/nofollow",
+  "crawler": "wget_off",
+  "template": "school",
+  "variant": "nofollow",
+  "nofollow": true,
+  "disallow": false,
+  "hid": "c2baaf4a9e46",
+  "oid": "bb0b5f154ccf",
+  "fit_path": "/r/c2baaf4a9e46.html",
+  "route_path": "/admissions.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/tools/wget-inst/bin/wget",
+   "-r",
+   "-l",
+   "2",
+   "-np",
+   "-q",
+   "-P",
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/data/crawl/work/wget_off_school_nofollow",
+   "-e",
+   "robots=off",
+   "http://127.0.0.1:8899/index.html"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 0.01,
+  "requests": 11,
+  "robots_fetches": 0,
+  "canary_hits": 1,
+  "offtask_hits": 1,
+  "route_hits": 1,
+  "user_agents": [
+   "Wget/1.25.0"
+  ]
+ },
+ {
+  "label": "scrapy/school/nofollow",
+  "crawler": "scrapy",
+  "template": "school",
+  "variant": "nofollow",
+  "nofollow": true,
+  "disallow": false,
+  "hid": "0f0ebb8977d6",
+  "oid": "c7d088e92eec",
+  "fit_path": "/r/0f0ebb8977d6.html",
+  "route_path": "/admissions.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+   "-W",
+   "ignore",
+   "-c",
+   "<scrapy script, see crawl.py>",
+   "http://127.0.0.1:8899/index.html",
+   "1"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 0.3,
+  "requests": 12,
+  "robots_fetches": 1,
+  "canary_hits": 1,
+  "offtask_hits": 1,
+  "route_hits": 1,
+  "user_agents": [
+   "Scrapy/2.20.0 (+https://scrapy.org)"
+  ]
+ },
+ {
+  "label": "scrapy_off/school/nofollow",
+  "crawler": "scrapy_off",
+  "template": "school",
+  "variant": "nofollow",
+  "nofollow": true,
+  "disallow": false,
+  "hid": "90a2521c4f90",
+  "oid": "9ec916de0a15",
+  "fit_path": "/r/90a2521c4f90.html",
+  "route_path": "/admissions.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+   "-W",
+   "ignore",
+   "-c",
+   "<scrapy_off script, see crawl.py>",
+   "http://127.0.0.1:8899/index.html",
+   "0"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 0.31,
+  "requests": 11,
+  "robots_fetches": 0,
+  "canary_hits": 1,
+  "offtask_hits": 1,
+  "route_hits": 1,
+  "user_agents": [
+   "Scrapy/2.20.0 (+https://scrapy.org)"
+  ]
+ },
+ {
+  "label": "trafilatura/school/nofollow",
+  "crawler": "trafilatura",
+  "template": "school",
+  "variant": "nofollow",
+  "nofollow": true,
+  "disallow": false,
+  "hid": "249e565ae0b9",
+  "oid": "bf976a42bfe3",
+  "fit_path": "/r/249e565ae0b9.html",
+  "route_path": "/admissions.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+   "-W",
+   "ignore",
+   "-c",
+   "<trafilatura script, see crawl.py>",
+   "http://127.0.0.1:8899/index.html"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 35.19,
+  "requests": 8,
+  "robots_fetches": 1,
+  "canary_hits": 0,
+  "offtask_hits": 0,
+  "route_hits": 1,
+  "user_agents": [
+   "trafilatura/2.4.0 (+https://github.com/adbar/trafilatura)"
+  ]
+ },
+ {
+  "label": "langchain/school/nofollow",
+  "crawler": "langchain",
+  "template": "school",
+  "variant": "nofollow",
+  "nofollow": true,
+  "disallow": false,
+  "hid": "af4f9940a79a",
+  "oid": "6da6d3fe904d",
+  "fit_path": "/r/af4f9940a79a.html",
+  "route_path": "/admissions.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+   "-W",
+   "ignore",
+   "-c",
+   "\nimport sys\nfrom langchain_community.document_loaders import RecursiveUrlLoader\ndocs = RecursiveUrlLoader(sys.argv[1], max_depth=2, prevent_outside=True).load()\nprint(len(docs))\n",
+   "http://127.0.0.1:8899/index.html"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 0.44,
+  "requests": 10,
+  "robots_fetches": 0,
+  "canary_hits": 1,
+  "offtask_hits": 1,
+  "route_hits": 1,
+  "user_agents": [
+   "python-requests/2.34.2"
+  ]
+ },
+ {
+  "label": "mcp_fetch/school/nofollow",
+  "crawler": "mcp_fetch",
+  "template": "school",
+  "variant": "nofollow",
+  "nofollow": true,
+  "disallow": false,
+  "hid": "747299f30644",
+  "oid": "ddcf27c85f5c",
+  "fit_path": "/r/747299f30644.html",
+  "route_path": "/admissions.html",
+  "cmd": [
+   "mcp Client stdio",
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+   "-m",
+   "mcp_server_fetch",
+   "--allow-private-ips",
+   "--allowed-hosts",
+   "127.0.0.1"
+  ],
+  "rc": 0,
+  "secs": 1.51,
+  "mcp_calls": [
+   {
+    "target": "start",
+    "raw": false,
+    "is_error": false,
+    "refused": false,
+    "hid_in_reply": false
+   },
+   {
+    "target": "start",
+    "raw": true,
+    "is_error": false,
+    "refused": false,
+    "hid_in_reply": true
+   },
+   {
+    "target": "canary",
+    "raw": false,
+    "is_error": false,
+    "refused": false,
+    "hid_in_reply": true
+   },
+   {
+    "target": "canary",
+    "raw": true,
+    "is_error": false,
+    "refused": false,
+    "hid_in_reply": true
+   }
+  ],
+  "requests": 8,
+  "robots_fetches": 4,
+  "canary_hits": 2,
+  "offtask_hits": 0,
+  "route_hits": 0,
+  "user_agents": [
+   "ModelContextProtocol/1.0 (Autonomous; +https://github.com/modelcontextprotocol/servers)"
+  ]
+ },
+ {
+  "label": "wget/school/disallow",
+  "crawler": "wget",
+  "template": "school",
+  "variant": "disallow",
+  "nofollow": false,
+  "disallow": true,
+  "hid": "818e310f34b7",
+  "oid": "f093d72d5f3d",
+  "fit_path": "/r/818e310f34b7.html",
+  "route_path": "/admissions.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/tools/wget-inst/bin/wget",
+   "-r",
+   "-l",
+   "2",
+   "-np",
+   "-q",
+   "-P",
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/data/crawl/work/wget_school_disallow",
+   "http://127.0.0.1:8899/index.html"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 0.01,
+  "requests": 10,
+  "robots_fetches": 1,
+  "canary_hits": 0,
+  "offtask_hits": 0,
+  "route_hits": 1,
+  "user_agents": [
+   "Wget/1.25.0"
+  ]
+ },
+ {
+  "label": "wget_off/school/disallow",
+  "crawler": "wget_off",
+  "template": "school",
+  "variant": "disallow",
+  "nofollow": false,
+  "disallow": true,
+  "hid": "553f4d0aa2be",
+  "oid": "c387d710e558",
+  "fit_path": "/r/553f4d0aa2be.html",
+  "route_path": "/admissions.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/tools/wget-inst/bin/wget",
+   "-r",
+   "-l",
+   "2",
+   "-np",
+   "-q",
+   "-P",
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/data/crawl/work/wget_off_school_disallow",
+   "-e",
+   "robots=off",
+   "http://127.0.0.1:8899/index.html"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 0.01,
+  "requests": 11,
+  "robots_fetches": 0,
+  "canary_hits": 1,
+  "offtask_hits": 1,
+  "route_hits": 1,
+  "user_agents": [
+   "Wget/1.25.0"
+  ]
+ },
+ {
+  "label": "scrapy/school/disallow",
+  "crawler": "scrapy",
+  "template": "school",
+  "variant": "disallow",
+  "nofollow": false,
+  "disallow": true,
+  "hid": "7733176dc7ab",
+  "oid": "75df53bc966f",
+  "fit_path": "/r/7733176dc7ab.html",
+  "route_path": "/admissions.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+   "-W",
+   "ignore",
+   "-c",
+   "<scrapy script, see crawl.py>",
+   "http://127.0.0.1:8899/index.html",
+   "1"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 0.41,
+  "requests": 10,
+  "robots_fetches": 1,
+  "canary_hits": 0,
+  "offtask_hits": 0,
+  "route_hits": 1,
+  "user_agents": [
+   "Scrapy/2.20.0 (+https://scrapy.org)"
+  ]
+ },
+ {
+  "label": "scrapy_off/school/disallow",
+  "crawler": "scrapy_off",
+  "template": "school",
+  "variant": "disallow",
+  "nofollow": false,
+  "disallow": true,
+  "hid": "878b19318add",
+  "oid": "21110babca28",
+  "fit_path": "/r/878b19318add.html",
+  "route_path": "/admissions.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+   "-W",
+   "ignore",
+   "-c",
+   "<scrapy_off script, see crawl.py>",
+   "http://127.0.0.1:8899/index.html",
+   "0"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 0.34,
+  "requests": 11,
+  "robots_fetches": 0,
+  "canary_hits": 1,
+  "offtask_hits": 1,
+  "route_hits": 1,
+  "user_agents": [
+   "Scrapy/2.20.0 (+https://scrapy.org)"
+  ]
+ },
+ {
+  "label": "trafilatura/school/disallow",
+  "crawler": "trafilatura",
+  "template": "school",
+  "variant": "disallow",
+  "nofollow": false,
+  "disallow": true,
+  "hid": "8042612cee50",
+  "oid": "d3a27100398e",
+  "fit_path": "/r/8042612cee50.html",
+  "route_path": "/admissions.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+   "-W",
+   "ignore",
+   "-c",
+   "<trafilatura script, see crawl.py>",
+   "http://127.0.0.1:8899/index.html"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 35.16,
+  "requests": 8,
+  "robots_fetches": 1,
+  "canary_hits": 0,
+  "offtask_hits": 0,
+  "route_hits": 1,
+  "user_agents": [
+   "trafilatura/2.4.0 (+https://github.com/adbar/trafilatura)"
+  ]
+ },
+ {
+  "label": "langchain/school/disallow",
+  "crawler": "langchain",
+  "template": "school",
+  "variant": "disallow",
+  "nofollow": false,
+  "disallow": true,
+  "hid": "65194b1af262",
+  "oid": "ecc7b1f4894c",
+  "fit_path": "/r/65194b1af262.html",
+  "route_path": "/admissions.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+   "-W",
+   "ignore",
+   "-c",
+   "\nimport sys\nfrom langchain_community.document_loaders import RecursiveUrlLoader\ndocs = RecursiveUrlLoader(sys.argv[1], max_depth=2, prevent_outside=True).load()\nprint(len(docs))\n",
+   "http://127.0.0.1:8899/index.html"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 0.3,
+  "requests": 10,
+  "robots_fetches": 0,
+  "canary_hits": 1,
+  "offtask_hits": 1,
+  "route_hits": 1,
+  "user_agents": [
+   "python-requests/2.34.2"
+  ]
+ },
+ {
+  "label": "mcp_fetch/school/disallow",
+  "crawler": "mcp_fetch",
+  "template": "school",
+  "variant": "disallow",
+  "nofollow": false,
+  "disallow": true,
+  "hid": "16d7ee3e6c48",
+  "oid": "d7b47065491d",
+  "fit_path": "/r/16d7ee3e6c48.html",
+  "route_path": "/admissions.html",
+  "cmd": [
+   "mcp Client stdio",
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+   "-m",
+   "mcp_server_fetch",
+   "--allow-private-ips",
+   "--allowed-hosts",
+   "127.0.0.1"
+  ],
+  "rc": 0,
+  "secs": 0.74,
+  "mcp_calls": [
+   {
+    "target": "start",
+    "raw": false,
+    "is_error": false,
+    "refused": false,
+    "hid_in_reply": false
+   },
+   {
+    "target": "start",
+    "raw": true,
+    "is_error": false,
+    "refused": false,
+    "hid_in_reply": true
+   },
+   {
+    "target": "canary",
+    "raw": false,
+    "is_error": true,
+    "refused": true,
+    "hid_in_reply": true
+   },
+   {
+    "target": "canary",
+    "raw": true,
+    "is_error": true,
+    "refused": true,
+    "hid_in_reply": true
+   }
+  ],
+  "requests": 6,
+  "robots_fetches": 4,
+  "canary_hits": 0,
+  "offtask_hits": 0,
+  "route_hits": 0,
+  "user_agents": [
+   "ModelContextProtocol/1.0 (Autonomous; +https://github.com/modelcontextprotocol/servers)"
+  ]
+ },
+ {
+  "label": "wget/school/both",
+  "crawler": "wget",
+  "template": "school",
+  "variant": "both",
+  "nofollow": true,
+  "disallow": true,
+  "hid": "b91b42b10eb3",
+  "oid": "a72c2f5082be",
+  "fit_path": "/r/b91b42b10eb3.html",
+  "route_path": "/admissions.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/tools/wget-inst/bin/wget",
+   "-r",
+   "-l",
+   "2",
+   "-np",
+   "-q",
+   "-P",
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/data/crawl/work/wget_school_both",
+   "http://127.0.0.1:8899/index.html"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 0.01,
+  "requests": 10,
+  "robots_fetches": 1,
+  "canary_hits": 0,
+  "offtask_hits": 0,
+  "route_hits": 1,
+  "user_agents": [
+   "Wget/1.25.0"
+  ]
+ },
+ {
+  "label": "wget_off/school/both",
+  "crawler": "wget_off",
+  "template": "school",
+  "variant": "both",
+  "nofollow": true,
+  "disallow": true,
+  "hid": "bcfe1cfcae39",
+  "oid": "d0235b4cae01",
+  "fit_path": "/r/bcfe1cfcae39.html",
+  "route_path": "/admissions.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/tools/wget-inst/bin/wget",
+   "-r",
+   "-l",
+   "2",
+   "-np",
+   "-q",
+   "-P",
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/data/crawl/work/wget_off_school_both",
+   "-e",
+   "robots=off",
+   "http://127.0.0.1:8899/index.html"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 0.01,
+  "requests": 11,
+  "robots_fetches": 0,
+  "canary_hits": 1,
+  "offtask_hits": 1,
+  "route_hits": 1,
+  "user_agents": [
+   "Wget/1.25.0"
+  ]
+ },
+ {
+  "label": "scrapy/school/both",
+  "crawler": "scrapy",
+  "template": "school",
+  "variant": "both",
+  "nofollow": true,
+  "disallow": true,
+  "hid": "83de5beea092",
+  "oid": "801adf75089c",
+  "fit_path": "/r/83de5beea092.html",
+  "route_path": "/admissions.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+   "-W",
+   "ignore",
+   "-c",
+   "<scrapy script, see crawl.py>",
+   "http://127.0.0.1:8899/index.html",
+   "1"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 0.34,
+  "requests": 10,
+  "robots_fetches": 1,
+  "canary_hits": 0,
+  "offtask_hits": 0,
+  "route_hits": 1,
+  "user_agents": [
+   "Scrapy/2.20.0 (+https://scrapy.org)"
+  ]
+ },
+ {
+  "label": "scrapy_off/school/both",
+  "crawler": "scrapy_off",
+  "template": "school",
+  "variant": "both",
+  "nofollow": true,
+  "disallow": true,
+  "hid": "2e54f038004d",
+  "oid": "54660707e6ce",
+  "fit_path": "/r/2e54f038004d.html",
+  "route_path": "/admissions.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+   "-W",
+   "ignore",
+   "-c",
+   "<scrapy_off script, see crawl.py>",
+   "http://127.0.0.1:8899/index.html",
+   "0"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 0.39,
+  "requests": 11,
+  "robots_fetches": 0,
+  "canary_hits": 1,
+  "offtask_hits": 1,
+  "route_hits": 1,
+  "user_agents": [
+   "Scrapy/2.20.0 (+https://scrapy.org)"
+  ]
+ },
+ {
+  "label": "trafilatura/school/both",
+  "crawler": "trafilatura",
+  "template": "school",
+  "variant": "both",
+  "nofollow": true,
+  "disallow": true,
+  "hid": "bbe9bed42525",
+  "oid": "d7a2f9515580",
+  "fit_path": "/r/bbe9bed42525.html",
+  "route_path": "/admissions.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+   "-W",
+   "ignore",
+   "-c",
+   "<trafilatura script, see crawl.py>",
+   "http://127.0.0.1:8899/index.html"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 35.16,
+  "requests": 8,
+  "robots_fetches": 1,
+  "canary_hits": 0,
+  "offtask_hits": 0,
+  "route_hits": 1,
+  "user_agents": [
+   "trafilatura/2.4.0 (+https://github.com/adbar/trafilatura)"
+  ]
+ },
+ {
+  "label": "langchain/school/both",
+  "crawler": "langchain",
+  "template": "school",
+  "variant": "both",
+  "nofollow": true,
+  "disallow": true,
+  "hid": "873f81ecebf6",
+  "oid": "cbf96b988fd7",
+  "fit_path": "/r/873f81ecebf6.html",
+  "route_path": "/admissions.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+   "-W",
+   "ignore",
+   "-c",
+   "\nimport sys\nfrom langchain_community.document_loaders import RecursiveUrlLoader\ndocs = RecursiveUrlLoader(sys.argv[1], max_depth=2, prevent_outside=True).load()\nprint(len(docs))\n",
+   "http://127.0.0.1:8899/index.html"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 0.28,
+  "requests": 10,
+  "robots_fetches": 0,
+  "canary_hits": 1,
+  "offtask_hits": 1,
+  "route_hits": 1,
+  "user_agents": [
+   "python-requests/2.34.2"
+  ]
+ },
+ {
+  "label": "mcp_fetch/school/both",
+  "crawler": "mcp_fetch",
+  "template": "school",
+  "variant": "both",
+  "nofollow": true,
+  "disallow": true,
+  "hid": "fce4c11bb9a5",
+  "oid": "81b4a8e6aba0",
+  "fit_path": "/r/fce4c11bb9a5.html",
+  "route_path": "/admissions.html",
+  "cmd": [
+   "mcp Client stdio",
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+   "-m",
+   "mcp_server_fetch",
+   "--allow-private-ips",
+   "--allowed-hosts",
+   "127.0.0.1"
+  ],
+  "rc": 0,
+  "secs": 0.73,
+  "mcp_calls": [
+   {
+    "target": "start",
+    "raw": false,
+    "is_error": false,
+    "refused": false,
+    "hid_in_reply": false
+   },
+   {
+    "target": "start",
+    "raw": true,
+    "is_error": false,
+    "refused": false,
+    "hid_in_reply": true
+   },
+   {
+    "target": "canary",
+    "raw": false,
+    "is_error": true,
+    "refused": true,
+    "hid_in_reply": true
+   },
+   {
+    "target": "canary",
+    "raw": true,
+    "is_error": true,
+    "refused": true,
+    "hid_in_reply": true
+   }
+  ],
+  "requests": 6,
+  "robots_fetches": 4,
+  "canary_hits": 0,
+  "offtask_hits": 0,
+  "route_hits": 0,
+  "user_agents": [
+   "ModelContextProtocol/1.0 (Autonomous; +https://github.com/modelcontextprotocol/servers)"
+  ]
+ },
+ {
+  "label": "wget/transit/bare",
+  "crawler": "wget",
+  "template": "transit",
+  "variant": "bare",
+  "nofollow": false,
+  "disallow": false,
+  "hid": "1322dbe25904",
+  "oid": "7f26ead075f0",
+  "fit_path": "/r/1322dbe25904.html",
+  "route_path": "/tickets.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/tools/wget-inst/bin/wget",
+   "-r",
+   "-l",
+   "2",
+   "-np",
+   "-q",
+   "-P",
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/data/crawl/work/wget_transit_bare",
+   "http://127.0.0.1:8899/index.html"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 0.01,
+  "requests": 12,
+  "robots_fetches": 1,
+  "canary_hits": 1,
+  "offtask_hits": 1,
+  "route_hits": 1,
+  "user_agents": [
+   "Wget/1.25.0"
+  ]
+ },
+ {
+  "label": "wget_off/transit/bare",
+  "crawler": "wget_off",
+  "template": "transit",
+  "variant": "bare",
+  "nofollow": false,
+  "disallow": false,
+  "hid": "9a66a87db1e5",
+  "oid": "2d4b52e49d7f",
+  "fit_path": "/r/9a66a87db1e5.html",
+  "route_path": "/tickets.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/tools/wget-inst/bin/wget",
+   "-r",
+   "-l",
+   "2",
+   "-np",
+   "-q",
+   "-P",
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/data/crawl/work/wget_off_transit_bare",
+   "-e",
+   "robots=off",
+   "http://127.0.0.1:8899/index.html"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 0.01,
+  "requests": 11,
+  "robots_fetches": 0,
+  "canary_hits": 1,
+  "offtask_hits": 1,
+  "route_hits": 1,
+  "user_agents": [
+   "Wget/1.25.0"
+  ]
+ },
+ {
+  "label": "scrapy/transit/bare",
+  "crawler": "scrapy",
+  "template": "transit",
+  "variant": "bare",
+  "nofollow": false,
+  "disallow": false,
+  "hid": "527d92b070ed",
+  "oid": "6dd4089716eb",
+  "fit_path": "/r/527d92b070ed.html",
+  "route_path": "/tickets.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+   "-W",
+   "ignore",
+   "-c",
+   "<scrapy script, see crawl.py>",
+   "http://127.0.0.1:8899/index.html",
+   "1"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 0.34,
+  "requests": 12,
+  "robots_fetches": 1,
+  "canary_hits": 1,
+  "offtask_hits": 1,
+  "route_hits": 1,
+  "user_agents": [
+   "Scrapy/2.20.0 (+https://scrapy.org)"
+  ]
+ },
+ {
+  "label": "scrapy_off/transit/bare",
+  "crawler": "scrapy_off",
+  "template": "transit",
+  "variant": "bare",
+  "nofollow": false,
+  "disallow": false,
+  "hid": "aa639e667512",
+  "oid": "bcb8ec2d523a",
+  "fit_path": "/r/aa639e667512.html",
+  "route_path": "/tickets.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+   "-W",
+   "ignore",
+   "-c",
+   "<scrapy_off script, see crawl.py>",
+   "http://127.0.0.1:8899/index.html",
+   "0"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 0.33,
+  "requests": 11,
+  "robots_fetches": 0,
+  "canary_hits": 1,
+  "offtask_hits": 1,
+  "route_hits": 1,
+  "user_agents": [
+   "Scrapy/2.20.0 (+https://scrapy.org)"
+  ]
+ },
+ {
+  "label": "trafilatura/transit/bare",
+  "crawler": "trafilatura",
+  "template": "transit",
+  "variant": "bare",
+  "nofollow": false,
+  "disallow": false,
+  "hid": "c850accf5ba6",
+  "oid": "5b7c2433632c",
+  "fit_path": "/r/c850accf5ba6.html",
+  "route_path": "/tickets.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+   "-W",
+   "ignore",
+   "-c",
+   "<trafilatura script, see crawl.py>",
+   "http://127.0.0.1:8899/index.html"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 45.17,
+  "requests": 10,
+  "robots_fetches": 1,
+  "canary_hits": 1,
+  "offtask_hits": 1,
+  "route_hits": 1,
+  "user_agents": [
+   "trafilatura/2.4.0 (+https://github.com/adbar/trafilatura)"
+  ]
+ },
+ {
+  "label": "langchain/transit/bare",
+  "crawler": "langchain",
+  "template": "transit",
+  "variant": "bare",
+  "nofollow": false,
+  "disallow": false,
+  "hid": "660ed88378d9",
+  "oid": "50bc95bfdd4e",
+  "fit_path": "/r/660ed88378d9.html",
+  "route_path": "/tickets.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+   "-W",
+   "ignore",
+   "-c",
+   "\nimport sys\nfrom langchain_community.document_loaders import RecursiveUrlLoader\ndocs = RecursiveUrlLoader(sys.argv[1], max_depth=2, prevent_outside=True).load()\nprint(len(docs))\n",
+   "http://127.0.0.1:8899/index.html"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 0.26,
+  "requests": 10,
+  "robots_fetches": 0,
+  "canary_hits": 1,
+  "offtask_hits": 1,
+  "route_hits": 1,
+  "user_agents": [
+   "python-requests/2.34.2"
+  ]
+ },
+ {
+  "label": "mcp_fetch/transit/bare",
+  "crawler": "mcp_fetch",
+  "template": "transit",
+  "variant": "bare",
+  "nofollow": false,
+  "disallow": false,
+  "hid": "04a336093eb3",
+  "oid": "1efda5af2cb7",
+  "fit_path": "/r/04a336093eb3.html",
+  "route_path": "/tickets.html",
+  "cmd": [
+   "mcp Client stdio",
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+   "-m",
+   "mcp_server_fetch",
+   "--allow-private-ips",
+   "--allowed-hosts",
+   "127.0.0.1"
+  ],
+  "rc": 0,
+  "secs": 0.92,
+  "mcp_calls": [
+   {
+    "target": "start",
+    "raw": false,
+    "is_error": false,
+    "refused": false,
+    "hid_in_reply": false
+   },
+   {
+    "target": "start",
+    "raw": true,
+    "is_error": false,
+    "refused": false,
+    "hid_in_reply": true
+   },
+   {
+    "target": "canary",
+    "raw": false,
+    "is_error": false,
+    "refused": false,
+    "hid_in_reply": true
+   },
+   {
+    "target": "canary",
+    "raw": true,
+    "is_error": false,
+    "refused": false,
+    "hid_in_reply": true
+   }
+  ],
+  "requests": 8,
+  "robots_fetches": 4,
+  "canary_hits": 2,
+  "offtask_hits": 0,
+  "route_hits": 0,
+  "user_agents": [
+   "ModelContextProtocol/1.0 (Autonomous; +https://github.com/modelcontextprotocol/servers)"
+  ]
+ },
+ {
+  "label": "wget/transit/nofollow",
+  "crawler": "wget",
+  "template": "transit",
+  "variant": "nofollow",
+  "nofollow": true,
+  "disallow": false,
+  "hid": "450212aaf2dd",
+  "oid": "4646f719a04f",
+  "fit_path": "/r/450212aaf2dd.html",
+  "route_path": "/tickets.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/tools/wget-inst/bin/wget",
+   "-r",
+   "-l",
+   "2",
+   "-np",
+   "-q",
+   "-P",
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/data/crawl/work/wget_transit_nofollow",
+   "http://127.0.0.1:8899/index.html"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 0.01,
+  "requests": 12,
+  "robots_fetches": 1,
+  "canary_hits": 1,
+  "offtask_hits": 1,
+  "route_hits": 1,
+  "user_agents": [
+   "Wget/1.25.0"
+  ]
+ },
+ {
+  "label": "wget_off/transit/nofollow",
+  "crawler": "wget_off",
+  "template": "transit",
+  "variant": "nofollow",
+  "nofollow": true,
+  "disallow": false,
+  "hid": "c8192ebb15f3",
+  "oid": "b3863c86db8c",
+  "fit_path": "/r/c8192ebb15f3.html",
+  "route_path": "/tickets.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/tools/wget-inst/bin/wget",
+   "-r",
+   "-l",
+   "2",
+   "-np",
+   "-q",
+   "-P",
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/data/crawl/work/wget_off_transit_nofollow",
+   "-e",
+   "robots=off",
+   "http://127.0.0.1:8899/index.html"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 0.01,
+  "requests": 11,
+  "robots_fetches": 0,
+  "canary_hits": 1,
+  "offtask_hits": 1,
+  "route_hits": 1,
+  "user_agents": [
+   "Wget/1.25.0"
+  ]
+ },
+ {
+  "label": "scrapy/transit/nofollow",
+  "crawler": "scrapy",
+  "template": "transit",
+  "variant": "nofollow",
+  "nofollow": true,
+  "disallow": false,
+  "hid": "ac13b08000f0",
+  "oid": "18c9adc56c2c",
+  "fit_path": "/r/ac13b08000f0.html",
+  "route_path": "/tickets.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+   "-W",
+   "ignore",
+   "-c",
+   "<scrapy script, see crawl.py>",
+   "http://127.0.0.1:8899/index.html",
+   "1"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 0.34,
+  "requests": 12,
+  "robots_fetches": 1,
+  "canary_hits": 1,
+  "offtask_hits": 1,
+  "route_hits": 1,
+  "user_agents": [
+   "Scrapy/2.20.0 (+https://scrapy.org)"
+  ]
+ },
+ {
+  "label": "scrapy_off/transit/nofollow",
+  "crawler": "scrapy_off",
+  "template": "transit",
+  "variant": "nofollow",
+  "nofollow": true,
+  "disallow": false,
+  "hid": "556aad57f816",
+  "oid": "1ae7337a9da6",
+  "fit_path": "/r/556aad57f816.html",
+  "route_path": "/tickets.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+   "-W",
+   "ignore",
+   "-c",
+   "<scrapy_off script, see crawl.py>",
+   "http://127.0.0.1:8899/index.html",
+   "0"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 0.31,
+  "requests": 11,
+  "robots_fetches": 0,
+  "canary_hits": 1,
+  "offtask_hits": 1,
+  "route_hits": 1,
+  "user_agents": [
+   "Scrapy/2.20.0 (+https://scrapy.org)"
+  ]
+ },
+ {
+  "label": "trafilatura/transit/nofollow",
+  "crawler": "trafilatura",
+  "template": "transit",
+  "variant": "nofollow",
+  "nofollow": true,
+  "disallow": false,
+  "hid": "61d857134d1a",
+  "oid": "ccdb2aeb0402",
+  "fit_path": "/r/61d857134d1a.html",
+  "route_path": "/tickets.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+   "-W",
+   "ignore",
+   "-c",
+   "<trafilatura script, see crawl.py>",
+   "http://127.0.0.1:8899/index.html"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 35.16,
+  "requests": 8,
+  "robots_fetches": 1,
+  "canary_hits": 0,
+  "offtask_hits": 0,
+  "route_hits": 1,
+  "user_agents": [
+   "trafilatura/2.4.0 (+https://github.com/adbar/trafilatura)"
+  ]
+ },
+ {
+  "label": "langchain/transit/nofollow",
+  "crawler": "langchain",
+  "template": "transit",
+  "variant": "nofollow",
+  "nofollow": true,
+  "disallow": false,
+  "hid": "7d77df597ae8",
+  "oid": "859e85b9f451",
+  "fit_path": "/r/7d77df597ae8.html",
+  "route_path": "/tickets.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+   "-W",
+   "ignore",
+   "-c",
+   "\nimport sys\nfrom langchain_community.document_loaders import RecursiveUrlLoader\ndocs = RecursiveUrlLoader(sys.argv[1], max_depth=2, prevent_outside=True).load()\nprint(len(docs))\n",
+   "http://127.0.0.1:8899/index.html"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 0.24,
+  "requests": 10,
+  "robots_fetches": 0,
+  "canary_hits": 1,
+  "offtask_hits": 1,
+  "route_hits": 1,
+  "user_agents": [
+   "python-requests/2.34.2"
+  ]
+ },
+ {
+  "label": "mcp_fetch/transit/nofollow",
+  "crawler": "mcp_fetch",
+  "template": "transit",
+  "variant": "nofollow",
+  "nofollow": true,
+  "disallow": false,
+  "hid": "5ffaa7603fbc",
+  "oid": "9b86a8ff3737",
+  "fit_path": "/r/5ffaa7603fbc.html",
+  "route_path": "/tickets.html",
+  "cmd": [
+   "mcp Client stdio",
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+   "-m",
+   "mcp_server_fetch",
+   "--allow-private-ips",
+   "--allowed-hosts",
+   "127.0.0.1"
+  ],
+  "rc": 0,
+  "secs": 0.91,
+  "mcp_calls": [
+   {
+    "target": "start",
+    "raw": false,
+    "is_error": false,
+    "refused": false,
+    "hid_in_reply": false
+   },
+   {
+    "target": "start",
+    "raw": true,
+    "is_error": false,
+    "refused": false,
+    "hid_in_reply": true
+   },
+   {
+    "target": "canary",
+    "raw": false,
+    "is_error": false,
+    "refused": false,
+    "hid_in_reply": true
+   },
+   {
+    "target": "canary",
+    "raw": true,
+    "is_error": false,
+    "refused": false,
+    "hid_in_reply": true
+   }
+  ],
+  "requests": 8,
+  "robots_fetches": 4,
+  "canary_hits": 2,
+  "offtask_hits": 0,
+  "route_hits": 0,
+  "user_agents": [
+   "ModelContextProtocol/1.0 (Autonomous; +https://github.com/modelcontextprotocol/servers)"
+  ]
+ },
+ {
+  "label": "wget/transit/disallow",
+  "crawler": "wget",
+  "template": "transit",
+  "variant": "disallow",
+  "nofollow": false,
+  "disallow": true,
+  "hid": "387e1b988ed7",
+  "oid": "49f138a88c34",
+  "fit_path": "/r/387e1b988ed7.html",
+  "route_path": "/tickets.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/tools/wget-inst/bin/wget",
+   "-r",
+   "-l",
+   "2",
+   "-np",
+   "-q",
+   "-P",
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/data/crawl/work/wget_transit_disallow",
+   "http://127.0.0.1:8899/index.html"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 0.01,
+  "requests": 10,
+  "robots_fetches": 1,
+  "canary_hits": 0,
+  "offtask_hits": 0,
+  "route_hits": 1,
+  "user_agents": [
+   "Wget/1.25.0"
+  ]
+ },
+ {
+  "label": "wget_off/transit/disallow",
+  "crawler": "wget_off",
+  "template": "transit",
+  "variant": "disallow",
+  "nofollow": false,
+  "disallow": true,
+  "hid": "d7c4fb1c4445",
+  "oid": "aca508793c80",
+  "fit_path": "/r/d7c4fb1c4445.html",
+  "route_path": "/tickets.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/tools/wget-inst/bin/wget",
+   "-r",
+   "-l",
+   "2",
+   "-np",
+   "-q",
+   "-P",
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/data/crawl/work/wget_off_transit_disallow",
+   "-e",
+   "robots=off",
+   "http://127.0.0.1:8899/index.html"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 0.01,
+  "requests": 11,
+  "robots_fetches": 0,
+  "canary_hits": 1,
+  "offtask_hits": 1,
+  "route_hits": 1,
+  "user_agents": [
+   "Wget/1.25.0"
+  ]
+ },
+ {
+  "label": "scrapy/transit/disallow",
+  "crawler": "scrapy",
+  "template": "transit",
+  "variant": "disallow",
+  "nofollow": false,
+  "disallow": true,
+  "hid": "e74a2b647fda",
+  "oid": "5c1bb7c9eb35",
+  "fit_path": "/r/e74a2b647fda.html",
+  "route_path": "/tickets.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+   "-W",
+   "ignore",
+   "-c",
+   "<scrapy script, see crawl.py>",
+   "http://127.0.0.1:8899/index.html",
+   "1"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 0.36,
+  "requests": 10,
+  "robots_fetches": 1,
+  "canary_hits": 0,
+  "offtask_hits": 0,
+  "route_hits": 1,
+  "user_agents": [
+   "Scrapy/2.20.0 (+https://scrapy.org)"
+  ]
+ },
+ {
+  "label": "scrapy_off/transit/disallow",
+  "crawler": "scrapy_off",
+  "template": "transit",
+  "variant": "disallow",
+  "nofollow": false,
+  "disallow": true,
+  "hid": "74f32dd90601",
+  "oid": "db0a8ddbffad",
+  "fit_path": "/r/74f32dd90601.html",
+  "route_path": "/tickets.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+   "-W",
+   "ignore",
+   "-c",
+   "<scrapy_off script, see crawl.py>",
+   "http://127.0.0.1:8899/index.html",
+   "0"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 0.32,
+  "requests": 11,
+  "robots_fetches": 0,
+  "canary_hits": 1,
+  "offtask_hits": 1,
+  "route_hits": 1,
+  "user_agents": [
+   "Scrapy/2.20.0 (+https://scrapy.org)"
+  ]
+ },
+ {
+  "label": "trafilatura/transit/disallow",
+  "crawler": "trafilatura",
+  "template": "transit",
+  "variant": "disallow",
+  "nofollow": false,
+  "disallow": true,
+  "hid": "e9860f8bff70",
+  "oid": "5e538c2f1a51",
+  "fit_path": "/r/e9860f8bff70.html",
+  "route_path": "/tickets.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+   "-W",
+   "ignore",
+   "-c",
+   "<trafilatura script, see crawl.py>",
+   "http://127.0.0.1:8899/index.html"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 35.16,
+  "requests": 8,
+  "robots_fetches": 1,
+  "canary_hits": 0,
+  "offtask_hits": 0,
+  "route_hits": 1,
+  "user_agents": [
+   "trafilatura/2.4.0 (+https://github.com/adbar/trafilatura)"
+  ]
+ },
+ {
+  "label": "langchain/transit/disallow",
+  "crawler": "langchain",
+  "template": "transit",
+  "variant": "disallow",
+  "nofollow": false,
+  "disallow": true,
+  "hid": "c84151b35421",
+  "oid": "a69afcb6c4aa",
+  "fit_path": "/r/c84151b35421.html",
+  "route_path": "/tickets.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+   "-W",
+   "ignore",
+   "-c",
+   "\nimport sys\nfrom langchain_community.document_loaders import RecursiveUrlLoader\ndocs = RecursiveUrlLoader(sys.argv[1], max_depth=2, prevent_outside=True).load()\nprint(len(docs))\n",
+   "http://127.0.0.1:8899/index.html"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 0.24,
+  "requests": 10,
+  "robots_fetches": 0,
+  "canary_hits": 1,
+  "offtask_hits": 1,
+  "route_hits": 1,
+  "user_agents": [
+   "python-requests/2.34.2"
+  ]
+ },
+ {
+  "label": "mcp_fetch/transit/disallow",
+  "crawler": "mcp_fetch",
+  "template": "transit",
+  "variant": "disallow",
+  "nofollow": false,
+  "disallow": true,
+  "hid": "58e4b3a48760",
+  "oid": "dc5d407648ec",
+  "fit_path": "/r/58e4b3a48760.html",
+  "route_path": "/tickets.html",
+  "cmd": [
+   "mcp Client stdio",
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+   "-m",
+   "mcp_server_fetch",
+   "--allow-private-ips",
+   "--allowed-hosts",
+   "127.0.0.1"
+  ],
+  "rc": 0,
+  "secs": 0.66,
+  "mcp_calls": [
+   {
+    "target": "start",
+    "raw": false,
+    "is_error": false,
+    "refused": false,
+    "hid_in_reply": false
+   },
+   {
+    "target": "start",
+    "raw": true,
+    "is_error": false,
+    "refused": false,
+    "hid_in_reply": true
+   },
+   {
+    "target": "canary",
+    "raw": false,
+    "is_error": true,
+    "refused": true,
+    "hid_in_reply": true
+   },
+   {
+    "target": "canary",
+    "raw": true,
+    "is_error": true,
+    "refused": true,
+    "hid_in_reply": true
+   }
+  ],
+  "requests": 6,
+  "robots_fetches": 4,
+  "canary_hits": 0,
+  "offtask_hits": 0,
+  "route_hits": 0,
+  "user_agents": [
+   "ModelContextProtocol/1.0 (Autonomous; +https://github.com/modelcontextprotocol/servers)"
+  ]
+ },
+ {
+  "label": "wget/transit/both",
+  "crawler": "wget",
+  "template": "transit",
+  "variant": "both",
+  "nofollow": true,
+  "disallow": true,
+  "hid": "5f734814ced5",
+  "oid": "de85357027cf",
+  "fit_path": "/r/5f734814ced5.html",
+  "route_path": "/tickets.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/tools/wget-inst/bin/wget",
+   "-r",
+   "-l",
+   "2",
+   "-np",
+   "-q",
+   "-P",
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/data/crawl/work/wget_transit_both",
+   "http://127.0.0.1:8899/index.html"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 0.01,
+  "requests": 10,
+  "robots_fetches": 1,
+  "canary_hits": 0,
+  "offtask_hits": 0,
+  "route_hits": 1,
+  "user_agents": [
+   "Wget/1.25.0"
+  ]
+ },
+ {
+  "label": "wget_off/transit/both",
+  "crawler": "wget_off",
+  "template": "transit",
+  "variant": "both",
+  "nofollow": true,
+  "disallow": true,
+  "hid": "b03780b3ac04",
+  "oid": "73882072be42",
+  "fit_path": "/r/b03780b3ac04.html",
+  "route_path": "/tickets.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/tools/wget-inst/bin/wget",
+   "-r",
+   "-l",
+   "2",
+   "-np",
+   "-q",
+   "-P",
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/data/crawl/work/wget_off_transit_both",
+   "-e",
+   "robots=off",
+   "http://127.0.0.1:8899/index.html"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 0.01,
+  "requests": 11,
+  "robots_fetches": 0,
+  "canary_hits": 1,
+  "offtask_hits": 1,
+  "route_hits": 1,
+  "user_agents": [
+   "Wget/1.25.0"
+  ]
+ },
+ {
+  "label": "scrapy/transit/both",
+  "crawler": "scrapy",
+  "template": "transit",
+  "variant": "both",
+  "nofollow": true,
+  "disallow": true,
+  "hid": "6eb3077e3522",
+  "oid": "d33d303a124b",
+  "fit_path": "/r/6eb3077e3522.html",
+  "route_path": "/tickets.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+   "-W",
+   "ignore",
+   "-c",
+   "<scrapy script, see crawl.py>",
+   "http://127.0.0.1:8899/index.html",
+   "1"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 0.31,
+  "requests": 10,
+  "robots_fetches": 1,
+  "canary_hits": 0,
+  "offtask_hits": 0,
+  "route_hits": 1,
+  "user_agents": [
+   "Scrapy/2.20.0 (+https://scrapy.org)"
+  ]
+ },
+ {
+  "label": "scrapy_off/transit/both",
+  "crawler": "scrapy_off",
+  "template": "transit",
+  "variant": "both",
+  "nofollow": true,
+  "disallow": true,
+  "hid": "740c6a472231",
+  "oid": "56367b90339c",
+  "fit_path": "/r/740c6a472231.html",
+  "route_path": "/tickets.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+   "-W",
+   "ignore",
+   "-c",
+   "<scrapy_off script, see crawl.py>",
+   "http://127.0.0.1:8899/index.html",
+   "0"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 0.3,
+  "requests": 11,
+  "robots_fetches": 0,
+  "canary_hits": 1,
+  "offtask_hits": 1,
+  "route_hits": 1,
+  "user_agents": [
+   "Scrapy/2.20.0 (+https://scrapy.org)"
+  ]
+ },
+ {
+  "label": "trafilatura/transit/both",
+  "crawler": "trafilatura",
+  "template": "transit",
+  "variant": "both",
+  "nofollow": true,
+  "disallow": true,
+  "hid": "ce2d01ed55d0",
+  "oid": "61b365b1be14",
+  "fit_path": "/r/ce2d01ed55d0.html",
+  "route_path": "/tickets.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+   "-W",
+   "ignore",
+   "-c",
+   "<trafilatura script, see crawl.py>",
+   "http://127.0.0.1:8899/index.html"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 35.15,
+  "requests": 8,
+  "robots_fetches": 1,
+  "canary_hits": 0,
+  "offtask_hits": 0,
+  "route_hits": 1,
+  "user_agents": [
+   "trafilatura/2.4.0 (+https://github.com/adbar/trafilatura)"
+  ]
+ },
+ {
+  "label": "langchain/transit/both",
+  "crawler": "langchain",
+  "template": "transit",
+  "variant": "both",
+  "nofollow": true,
+  "disallow": true,
+  "hid": "6cf865bcf8c6",
+  "oid": "d4843f77b044",
+  "fit_path": "/r/6cf865bcf8c6.html",
+  "route_path": "/tickets.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+   "-W",
+   "ignore",
+   "-c",
+   "\nimport sys\nfrom langchain_community.document_loaders import RecursiveUrlLoader\ndocs = RecursiveUrlLoader(sys.argv[1], max_depth=2, prevent_outside=True).load()\nprint(len(docs))\n",
+   "http://127.0.0.1:8899/index.html"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 0.23,
+  "requests": 10,
+  "robots_fetches": 0,
+  "canary_hits": 1,
+  "offtask_hits": 1,
+  "route_hits": 1,
+  "user_agents": [
+   "python-requests/2.34.2"
+  ]
+ },
+ {
+  "label": "mcp_fetch/transit/both",
+  "crawler": "mcp_fetch",
+  "template": "transit",
+  "variant": "both",
+  "nofollow": true,
+  "disallow": true,
+  "hid": "c5bd37b97e1d",
+  "oid": "e0f3a883e518",
+  "fit_path": "/r/c5bd37b97e1d.html",
+  "route_path": "/tickets.html",
+  "cmd": [
+   "mcp Client stdio",
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+   "-m",
+   "mcp_server_fetch",
+   "--allow-private-ips",
+   "--allowed-hosts",
+   "127.0.0.1"
+  ],
+  "rc": 0,
+  "secs": 0.66,
+  "mcp_calls": [
+   {
+    "target": "start",
+    "raw": false,
+    "is_error": false,
+    "refused": false,
+    "hid_in_reply": false
+   },
+   {
+    "target": "start",
+    "raw": true,
+    "is_error": false,
+    "refused": false,
+    "hid_in_reply": true
+   },
+   {
+    "target": "canary",
+    "raw": false,
+    "is_error": true,
+    "refused": true,
+    "hid_in_reply": true
+   },
+   {
+    "target": "canary",
+    "raw": true,
+    "is_error": true,
+    "refused": true,
+    "hid_in_reply": true
+   }
+  ],
+  "requests": 6,
+  "robots_fetches": 4,
+  "canary_hits": 0,
+  "offtask_hits": 0,
+  "route_hits": 0,
+  "user_agents": [
+   "ModelContextProtocol/1.0 (Autonomous; +https://github.com/modelcontextprotocol/servers)"
+  ]
+ },
+ {
+  "label": "wget/hotel/bare",
+  "crawler": "wget",
+  "template": "hotel",
+  "variant": "bare",
+  "nofollow": false,
+  "disallow": false,
+  "hid": "5dd1b4adb0c2",
+  "oid": "5858ff6b7337",
+  "fit_path": "/r/5dd1b4adb0c2.html",
+  "route_path": "/rooms.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/tools/wget-inst/bin/wget",
+   "-r",
+   "-l",
+   "2",
+   "-np",
+   "-q",
+   "-P",
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/data/crawl/work/wget_hotel_bare",
+   "http://127.0.0.1:8899/index.html"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 0.01,
+  "requests": 12,
+  "robots_fetches": 1,
+  "canary_hits": 1,
+  "offtask_hits": 1,
+  "route_hits": 1,
+  "user_agents": [
+   "Wget/1.25.0"
+  ]
+ },
+ {
+  "label": "wget_off/hotel/bare",
+  "crawler": "wget_off",
+  "template": "hotel",
+  "variant": "bare",
+  "nofollow": false,
+  "disallow": false,
+  "hid": "c604f6fe7935",
+  "oid": "e66ab5c58e47",
+  "fit_path": "/r/c604f6fe7935.html",
+  "route_path": "/rooms.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/tools/wget-inst/bin/wget",
+   "-r",
+   "-l",
+   "2",
+   "-np",
+   "-q",
+   "-P",
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/data/crawl/work/wget_off_hotel_bare",
+   "-e",
+   "robots=off",
+   "http://127.0.0.1:8899/index.html"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 0.01,
+  "requests": 11,
+  "robots_fetches": 0,
+  "canary_hits": 1,
+  "offtask_hits": 1,
+  "route_hits": 1,
+  "user_agents": [
+   "Wget/1.25.0"
+  ]
+ },
+ {
+  "label": "scrapy/hotel/bare",
+  "crawler": "scrapy",
+  "template": "hotel",
+  "variant": "bare",
+  "nofollow": false,
+  "disallow": false,
+  "hid": "34b55dd8647f",
+  "oid": "8767bdbde2d9",
+  "fit_path": "/r/34b55dd8647f.html",
+  "route_path": "/rooms.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+   "-W",
+   "ignore",
+   "-c",
+   "<scrapy script, see crawl.py>",
+   "http://127.0.0.1:8899/index.html",
+   "1"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 0.28,
+  "requests": 12,
+  "robots_fetches": 1,
+  "canary_hits": 1,
+  "offtask_hits": 1,
+  "route_hits": 1,
+  "user_agents": [
+   "Scrapy/2.20.0 (+https://scrapy.org)"
+  ]
+ },
+ {
+  "label": "scrapy_off/hotel/bare",
+  "crawler": "scrapy_off",
+  "template": "hotel",
+  "variant": "bare",
+  "nofollow": false,
+  "disallow": false,
+  "hid": "76f3d7353f9b",
+  "oid": "439cb45adc0e",
+  "fit_path": "/r/76f3d7353f9b.html",
+  "route_path": "/rooms.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+   "-W",
+   "ignore",
+   "-c",
+   "<scrapy_off script, see crawl.py>",
+   "http://127.0.0.1:8899/index.html",
+   "0"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 0.34,
+  "requests": 11,
+  "robots_fetches": 0,
+  "canary_hits": 1,
+  "offtask_hits": 1,
+  "route_hits": 1,
+  "user_agents": [
+   "Scrapy/2.20.0 (+https://scrapy.org)"
+  ]
+ },
+ {
+  "label": "trafilatura/hotel/bare",
+  "crawler": "trafilatura",
+  "template": "hotel",
+  "variant": "bare",
+  "nofollow": false,
+  "disallow": false,
+  "hid": "59b149d6aa50",
+  "oid": "ac443dfe9cbc",
+  "fit_path": "/r/59b149d6aa50.html",
+  "route_path": "/rooms.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+   "-W",
+   "ignore",
+   "-c",
+   "<trafilatura script, see crawl.py>",
+   "http://127.0.0.1:8899/index.html"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 45.17,
+  "requests": 10,
+  "robots_fetches": 1,
+  "canary_hits": 1,
+  "offtask_hits": 1,
+  "route_hits": 1,
+  "user_agents": [
+   "trafilatura/2.4.0 (+https://github.com/adbar/trafilatura)"
+  ]
+ },
+ {
+  "label": "langchain/hotel/bare",
+  "crawler": "langchain",
+  "template": "hotel",
+  "variant": "bare",
+  "nofollow": false,
+  "disallow": false,
+  "hid": "69dd5f6942ed",
+  "oid": "de481b116ce0",
+  "fit_path": "/r/69dd5f6942ed.html",
+  "route_path": "/rooms.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+   "-W",
+   "ignore",
+   "-c",
+   "\nimport sys\nfrom langchain_community.document_loaders import RecursiveUrlLoader\ndocs = RecursiveUrlLoader(sys.argv[1], max_depth=2, prevent_outside=True).load()\nprint(len(docs))\n",
+   "http://127.0.0.1:8899/index.html"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 0.46,
+  "requests": 10,
+  "robots_fetches": 0,
+  "canary_hits": 1,
+  "offtask_hits": 1,
+  "route_hits": 1,
+  "user_agents": [
+   "python-requests/2.34.2"
+  ]
+ },
+ {
+  "label": "mcp_fetch/hotel/bare",
+  "crawler": "mcp_fetch",
+  "template": "hotel",
+  "variant": "bare",
+  "nofollow": false,
+  "disallow": false,
+  "hid": "587e238af1a7",
+  "oid": "9528e2b50277",
+  "fit_path": "/r/587e238af1a7.html",
+  "route_path": "/rooms.html",
+  "cmd": [
+   "mcp Client stdio",
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+   "-m",
+   "mcp_server_fetch",
+   "--allow-private-ips",
+   "--allowed-hosts",
+   "127.0.0.1"
+  ],
+  "rc": 0,
+  "secs": 1.45,
+  "mcp_calls": [
+   {
+    "target": "start",
+    "raw": false,
+    "is_error": false,
+    "refused": false,
+    "hid_in_reply": false
+   },
+   {
+    "target": "start",
+    "raw": true,
+    "is_error": false,
+    "refused": false,
+    "hid_in_reply": true
+   },
+   {
+    "target": "canary",
+    "raw": false,
+    "is_error": false,
+    "refused": false,
+    "hid_in_reply": true
+   },
+   {
+    "target": "canary",
+    "raw": true,
+    "is_error": false,
+    "refused": false,
+    "hid_in_reply": true
+   }
+  ],
+  "requests": 8,
+  "robots_fetches": 4,
+  "canary_hits": 2,
+  "offtask_hits": 0,
+  "route_hits": 0,
+  "user_agents": [
+   "ModelContextProtocol/1.0 (Autonomous; +https://github.com/modelcontextprotocol/servers)"
+  ]
+ },
+ {
+  "label": "wget/hotel/nofollow",
+  "crawler": "wget",
+  "template": "hotel",
+  "variant": "nofollow",
+  "nofollow": true,
+  "disallow": false,
+  "hid": "4df08b48c77e",
+  "oid": "743a9f9f1a89",
+  "fit_path": "/r/4df08b48c77e.html",
+  "route_path": "/rooms.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/tools/wget-inst/bin/wget",
+   "-r",
+   "-l",
+   "2",
+   "-np",
+   "-q",
+   "-P",
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/data/crawl/work/wget_hotel_nofollow",
+   "http://127.0.0.1:8899/index.html"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 0.02,
+  "requests": 12,
+  "robots_fetches": 1,
+  "canary_hits": 1,
+  "offtask_hits": 1,
+  "route_hits": 1,
+  "user_agents": [
+   "Wget/1.25.0"
+  ]
+ },
+ {
+  "label": "wget_off/hotel/nofollow",
+  "crawler": "wget_off",
+  "template": "hotel",
+  "variant": "nofollow",
+  "nofollow": true,
+  "disallow": false,
+  "hid": "9af2d315fc31",
+  "oid": "d46d01a05d2e",
+  "fit_path": "/r/9af2d315fc31.html",
+  "route_path": "/rooms.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/tools/wget-inst/bin/wget",
+   "-r",
+   "-l",
+   "2",
+   "-np",
+   "-q",
+   "-P",
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/data/crawl/work/wget_off_hotel_nofollow",
+   "-e",
+   "robots=off",
+   "http://127.0.0.1:8899/index.html"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 0.01,
+  "requests": 11,
+  "robots_fetches": 0,
+  "canary_hits": 1,
+  "offtask_hits": 1,
+  "route_hits": 1,
+  "user_agents": [
+   "Wget/1.25.0"
+  ]
+ },
+ {
+  "label": "scrapy/hotel/nofollow",
+  "crawler": "scrapy",
+  "template": "hotel",
+  "variant": "nofollow",
+  "nofollow": true,
+  "disallow": false,
+  "hid": "3a4e449cb072",
+  "oid": "cd06a0114915",
+  "fit_path": "/r/3a4e449cb072.html",
+  "route_path": "/rooms.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+   "-W",
+   "ignore",
+   "-c",
+   "<scrapy script, see crawl.py>",
+   "http://127.0.0.1:8899/index.html",
+   "1"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 0.44,
+  "requests": 12,
+  "robots_fetches": 1,
+  "canary_hits": 1,
+  "offtask_hits": 1,
+  "route_hits": 1,
+  "user_agents": [
+   "Scrapy/2.20.0 (+https://scrapy.org)"
+  ]
+ },
+ {
+  "label": "scrapy_off/hotel/nofollow",
+  "crawler": "scrapy_off",
+  "template": "hotel",
+  "variant": "nofollow",
+  "nofollow": true,
+  "disallow": false,
+  "hid": "97a7ce1ef145",
+  "oid": "bec3d36f29c8",
+  "fit_path": "/r/97a7ce1ef145.html",
+  "route_path": "/rooms.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+   "-W",
+   "ignore",
+   "-c",
+   "<scrapy_off script, see crawl.py>",
+   "http://127.0.0.1:8899/index.html",
+   "0"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 0.32,
+  "requests": 11,
+  "robots_fetches": 0,
+  "canary_hits": 1,
+  "offtask_hits": 1,
+  "route_hits": 1,
+  "user_agents": [
+   "Scrapy/2.20.0 (+https://scrapy.org)"
+  ]
+ },
+ {
+  "label": "trafilatura/hotel/nofollow",
+  "crawler": "trafilatura",
+  "template": "hotel",
+  "variant": "nofollow",
+  "nofollow": true,
+  "disallow": false,
+  "hid": "99a64f179ec6",
+  "oid": "266273d583da",
+  "fit_path": "/r/99a64f179ec6.html",
+  "route_path": "/rooms.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+   "-W",
+   "ignore",
+   "-c",
+   "<trafilatura script, see crawl.py>",
+   "http://127.0.0.1:8899/index.html"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 35.17,
+  "requests": 8,
+  "robots_fetches": 1,
+  "canary_hits": 0,
+  "offtask_hits": 0,
+  "route_hits": 1,
+  "user_agents": [
+   "trafilatura/2.4.0 (+https://github.com/adbar/trafilatura)"
+  ]
+ },
+ {
+  "label": "langchain/hotel/nofollow",
+  "crawler": "langchain",
+  "template": "hotel",
+  "variant": "nofollow",
+  "nofollow": true,
+  "disallow": false,
+  "hid": "47b58dc11e8a",
+  "oid": "2b3633a441b1",
+  "fit_path": "/r/47b58dc11e8a.html",
+  "route_path": "/rooms.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+   "-W",
+   "ignore",
+   "-c",
+   "\nimport sys\nfrom langchain_community.document_loaders import RecursiveUrlLoader\ndocs = RecursiveUrlLoader(sys.argv[1], max_depth=2, prevent_outside=True).load()\nprint(len(docs))\n",
+   "http://127.0.0.1:8899/index.html"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 0.26,
+  "requests": 10,
+  "robots_fetches": 0,
+  "canary_hits": 1,
+  "offtask_hits": 1,
+  "route_hits": 1,
+  "user_agents": [
+   "python-requests/2.34.2"
+  ]
+ },
+ {
+  "label": "mcp_fetch/hotel/nofollow",
+  "crawler": "mcp_fetch",
+  "template": "hotel",
+  "variant": "nofollow",
+  "nofollow": true,
+  "disallow": false,
+  "hid": "96cb7270c504",
+  "oid": "b1403b765fd9",
+  "fit_path": "/r/96cb7270c504.html",
+  "route_path": "/rooms.html",
+  "cmd": [
+   "mcp Client stdio",
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+   "-m",
+   "mcp_server_fetch",
+   "--allow-private-ips",
+   "--allowed-hosts",
+   "127.0.0.1"
+  ],
+  "rc": 0,
+  "secs": 0.94,
+  "mcp_calls": [
+   {
+    "target": "start",
+    "raw": false,
+    "is_error": false,
+    "refused": false,
+    "hid_in_reply": false
+   },
+   {
+    "target": "start",
+    "raw": true,
+    "is_error": false,
+    "refused": false,
+    "hid_in_reply": true
+   },
+   {
+    "target": "canary",
+    "raw": false,
+    "is_error": false,
+    "refused": false,
+    "hid_in_reply": true
+   },
+   {
+    "target": "canary",
+    "raw": true,
+    "is_error": false,
+    "refused": false,
+    "hid_in_reply": true
+   }
+  ],
+  "requests": 8,
+  "robots_fetches": 4,
+  "canary_hits": 2,
+  "offtask_hits": 0,
+  "route_hits": 0,
+  "user_agents": [
+   "ModelContextProtocol/1.0 (Autonomous; +https://github.com/modelcontextprotocol/servers)"
+  ]
+ },
+ {
+  "label": "wget/hotel/disallow",
+  "crawler": "wget",
+  "template": "hotel",
+  "variant": "disallow",
+  "nofollow": false,
+  "disallow": true,
+  "hid": "b1c240517ef1",
+  "oid": "4ce7680790ae",
+  "fit_path": "/r/b1c240517ef1.html",
+  "route_path": "/rooms.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/tools/wget-inst/bin/wget",
+   "-r",
+   "-l",
+   "2",
+   "-np",
+   "-q",
+   "-P",
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/data/crawl/work/wget_hotel_disallow",
+   "http://127.0.0.1:8899/index.html"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 0.01,
+  "requests": 10,
+  "robots_fetches": 1,
+  "canary_hits": 0,
+  "offtask_hits": 0,
+  "route_hits": 1,
+  "user_agents": [
+   "Wget/1.25.0"
+  ]
+ },
+ {
+  "label": "wget_off/hotel/disallow",
+  "crawler": "wget_off",
+  "template": "hotel",
+  "variant": "disallow",
+  "nofollow": false,
+  "disallow": true,
+  "hid": "e85881528c69",
+  "oid": "155123f19557",
+  "fit_path": "/r/e85881528c69.html",
+  "route_path": "/rooms.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/tools/wget-inst/bin/wget",
+   "-r",
+   "-l",
+   "2",
+   "-np",
+   "-q",
+   "-P",
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/data/crawl/work/wget_off_hotel_disallow",
+   "-e",
+   "robots=off",
+   "http://127.0.0.1:8899/index.html"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 0.01,
+  "requests": 11,
+  "robots_fetches": 0,
+  "canary_hits": 1,
+  "offtask_hits": 1,
+  "route_hits": 1,
+  "user_agents": [
+   "Wget/1.25.0"
+  ]
+ },
+ {
+  "label": "scrapy/hotel/disallow",
+  "crawler": "scrapy",
+  "template": "hotel",
+  "variant": "disallow",
+  "nofollow": false,
+  "disallow": true,
+  "hid": "914bc68f1951",
+  "oid": "e2d175ccffaa",
+  "fit_path": "/r/914bc68f1951.html",
+  "route_path": "/rooms.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+   "-W",
+   "ignore",
+   "-c",
+   "<scrapy script, see crawl.py>",
+   "http://127.0.0.1:8899/index.html",
+   "1"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 0.3,
+  "requests": 10,
+  "robots_fetches": 1,
+  "canary_hits": 0,
+  "offtask_hits": 0,
+  "route_hits": 1,
+  "user_agents": [
+   "Scrapy/2.20.0 (+https://scrapy.org)"
+  ]
+ },
+ {
+  "label": "scrapy_off/hotel/disallow",
+  "crawler": "scrapy_off",
+  "template": "hotel",
+  "variant": "disallow",
+  "nofollow": false,
+  "disallow": true,
+  "hid": "8cba8b2f57a6",
+  "oid": "08f8585cc045",
+  "fit_path": "/r/8cba8b2f57a6.html",
+  "route_path": "/rooms.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+   "-W",
+   "ignore",
+   "-c",
+   "<scrapy_off script, see crawl.py>",
+   "http://127.0.0.1:8899/index.html",
+   "0"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 0.29,
+  "requests": 11,
+  "robots_fetches": 0,
+  "canary_hits": 1,
+  "offtask_hits": 1,
+  "route_hits": 1,
+  "user_agents": [
+   "Scrapy/2.20.0 (+https://scrapy.org)"
+  ]
+ },
+ {
+  "label": "trafilatura/hotel/disallow",
+  "crawler": "trafilatura",
+  "template": "hotel",
+  "variant": "disallow",
+  "nofollow": false,
+  "disallow": true,
+  "hid": "b3a17538dec7",
+  "oid": "854e58ddb06c",
+  "fit_path": "/r/b3a17538dec7.html",
+  "route_path": "/rooms.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+   "-W",
+   "ignore",
+   "-c",
+   "<trafilatura script, see crawl.py>",
+   "http://127.0.0.1:8899/index.html"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 35.16,
+  "requests": 8,
+  "robots_fetches": 1,
+  "canary_hits": 0,
+  "offtask_hits": 0,
+  "route_hits": 1,
+  "user_agents": [
+   "trafilatura/2.4.0 (+https://github.com/adbar/trafilatura)"
+  ]
+ },
+ {
+  "label": "langchain/hotel/disallow",
+  "crawler": "langchain",
+  "template": "hotel",
+  "variant": "disallow",
+  "nofollow": false,
+  "disallow": true,
+  "hid": "7bd026e5eef4",
+  "oid": "56602d0995e6",
+  "fit_path": "/r/7bd026e5eef4.html",
+  "route_path": "/rooms.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+   "-W",
+   "ignore",
+   "-c",
+   "\nimport sys\nfrom langchain_community.document_loaders import RecursiveUrlLoader\ndocs = RecursiveUrlLoader(sys.argv[1], max_depth=2, prevent_outside=True).load()\nprint(len(docs))\n",
+   "http://127.0.0.1:8899/index.html"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 0.24,
+  "requests": 10,
+  "robots_fetches": 0,
+  "canary_hits": 1,
+  "offtask_hits": 1,
+  "route_hits": 1,
+  "user_agents": [
+   "python-requests/2.34.2"
+  ]
+ },
+ {
+  "label": "mcp_fetch/hotel/disallow",
+  "crawler": "mcp_fetch",
+  "template": "hotel",
+  "variant": "disallow",
+  "nofollow": false,
+  "disallow": true,
+  "hid": "517dc8834a31",
+  "oid": "3fd262c329a8",
+  "fit_path": "/r/517dc8834a31.html",
+  "route_path": "/rooms.html",
+  "cmd": [
+   "mcp Client stdio",
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+   "-m",
+   "mcp_server_fetch",
+   "--allow-private-ips",
+   "--allowed-hosts",
+   "127.0.0.1"
+  ],
+  "rc": 0,
+  "secs": 0.66,
+  "mcp_calls": [
+   {
+    "target": "start",
+    "raw": false,
+    "is_error": false,
+    "refused": false,
+    "hid_in_reply": false
+   },
+   {
+    "target": "start",
+    "raw": true,
+    "is_error": false,
+    "refused": false,
+    "hid_in_reply": true
+   },
+   {
+    "target": "canary",
+    "raw": false,
+    "is_error": true,
+    "refused": true,
+    "hid_in_reply": true
+   },
+   {
+    "target": "canary",
+    "raw": true,
+    "is_error": true,
+    "refused": true,
+    "hid_in_reply": true
+   }
+  ],
+  "requests": 6,
+  "robots_fetches": 4,
+  "canary_hits": 0,
+  "offtask_hits": 0,
+  "route_hits": 0,
+  "user_agents": [
+   "ModelContextProtocol/1.0 (Autonomous; +https://github.com/modelcontextprotocol/servers)"
+  ]
+ },
+ {
+  "label": "wget/hotel/both",
+  "crawler": "wget",
+  "template": "hotel",
+  "variant": "both",
+  "nofollow": true,
+  "disallow": true,
+  "hid": "ee486ff23778",
+  "oid": "6f9226a33a0a",
+  "fit_path": "/r/ee486ff23778.html",
+  "route_path": "/rooms.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/tools/wget-inst/bin/wget",
+   "-r",
+   "-l",
+   "2",
+   "-np",
+   "-q",
+   "-P",
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/data/crawl/work/wget_hotel_both",
+   "http://127.0.0.1:8899/index.html"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 0.01,
+  "requests": 10,
+  "robots_fetches": 1,
+  "canary_hits": 0,
+  "offtask_hits": 0,
+  "route_hits": 1,
+  "user_agents": [
+   "Wget/1.25.0"
+  ]
+ },
+ {
+  "label": "wget_off/hotel/both",
+  "crawler": "wget_off",
+  "template": "hotel",
+  "variant": "both",
+  "nofollow": true,
+  "disallow": true,
+  "hid": "8b52360e7fb1",
+  "oid": "ef537d8fdc67",
+  "fit_path": "/r/8b52360e7fb1.html",
+  "route_path": "/rooms.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/tools/wget-inst/bin/wget",
+   "-r",
+   "-l",
+   "2",
+   "-np",
+   "-q",
+   "-P",
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/data/crawl/work/wget_off_hotel_both",
+   "-e",
+   "robots=off",
+   "http://127.0.0.1:8899/index.html"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 0.01,
+  "requests": 11,
+  "robots_fetches": 0,
+  "canary_hits": 1,
+  "offtask_hits": 1,
+  "route_hits": 1,
+  "user_agents": [
+   "Wget/1.25.0"
+  ]
+ },
+ {
+  "label": "scrapy/hotel/both",
+  "crawler": "scrapy",
+  "template": "hotel",
+  "variant": "both",
+  "nofollow": true,
+  "disallow": true,
+  "hid": "60b898ae5c88",
+  "oid": "45fd9c1a8a50",
+  "fit_path": "/r/60b898ae5c88.html",
+  "route_path": "/rooms.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+   "-W",
+   "ignore",
+   "-c",
+   "<scrapy script, see crawl.py>",
+   "http://127.0.0.1:8899/index.html",
+   "1"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 0.27,
+  "requests": 10,
+  "robots_fetches": 1,
+  "canary_hits": 0,
+  "offtask_hits": 0,
+  "route_hits": 1,
+  "user_agents": [
+   "Scrapy/2.20.0 (+https://scrapy.org)"
+  ]
+ },
+ {
+  "label": "scrapy_off/hotel/both",
+  "crawler": "scrapy_off",
+  "template": "hotel",
+  "variant": "both",
+  "nofollow": true,
+  "disallow": true,
+  "hid": "488923d8c5a5",
+  "oid": "68806d77a271",
+  "fit_path": "/r/488923d8c5a5.html",
+  "route_path": "/rooms.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+   "-W",
+   "ignore",
+   "-c",
+   "<scrapy_off script, see crawl.py>",
+   "http://127.0.0.1:8899/index.html",
+   "0"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 0.29,
+  "requests": 11,
+  "robots_fetches": 0,
+  "canary_hits": 1,
+  "offtask_hits": 1,
+  "route_hits": 1,
+  "user_agents": [
+   "Scrapy/2.20.0 (+https://scrapy.org)"
+  ]
+ },
+ {
+  "label": "trafilatura/hotel/both",
+  "crawler": "trafilatura",
+  "template": "hotel",
+  "variant": "both",
+  "nofollow": true,
+  "disallow": true,
+  "hid": "f5909bf670de",
+  "oid": "d595faf5b8d2",
+  "fit_path": "/r/f5909bf670de.html",
+  "route_path": "/rooms.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+   "-W",
+   "ignore",
+   "-c",
+   "<trafilatura script, see crawl.py>",
+   "http://127.0.0.1:8899/index.html"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 35.15,
+  "requests": 8,
+  "robots_fetches": 1,
+  "canary_hits": 0,
+  "offtask_hits": 0,
+  "route_hits": 1,
+  "user_agents": [
+   "trafilatura/2.4.0 (+https://github.com/adbar/trafilatura)"
+  ]
+ },
+ {
+  "label": "langchain/hotel/both",
+  "crawler": "langchain",
+  "template": "hotel",
+  "variant": "both",
+  "nofollow": true,
+  "disallow": true,
+  "hid": "6a2c10e765aa",
+  "oid": "5682ebe9dd0b",
+  "fit_path": "/r/6a2c10e765aa.html",
+  "route_path": "/rooms.html",
+  "cmd": [
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+   "-W",
+   "ignore",
+   "-c",
+   "\nimport sys\nfrom langchain_community.document_loaders import RecursiveUrlLoader\ndocs = RecursiveUrlLoader(sys.argv[1], max_depth=2, prevent_outside=True).load()\nprint(len(docs))\n",
+   "http://127.0.0.1:8899/index.html"
+  ],
+  "rc": 0,
+  "stderr_tail": "",
+  "secs": 0.23,
+  "requests": 10,
+  "robots_fetches": 0,
+  "canary_hits": 1,
+  "offtask_hits": 1,
+  "route_hits": 1,
+  "user_agents": [
+   "python-requests/2.34.2"
+  ]
+ },
+ {
+  "label": "mcp_fetch/hotel/both",
+  "crawler": "mcp_fetch",
+  "template": "hotel",
+  "variant": "both",
+  "nofollow": true,
+  "disallow": true,
+  "hid": "39d598cf2270",
+  "oid": "588c87a6fc1d",
+  "fit_path": "/r/39d598cf2270.html",
+  "route_path": "/rooms.html",
+  "cmd": [
+   "mcp Client stdio",
+   "/Users/esben/work/defense-1128-crawler-silent/kran-research/projects/disallow-canary/.venv/bin/python",
+   "-m",
+   "mcp_server_fetch",
+   "--allow-private-ips",
+   "--allowed-hosts",
+   "127.0.0.1"
+  ],
+  "rc": 0,
+  "secs": 0.67,
+  "mcp_calls": [
+   {
+    "target": "start",
+    "raw": false,
+    "is_error": false,
+    "refused": false,
+    "hid_in_reply": false
+   },
+   {
+    "target": "start",
+    "raw": true,
+    "is_error": false,
+    "refused": false,
+    "hid_in_reply": true
+   },
+   {
+    "target": "canary",
+    "raw": false,
+    "is_error": true,
+    "refused": true,
+    "hid_in_reply": true
+   },
+   {
+    "target": "canary",
+    "raw": true,
+    "is_error": true,
+    "refused": true,
+    "hid_in_reply": true
+   }
+  ],
+  "requests": 6,
+  "robots_fetches": 4,
+  "canary_hits": 0,
+  "offtask_hits": 0,
+  "route_hits": 0,
+  "user_agents": [
+   "ModelContextProtocol/1.0 (Autonomous; +https://github.com/modelcontextprotocol/servers)"
+  ]
+ }
+]

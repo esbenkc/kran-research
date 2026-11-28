@@ -135,6 +135,14 @@ def cell(name):
         c["carrier"]["runner_up"] = [order[1][0], order[1][1]["push_drop32"]]
         if rd.get("own_monitor"):
             c["own_monitor"] = rd["own_monitor"]
+    # signal-collapse rows (Vera #32324, Kasper #32329): uncut test log-odds margins of the audited adapter
+    lu32, lp32 = np.array(tb["lo_unprobed32"]), np.array(tb["lo_probed32"])
+    c["margins"] = {"mean_push32": float((lp32 - lu32).mean()), "median_lo_probed32": float(np.median(lp32)),
+                    "median_lo_unprobed32": float(np.median(lu32)),
+                    "share_abs_lo_below_0.5": float(np.mean((np.abs(lp32) < 0.5) | (np.abs(lu32) < 0.5))),
+                    "fp32_vs_bf16_S0": [c["fp32"]["S0"], c["bf16"]["S0"]],
+                    "fp32_vs_bf16_S8_T1": [c["fp32"]["by"].get("T1", {}).get("S8"), c["bf16"]["by"].get("T1", {}).get("S8")],
+                    "kl_pu_dev_by_score": {X: ka["greedy_dev"][X][0]["kl_full_dev_nats"] for X in ka["greedy_dev"]}}
     run = jload(P["runs"])
     c["trained"] = run is not None
     if run is not None:
@@ -170,6 +178,7 @@ def cell(name):
                            "monitor_last_set": p[-1]["heads"], "n_repicks": len(p),
                            "repick_secs_mean": float(np.mean([x.get("secs", 0) for x in p])),
                            "held_sets_distinct": len({tuple(x["heads"]) for x in p})}
+            c["attack"]["D_mon_last8"] = [x["D_mon"] for x in p[-8:]]
         else:
             c["monitor_healthy"] = None
     return c

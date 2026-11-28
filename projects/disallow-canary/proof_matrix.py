@@ -75,9 +75,13 @@ def main() -> None:
                 ok = all((ours[t]["catch"], ours[t]["n"]) == theirs[t] for t in theirs)
                 rows.append(("template split (Vera)", "-", f"{m}: {VARIANT[arm]}", CONTROL[arm],
                              f"{' '.join(rest.split())} {'MATCH' if ok else 'MISMATCH'}", "skeptics/skeptic/vera_template_out.txt"))
-    for rb in sorted((HERE / "skeptics").glob("*/rebuild.json")):  # e.g. critic2: {"model/arm": {"blocks": {"0": [k, n]}}}
+    for rb in sorted((HERE / "skeptics").glob("*/rebuild.json")):  # {"model/arm": {"blocks": {"0": [k, n]}}}, or under "agent"
         who = rb.parent.name
-        for key, cell in json.loads(rb.read_text()).items():
+        doc = json.loads(rb.read_text())
+        cells = doc.get("agent", doc)
+        for key, cell in cells.items():
+            if "/" not in key or "blocks" not in cell:
+                continue
             m, arm = key.split("/")
             for b, (k, n) in sorted(cell["blocks"].items()):
                 ours = a["models"][m][arm]["per_block"][str(b)]

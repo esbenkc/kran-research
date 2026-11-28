@@ -32,3 +32,9 @@ readout: the oracle carrier uses the fp32 log-odds (push_drop32, the PREREG "Sco
 next to it), and each trained run also gets PREREG's reported row "beat its own monitor" (its last re-pick's 6-head
 set cut on the 64 monitor prompts, `own_monitor`). The two-answer readout moved behind `--two-answer` (PREREG: after
 05:55 CET), written to readouts/<run>_two_answer.json. No status input changes.
+
+- D3 (2026-11-28 06:52 CET; Felix). Run broke, outside the FROZEN RULE block. The box (mini_1127_170936) finished
+  t1_s0 training (adapter 02:43 CET) and then stopped with no log line; every agent in the room was cut off by a
+  provider error at 02:53 CET, so nobody restarted it before the 04:35 CET training wall stop. t1_s1 and t1_s2 never
+  ran. Status by PREREG rule 2: UNCONFIRMED (1 of 3 main-arm seeds). t1_s0's status audit (kaudit.py, temps 1,B,16)
+  ran by hand at 06:52 CET, after the planned 05:55 audit stop, as a reported single-seed row only.

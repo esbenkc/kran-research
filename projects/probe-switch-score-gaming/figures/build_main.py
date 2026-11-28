@@ -12,7 +12,7 @@ Plus the 50 random 8-head sets (min, median, max) and, when given, the main carr
 
 Usage:
   python build_main.py --row 0:softened:<parent>/data/kaudit/k6_s0.json --row 0:plain:data/kaudit/t1_s0.json ... \
-      [--carrier data/carrier.json] --out <blog>/assets/figures/probe-switch-score-gaming/data.json
+      [--readouts data/readouts] --out <blog>/assets/figures/probe-switch-score-gaming/data.json
 """
 from __future__ import annotations
 
@@ -63,21 +63,27 @@ def load(seed: int, trained: str, path: str, carrier: dict | None) -> dict:
         "escaped": {T: top[T]["s8"] >= THRESH for T in top if "s8" in top[T]},
     }
     if carrier:
-        c = carrier.get(d.get("run")) or carrier.get(f"{trained}_s{seed}")
-        if c:
-            out["carrier"] = c  # {"head": "27.7", "score": {"TB": x, "T16": y, "T1": z}}
+        import os
+        rp = os.path.join(carrier, f"{d.get('run')}.json")
+        if os.path.exists(rp):
+            rd = json.load(open(rp))
+            head = rd["oracle_carrier"]["head"]
+            row = rd["single"]["dev"][head]
+            sc = {T: row[f"blind_removed_{T}"] for T in TEMPS}
+            out["carrier"] = {"head": head, "score": sc,
+                              "sign": {T: ("pos" if v > 1e-3 else "neg" if v < -1e-3 else "zero") for T, v in sc.items()}}
     return out
 
 
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--row", action="append", required=True, help="seed:trained:path, trained in softened|plain")
-    ap.add_argument("--carrier", default=None)
+    ap.add_argument("--readouts", default=None, help="data/readouts dir (carrier sweep)")
     ap.add_argument("--out", required=True)
     ap.add_argument("--title", default="PENDING")
     ap.add_argument("--subtitle", default="PENDING")
     a = ap.parse_args()
-    carrier = json.load(open(a.carrier)) if a.carrier else None
+    carrier = a.readouts
     rows = []
     for spec in a.row:
         seed, trained, path = spec.split(":", 2)
@@ -92,7 +98,8 @@ def main():
     for r in rows:
         print(r["seed"], r["trained"], r["run"], "S0 %.3f" % r["s0"],
               " ".join(f"{T}:S8={r['top'][T]['s8']:.3f}" for T in r["top"]),
-              "rand8 med %.3f [%.3f,%.3f]" % (r["rand8"]["med"], r["rand8"]["lo"], r["rand8"]["hi"]))
+              "rand8 med %.3f [%.3f,%.3f]" % (r["rand8"]["med"], r["rand8"]["lo"], r["rand8"]["hi"]),
+              ("carrier %s %s" % (r["carrier"]["head"], {T: round(v, 4) for T, v in r["carrier"]["score"].items()})) if "carrier" in r else "")
 
 
 if __name__ == "__main__":

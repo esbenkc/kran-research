@@ -7,7 +7,7 @@ Everything comes from saved raw data; no number or quote is typed by hand.
   analysis.py --out <tmp>           the counts, through the project's own frozen scoring (PREREG s4)
   figure1/text.json                 the words; {slots} are filled from the counts
 
-    python3 figure1/gen.py [--blog <athanorscience.com clone>]
+    python3 figure1/gen.py [--blog <athanorscience.com clone>] [--proj <project dir with data/>]
 
 Writes <blog>/assets/figures/disallow-canary-fig1/figure1.html and figure1/alt.txt, and prints the sources.
 """
@@ -197,14 +197,14 @@ def hl_link(a: str, hid: str) -> str:
 
 
 def short(s: str, n: int) -> str:
-    """Whole sentences of s until at least n words (never a cut inside a sentence), then an ellipsis if more follows."""
+    """Whole sentences of s until at least n words (never a cut inside a sentence)."""
     sents = re.split(r"(?<=[.!?])\s+", s.strip())
     out: list[str] = []
     for sent in sents:
         out.append(sent)
         if sum(len(x.split()) for x in out) >= n:
             break
-    return " ".join(out) + (" \u2026" if len(out) < len(sents) else "")
+    return " ".join(out)
 
 
 def bar(label: str, sub: str, k: int, n: int, unit: str, red: bool) -> str:
@@ -288,9 +288,12 @@ def yaml_safe(s: str) -> str:
 
 
 def main() -> None:
+    global PROJ
     ap = argparse.ArgumentParser()
     ap.add_argument("--blog", default=str(PROJ.parents[2] / "athanorscience.com"))
+    ap.add_argument("--proj", default=str(PROJ), help="project dir that holds data/ and analysis.py (default: this one)")
     a = ap.parse_args()
+    PROJ = Path(a.proj).resolve()
     T = json.loads((HERE / "text.json").read_text())
     res, rows = run_analysis()
     log = read_log(PROJ / "data/logs/access.log")

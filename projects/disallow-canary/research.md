@@ -65,6 +65,9 @@ GHSA-g7v6-hfx3-8rv6"). PyPI `mcp-server-fetch` 2026.11.27 (Bruno #32383, Vera #3
   - `scrapy/templates/project/module/settings.py.tmpl:22`: `ROBOTSTXT_OBEY = True` (what `scrapy startproject` writes).
 - **trafilatura** (adbar/trafilatura master) `trafilatura/spider.py:153, 163, 182, 209`: the focused crawler checks
   robots.txt rules before following.
+- **trafilatura drops nofollow links** (Bruno's pre-check #32419: nofollow alone silenced it): the link extractor in
+  its URL library courlan skips them, `courlan/core.py:53-54` (`NOFOLLOW_REGEX`, matches `rel=...nofollow`) and
+  `:281` (`if "ollow" in lowered and NOFOLLOW_REGEX.search(link):`), adbar/courlan master.
 - **crawl4ai** (unclecode/crawl4ai main) `crawl4ai/async_configs.py:1897, 2024`: `check_robots_txt` "Default: False".
   An AI-oriented crawler that ignores robots.txt unless asked. Not run (needs a headless browser, 1-2 GB).
 
@@ -103,7 +106,18 @@ the v2 question moves the robots check into the reference tool.
 Searches on 2026-11-28 (web search: "honeypot hidden link robots.txt Disallow nofollow LLM web agents detection false
 positives crawlers arXiv 2025 2026"; GitHub/arXiv titles) found no measurement of a canary's catch rate on LLM agents
 that use a robots-honouring fetch tool, and no paper that measures crawler silence and agent catch on the same canary.
-Related work: LLM Agent Honeypot (Reworr and Volkov, arXiv 2410.13919: SSH honeypot with prompt injection and timing
+Two closest papers (found by Vera, #32412; abstracts checked by Iris 2026-11-28):
+- **ScrapeBench**, Imperial, Slate, Kolt, arXiv 2611.11306 (2026-11-08): "most agents exhibit low compliance rates
+  (below 5%) when instructed to scrape websites in our sample of 1,626 popular websites that explicitly prohibit
+  scraping", and "even where AI agents actively check the applicable ToS and robots.txt, they continue to exhibit low
+  compliance rates." Difference: their agents are told to scrape; ours have a lookup task, and the refusal comes from
+  the agent's own fetch tool.
+- **Recuse Signal**, Munirathinam, arXiv 2606.06460 v4 (2026-08-01): an in-band deny signal over SSH; "recusal to deny
+  ranges from 100% to 55-75% among agents that received it, while an open-weights agent barely engaged"; "a
+  harness-level interceptor stops the loop 120/120 across six models (deterministic)". The closest analogue to "the
+  tool refuses; does the model go around it". The MCP fetch refusal is such a harness-level block on one tool only,
+  with a second tool (curl) left open.
+Other related work: LLM Agent Honeypot (Reworr and Volkov, arXiv 2410.13919: SSH honeypot with prompt injection and timing
 to tell LLM agents from other attackers); 2505.21733 above (fetcher logs, no model behaviour). Robots.txt-Disallowed
 bot traps for scrapers are old practice (the AWS sample above). The new part here is the agent side under the
 reference MCP fetch tool: whether the model routes around the tool's own robots refusal with a shell.

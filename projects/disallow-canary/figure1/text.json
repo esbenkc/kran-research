@@ -10,7 +10,7 @@
   "crawler_log": "server log: no request for /r/",
   "both_line": "Both agents read the <b>{seen_page}</b> page, saw the hidden link there, and asked their fetch tool for it. The tool refused:",
   "refusal_label": "MCP fetch tool:",
-  "m26": "Gemma 4 26B",
+  "m26": "Gemma 4 26B A4B",
   "m31": "Gemma 4 31B",
   "log_label": "server log:",
   "log_none": "no request for the hidden link",
@@ -26,27 +26,27 @@
   "unit_runs": "runs",
   "partial": "(runs still coming in: counts so far)",
   "foot": "Test websites we built, 5 site designs; Gemma 4 open weights via Google's API; Nov 28 2026",
-  "alt": "Figure 1. A test website for an evening school has a hidden link to its 2025 tuition table. The link carries rel=nofollow, and the site's robots.txt says Disallow: /r/. The crawler wget read robots.txt and never requested the link. Gemma 4 26B and Gemma 4 31B, each with the MCP fetch tool and a shell, found the link, and the fetch tool refused it because of robots.txt. Gemma 4 26B gave up and said it could not get the page. Gemma 4 31B said it would use curl, downloaded the page with curl, and answered {answer31}. Over all runs, crawlers that obey robots.txt requested the link in {crawl_hits} of {crawl_passes} crawls, Gemma 4 31B in {k31} of {n31} runs, and Gemma 4 26B in {k26} of {n26} runs. With no tag and no Disallow line, Gemma 4 31B requested it in {b31} of {bn31} runs and Gemma 4 26B in {b26} of {bn26}.",
+  "alt": "Figure 1. A test website for an evening school has a hidden link to its 2025 tuition table. The link carries rel=nofollow, and the site's robots.txt says Disallow: /r/. The crawler wget read robots.txt and never requested the link. Gemma 4 26B A4B and Gemma 4 31B, each with the MCP fetch tool and a shell, found the link, and the fetch tool refused it because of robots.txt. Gemma 4 26B A4B gave up and said it could not get the page. Gemma 4 31B said it would use curl, downloaded the page with curl, and answered {answer31}. Over all runs, crawlers that obey robots.txt requested the link in {crawl_hits} of {crawl_passes} crawls, Gemma 4 31B in {k31} of {n31} runs, and Gemma 4 26B A4B in {k26} of {n26} runs. With no tag and no Disallow line, Gemma 4 31B requested it in {b31} of {bn31} runs and Gemma 4 26B A4B in {b26} of {bn26}.",
   "answer": {
     "REJECTED": {
       "label": "Answer:",
       "word": "No.",
-      "text": "Crawlers that obey robots.txt never requested it, and Gemma 4 31B did in {k31} of {n31} runs. But Gemma 4 26B requested it in {k26} of {n26} runs."
+      "text": "Crawlers that obey robots.txt never requested it, and Gemma 4 31B did in {k31} of {n31} runs. But Gemma 4 26B A4B requested it in {k26} of {n26} runs."
     },
     "CONFIRMED": {
       "label": "Answer:",
       "word": "Yes.",
-      "text": "Crawlers that obey robots.txt never requested it. Gemma 4 31B did in {k31} of {n31} runs, and Gemma 4 26B in {k26} of {n26}."
+      "text": "Crawlers that obey robots.txt never requested it. Gemma 4 31B did in {k31} of {n31} runs, and Gemma 4 26B A4B in {k26} of {n26}."
     },
     "UNCONFIRMED": {
       "label": "Answer:",
       "word": "Not settled.",
-      "text": "Crawlers that obey robots.txt never requested it. Gemma 4 31B did in {k31} of {n31} runs, and Gemma 4 26B in {k26} of {n26}."
+      "text": "Crawlers that obey robots.txt never requested it. Gemma 4 31B did in {k31} of {n31} runs, and Gemma 4 26B A4B in {k26} of {n26}."
     },
     "PARTIAL": {
       "label": "So far:",
       "word": "",
-      "text": "Crawlers that obey robots.txt never requested it. Gemma 4 31B did in {k31} of {n31} runs, and Gemma 4 26B in {k26} of {n26}."
+      "text": "Crawlers that obey robots.txt never requested it. Gemma 4 31B did in {k31} of {n31} runs, and Gemma 4 26B A4B in {k26} of {n26}."
     }
   },
   "bar_ctl": "the same agent with no tag and no Disallow line"

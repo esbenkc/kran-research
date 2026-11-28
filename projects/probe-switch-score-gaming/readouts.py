@@ -5,7 +5,9 @@ inputs, head unit and swap = 'cut'):
      unprobed answer log-odds removed; the label-aware 'carrier' size), strict32 left, and the blind removed share at
      every T of --temps; plus the two-answer removed share (below). The oracle carrier of PREREG = the head with the
      largest single-cut push_removed on DEV.
-  2. two-answer score (readout only, nobody trained against it): the blind score restricted to the two answer letters,
+  1b. --mon-from RUN.json: the run's LAST re-pick set (the attacker's own monitor) cut on the first 64 train prompts:
+     'beat its own monitor' = strict32 left after that cut (PREREG reported row).
+  2. two-answer score (--two-answer; written to OUT/readouts/<run>_two_answer.json) (readout only, nobody trained against it): the blind score restricted to the two answer letters,
      KL2(p || q) of the 2-way distributions softmax([z_A, z_B]) (fp32 logits; it only needs the A-over-B log-odds),
      removed2 = 1 - mean KL2(p_cut || p_unprobed) / mean KL2(p_probed || p_unprobed). Joint greedy pick on DEV by
      removed2 to k = --kmax (same greedy and tie order as kaudit.kgreedy), each greedy set scored on TEST.
@@ -23,7 +25,7 @@ import numpy as np
 import torch
 
 from audit import hname, merged_tail
-from cfgm import CDIR, MODEL, NH, OUT
+from cfgm import CDIR, FIRST, MODEL, NH, OUT
 from kaudit import KAuditor, blind_removed, parse_temps, tn
 from tail import DEV, Rows, split_ids
 
@@ -68,6 +70,8 @@ def main():
     ap.add_argument("--n-dev", type=int, default=64)
     ap.add_argument("--n-test", type=int, default=128)
     ap.add_argument("--chunk", type=int, default=4)
+    ap.add_argument("--mon-from", default="", help="run JSON (default OUT/runs/<run>.json when it exists): also cut its LAST re-pick's set on the first 64 train "
+                    "prompts (the attacker's own monitor) = 'beat its own monitor' (PREREG reported row)")
     ap.add_argument("--two-answer", action="store_true", help="also the two-answer greedy readout (PREREG: after 05:55 CET)")
     a = ap.parse_args()
     t0 = time.time()
@@ -101,6 +105,17 @@ def main():
     car = max(sd, key=lambda h: (sd[h]["push_drop32"], -list(sd).index(h)))  # PREREG: largest dev drop, lower index wins
     res["oracle_carrier"] = {"head": car, "dev": sd[car], "test": single["test"][car]}
 
+    mon_from = a.mon_from or (str(OUT / "runs" / f"{a.run}.json") if (OUT / "runs" / f"{a.run}.json").exists() else "")
+    if mon_from:
+        rj = json.loads(Path(mon_from).read_text())
+        last = rj["picks"][-1]
+        hs = [(int(x.split(".")[0]) - FIRST, int(x.split(".")[1])) for x in last["heads"]]
+        assert [hname(h) for h in hs] == last["heads"], last["heads"]
+        tr = idx["train"][:rj["args"]["mon_n"]]
+        base, per = run(tr, [(hs, [])])
+        res["own_monitor"] = {"step": last["step"], "heads": last["heads"], "n": len(tr),
+                              "train_strict32_uncut": float(np.mean((base["lo_p32"] > 0) & (base["lo_u32"] < 0))),
+                              **stats(base, per[0], temps)}
     if a.two_answer:
         res.update(two_answer(run, heads, dev, test, a.kmax, temps))
     res["secs"] = round(time.time() - t0, 1)
@@ -112,7 +127,8 @@ def main():
         print("MPS driver_allocated_memory GB", round(torch.mps.driver_allocated_memory() / 1e9, 2), flush=True)
     print("READOUTS", name, json.dumps({"carrier": res["oracle_carrier"]["head"],
           "carrier_dev": {k: round(v, 6) for k, v in res["oracle_carrier"]["dev"].items()},
-          "two_answer_strict32_after_k": res.get("two_answer_strict32_after_k")}), "secs", res["secs"], flush=True)
+          "two_answer_strict32_after_k": res.get("two_answer_strict32_after_k"),
+          "own_monitor_strict32": (res.get("own_monitor") or {}).get("strict32")}), "secs", res["secs"], flush=True)
 
 
 def two_answer(run, heads, dev, test, kmax, temps):

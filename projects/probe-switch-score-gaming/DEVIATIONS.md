@@ -24,3 +24,11 @@ Checks (no training; `checks/equiv.py`, outputs `checks/equiv_T1.jsonl`, `checks
   0.0068 (48x) and the tie line 1e-3 (7x). Steps whose winner is a block-A head are bit-identical (diff 0).
 - Time per re-pick: 41.2-41.6 s -> 25.8-27.8 s (about 1.5x). With it a T = 1 seed takes about 33 min of training plus
   about 10 min of audits, so PREREG's 35-min rule for the extra seeds 3-5 is not met: the extras do not run.
+
+## D2 — 2026-11-28 02:25 CET (before any readout ran): readouts.py adds two reported rows (Bruno)
+
+The box (started 02:09 CET from commit 2f4f5eac1) calls readouts.py fresh at each cell, so these edits apply to every
+readout: the oracle carrier uses the fp32 log-odds (push_drop32, the PREREG "Scores" logits; bf16 push_removed kept
+next to it), and each trained run also gets PREREG's reported row "beat its own monitor" (its last re-pick's 6-head
+set cut on the 64 monitor prompts, `own_monitor`). The two-answer readout moved behind `--two-answer` (PREREG: after
+05:55 CET), written to readouts/<run>_two_answer.json. No status input changes.

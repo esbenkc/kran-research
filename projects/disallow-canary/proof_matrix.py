@@ -64,6 +64,15 @@ def main() -> None:
                 m, arm = key.split("/")
                 rows.append(("null (Vera)", "-", f"{m}: {VARIANT[arm]}", "code-shuffle null (another run's code)",
                              rest.strip(), "skeptics/skeptic/vera_nulls_out.txt"))
+    for rb in sorted((HERE / "skeptics").glob("*/rebuild.json")):  # e.g. critic2: {"model/arm": {"blocks": {"0": [k, n]}}}
+        who = rb.parent.name
+        for key, cell in json.loads(rb.read_text()).items():
+            m, arm = key.split("/")
+            for b, (k, n) in sorted(cell["blocks"].items()):
+                ours = a["models"][m][arm]["per_block"][str(b)]
+                ok = (ours["k"], ours["n"]) == (k, n)
+                rows.append((f"rebuild ({who})", f"block {b}", f"{m}: {VARIANT[arm]}", CONTROL[arm],
+                             f"catch {k}/{n} {'MATCH' if ok else 'MISMATCH'}", str(rb.relative_to(HERE))))
     lines = ["# Proof matrix — disallow-canary", "",
              f"Status by the frozen rule (analysis.py): **{a['status']}**. Prediction: **{a['prediction_outcome']}**.", "",
              "| claim | seed | variant | control | result | artifact |", "|---|---|---|---|---|---|"]

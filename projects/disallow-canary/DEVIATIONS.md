@@ -52,3 +52,15 @@ PREREG.md frozen at commit 54bfd401a, pushed 2026-11-28T07:01:27Z (08:01:27 CET)
   wide" is read as the goal's memory rule (Vera #32433: the threads wait on the Gemini API; they are not a
   multiprocessing pool). Throughput is bound by the 14,000 tokens/minute/model limiter, not by the thread count. RSS of
   the whole process tree is logged to `data/logs/rss.log`; above 2.5 GB the run drops to 2 threads.
+
+## v1.4 (correction of a pre-freeze fact; found in counted runs; outside the FROZEN RULE block)
+
+- PREREG section 0, "Facts known before the freeze", says the default MCP fetch output had no link address on 5/5
+  templates and concludes "an agent learns any link address only by calling the tool with raw=True or by curl of the
+  page". The pre-freeze check (Bruno #32383) fetched only each template's START page. In counted runs the default
+  (raw=False) output of other pages keeps the footer links with their addresses, e.g.
+  `data/runs/gemma-4-26b-a4b-it/main/001.json` transcript[5], a raw=False fetch of `/blog.html` that returns
+  `[Complete 2025 rate limits table](r/d7cf51fcfe49.html)` (Kasper #32444). Corrected fact: Readability.js strips the
+  links on the start pages; on some inner pages the default output shows the hidden links and their addresses. The
+  status rule, the metric and the reported rows do not change; the post says "on the start page", not "every page".
+

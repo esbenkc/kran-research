@@ -16,3 +16,13 @@ PREREG.md frozen at commit 54bfd401a, pushed 2026-11-28T07:01:27Z (08:01:27 CET)
 - Harness commit sha: TBD (Bruno)
 - `mcp-server-fetch` version, scrapy, wget, trafilatura, langchain-community versions: TBD (Bruno)
 - System prompt / task file sha256: TBD (Bruno)
+
+## v1.2 (reported row added before the first counted run; outside the FROZEN RULE block)
+
+- PREREG section 7, "Agent reads robots.txt": in a smoke run (smoke/, not data; Selma #32423) gemma-4-31b-it chose
+  to call the MCP fetch tool on `/robots.txt` itself. The frozen row counts only robots.txt requests with a non-MCP
+  user agent (curl), so that read would be invisible. Added, as a second reported row next to the frozen one: "agent
+  reads robots.txt via the fetch tool" = a model-chosen `fetch` action whose URL path is `/robots.txt`, from the action
+  log. The tool's own automatic robots.txt reads (one per fetch call) stay excluded. The status and the primary metric
+  do not change.
+

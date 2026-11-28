@@ -187,6 +187,9 @@ b.id { color: #b3261e; font-weight: 800; }
 .track.red i { background: #b3261e; }
 .bv { font-size: 22px; color: #3b3e46; text-align: right; font-variant-numeric: tabular-nums; }
 .bv b { font-size: 30px; font-weight: 800; color: #1d1d1f; } .bv.red b { color: #b3261e; }
+.bl.ctl { font-size: 20px; font-weight: 500; color: #5a5d66; padding-left: 22px; margin-top: -6px; }
+.track.ctl { height: 12px; margin-top: -6px; background: #eef0f3; } .track.ctl i { background: #b9bcc4; }
+.bv.ctl { font-size: 20px; color: #5a5d66; margin-top: -6px; } .bv.ctl b { font-size: 22px; font-weight: 700; color: #5a5d66; }
 .foot { font-size: 19px; color: #5a5d66; margin-top: 18px; line-height: 1.35; } .foot b { color: #2b2e35; }
 """
 
@@ -207,11 +210,12 @@ def short(s: str, n: int) -> str:
     return " ".join(out)
 
 
-def bar(label: str, sub: str, k: int, n: int, unit: str, red: bool) -> str:
+def bar(label: str, sub: str, k: int, n: int, unit: str, red: bool, ctl: bool = False) -> str:
     w = 100 * k / n if n else 0
-    return (f'<div class="bl">{E(label)}<span>{E(sub)}</span></div>'
-            f'<div class="track{" red" if red else ""}"><i style="width:{w:.2f}%"></i></div>'
-            f'<div class="bv{" red" if red else ""}"><b>{k}</b> of {n} {E(unit)}</div>')
+    cls = " red" if red else (" ctl" if ctl else "")
+    lab = f'<div class="bl ctl">{E(label)}</div>' if ctl else f'<div class="bl">{E(label)}<span>{E(sub)}</span></div>'
+    return (lab + f'<div class="track{cls}"><i style="width:{w:.2f}%"></i></div>'
+            f'<div class="bv{cls}"><b>{k}</b> of {n} {E(unit)}</div>')
 
 
 def page(T: dict, S: dict, crawl: dict, a31: dict, a26: dict, link: str, counts: dict, src: str) -> str:
@@ -253,7 +257,9 @@ def page(T: dict, S: dict, crawl: dict, a31: dict, a26: dict, link: str, counts:
     chart = (f'<div class="chart"><div class="ct">{E(f("chart_title"))} <span>{E(f("chart_sub"))}</span></div><div class="bars">'
              + bar(T["bar_crawl"], T["bar_crawl_sub"], c["crawl_hits"], c["crawl_passes"], T["unit_sites"], False)
              + bar(T["m31"], T["bar_agent_sub"], c["k31"], c["n31"], T["unit_runs"], True)
+             + bar(T["bar_ctl"], "", c["b31"], c["bn31"], T["unit_runs"], False, ctl=True)
              + bar(T["m26"], T["bar_agent_sub"], c["k26"], c["n26"], T["unit_runs"], False)
+             + bar(T["bar_ctl"], "", c["b26"], c["bn26"], T["unit_runs"], False, ctl=True)
              + "</div></div>")
     foot = f'<div class="foot">{E(f("foot"))} &middot; <b>athanorscience.com</b></div>'
     return f"""<!doctype html>
@@ -309,7 +315,9 @@ def main() -> None:
     counts = {"k31": mm[M31]["main"]["catch"]["k"], "n31": mm[M31]["main"]["catch"]["n"],
               "k26": mm[M26]["main"]["catch"]["k"], "n26": mm[M26]["main"]["catch"]["n"],
               "crawl_hits": sum(tab[c]["both"]["templates_hit"] for c in ROBOTS_ON),
-              "crawl_passes": sum(tab[c]["both"]["templates"] for c in ROBOTS_ON)}
+              "crawl_passes": sum(tab[c]["both"]["templates"] for c in ROBOTS_ON),
+              "b31": mm[M31]["bare"]["catch"]["k"], "bn31": mm[M31]["bare"]["catch"]["n"],
+              "b26": mm[M26]["bare"]["catch"]["k"], "bn26": mm[M26]["bare"]["catch"]["n"]}
     final = all(mm[m]["main"]["settled"] for m in (M31, M26))
     ra = mm[M31]["main"]["route_around_given_refusal"]
     S = {**counts, "pages": cr["pages"], "answer31": a31["answer_true"], "status": res["status"],
